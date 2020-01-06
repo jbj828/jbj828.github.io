@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Set Collection - Developer Javit</title>
+    <meta name="author" content="Javit">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n","dateCreated":"2020-01-06T13:46:25+09:00","dateModified":"2020-01-06T17:38:06+09:00","datePublished":"2020-01-06T13:46:25+09:00","description":"Set의 특징\n\n객체(데이터) 중복 저장 불가능\n저장 순서 보장 X(리스트를 인덱스로 관리 안함)\n\n데이터를 검색하기 위해서는 iterator() 메서드로 Iterator(반복자)를 생성하고 데이터를 가져와야 한다.\nCollection c 가 있다고 하자.같은 element의 다른 Collection을 만들고 똑같은 인자를 제거하기 위해선 어떻게 해야할까?\n1Collection&lt;Type&gt; noDups = new HashSet&lt;Type&gt;(c);\n\n*Collection class의 메서드    retainAll() : 저장 된 객체 중 주어진 컬렉션과 공통된 것만 남기고 나머지 삭제\n*Array 메서드    Arrays.asList()        : 배열을 리스트로 반환        이 메서드를 사용하여 배열을 캐스팅하여 컬렉션 관련 유틸들을 이용할 수 있다.        하지만 fixd-size-list를 반환하기 때문에 추가, 삭제 불가능해결방법: 새로운 리스트를 만듦\n1List&lt;String&gt; list = new ArrayList(Arrays.asList(array));\n\nSet Collection 연습(출처 : Udemy Programming masterclass for software developers)\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109package com.chung.setCollection;import java.util.Arrays;import java.util.HashSet;import java.util.Set;public class Main &#123;    public static void main(String[] args) &#123;        Set&lt;Integer&gt; squares = new HashSet&lt;&gt;();        Set&lt;Integer&gt; cubes = new HashSet&lt;&gt;();        for (int i = 1; i &lt;= 100; i++) &#123;            squares.add(i * i);            cubes.add(i * i * i);        &#125;        System.out.println(squares.size() + \", \" + cubes.size()); //100, 100        Set&lt;Integer&gt; union = new HashSet&lt;&gt;(squares);        union.addAll(cubes);        System.out.println(union.size());  //196        Set&lt;Integer&gt; intersection = new HashSet&lt;&gt;(squares);        intersection.retainAll(cubes);        System.out.println(intersection.size()); // 4        for (int i : intersection) &#123;            System.out.println(i + \" is the square of \" + Math.sqrt(i) + \", and the cube of \" + Math.cbrt(i));        &#125;        //4096 is the square of 64.0, and the cube of 16.0        //1 is the square of 1.0, and the cube of 1.0        //64 is the square of 8.0, and the cube of 4.0        //729 is the square of 27.0, and the cube of 9.0        Set&lt;String&gt; words = new HashSet&lt;&gt;();        String sentence = \"one day in the year of the box\";        String[] arrayWords = sentence.split(\" \");        words.addAll(Arrays.asList(arrayWords));        for (String s : words) &#123;            System.out.println(s);        &#125;        //the        //in        //year        //one        //of        //box        //day        Set&lt;String&gt; nature = new HashSet&lt;&gt;();        Set&lt;String&gt; divine = new HashSet&lt;&gt;();        String[] natureWords = &#123;\"all\", \"nature\", \"is\", \"but\", \"art\", \"unknown\", \"to\", \"thee\"&#125;;        nature.addAll(Arrays.asList(natureWords));        String[] divineWords = &#123;\"to\", \"err\", \"is\", \"human\", \"to\", \"forgive\", \"divine\"&#125;;        divine.addAll(Arrays.asList(divineWords));        System.out.println(\"nature - divine\");        Set&lt;String&gt; diff1 = new HashSet&lt;&gt;(nature);        diff1.retainAll(divine);        printSet(diff1); //is to        System.out.println(\"divine - nature\");        Set&lt;String&gt; diff2 = new HashSet&lt;&gt;(divine);        diff2.retainAll(nature);        printSet(diff2); //is to        Set&lt;String&gt; unionTest = new HashSet&lt;&gt;(nature);        unionTest.addAll(divine);        Set&lt;String&gt; intersectionTest = new HashSet&lt;&gt;(nature);        intersectionTest.retainAll(divine);        System.out.println(\"Symmetric Difference\");        unionTest.removeAll(intersectionTest);        printSet(unionTest);        //all        //but        //art        //thee        //err        //nature        //forgive        //divine        //human        //unknown        if (nature.containsAll(divine)) &#123;            System.out.println(\"divine is a subset of nature\");        &#125;        if (nature.containsAll(intersectionTest)) &#123;            System.out.println(\"intersection is subset of nature\");        &#125;        if (divine.containsAll(intersectionTest)) &#123;            System.out.println(\"intersection is subset of divine\");        &#125;    &#125;    private static void printSet(Set&lt;String&gt; set) &#123;        System.out.println(\"\\t\");        for (String s : set) &#123;            System.out.println(s + \" \");        &#125;        System.out.println();    &#125;&#125;","headline":"Set Collection","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/06/Set-Collection/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/06/Set-Collection/","keywords":"java, masterclass"}</script>
+    <meta name="description" content="Set의 특징  객체(데이터) 중복 저장 불가능 저장 순서 보장 X(리스트를 인덱스로 관리 안함)  데이터를 검색하기 위해서는 iterator() 메서드로 Iterator(반복자)를 생성하고 데이터를 가져와야 한다. Collection c 가 있다고 하자.같은 element의 다른 Collection을 만들고 똑같은 인자를 제거하기 위해선 어떻게 해야할까?">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Set Collection">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/06/Set-Collection/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="Set의 특징  객체(데이터) 중복 저장 불가능 저장 순서 보장 X(리스트를 인덱스로 관리 안함)  데이터를 검색하기 위해서는 iterator() 메서드로 Iterator(반복자)를 생성하고 데이터를 가져와야 한다. Collection c 가 있다고 하자.같은 element의 다른 Collection을 만들고 똑같은 인자를 제거하기 위해선 어떻게 해야할까?">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-06T04:46:25.000Z">
+<meta property="article:modified_time" content="2020-01-06T08:38:06.446Z">
+<meta property="article:author" content="Javit">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="masterclass">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Set Collection
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-01-06T13:46:25+09:00">
+	
+		    Jan 06, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Java/">Java</a>, <a class="category-link" href="/categories/Java/Masterclass/">Masterclass</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+<h1 id="table-of-contents">Table of Contents</h1>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/java/" rel="tag">java</a> <a class="tag tag--primary tag--small t-link" href="/tags/masterclass/" rel="tag">masterclass</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/06/setChallenge/"
+                    data-tooltip="Set Challenge"
+                    aria-label="PREVIOUS: Set Challenge"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Table of Contents">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Javit. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/06/setChallenge/"
+                    data-tooltip="Set Challenge"
+                    aria-label="PREVIOUS: Set Challenge"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Table of Contents">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/Set-Collection/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Javit</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
