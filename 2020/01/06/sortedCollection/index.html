@@ -6,26 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>equals()메소드와 hashcode()메소드 - Developer Javit</title>
+    <title>sortedCollection - Developer Javit</title>
     <meta name="author" content="Javit">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n","dateCreated":"2020-01-06T20:11:25+09:00","dateModified":"2020-01-06T20:29:25+09:00","datePublished":"2020-01-06T20:11:25+09:00","description":"equals() 메서드와 비교연산자 == 의 차이12345String a = new String(\"java\");String b = new String(\"java\");a == b  //falsea.equals(b)  //true\nequals() 메서드는 는 값의 동등성만 확인한다.\nhashcode()“return a hashcode value for the object.This method is supported for the benefit of hash tablessuch as those provided by HashMap.”\nObject 클래스에 있는 메서드\nHashTable 과 HashMap은 hashcode() 메서드를 이용해서 객체를 저장하는 다른도구들(ex ArrayList)에 비해 장점을 가진다=&gt; key의 hashcode()를 통해 value 값을 더 쉽게 찾을 수 있다.(보통 key 값엔 어떤 객체든 올 수 있다. 다양한 종류의 객체를 찾는 것보다 int 값(hashcode)를 찾는게 편하다)\n일반 class를 정의할 때 hashcode 메서드는 오버라이드하여 변경을 안했기 때문에 Object 클래스에서 정의 된그대로의 메서드\n하지만 String의 경우 hashcode가 주소값과 관련이 없다.String 클래스의 hashcode는 오버라이드 과정에서 새롭게 정의된다.=&gt; 같은 문자열은 같은 hashcode 값 가짐.왜냐하면 hashcode를 활용해서 Map이나 Set에 저장 된 key 값 찾아야 되는데 같은 값인데도 불구하고 hashcode 값이 다르면 제대로 못찾기 때문에\nhashcode 메서드 재정의 : 같은 String 객체(equals() 리턴값 true) =&gt; hashcode 같아지도록 만듦\nequals(object) 메서드가 true이면 두 객체의 hashcode 값 같아야 한다.equals(object) 메서드가 false이면 두 객체의 hashcode 가 꼭 다를 필요는 없다.하지만 서로 다른 hashcode 값이 나오면 hashTable의 성능이 향상될 수 있다는 점은 알아야 한다.","headline":"equals()메소드와 hashcode()메소드","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/06/equalsHashcode/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/06/equalsHashcode/","keywords":"java, masterclass"}</script>
-    <meta name="description" content="equals() 메서드와 비교연산자 &#x3D;&#x3D; 의 차이12345String a &#x3D; new String(&quot;java&quot;);String b &#x3D; new String(&quot;java&quot;);a &#x3D;&#x3D; b  &#x2F;&#x2F;falsea.equals(b)  &#x2F;&#x2F;true equals() 메서드는 는 값의 동등성만 확인한다. hashcode()“return a hashcode value for the">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n","dateCreated":"2020-01-06T20:46:25+09:00","dateModified":"2020-01-08T00:12:17+09:00","datePublished":"2020-01-06T20:46:25+09:00","description":"(출처 : Udemy Programming masterclass for software developers)safdsdf\n1\n\n1\n\n1","headline":"sortedCollection","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/06/sortedCollection/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/06/sortedCollection/"}</script>
+    <meta name="description" content="(출처 : Udemy Programming masterclass for software developers)safdsdf 1  1  1">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="equals()메소드와 hashcode()메소드">
-<meta property="og:url" content="http://jbj828.github.io/2020/01/06/equalsHashcode/index.html">
+<meta property="og:title" content="sortedCollection">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/06/sortedCollection/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="equals() 메서드와 비교연산자 &#x3D;&#x3D; 의 차이12345String a &#x3D; new String(&quot;java&quot;);String b &#x3D; new String(&quot;java&quot;);a &#x3D;&#x3D; b  &#x2F;&#x2F;falsea.equals(b)  &#x2F;&#x2F;true equals() 메서드는 는 값의 동등성만 확인한다. hashcode()“return a hashcode value for the">
+<meta property="og:description" content="(출처 : Udemy Programming masterclass for software developers)safdsdf 1  1  1">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-06T11:11:25.000Z">
-<meta property="article:modified_time" content="2020-01-06T11:29:25.556Z">
+<meta property="article:published_time" content="2020-01-06T11:46:25.000Z">
+<meta property="article:modified_time" content="2020-01-07T15:12:17.437Z">
 <meta property="article:author" content="Javit">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="masterclass">
 <meta name="twitter:card" content="summary">
     
     
@@ -228,22 +226,16 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            equals()메소드와 hashcode()메소드
+            sortedCollection
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-01-06T20:11:25+09:00">
+    <time datetime="2020-01-06T20:46:25+09:00">
 	
 		    Jan 06, 2020
     	
     </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Java/">Java</a>, <a class="category-link" href="/categories/Java/Masterclass/">Masterclass</a>
-
-
     
 </div>
 
@@ -262,13 +254,6 @@
     </div>
     <div id="post-footer" class="post-footer main-content-wrap">
         
-            <div class="post-footer-tags">
-                <span class="text-color-light text-small">TAGGED IN</span><br/>
-                
-    <a class="tag tag--primary tag--small t-link" href="/tags/java/" rel="tag">java</a> <a class="tag tag--primary tag--small t-link" href="/tags/masterclass/" rel="tag">masterclass</a>
-
-            </div>
-        
         
             <div class="post-actions-wrap">
     <nav>
@@ -278,9 +263,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/06/sortedCollection/"
-                    data-tooltip="sortedCollection"
-                    aria-label="PREVIOUS: sortedCollection"
+                    href="/2020/01/07/jsp-basic/"
+                    data-tooltip="JSP Scripting Elements"
+                    aria-label="PREVIOUS: JSP Scripting Elements"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -292,9 +277,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/06/setChallenge/"
-                    data-tooltip="Set Challenge"
-                    aria-label="NEXT: Set Challenge"
+                    href="/2020/01/06/equalsHashcode/"
+                    data-tooltip="equals()메소드와 hashcode()메소드"
+                    aria-label="NEXT: equals()메소드와 hashcode()메소드"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -319,7 +304,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/sortedCollection/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -332,7 +317,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/sortedCollection/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -345,7 +330,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/sortedCollection/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -393,9 +378,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/06/sortedCollection/"
-                    data-tooltip="sortedCollection"
-                    aria-label="PREVIOUS: sortedCollection"
+                    href="/2020/01/07/jsp-basic/"
+                    data-tooltip="JSP Scripting Elements"
+                    aria-label="PREVIOUS: JSP Scripting Elements"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -407,9 +392,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/06/setChallenge/"
-                    data-tooltip="Set Challenge"
-                    aria-label="NEXT: Set Challenge"
+                    href="/2020/01/06/equalsHashcode/"
+                    data-tooltip="equals()메소드와 hashcode()메소드"
+                    aria-label="NEXT: equals()메소드와 hashcode()메소드"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -434,7 +419,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/sortedCollection/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -447,7 +432,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/sortedCollection/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -460,7 +445,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/sortedCollection/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -494,7 +479,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/06/sortedCollection/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -507,7 +492,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/06/sortedCollection/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -520,7 +505,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/equalsHashcode/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/06/sortedCollection/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
