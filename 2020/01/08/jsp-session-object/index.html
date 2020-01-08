@@ -6,25 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>JSP Scripting Elements - Developer Javit</title>
+    <title>JSP Session object - Developer Javit</title>
     <meta name="author" content="Javit">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n","dateCreated":"2020-01-07T23:46:25+09:00","dateModified":"2020-01-08T00:21:03+09:00","datePublished":"2020-01-07T23:46:25+09:00","description":"JSP, Servlet 공부를 시작했다.자바를 이용해 어떻게 웹과 연동하는지 늘 궁금했는데 해답이 코 앞에 있었다.\nHTML과 JSP를 연동해서 하나의 웹을 만들 수 있다는 것에 벅찼다.\nWeb Applications?“A website where the HTML pages are generates dynamically based on the user’s actions.”\nJSP Scripting ElementsJSP Expression\n1&lt;%= some java expression %&gt;\n\nJSP Scirptlets\n1&lt;% ~~~~~ %&gt;\n\nJSP Declarations\n1&lt;%! ~~~~~~~ %&gt;","headline":"JSP Scripting Elements","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/07/jsp-basic/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/07/jsp-basic/","keywords":"til"}</script>
-    <meta name="description" content="JSP, Servlet 공부를 시작했다.자바를 이용해 어떻게 웹과 연동하는지 늘 궁금했는데 해답이 코 앞에 있었다. HTML과 JSP를 연동해서 하나의 웹을 만들 수 있다는 것에 벅찼다. Web Applications?“A website where the HTML pages are generates dynamically based on the user’s">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"Session Object\nJSP session is created once for user’s browser session unique for this user.\nCommonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.\n\n\ncookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장\nsession : 웹 서버쪽의 웹 컨테이너에 상태를 유지하기 위한 정보 저장\n\nsession의 속성\n세션 설정은 세션 객체의 setAttribute() 메서드 사용\n\n세션 저장하여 유지할 수 있도록 함\n1session.setAttribute(\"name\", \"value\");\n\n세션의 속성을 사용하려면 getAttribute() 메서드 사용\n\ngetAttribute()사용 시 형 변환을 해야함 - 기본 Object 타입으로\n1String id = (String) session.getAttribute(\"id\");\n\n\n\n","dateCreated":"2020-01-08T23:36:25+09:00","dateModified":"2020-01-08T22:45:02+09:00","datePublished":"2020-01-08T23:36:25+09:00","description":"","headline":"JSP Session object","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/08/jsp-session-object/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/08/jsp-session-object/","keywords":"java, til, jsp"}</script>
+    <meta name="description" content="Session Object JSP session is created once for user’s browser session unique for this user. Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.   cookie">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="JSP Scripting Elements">
-<meta property="og:url" content="http://jbj828.github.io/2020/01/07/jsp-basic/index.html">
+<meta property="og:title" content="JSP Session object">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/08/jsp-session-object/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="JSP, Servlet 공부를 시작했다.자바를 이용해 어떻게 웹과 연동하는지 늘 궁금했는데 해답이 코 앞에 있었다. HTML과 JSP를 연동해서 하나의 웹을 만들 수 있다는 것에 벅찼다. Web Applications?“A website where the HTML pages are generates dynamically based on the user’s">
+<meta property="og:description" content="Session Object JSP session is created once for user’s browser session unique for this user. Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.   cookie">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-07T14:46:25.000Z">
-<meta property="article:modified_time" content="2020-01-07T15:21:03.415Z">
+<meta property="article:published_time" content="2020-01-08T14:36:25.000Z">
+<meta property="article:modified_time" content="2020-01-08T13:45:02.196Z">
 <meta property="article:author" content="Javit">
+<meta property="article:tag" content="java">
 <meta property="article:tag" content="til">
+<meta property="article:tag" content="jsp">
 <meta name="twitter:card" content="summary">
     
     
@@ -227,20 +229,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            JSP Scripting Elements
+            JSP Session object
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-01-07T23:46:25+09:00">
+    <time datetime="2020-01-08T23:36:25+09:00">
 	
-		    Jan 07, 2020
+		    Jan 08, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/TIL/">TIL</a>
+    <a class="category-link" href="/categories/Java/">Java</a>, <a class="category-link" href="/categories/Java/JSP/">JSP</a>, <a class="category-link" href="/categories/Java/JSP/TIL/">TIL</a>
 
 
     
@@ -252,8 +254,28 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <!-- excerpt -->
-<h1 id="table-of-contents">Table of Contents</h1>
+            <h2 id="Session-Object"><a href="#Session-Object" class="headerlink" title="Session Object"></a>Session Object</h2><ol>
+<li>JSP session is created once for user’s browser session unique for this user.</li>
+<li>Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.</li>
+</ol>
+<ul>
+<li>cookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장</li>
+<li>session : 웹 서버쪽의 웹 컨테이너에 상태를 유지하기 위한 정보 저장</li>
+</ul>
+<h3 id="session의-속성"><a href="#session의-속성" class="headerlink" title="session의 속성"></a>session의 속성</h3><ul>
+<li><p>세션 설정은 세션 객체의 setAttribute() 메서드 사용</p>
+</li>
+<li><p>세션 저장하여 유지할 수 있도록 함</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(<span class="string">"name"</span>, <span class="string">"value"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>세션의 속성을 사용하려면 getAttribute() 메서드 사용</p>
+</li>
+<li><p>getAttribute()사용 시 형 변환을 해야함 - 기본 Object 타입으로</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String id = (String) session.getAttribute(<span class="string">"id"</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
             
 
 
@@ -264,7 +286,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/til/" rel="tag">til</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/java/" rel="tag">java</a> <a class="tag tag--primary tag--small t-link" href="/tags/jsp/" rel="tag">jsp</a> <a class="tag tag--primary tag--small t-link" href="/tags/til/" rel="tag">til</a>
 
             </div>
         
@@ -274,14 +296,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/08/jsp-session-study/"
-                    data-tooltip="Session example"
-                    aria-label="PREVIOUS: Session example"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -291,9 +310,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/07/sortedCollection/"
-                    data-tooltip="Basket Challenge"
-                    aria-label="NEXT: Basket Challenge"
+                    href="/2020/01/08/jsp-session-study/"
+                    data-tooltip="Session example"
+                    aria-label="NEXT: Session example"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -318,7 +337,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -331,7 +350,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -344,7 +363,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -357,7 +376,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Table of Contents">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -389,14 +408,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/08/jsp-session-study/"
-                    data-tooltip="Session example"
-                    aria-label="PREVIOUS: Session example"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -406,9 +422,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/07/sortedCollection/"
-                    data-tooltip="Basket Challenge"
-                    aria-label="NEXT: Basket Challenge"
+                    href="/2020/01/08/jsp-session-study/"
+                    data-tooltip="Session example"
+                    aria-label="NEXT: Session example"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -433,7 +449,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -446,7 +462,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -459,7 +475,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -472,7 +488,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Table of Contents">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -493,7 +509,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -506,7 +522,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -519,7 +535,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/07/jsp-basic/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/08/jsp-session-object/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
