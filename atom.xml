@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-01-08T13:45:02.196Z</updated>
+  <updated>2020-01-09T13:09:06.796Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -17,11 +17,69 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>jsp-jspl</title>
+    <link href="http://jbj828.github.io/2020/01/09/jsp-jspl/"/>
+    <id>http://jbj828.github.io/2020/01/09/jsp-jspl/</id>
+    <published>2020-01-09T10:10:25.000Z</published>
+    <updated>2020-01-09T13:09:06.796Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="JSTL이란"><a href="#JSTL이란" class="headerlink" title="JSTL이란?"></a>JSTL이란?</h3><ul><li>JSP에서 자주 사용하는 기능을 구현하는 커스텀 태그와 라이브러리의 모음이다.</li></ul><h3 id="JSTL을-사용한-예시"><a href="#JSTL을-사용한-예시" class="headerlink" title="JSTL을 사용한 예시"></a>JSTL을 사용한 예시</h3><h5 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h5><img src="/2020/01/09/jsp-jspl/jsp-jspl.png" class="" width="500" height="300" title="jsp-jspl"><p>Student.java</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javit.jsp.tagdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> String firstname;</span><br><span class="line"><span class="keyword">private</span> String lastname;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> goldCustomer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String firstname, String lastname, <span class="keyword">boolean</span> goldCustomer)</span> </span>&#123;</span><br><span class="line"><span class="keyword">super</span>();</span><br><span class="line"><span class="keyword">this</span>.firstname = firstname;</span><br><span class="line"><span class="keyword">this</span>.lastname = lastname;</span><br><span class="line"><span class="keyword">this</span>.goldCustomer = goldCustomer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getFirstname</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> firstname;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirstname</span><span class="params">(String firstname)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.firstname = firstname;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getLastname</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> lastname;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLastname</span><span class="params">(String lastname)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.lastname = lastname;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isGoldCustomer</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> goldCustomer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGoldCustomer</span><span class="params">(<span class="keyword">boolean</span> goldCustomer)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.goldCustomer = goldCustomer;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>student-shopping.jsp</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.util.*, com.javit.jsp.tagdemo.Student"</span> %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">List&lt;Student&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">data.add(<span class="keyword">new</span> Student(<span class="string">"Javit"</span>, <span class="string">"Chung"</span>, <span class="keyword">true</span>));</span><br><span class="line">data.add(<span class="keyword">new</span> Student(<span class="string">"Rene"</span>, <span class="string">"Aoki"</span>, <span class="keyword">false</span>));</span><br><span class="line">data.add(<span class="keyword">new</span> Student(<span class="string">"John"</span>, <span class="string">"Doe"</span>, <span class="keyword">false</span>));</span><br><span class="line"></span><br><span class="line">pageContext.setAttribute(<span class="string">"myStudents"</span>, data);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;table border=<span class="string">"1"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;th&gt;First Name&lt;/th&gt;</span><br><span class="line">&lt;th&gt;Last Name&lt;/th&gt;</span><br><span class="line">&lt;th&gt;Gold Customer&lt;/th&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;c:forEach <span class="keyword">var</span>=<span class="string">"tempStudent"</span> items=<span class="string">"$&#123;myStudents&#125;"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;$&#123;tempStudent.firstname&#125;&lt;/td&gt;</span><br><span class="line">&lt;td&gt;$&#123;tempStudent.lastname&#125;&lt;/td&gt;</span><br><span class="line"> &lt;td&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;c:choose&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;c:when test=<span class="string">"$&#123;tempStudent.goldCustomer&#125;"</span>&gt;</span><br><span class="line"> Special Discount</span><br><span class="line"> &lt;/c:when&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;c:otherwise&gt;</span><br><span class="line"> No Discount</span><br><span class="line"> &lt;/c:otherwise&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;/c:choose&gt;</span><br><span class="line"> &lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;/c:forEach&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;JSTL이란&quot;&gt;&lt;a href=&quot;#JSTL이란&quot; class=&quot;headerlink&quot; title=&quot;JSTL이란?&quot;&gt;&lt;/a&gt;JSTL이란?&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;JSP에서 자주 사용하는 기능을 구현하는 커스텀 태그와 라이브러리의 모음이다.&lt;/l
+      
+    
+    </summary>
+    
+    
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
+    
+    
+      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JSP Cookies</title>
+    <link href="http://jbj828.github.io/2020/01/09/jsp-cookies/"/>
+    <id>http://jbj828.github.io/2020/01/09/jsp-cookies/</id>
+    <published>2020-01-09T01:50:25.000Z</published>
+    <updated>2020-01-09T10:07:34.819Z</updated>
+    
+    <content type="html"><![CDATA[<!-- excerpt --><!-- toc -->]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Personalize content with Cookie&lt;/p&gt;
+&lt;p&gt;cookies-homepage.jsp&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ page &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;java.net.URLDecoder&quot;&lt;/span&gt; %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Homepage&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	String favLang = &lt;span class=&quot;string&quot;&gt;&quot;Java&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Cookie[] theCookies = request.getCookies();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(theCookies != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(Cookie tempCookie : theCookies)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;myApp.favoriteLanguage&quot;&lt;/span&gt;.equals(tempCookie.getName()))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				favLang = URLDecoder.decode(tempCookie.getValue(), &lt;span class=&quot;string&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;h2&amp;gt;Training Portal&amp;lt;/h2&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;h3&amp;gt;New books for &amp;lt;%= favLang %&amp;gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;li&amp;gt;blah blah&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;h3&amp;gt;Latest New Report &amp;lt;%= favLang %&amp;gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;li&amp;gt;blah blah&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;h3&amp;gt;Hot Jobs for &amp;lt;%= favLang %&amp;gt;&amp;lt;/h3&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;li&amp;gt;blah blah&amp;lt;/li&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;a href=&quot;cookies-personalize-form2.html&quot;&amp;gt;Personalize this page&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;cookies-personalize-form.html&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Personalize form&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;form action=&lt;span class=&quot;string&quot;&gt;&quot;cookies-personalize-response2.jsp&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Select your favorite language: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;select name=&lt;span class=&quot;string&quot;&gt;&quot;favoriteLanguage&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;option&amp;gt;Java&amp;lt;/option&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;option&amp;gt;PHP&amp;lt;/option&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;lt;option&amp;gt;C#&amp;lt;/option&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;/select&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;lt;input type=&lt;span class=&quot;string&quot;&gt;&quot;submit&quot;&lt;/span&gt; value=&lt;span class=&quot;string&quot;&gt;&quot;Submit&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;cookies-personalize-response.jsp&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ page &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;java.net.URLEncoder&quot;&lt;/span&gt; %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Personalize response&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	String favLang = request.getParameter(&lt;span class=&quot;string&quot;&gt;&quot;favoriteLanguage&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	favLang = URLEncoder.encode(favLang, &lt;span class=&quot;string&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Cookie theCookie = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Cookie(&lt;span class=&quot;string&quot;&gt;&quot;myApp.favoriteLanguage&quot;&lt;/span&gt;, favLang);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	theCookie.setMaxAge(&lt;span class=&quot;number&quot;&gt;60&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;60&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;24&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;365&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	response.addCookie(theCookie);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Thanks! We set your favorite language $&amp;#123;param.favoriteLanguage&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;a href=&quot;cookies-homepage2.jsp&quot;&amp;gt;Return to the homepage&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
+    
+    
+      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JSP Session object</title>
     <link href="http://jbj828.github.io/2020/01/08/jsp-session-object/"/>
     <id>http://jbj828.github.io/2020/01/08/jsp-session-object/</id>
     <published>2020-01-08T14:36:25.000Z</published>
-    <updated>2020-01-08T13:45:02.196Z</updated>
+    <updated>2020-01-09T10:06:40.553Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Session-Object"><a href="#Session-Object" class="headerlink" title="Session Object"></a>Session Object</h2><ol><li>JSP session is created once for user’s browser session unique for this user.</li><li>Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.</li></ol><ul><li>cookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장</li><li>session : 웹 서버쪽의 웹 컨테이너에 상태를 유지하기 위한 정보 저장</li></ul><h3 id="session의-속성"><a href="#session의-속성" class="headerlink" title="session의 속성"></a>session의 속성</h3><ul><li><p>세션 설정은 세션 객체의 setAttribute() 메서드 사용</p></li><li><p>세션 저장하여 유지할 수 있도록 함</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(<span class="string">"name"</span>, <span class="string">"value"</span>);</span><br></pre></td></tr></table></figure></li><li><p>세션의 속성을 사용하려면 getAttribute() 메서드 사용</p></li><li><p>getAttribute()사용 시 형 변환을 해야함 - 기본 Object 타입으로</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String id = (String) session.getAttribute(<span class="string">"id"</span>);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
@@ -36,16 +94,8 @@
     </summary>
     
     
-      <category term="Java" scheme="http://jbj828.github.io/categories/Java/"/>
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
     
-      <category term="JSP" scheme="http://jbj828.github.io/categories/Java/JSP/"/>
-    
-      <category term="TIL" scheme="http://jbj828.github.io/categories/Java/JSP/TIL/"/>
-    
-    
-      <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
-    
-      <category term="til" scheme="http://jbj828.github.io/tags/til/"/>
     
       <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
     
@@ -56,16 +106,16 @@
     <link href="http://jbj828.github.io/2020/01/08/jsp-session-study/"/>
     <id>http://jbj828.github.io/2020/01/08/jsp-session-study/</id>
     <published>2020-01-08T13:46:25.000Z</published>
-    <updated>2020-01-08T14:05:57.372Z</updated>
+    <updated>2020-01-09T10:07:46.436Z</updated>
     
-    <content type="html"><![CDATA[<p>Tracking user actions with session</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.util.*"</span> %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">1</span>: Create HTML form --&gt;</span><br><span class="line">&lt;form action=<span class="string">"todo-demo.jsp"</span>&gt;</span><br><span class="line">Add <span class="keyword">new</span> item: &lt;input type=<span class="string">"text"</span> name=<span class="string">"theItem"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">2</span>: Add <span class="keyword">new</span> item to <span class="string">"To Do"</span> list --&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">List&lt;String&gt; items = (List&lt;String&gt;) session.getAttribute(<span class="string">"myToDoList"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(items == <span class="keyword">null</span>)&#123;</span><br><span class="line">items = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">session.setAttribute(<span class="string">"myToDoList"</span>, items);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String theItem = request.getParameter(<span class="string">"theItem"</span>);</span><br><span class="line"><span class="keyword">if</span>(theItem != <span class="keyword">null</span>)&#123;</span><br><span class="line">items.add(theItem);</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">3</span>: Display all <span class="string">"To Do"</span> item from the session --&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;b&gt;To list items:&lt;/b&gt; &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol&gt;</span><br><span class="line">&lt;%</span><br><span class="line"><span class="keyword">for</span>(String temp: items)&#123;</span><br><span class="line">out.println(<span class="string">"&lt;li&gt;"</span> + temp + <span class="string">"&lt;/li&gt;"</span>);</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>Tracking user actions with session</p><h4 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h4><img src="/2020/01/08/jsp-session-study/jsp-session-study.png" class="" width="500" height="300" title><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.util.*"</span> %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">1</span>: Create HTML form --&gt;</span><br><span class="line">&lt;form action=<span class="string">"todo-demo.jsp"</span>&gt;</span><br><span class="line">Add <span class="keyword">new</span> item: &lt;input type=<span class="string">"text"</span> name=<span class="string">"theItem"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">2</span>: Add <span class="keyword">new</span> item to <span class="string">"To Do"</span> list --&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">List&lt;String&gt; items = (List&lt;String&gt;) session.getAttribute(<span class="string">"myToDoList"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(items == <span class="keyword">null</span>)&#123;</span><br><span class="line">items = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">session.setAttribute(<span class="string">"myToDoList"</span>, items);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">String theItem = request.getParameter(<span class="string">"theItem"</span>);</span><br><span class="line"><span class="keyword">if</span>(theItem != <span class="keyword">null</span>)&#123;</span><br><span class="line">items.add(theItem);</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">3</span>: Display all <span class="string">"To Do"</span> item from the session --&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;b&gt;To list items:&lt;/b&gt; &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol&gt;</span><br><span class="line">&lt;%</span><br><span class="line"><span class="keyword">for</span>(String temp: items)&#123;</span><br><span class="line">out.println(<span class="string">"&lt;li&gt;"</span> + temp + <span class="string">"&lt;/li&gt;"</span>);</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;Tracking user actions with session&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span 
+&lt;h4 id=&quot;Result&quot;&gt;&lt;a href=&quot;#Result&quot; class=&quot;headerlink&quot; title=&quot;Result&quot;&gt;&lt;/a&gt;Result&lt;/h4&gt;&lt;img src=&quot;/2020
       
     
     </summary>
@@ -73,14 +123,6 @@
     
       <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
     
-      <category term="Java" scheme="http://jbj828.github.io/categories/JSP/Java/"/>
-    
-      <category term="TIL" scheme="http://jbj828.github.io/categories/JSP/Java/TIL/"/>
-    
-    
-      <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
-    
-      <category term="til" scheme="http://jbj828.github.io/tags/til/"/>
     
       <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
     
@@ -91,7 +133,7 @@
     <link href="http://jbj828.github.io/2020/01/07/jsp-basic/"/>
     <id>http://jbj828.github.io/2020/01/07/jsp-basic/</id>
     <published>2020-01-07T14:46:25.000Z</published>
-    <updated>2020-01-07T15:21:03.415Z</updated>
+    <updated>2020-01-09T10:07:17.221Z</updated>
     
     <content type="html"><![CDATA[<!-- excerpt --><!-- toc -->]]></content>
     
@@ -112,10 +154,10 @@
     </summary>
     
     
-      <category term="TIL" scheme="http://jbj828.github.io/categories/TIL/"/>
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
     
     
-      <category term="til" scheme="http://jbj828.github.io/tags/til/"/>
+      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
     
   </entry>
   
@@ -124,7 +166,7 @@
     <link href="http://jbj828.github.io/2020/01/07/sortedCollection/"/>
     <id>http://jbj828.github.io/2020/01/07/sortedCollection/</id>
     <published>2020-01-07T11:46:25.000Z</published>
-    <updated>2020-01-08T02:39:52.449Z</updated>
+    <updated>2020-01-09T10:09:33.497Z</updated>
     
     <content type="html"><![CDATA[<!-- excerpt --><!-- toc -->]]></content>
     
@@ -146,10 +188,10 @@
     </summary>
     
     
-      <category term="Java, Masterclass, challenge" scheme="http://jbj828.github.io/categories/Java-Masterclass-challenge/"/>
+      <category term="Java" scheme="http://jbj828.github.io/categories/Java/"/>
     
     
-      <category term="java, masterclass" scheme="http://jbj828.github.io/tags/java-masterclass/"/>
+      <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
     
   </entry>
   
@@ -158,7 +200,7 @@
     <link href="http://jbj828.github.io/2020/01/06/equalsHashcode/"/>
     <id>http://jbj828.github.io/2020/01/06/equalsHashcode/</id>
     <published>2020-01-06T11:11:25.000Z</published>
-    <updated>2020-01-06T11:29:25.556Z</updated>
+    <updated>2020-01-09T10:06:59.914Z</updated>
     
     <content type="html"><![CDATA[<!-- excerpt --><!-- toc -->]]></content>
     
@@ -179,12 +221,8 @@
     
       <category term="Java" scheme="http://jbj828.github.io/categories/Java/"/>
     
-      <category term="Masterclass" scheme="http://jbj828.github.io/categories/Java/Masterclass/"/>
-    
     
       <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
-    
-      <category term="masterclass" scheme="http://jbj828.github.io/tags/masterclass/"/>
     
   </entry>
   
@@ -193,7 +231,7 @@
     <link href="http://jbj828.github.io/2020/01/06/setChallenge/"/>
     <id>http://jbj828.github.io/2020/01/06/setChallenge/</id>
     <published>2020-01-06T09:46:25.000Z</published>
-    <updated>2020-01-06T11:10:23.527Z</updated>
+    <updated>2020-01-09T10:08:52.577Z</updated>
     
     <content type="html"><![CDATA[<!-- excerpt -->]]></content>
     
@@ -219,12 +257,8 @@
     
       <category term="Java" scheme="http://jbj828.github.io/categories/Java/"/>
     
-      <category term="Masterclass" scheme="http://jbj828.github.io/categories/Java/Masterclass/"/>
-    
     
       <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
-    
-      <category term="masterclass" scheme="http://jbj828.github.io/tags/masterclass/"/>
     
   </entry>
   
@@ -233,7 +267,7 @@
     <link href="http://jbj828.github.io/2020/01/06/Set-Collection/"/>
     <id>http://jbj828.github.io/2020/01/06/Set-Collection/</id>
     <published>2020-01-06T04:46:25.000Z</published>
-    <updated>2020-01-06T08:38:06.446Z</updated>
+    <updated>2020-01-09T10:08:36.616Z</updated>
     
     <content type="html"><![CDATA[<!-- excerpt --><!-- toc -->]]></content>
     
@@ -260,12 +294,8 @@
     
       <category term="Java" scheme="http://jbj828.github.io/categories/Java/"/>
     
-      <category term="Masterclass" scheme="http://jbj828.github.io/categories/Java/Masterclass/"/>
-    
     
       <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
-    
-      <category term="masterclass" scheme="http://jbj828.github.io/tags/masterclass/"/>
     
   </entry>
   
