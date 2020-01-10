@@ -225,6 +225,61 @@
                     
                         <a
                             class="link-unstyled"
+                            href="/2020/01/11/jsp-request/"
+                            aria-label=": JSP 내장객체"
+                        >
+                            JSP 내장객체
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2020-01-11T00:16:25+09:00">
+	
+		    Jan 11, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/JSP/">JSP</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <h3 id="JSP-내장객체란"><a href="#JSP-내장객체란" class="headerlink" title="JSP 내장객체란?"></a>JSP 내장객체란?</h3><ul>
+<li>자주 사용되는 객체(클래스 9개)로 별도의 선언 없이 사용 가능하다</li>
+</ul>
+<p>대표적으로 request, response, session 등이 있다.</p>
+<p>이번 예는 request 를 중심으로 만든 회원가입 페이지이다.</p>
+                    
+                        <a
+                            href="/2020/01/11/jsp-request/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": JSP 내장객체"
+                        >
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
                             href="/2020/01/10/jstl-format-tag/"
                             aria-label=": Build a multi-lingual App"
                         >
@@ -255,19 +310,6 @@
 <h3 id="JSTL-Format-Tag"><a href="#JSTL-Format-Tag" class="headerlink" title="JSTL Format Tag?"></a>JSTL Format Tag?</h3><ul>
 <li>다국어 처리, 날짜 숫자를 formatting 할 경우 format tag 사용하면 편하다.</li>
 </ul>
-<h4 id="Multi-lingual-App"><a href="#Multi-lingual-App" class="headerlink" title="Multi-lingual App"></a>Multi-lingual App</h4><p>i18n-messages.jsp</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span> prefix=<span class="string">"fmt"</span> %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;c:set <span class="keyword">var</span>=<span class="string">"theLocale"</span> </span><br><span class="line">value=<span class="string">"$&#123;not empty param.theLocale ? param.theLocale : pageContext.request.locale&#125;"</span></span><br><span class="line">scope=<span class="string">"session"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;fmt:setLocale value=<span class="string">"$&#123;theLocale&#125;"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;fmt:setBundle basename=<span class="string">"com.javit.jsp.tagdemo.i18n.resources.mylabels"</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href="i18n-messages-test.jsp?theLocale=en_US"&gt;English (US)&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href="i18n-messages-test.jsp?theLocale=es_ES"&gt;Spanish (ES)&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href="i18n-messages-test.jsp?theLocale=de_DE"&gt;German (DE)&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;fmt:message key=<span class="string">"label.greeting"</span> /&gt; &lt;br/&gt;&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;fmt:message key="label.firstname" /&gt; &lt;i&gt;Jay&lt;/i&gt;  &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;fmt:message key="label.lastname" /&gt; &lt;i&gt;Chung&lt;/i&gt; &lt;br/&gt;&lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;fmt:message key=<span class="string">"label.welcome"</span> /&gt; &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line">Selected locale : $&#123;theLocale&#125;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h5 id="Resource-파일"><a href="#Resource-파일" class="headerlink" title="Resource 파일"></a>Resource 파일</h5><p>com.javit.jsp.tagdemo.i18n.resources</p>
-<p>mylabels.properties</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">label.greeting=Howdy</span><br><span class="line">label.firstname=First Name</span><br><span class="line">label.lastname=Last Name</span><br><span class="line">label.welcome=Welcome to the App Transer.</span><br></pre></td></tr></table></figure>
-
-<p>mylabels_es_ES.properties</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">label.greeting=Hola</span><br><span class="line">label.firstname=Nombre de pila</span><br><span class="line">label.lastname=Apellido</span><br><span class="line">label.welcome=Bienvenido a la aplicación Transer.</span><br></pre></td></tr></table></figure>
-
-<p>mylabels_de_DE.properties</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">label.greeting=Hallo</span><br><span class="line">label.firstname=Vorname</span><br><span class="line">label.lastname=Nachname</span><br><span class="line">label.welcome=Willkommen beim App Transer.</span><br></pre></td></tr></table></figure>
                     
                         <a
                             href="/2020/01/10/jstl-format-tag/"
@@ -285,7 +327,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -317,35 +359,19 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <h3 id="JSTL이란"><a href="#JSTL이란" class="headerlink" title="JSTL이란?"></a>JSTL이란?</h3><ul>
 <li>JSP에서 자주 사용하는 기능을 구현하는 커스텀 태그와 라이브러리의 모음이다.</li>
 </ul>
-<h3 id="JSTL을-사용한-예시"><a href="#JSTL을-사용한-예시" class="headerlink" title="JSTL을 사용한 예시"></a>JSTL을 사용한 예시</h3><h5 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h5><img src="/2020/01/09/jsp-jspl/jsp-jspl.png" class="" width="500" height="300" title="jsp-jspl">
-
-<p>Student.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.javit.jsp.tagdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String firstname;</span><br><span class="line">	<span class="keyword">private</span> String lastname;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> goldCustomer;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String firstname, String lastname, <span class="keyword">boolean</span> goldCustomer)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.firstname = firstname;</span><br><span class="line">		<span class="keyword">this</span>.lastname = lastname;</span><br><span class="line">		<span class="keyword">this</span>.goldCustomer = goldCustomer;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getFirstname</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> firstname;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirstname</span><span class="params">(String firstname)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.firstname = firstname;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getLastname</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> lastname;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLastname</span><span class="params">(String lastname)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.lastname = lastname;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isGoldCustomer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> goldCustomer;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGoldCustomer</span><span class="params">(<span class="keyword">boolean</span> goldCustomer)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.goldCustomer = goldCustomer;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>student-shopping.jsp</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.util.*, com.javit.jsp.tagdemo.Student"</span> %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	List&lt;Student&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	data.add(<span class="keyword">new</span> Student(<span class="string">"Javit"</span>, <span class="string">"Chung"</span>, <span class="keyword">true</span>));</span><br><span class="line">	data.add(<span class="keyword">new</span> Student(<span class="string">"Rene"</span>, <span class="string">"Aoki"</span>, <span class="keyword">false</span>));</span><br><span class="line">	data.add(<span class="keyword">new</span> Student(<span class="string">"John"</span>, <span class="string">"Doe"</span>, <span class="keyword">false</span>));</span><br><span class="line">	</span><br><span class="line">	pageContext.setAttribute(<span class="string">"myStudents"</span>, data);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;table border=<span class="string">"1"</span>&gt;</span><br><span class="line"></span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">		&lt;th&gt;First Name&lt;/th&gt;</span><br><span class="line">		&lt;th&gt;Last Name&lt;/th&gt;</span><br><span class="line">		&lt;th&gt;Gold Customer&lt;/th&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">	&lt;c:forEach <span class="keyword">var</span>=<span class="string">"tempStudent"</span> items=<span class="string">"$&#123;myStudents&#125;"</span>&gt;</span><br><span class="line">	</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;$&#123;tempStudent.firstname&#125;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;$&#123;tempStudent.lastname&#125;&lt;/td&gt;</span><br><span class="line">		 	&lt;td&gt;</span><br><span class="line">		 	</span><br><span class="line">		 		&lt;c:choose&gt;</span><br><span class="line">		 		</span><br><span class="line">			 		&lt;c:when test=<span class="string">"$&#123;tempStudent.goldCustomer&#125;"</span>&gt;</span><br><span class="line">			 			Special Discount</span><br><span class="line">			 		&lt;/c:when&gt;</span><br><span class="line">			 		</span><br><span class="line">			 		&lt;c:otherwise&gt;</span><br><span class="line">			 			No Discount</span><br><span class="line">			 		&lt;/c:otherwise&gt;</span><br><span class="line">			 		</span><br><span class="line">		 		&lt;/c:choose&gt;</span><br><span class="line">		 	&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		</span><br><span class="line">	&lt;/c:forEach&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-
                     
+                        <a
+                            href="/2020/01/09/jsp-jspl/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": jsp-jspl"
+                        >
+                            Continue reading
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2020/01/09/jsp-jspl/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -388,14 +414,6 @@
             
                 <div class="postShorten-excerpt">
                     <p>Personalize content with Cookie</p>
-<p>cookies-homepage.jsp</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.net.URLDecoder"</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;Homepage&lt;/title&gt;&lt;/head&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	String favLang = <span class="string">"Java"</span>;</span><br><span class="line"></span><br><span class="line">	Cookie[] theCookies = request.getCookies();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(theCookies != <span class="keyword">null</span>)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(Cookie tempCookie : theCookies)&#123;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(<span class="string">"myApp.favoriteLanguage"</span>.equals(tempCookie.getName()))&#123;</span><br><span class="line">				favLang = URLDecoder.decode(tempCookie.getValue(), <span class="string">"UTF-8"</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;h2&gt;Training Portal&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;New books for &lt;%= favLang %&gt;&lt;/h3&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;li&gt;blah blah&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;Latest New Report &lt;%= favLang %&gt;&lt;/h3&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;li&gt;blah blah&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;Hot Jobs for &lt;%= favLang %&gt;&lt;/h3&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">	&lt;li&gt;blah blah&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href="cookies-personalize-form2.html"&gt;Personalize this page&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>cookies-personalize-form.html</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;Personalize form&lt;/title&gt;&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;form action=<span class="string">"cookies-personalize-response2.jsp"</span>&gt;</span><br><span class="line">	</span><br><span class="line">		Select your favorite language: </span><br><span class="line">		&lt;select name=<span class="string">"favoriteLanguage"</span>&gt;</span><br><span class="line">		</span><br><span class="line">			&lt;option&gt;Java&lt;/option&gt;</span><br><span class="line">			&lt;option&gt;PHP&lt;/option&gt;</span><br><span class="line">			&lt;option&gt;C#&lt;/option&gt;</span><br><span class="line">	</span><br><span class="line">		&lt;/select&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;br/&gt;&lt;br/&gt;</span><br><span class="line">		&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span>/&gt;</span><br><span class="line">		</span><br><span class="line">	&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<p>cookies-personalize-response.jsp</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.net.URLEncoder"</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;title&gt;Personalize response&lt;/title&gt;&lt;/head&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	String favLang = request.getParameter(<span class="string">"favoriteLanguage"</span>);</span><br><span class="line"></span><br><span class="line">	favLang = URLEncoder.encode(favLang, <span class="string">"UTF-8"</span>);</span><br><span class="line"></span><br><span class="line">	Cookie theCookie = <span class="keyword">new</span> Cookie(<span class="string">"myApp.favoriteLanguage"</span>, favLang);</span><br><span class="line">	</span><br><span class="line">	theCookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">365</span>);</span><br><span class="line">	</span><br><span class="line">	response.addCookie(theCookie);</span><br><span class="line">%&gt;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	Thanks! We set your favorite language $&#123;param.favoriteLanguage&#125;</span><br><span class="line">	</span><br><span class="line">	&lt;br/&gt;&lt;br/&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;a href="cookies-homepage2.jsp"&gt;Return to the homepage&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
                     
                         <a
                             href="/2020/01/09/jsp-cookies/"
@@ -413,7 +431,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -445,44 +463,20 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <h2 id="Session-Object"><a href="#Session-Object" class="headerlink" title="Session Object"></a>Session Object</h2><ol>
 <li>JSP session is created once for user’s browser session unique for this user.</li>
 <li>Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.</li>
 </ol>
-<ul>
-<li>cookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장</li>
-<li>session : 웹 서버쪽의 웹 컨테이너에 상태를 유지하기 위한 정보 저장</li>
-</ul>
-<h3 id="session의-속성"><a href="#session의-속성" class="headerlink" title="session의 속성"></a>session의 속성</h3><ul>
-<li><p>세션 설정은 세션 객체의 setAttribute() 메서드 사용</p>
-</li>
-<li><p>세션 저장하여 유지할 수 있도록 함</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.setAttribute(<span class="string">"name"</span>, <span class="string">"value"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>세션의 속성을 사용하려면 getAttribute() 메서드 사용</p>
-</li>
-<li><p>getAttribute()사용 시 형 변환을 해야함 - 기본 Object 타입으로</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String id = (String) session.getAttribute(<span class="string">"id"</span>);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
                     
+                        <a
+                            href="/2020/01/08/jsp-session-object/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": JSP Session object"
+                        >
+                            Continue reading
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2020/01/08/jsp-session-object/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -491,7 +485,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -523,30 +517,17 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <p>Tracking user actions with session</p>
-<h4 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h4><img src="/2020/01/08/jsp-session-study/jsp-session-study.png" class="" width="500" height="300" title>
-
-
-
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page <span class="keyword">import</span>=<span class="string">"java.util.*"</span> %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">1</span>: Create HTML form --&gt;</span><br><span class="line">&lt;form action=<span class="string">"todo-demo.jsp"</span>&gt;</span><br><span class="line">	Add <span class="keyword">new</span> item: &lt;input type=<span class="string">"text"</span> name=<span class="string">"theItem"</span>/&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Submit"</span>/&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">2</span>: Add <span class="keyword">new</span> item to <span class="string">"To Do"</span> list --&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">	List&lt;String&gt; items = (List&lt;String&gt;) session.getAttribute(<span class="string">"myToDoList"</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(items == <span class="keyword">null</span>)&#123;</span><br><span class="line">		items = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		session.setAttribute(<span class="string">"myToDoList"</span>, items);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	String theItem = request.getParameter(<span class="string">"theItem"</span>);</span><br><span class="line">	<span class="keyword">if</span>(theItem != <span class="keyword">null</span>)&#123;</span><br><span class="line">		items.add(theItem);</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Step <span class="number">3</span>: Display all <span class="string">"To Do"</span> item from the session --&gt;</span><br><span class="line"></span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;b&gt;To list items:&lt;/b&gt; &lt;br/&gt;</span><br><span class="line"></span><br><span class="line">&lt;ol&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	<span class="keyword">for</span>(String temp: items)&#123;</span><br><span class="line">		out.println(<span class="string">"&lt;li&gt;"</span> + temp + <span class="string">"&lt;/li&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/ol&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
                     
+                        <a
+                            href="/2020/01/08/jsp-session-study/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": Session example"
+                        >
+                            Continue reading
+                        </a>
                         
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2020/01/08/jsp-session-study/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -590,15 +571,6 @@
                 <div class="postShorten-excerpt">
                     <p>JSP, Servlet 공부를 시작했다.<br>자바를 이용해 어떻게 웹과 연동하는지 늘 궁금했는데 해답이 코 앞에 있었다.</p>
 <p>HTML과 JSP를 연동해서 하나의 웹을 만들 수 있다는 것에 벅찼다.</p>
-<h3 id="Web-Applications"><a href="#Web-Applications" class="headerlink" title="Web Applications?"></a>Web Applications?</h3><p>“A website where the HTML pages are generates dynamically based on the user’s actions.”</p>
-<h3 id="JSP-Scripting-Elements"><a href="#JSP-Scripting-Elements" class="headerlink" title="JSP Scripting Elements"></a>JSP Scripting Elements</h3><p>JSP Expression</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= some java expression %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>JSP Scirptlets</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% ~~~~~ %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>JSP Declarations</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%! ~~~~~~~ %&gt;</span><br></pre></td></tr></table></figure>
                     
                         <a
                             href="/2020/01/07/jsp-basic/"
