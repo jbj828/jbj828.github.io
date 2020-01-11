@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>JSP include action tag - Developer Javit</title>
+    <meta name="author" content="Javit">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"Include action tag?\ninclude 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.\n\n\n\n\n\n\ninclude 액션태그를 이용한 홈페이지 작성\n\n\nMain.jsp\n12345678910111213141516171819202122232425262728293031323334353637&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;center&gt;\t&lt;table width=\"800\" border=\"1\"&gt;\t&lt;!-- Top --&gt;\t\t&lt;tr height=\"150\"&gt;\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt; \t\t\t\t&lt;jsp:include page=\"Top.jsp\"&gt;\t\t\t\t\t&lt;jsp:param value=\"jbj828\" name=\"id\"/&gt;\t\t\t\t&lt;/jsp:include&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;!-- Left  Center--&gt;\t\t&lt;tr height=\"400\"&gt;\t\t\t&lt;td align=\"center\" width=\"200\"&gt;\t\t\t\t&lt;jsp:include page=\"Left.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t\t&lt;td align=\"center\" width=\"600\"&gt;\t\t\t\t&lt;jsp:include page=\"Center.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;!-- Bottom  --&gt;\t\t&lt;tr height=\"100\"&gt;\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt;\t\t\t\t&lt;jsp:include page=\"Bottom.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;/table&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\nTop.jsp\n123456789101112131415161718192021222324252627282930&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;!-- Top  --&gt;\t&lt;table width=\"800\"&gt;\t\t&lt;tr height=\"100\"&gt;\t\t&lt;!-- logo image --&gt;\t\t\t&lt;td colspan=\"2\" align=\"center\" width=\"260\"&gt;\t\t\t\t&lt;img src=\"img/campingLogo.png\" width=\"200\" height=\"60\"&gt;\t\t\t&lt;/td&gt;\t\t\t&lt;td colspan=\"4\" align=\"center\"&gt;\t\t\t&lt;font size=\"13\"&gt;Camping Site&lt;/font&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"50\"&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Tent&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Hat&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Food&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Knife&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Chair&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Table&lt;/td&gt;\t\t\t&lt;td width=\"140\" align=\"center\"&gt;&lt;%= request.getParameter(\"id\")%&gt;&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nLeft.jsp\n123456789101112131415161718192021222324&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;table width=\"200\" &gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;SnowPeak&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Coleman&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Zip&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Cobea&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nCenter.jsp\n1234567891011121314151617181920&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=\"EUC-KR\"&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\t&lt;table width=\"600\"&gt;\t\t&lt;tr height=\"400\"&gt;\t\t\t&lt;td align=\"center\"&gt;\t\t\t\t&lt;img src=\"img/campingSite.png\" width=\"400\" height=\"300\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t \t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nBottom.jsp\n123456789101112131415161718192021222324252627&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;table width=\"800\"&gt;\t\t&lt;tr height=\"100\"&gt;\t\t\t&lt;td align=\"center\"&gt;\t\t\t\tBlog\t\t\t\tAbout\t\t\t\tShop\t\t\t\tContact\t\t\t\tPricing\t\t\t\tAPI\t\t\t\tTraining\t\t\t\tStatus &lt;br&gt;\t\t\t\tSecurity\t\t\t\tTerms\t\t\t\tPrivacy\t\t\t\tHelp\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\n\n\n","dateCreated":"2020-01-11T14:01:25+09:00","dateModified":"2020-01-11T14:10:28+09:00","datePublished":"2020-01-11T14:01:25+09:00","description":"Include action tag?\ninclude 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.\n","headline":"JSP include action tag","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/11/jsp-includeActionTag/","keywords":"jsp"}</script>
+    <meta name="description" content="Include action tag? include 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="JSP include action tag">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/11/jsp-includeActionTag/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="Include action tag? include 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://jbj828.github.io/2020/01/11/jsp-includeActionTag/jsp-include.png">
+<meta property="article:published_time" content="2020-01-11T05:01:25.000Z">
+<meta property="article:modified_time" content="2020-01-11T05:10:28.015Z">
+<meta property="article:author" content="Javit">
+<meta property="article:tag" content="jsp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jbj828.github.io/2020/01/11/jsp-includeActionTag/jsp-include.png">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            JSP include action tag
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-01-11T14:01:25+09:00">
+	
+		    Jan 11, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/JSP/">JSP</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>Include action tag?</p>
+<p>include 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.</p>
+<br/>
+
+<a id="more"></a>
+
+
+<ul>
+<li><p>include 액션태그를 이용한 홈페이지 작성</p>
+<img src="/2020/01/11/jsp-includeActionTag/jsp-include.png" class="" width="100" height="500" title="jsp-include">
+</li>
+<li><p>Main.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;center&gt;</span><br><span class="line">	&lt;table width=<span class="string">"800"</span> border=<span class="string">"1"</span>&gt;</span><br><span class="line">	&lt;!-- Top --&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"150"</span>&gt;</span><br><span class="line">			&lt;td align=<span class="string">"center"</span> colspan=<span class="string">"2"</span>&gt; </span><br><span class="line">				&lt;jsp:include page=<span class="string">"Top.jsp"</span>&gt;</span><br><span class="line">					&lt;jsp:param value=<span class="string">"jbj828"</span> name=<span class="string">"id"</span>/&gt;</span><br><span class="line">				&lt;/jsp:include&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;!-- Left  Center--&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"400"</span>&gt;</span><br><span class="line">			&lt;td align=<span class="string">"center"</span> width=<span class="string">"200"</span>&gt;</span><br><span class="line">				&lt;jsp:include page=<span class="string">"Left.jsp"</span>/&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">			&lt;td align=<span class="string">"center"</span> width=<span class="string">"600"</span>&gt;</span><br><span class="line">				&lt;jsp:include page=<span class="string">"Center.jsp"</span>/&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;!-- Bottom  --&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"100"</span>&gt;</span><br><span class="line">			&lt;td align=<span class="string">"center"</span> colspan=<span class="string">"2"</span>&gt;</span><br><span class="line">				&lt;jsp:include page=<span class="string">"Bottom.jsp"</span>/&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;	</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/center&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Top.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;!-- Top  --&gt;</span><br><span class="line">	&lt;table width=<span class="string">"800"</span>&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"100"</span>&gt;</span><br><span class="line">		&lt;!-- logo image --&gt;</span><br><span class="line">			&lt;td colspan=<span class="string">"2"</span> align=<span class="string">"center"</span> width=<span class="string">"260"</span>&gt;</span><br><span class="line">				&lt;img src=<span class="string">"img/campingLogo.png"</span> width=<span class="string">"200"</span> height=<span class="string">"60"</span>&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">			&lt;td colspan=<span class="string">"4"</span> align=<span class="string">"center"</span>&gt;</span><br><span class="line">			&lt;font size="13"&gt;Camping Site&lt;/font&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">			&lt;td width="110" align="center"&gt;Tent&lt;/td&gt;</span><br><span class="line">			&lt;td width="110" align="center"&gt;Hat&lt;/td&gt;</span><br><span class="line">			&lt;td width="110" align="center"&gt;Food&lt;/td&gt;</span><br><span class="line">			&lt;td width="110" align="center"&gt;Knife&lt;/td&gt;</span><br><span class="line">			&lt;td width="110" align="center"&gt;Chair&lt;/td&gt;</span><br><span class="line">			&lt;td width="110" align="center"&gt;Table&lt;/td&gt;</span><br><span class="line">			&lt;td width="140" align="center"&gt;&lt;%= request.getParameter("id")%&gt;&lt;/td&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Left.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">	&lt;table width=<span class="string">"200"</span> &gt;</span><br><span class="line">		&lt;tr height=<span class="string">"40"</span>&gt;</span><br><span class="line">			&lt;td width="200" align="center"&gt; &lt;a href="#"&gt;SnowPeak&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"40"</span>&gt;</span><br><span class="line">			&lt;td width="200" align="center"&gt; &lt;a href="#"&gt;Coleman&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"40"</span>&gt;</span><br><span class="line">			&lt;td width="200" align="center"&gt; &lt;a href="#"&gt;Zip&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"40"</span>&gt;</span><br><span class="line">			&lt;td width="200" align="center"&gt; &lt;a href="#"&gt;Cobea&lt;/a&gt;&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Center.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"EUC-KR"</span>&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">	&lt;table width=<span class="string">"600"</span>&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"400"</span>&gt;</span><br><span class="line">			&lt;td align=<span class="string">"center"</span>&gt;</span><br><span class="line">				&lt;img src=<span class="string">"img/campingSite.png"</span> width=<span class="string">"400"</span> height=<span class="string">"300"</span>/&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;	 </span><br><span class="line">	&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Bottom.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">	&lt;table width=<span class="string">"800"</span>&gt;</span><br><span class="line">		&lt;tr height=<span class="string">"100"</span>&gt;</span><br><span class="line">			&lt;td align=<span class="string">"center"</span>&gt;</span><br><span class="line">				Blog</span><br><span class="line">				About</span><br><span class="line">				Shop</span><br><span class="line">				Contact</span><br><span class="line">				Pricing</span><br><span class="line">				API</span><br><span class="line">				Training</span><br><span class="line">				Status &lt;br&gt;</span><br><span class="line">				Security</span><br><span class="line">				Terms</span><br><span class="line">				Privacy</span><br><span class="line">				Help</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="table-of-contents">Table of Contents</h1>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/jsp/" rel="tag">jsp</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/11/jsp-request/"
+                    data-tooltip="JSP 내장객체"
+                    aria-label="NEXT: JSP 내장객체"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Table of Contents">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Javit. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/11/jsp-request/"
+                    data-tooltip="JSP 내장객체"
+                    aria-label="NEXT: JSP 내장객체"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents" aria-label="Table of Contents">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Javit</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

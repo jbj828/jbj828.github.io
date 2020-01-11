@@ -13,7 +13,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n\n\ncookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장\nsession : 웹 서버쪽의 웹 컨테이너에 상태를 유지하기 위한 정보 저장\n\nsession의 속성\n세션 설정은 세션 객체의 setAttribute() 메서드 사용\n\n세션 저장하여 유지할 수 있도록 함\n1session.setAttribute(\"name\", \"value\");\n\n세션의 속성을 사용하려면 getAttribute() 메서드 사용\n\ngetAttribute()사용 시 형 변환을 해야함 - 기본 Object 타입으로\n1String id = (String) session.getAttribute(\"id\");\n\n\n","dateCreated":"2020-01-08T23:36:25+09:00","dateModified":"2020-01-11T00:23:55+09:00","datePublished":"2020-01-08T23:36:25+09:00","description":"Session Object\nJSP session is created once for user’s browser session unique for this user.\nCommonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.\n","headline":"JSP Session object","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/08/jsp-session-object/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/08/jsp-session-object/","keywords":"jsp"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"Session Object\nJSP session is created once for user’s browser session unique for this user.\nCommonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.\n\n\n\n\ncookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장\nsession : 웹 서버쪽의 웹 컨테이너에 상태를 유지하기 위한 정보 저장\n\nsession의 속성\n세션 설정은 세션 객체의 setAttribute() 메서드 사용\n\n세션 저장하여 유지할 수 있도록 함\n1session.setAttribute(\"name\", \"value\");\n\n세션의 속성을 사용하려면 getAttribute() 메서드 사용\n\ngetAttribute()사용 시 형 변환을 해야함 - 기본 Object 타입으로\n1String id = (String) session.getAttribute(\"id\");\n\n\n\n","dateCreated":"2020-01-08T23:36:25+09:00","dateModified":"2020-01-11T14:11:47+09:00","datePublished":"2020-01-08T23:36:25+09:00","description":"Session Object\nJSP session is created once for user’s browser session unique for this user.\nCommonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.\n","headline":"JSP Session object","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/08/jsp-session-object/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/08/jsp-session-object/","keywords":"jsp"}</script>
     <meta name="description" content="Session Object JSP session is created once for user’s browser session unique for this user. Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="JSP Session object">
@@ -22,7 +22,7 @@
 <meta property="og:description" content="Session Object JSP session is created once for user’s browser session unique for this user. Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-08T14:36:25.000Z">
-<meta property="article:modified_time" content="2020-01-10T15:23:55.037Z">
+<meta property="article:modified_time" content="2020-01-11T05:11:47.057Z">
 <meta property="article:author" content="Javit">
 <meta property="article:tag" content="jsp">
 <meta name="twitter:card" content="summary">
@@ -252,7 +252,11 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <!-- excerpt -->
+            <h2 id="Session-Object"><a href="#Session-Object" class="headerlink" title="Session Object"></a>Session Object</h2><ol>
+<li>JSP session is created once for user’s browser session unique for this user.</li>
+<li>Commonly used when you need to keep track of the user’s actions. ex)shopping cart, online banking.</li>
+</ol>
+<a id="more"></a>
 
 <ul>
 <li>cookie : 웹 브라우저에 사용자의 상태를 유지하기 위한 정보 저장</li>
@@ -271,6 +275,7 @@
 
 </li>
 </ul>
+
             
 
 
