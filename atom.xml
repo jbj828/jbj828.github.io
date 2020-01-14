@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-01-11T05:10:28.015Z</updated>
+  <updated>2020-01-14T04:45:07.917Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,115 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DataBase Basic</title>
+    <link href="http://jbj828.github.io/2020/01/14/db-basic/"/>
+    <id>http://jbj828.github.io/2020/01/14/db-basic/</id>
+    <published>2020-01-14T05:46:25.000Z</published>
+    <updated>2020-01-14T04:45:07.917Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>데이터 베이스의 논리적 구조</p><ul><li><p>컬럼 : 매개체의 데이터 항목</p></li><li><p>로우 : 매개체 하나의 데이터</p><a id="more"></a></li><li><p>테이블 : 로우들의 집합</p></li><li><p>데이터베이스 : 테이블의 집합</p></li></ul></li><li><p>DBMS(Data Base Management System)</p></li><li><p>SQL(Structured Query Language)</p><ul><li>데이터 삽입, 삭제, 갱신 등 데이터를 관리하기 위해 사용하는 언어</li><li>SQL 구분은 표준, 하지만 제품군마다 조금씩 다름</li></ul></li><li><p>MySQL</p><ul><li>다중스레드(동시에 여러 작업 가능)</li><li>다중 사용자 형식</li><li>구조질의어 형식(SQL문) DB관리 시스템</li></ul></li></ul><ul><li>MySQL 명령어<ul><li>show database : 데이터베이스의 목록을 조회한다</li><li>use 데이터베이스명 : 지정 된 데이터베이스를 사용한다</li><li>show tables : 테이블들의 목록을 조회한다</li><li>desc tables : 테이블의 정보를 조회한다</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;데이터 베이스의 논리적 구조&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;컬럼 : 매개체의 데이터 항목&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;로우 : 매개체 하나의 데이터&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Database, MySQL" scheme="http://jbj828.github.io/categories/Database-MySQL/"/>
+    
+    
+      <category term="database, MySQL" scheme="http://jbj828.github.io/tags/database-MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MVC with Servlets and SJP</title>
+    <link href="http://jbj828.github.io/2020/01/13/jsp-mvcPattern/"/>
+    <id>http://jbj828.github.io/2020/01/13/jsp-mvcPattern/</id>
+    <published>2020-01-12T23:10:25.000Z</published>
+    <updated>2020-01-12T23:00:45.891Z</updated>
+    
+    <content type="html"><![CDATA[<p>MVC : Model-View-Controller</p><ul><li>Model : 백그라운드에서 동작하는 로직 처리</li><li>View : 사용자가 보게 될 화면을 처리</li><li>Controller : 사용자의 입력처리와 흐름제어를 담당</li></ul><a id="more"></a><p>MVC패턴에는 모델 1방식과 모델 2방식이 있다.</p><ul><li>모델 1방식 : JSP에서 출력과 로직을 전부 처리</li><li>모델 2방식 : JSP에서 출력만 처리</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MVC : Model-View-Controller&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model : 백그라운드에서 동작하는 로직 처리&lt;/li&gt;
+&lt;li&gt;View : 사용자가 보게 될 화면을 처리&lt;/li&gt;
+&lt;li&gt;Controller : 사용자의 입력처리와 흐름제어를 담당&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
+    
+    
+      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Bean and useBean</title>
+    <link href="http://jbj828.github.io/2020/01/12/jsp-useBean/"/>
+    <id>http://jbj828.github.io/2020/01/12/jsp-useBean/</id>
+    <published>2020-01-12T01:14:25.000Z</published>
+    <updated>2020-01-12T01:18:40.996Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java Bean?</p><p>자바 빈(Bean)이란?</p><ul><li>웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.<a id="more"></a></li><li>웹 페이지를 보다 효율적이고 생산적으로 작성하려면 코드를 재활용 할 수 있어야 한다.</li></ul><ul><li><p>웹 사이트를 개발할 때, JSP로 웹 페이지를 디자인 하고 내부적인 데이터 처리는 자바 빈으로 구현한다.</p></li><li><p>빈(Bean)은 재활용이 가능한 컴포넌트(Component)와 마찬가지로 소프트웨어를 부품화 한것이다.</p></li><li><p>소프트웨어도 부품화하여 개발하는데 이를 자바에서 빈(Bean)이라고 하고 일반적으로 컴포넌트라고 한다.</p></li><li><p>빈(Bean)은 한번 개발하고 나면 여러가지 페이지에서 동시에 가져다 사용할 수 있다.</p></li><li><p>빈(Bean)은 재사용 가능한 객체로서 대부분 데이터를 저장하는 역할을 한다.</p></li></ul><!-- more --><p>다음은  java bean 과 useBean을 활용한 예시이다.</p><p>MemberJoin.jsp</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;center&gt;</span><br><span class="line">&lt;h2&gt;Join&lt;/h2&gt;</span><br><span class="line">&lt;form action=<span class="string">"MemberJoinProc.jsp"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;table width=<span class="string">"500"</span> border=<span class="string">"1"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">&lt;td width="150" align="center"&gt;ID&lt;/td&gt;</span><br><span class="line">&lt;td width=<span class="string">"350"</span> align=<span class="string">"center"</span>&gt; </span><br><span class="line">&lt;input type=<span class="string">"text"</span> name=<span class="string">"id"</span> size=<span class="string">"40"</span> placeholder=<span class="string">"Write the ID"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">&lt;td width="150" align="center"&gt;Password&lt;/td&gt;</span><br><span class="line">&lt;td width=<span class="string">"350"</span> align=<span class="string">"center"</span>&gt; </span><br><span class="line">&lt;input type=<span class="string">"password"</span> name=<span class="string">"pass1"</span> size=<span class="string">"40"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">&lt;td width="150" align="center"&gt;E-mail&lt;/td&gt;</span><br><span class="line">&lt;td width=<span class="string">"350"</span> align=<span class="string">"center"</span>&gt; </span><br><span class="line">&lt;input type=<span class="string">"email"</span> name=<span class="string">"email"</span> size=<span class="string">"40"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">&lt;td width="150" align="center"&gt;Phone Number&lt;/td&gt;</span><br><span class="line">&lt;td width=<span class="string">"350"</span> align=<span class="string">"center"</span>&gt; </span><br><span class="line">&lt;input type=<span class="string">"tel"</span> name=<span class="string">"tel"</span> size=<span class="string">"40"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">&lt;td width="150" align="center"&gt;Address&lt;/td&gt;</span><br><span class="line">&lt;td width=<span class="string">"350"</span> align=<span class="string">"center"</span>&gt; </span><br><span class="line">&lt;input type=<span class="string">"text"</span> name=<span class="string">"address"</span> size=<span class="string">"40"</span> /&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">&lt;tr height=<span class="string">"50"</span>&gt;</span><br><span class="line">&lt;td align=<span class="string">"center"</span> colspan=<span class="string">"2"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Join Now"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"reset"</span> value=<span class="string">"Cancel"</span>&gt;</span><br><span class="line">&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/center&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><p>Java Resources 파일<br>bean.MemberBean.java</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemberBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> String id;</span><br><span class="line"><span class="keyword">private</span> String pass1;</span><br><span class="line"><span class="keyword">private</span> String email;</span><br><span class="line"><span class="keyword">private</span> String tel;</span><br><span class="line"><span class="keyword">private</span> String address;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.id = id;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getPass1</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> pass1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPass1</span><span class="params">(String pass1)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.pass1 = pass1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getEmail</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> email;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEmail</span><span class="params">(String email)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.email = email;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getTel</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> tel;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTel</span><span class="params">(String tel)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.tel = tel;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> address;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line"><span class="keyword">this</span>.address = address;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>MemberJoinProc.jsp</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=EUC-KR"</span></span><br><span class="line">    pageEncoding=<span class="string">"EUC-KR"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;center&gt;</span><br><span class="line">&lt;h2&gt;User<span class="string">'s Information&lt;/h2&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;%</span></span><br><span class="line"><span class="string">request.setCharacterEncoding("euc-kr");</span></span><br><span class="line"><span class="string">%&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;!-- request로 넘어온 데이터를 자바 빈즈랑 맵핑 시켜주는 useBean  --&gt;</span></span><br><span class="line"><span class="string">&lt;jsp:useBean id="mbean" class="bean.MemberBean"&gt;&lt;!-- 객체생성 MemberBean mbean = new MemberBean()  --&gt;</span></span><br><span class="line"><span class="string">&lt;!-- jsp 내용을 자바빈 클래스(MemberBean을 의미)에 데이터를 맵핑(넣어줌) --&gt;</span></span><br><span class="line"><span class="string">&lt;jsp:setProperty name="mbean" property="*"/&gt;&lt;!-- 자동으로 모두 맵핑 시켜주세요  --&gt;</span></span><br><span class="line"><span class="string">&lt;/jsp:useBean&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;h2&gt;Your id is &lt;jsp:getProperty property="id" name="mbean"/&gt;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">&lt;h2&gt;Your password is &lt;jsp:getProperty property="pass1" name="mbean"/&gt;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">&lt;h2&gt;Your email is &lt;jsp:getProperty property="email" name="mbean"/&gt;&lt;/h2&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;h2&gt;Your phone number is &lt;%= mbean.getTel() %&gt;&lt;/h2&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;/center&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java Bean?&lt;/p&gt;
+&lt;p&gt;자바 빈(Bean)이란?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.
+    
+    </summary>
+    
+    
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
+    
+    
+      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JSP forward action tag</title>
+    <link href="http://jbj828.github.io/2020/01/12/jsp-forward/"/>
+    <id>http://jbj828.github.io/2020/01/12/jsp-forward/</id>
+    <published>2020-01-11T15:10:25.000Z</published>
+    <updated>2020-01-11T15:13:38.850Z</updated>
+    
+    <content type="html"><![CDATA[<p>다른 페이지로 프로그램의 제어를 이동할 때 사용되는 대표적 두 가지 기술</p><ul><li>respones.sendRedirect() 내장객체</li><li><a href="jsp:forward">jsp:forward</a> 액션태그</li></ul><a id="more"></a><p>forward 액션 태그는 다른 페이지로 프로그램의 제어를 이동할 때 사용되는 액션 태그<br>JSP 페이지 내에 forward 액션 태그를 만나게 되면, 그전까지 출력 버퍼에 저장되어 있던 내용을 제거하고 forward 액션 태그가 지정하는 페이지로 이동한다.</p><p>하지만 sendRedirect는 단순히 페이지만 이동 가능하며 정보는 다음 페이지로 전달되지 않는다.</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">"nextPage.jsp"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:forward page="nextPage.jsp"&gt;&lt;/jsp:forward&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:forward page=<span class="string">'&lt;%=expression + ".jsp"%&gt;'</span> /&gt;</span><br></pre></td></tr></table></figure><ul><li><p>forward 액션 태그의 page 속성은 이동할 페이지명을 기술하고 상대경로, 절대경로로 지정할 수 있다.</p></li><li><p>forward 액션 태그에서 포워딩되는 페이지에 파라미터 값을 전달할 수 있다.</p></li></ul><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;jsp:forward page=<span class="string">"abc.jsp"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:param name=<span class="string">"paramName1"</span> value=<span class="string">"var1"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:param name=<span class="string">"paramName2"</span> value=<span class="string">"var2"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/jsp:forward&gt;</span><br></pre></td></tr></table></figure><ul><li>넘어온 파라미터는 다음과 같이 받을 수 있다.</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line">String name = request.getParameter(<span class="string">"paramName1"</span>);</span><br><span class="line"></span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;다른 페이지로 프로그램의 제어를 이동할 때 사용되는 대표적 두 가지 기술&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;respones.sendRedirect() 내장객체&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;jsp:forward&quot;&gt;jsp:forward&lt;/a&gt; 액션태그&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
+    
+    
+      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
+    
+  </entry>
   
   <entry>
     <title>JSP include action tag</title>
@@ -312,6 +421,35 @@
     
     
       <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL select 쿼리문</title>
+    <link href="http://jbj828.github.io/2020/01/05/MySQL-select-query/"/>
+    <id>http://jbj828.github.io/2020/01/05/MySQL-select-query/</id>
+    <published>2020-01-04T15:46:25.000Z</published>
+    <updated>2020-01-14T15:20:49.447Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>select 구문<ul><li>select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.</li><li>select 컬럼명 from 테이블명</li></ul></li></ul><a id="more"></a><ul><li><p>테이블의 모든 정보 가져오기</p><ul><li>select * from 테이블명</li><li>사원의 모든 정보를 가져올 경우 employess 테이블에 있으므로 <ul><li>select * from employees</li></ul></li></ul></li><li><p>일부 컬럼만 가져오기</p><ul><li>select 컬럼명1, 컬럼명2, 컬럼명3 from 테이블명</li><li>select emp_no, first_name, last_name from employees;</li></ul></li></ul><ul><li><p>연산자 사용하기</p><ul><li><p>산술 연산자를 사용하면 데이터를 가져올 때 연산을 해서 가져올 수 있다.</p></li><li><p>select salary, salary + 1000, salary - 1000, salary *1000, salary / 1000<br>from salaries;</p></li><li><p>select emp_no, salary, salary * 1.1, salary*0.9<br>from salaries</p></li><li><p>문자열은 0으로 취급함</p></li><li><p>distinct 연산자</p><ul><li>가져온 결과에 중복을 제거한다.</li><li>select distinct 컬럼명 from 테이블명</li></ul></li></ul></li></ul><ul><li><p>조건 사용하기</p><ul><li>select 구문에 where 절을 사용하면 조건을 설정할 수 있다.</li><li>컬럼에 저장되어 있는 데이터를 기준으로 검색하면 원하는 데이터만 가져올 수 있다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &quot;d003&quot;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &quot;d003&quot;; &#x2F;&#x2F; &lt;&gt; not 이라는 뜻</span><br></pre></td></tr></table></figure></li></ul></li><li><p>날짜 데이터</p><ul><li>날짜 데이터를 조건절로 사용할 때도 비교 연산자를 이용하면 된다.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, hire_date, first_name, last_name</span><br><span class="line">from employees</span><br><span class="line">where hire_date &gt;&#x3D; &#39;1986-01-01&#39;;</span><br></pre></td></tr></table></figure></li><li><p>논리 연산자</p><ul><li><p>두 개 이상의 조건문을 작성할 때 사용하는 연산자</p></li><li><p>and, or, not</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary, from_date</span><br><span class="line">from salaries</span><br><span class="line">where salary &gt;&#x3D; 60000 and from_date &gt;&#x3D; &#39;1990-01-01&#39;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &#39;d001&#39; or dept_no&#x3D;&#39;d002&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &#39;d003&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where not dept_no &#x3D; &#39;d003&#39;;</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Between</p><ul><li>컬럼의 범위를 조건으로 사용할 때 사용한다.</li><li>and 대신 사용한다</li><li>컬럼명 between 값 1 and 값2</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary</span><br><span class="line">from salaries</span><br><span class="line">where salary between 60000 and 70000;</span><br></pre></td></tr></table></figure></li><li><p>in</p><ul><li>지정된 컬럼의 값이 특정 값에 해당되는 조건을 만들 때 사용한다.</li><li>or 대신 사용한다.</li><li>컬럼명 in (값1, 값2, …)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no in(&#39;d001&#39;, &#39;d002&#39;);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;select 구문&lt;ul&gt;
+&lt;li&gt;select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.&lt;/li&gt;
+&lt;li&gt;select 컬럼명 from 테이블명&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Database, MySQL" scheme="http://jbj828.github.io/categories/Database-MySQL/"/>
+    
+    
+      <category term="database, MySQL" scheme="http://jbj828.github.io/tags/database-MySQL/"/>
     
   </entry>
   
