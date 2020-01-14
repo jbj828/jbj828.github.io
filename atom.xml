@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-01-14T04:45:07.917Z</updated>
+  <updated>2020-01-14T15:23:58.740Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL select 쿼리문</title>
+    <link href="http://jbj828.github.io/2020/01/15/MySQL-select-query/"/>
+    <id>http://jbj828.github.io/2020/01/15/MySQL-select-query/</id>
+    <published>2020-01-14T15:46:25.000Z</published>
+    <updated>2020-01-14T15:23:58.740Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>select 구문<ul><li>select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.</li><li>select 컬럼명 from 테이블명</li></ul></li></ul><a id="more"></a><ul><li><p>테이블의 모든 정보 가져오기</p><ul><li>select * from 테이블명</li><li>사원의 모든 정보를 가져올 경우 employess 테이블에 있으므로 <ul><li>select * from employees</li></ul></li></ul></li><li><p>일부 컬럼만 가져오기</p><ul><li>select 컬럼명1, 컬럼명2, 컬럼명3 from 테이블명</li><li>select emp_no, first_name, last_name from employees;</li></ul></li></ul><ul><li><p>연산자 사용하기</p><ul><li><p>산술 연산자를 사용하면 데이터를 가져올 때 연산을 해서 가져올 수 있다.</p></li><li><p>select salary, salary + 1000, salary - 1000, salary *1000, salary / 1000<br>from salaries;</p></li><li><p>select emp_no, salary, salary * 1.1, salary*0.9<br>from salaries</p></li><li><p>문자열은 0으로 취급함</p></li><li><p>distinct 연산자</p><ul><li>가져온 결과에 중복을 제거한다.</li><li>select distinct 컬럼명 from 테이블명</li></ul></li></ul></li></ul><ul><li><p>조건 사용하기</p><ul><li>select 구문에 where 절을 사용하면 조건을 설정할 수 있다.</li><li>컬럼에 저장되어 있는 데이터를 기준으로 검색하면 원하는 데이터만 가져올 수 있다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &quot;d003&quot;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &quot;d003&quot;; &#x2F;&#x2F; &lt;&gt; not 이라는 뜻</span><br></pre></td></tr></table></figure></li></ul></li><li><p>날짜 데이터</p><ul><li>날짜 데이터를 조건절로 사용할 때도 비교 연산자를 이용하면 된다.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, hire_date, first_name, last_name</span><br><span class="line">from employees</span><br><span class="line">where hire_date &gt;&#x3D; &#39;1986-01-01&#39;;</span><br></pre></td></tr></table></figure></li><li><p>논리 연산자</p><ul><li><p>두 개 이상의 조건문을 작성할 때 사용하는 연산자</p></li><li><p>and, or, not</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary, from_date</span><br><span class="line">from salaries</span><br><span class="line">where salary &gt;&#x3D; 60000 and from_date &gt;&#x3D; &#39;1990-01-01&#39;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &#39;d001&#39; or dept_no&#x3D;&#39;d002&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &#39;d003&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where not dept_no &#x3D; &#39;d003&#39;;</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Between</p><ul><li>컬럼의 범위를 조건으로 사용할 때 사용한다.</li><li>and 대신 사용한다</li><li>컬럼명 between 값 1 and 값2</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary</span><br><span class="line">from salaries</span><br><span class="line">where salary between 60000 and 70000;</span><br></pre></td></tr></table></figure></li><li><p>in</p><ul><li>지정된 컬럼의 값이 특정 값에 해당되는 조건을 만들 때 사용한다.</li><li>or 대신 사용한다.</li><li>컬럼명 in (값1, 값2, …)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no in(&#39;d001&#39;, &#39;d002&#39;);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;select 구문&lt;ul&gt;
+&lt;li&gt;select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.&lt;/li&gt;
+&lt;li&gt;select 컬럼명 from 테이블명&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Database, MySQL" scheme="http://jbj828.github.io/categories/Database-MySQL/"/>
+    
+    
+      <category term="database, MySQL" scheme="http://jbj828.github.io/tags/database-MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>DataBase Basic</title>
@@ -421,35 +450,6 @@
     
     
       <category term="java" scheme="http://jbj828.github.io/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL select 쿼리문</title>
-    <link href="http://jbj828.github.io/2020/01/05/MySQL-select-query/"/>
-    <id>http://jbj828.github.io/2020/01/05/MySQL-select-query/</id>
-    <published>2020-01-04T15:46:25.000Z</published>
-    <updated>2020-01-14T15:20:49.447Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>select 구문<ul><li>select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.</li><li>select 컬럼명 from 테이블명</li></ul></li></ul><a id="more"></a><ul><li><p>테이블의 모든 정보 가져오기</p><ul><li>select * from 테이블명</li><li>사원의 모든 정보를 가져올 경우 employess 테이블에 있으므로 <ul><li>select * from employees</li></ul></li></ul></li><li><p>일부 컬럼만 가져오기</p><ul><li>select 컬럼명1, 컬럼명2, 컬럼명3 from 테이블명</li><li>select emp_no, first_name, last_name from employees;</li></ul></li></ul><ul><li><p>연산자 사용하기</p><ul><li><p>산술 연산자를 사용하면 데이터를 가져올 때 연산을 해서 가져올 수 있다.</p></li><li><p>select salary, salary + 1000, salary - 1000, salary *1000, salary / 1000<br>from salaries;</p></li><li><p>select emp_no, salary, salary * 1.1, salary*0.9<br>from salaries</p></li><li><p>문자열은 0으로 취급함</p></li><li><p>distinct 연산자</p><ul><li>가져온 결과에 중복을 제거한다.</li><li>select distinct 컬럼명 from 테이블명</li></ul></li></ul></li></ul><ul><li><p>조건 사용하기</p><ul><li>select 구문에 where 절을 사용하면 조건을 설정할 수 있다.</li><li>컬럼에 저장되어 있는 데이터를 기준으로 검색하면 원하는 데이터만 가져올 수 있다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &quot;d003&quot;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &quot;d003&quot;; &#x2F;&#x2F; &lt;&gt; not 이라는 뜻</span><br></pre></td></tr></table></figure></li></ul></li><li><p>날짜 데이터</p><ul><li>날짜 데이터를 조건절로 사용할 때도 비교 연산자를 이용하면 된다.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, hire_date, first_name, last_name</span><br><span class="line">from employees</span><br><span class="line">where hire_date &gt;&#x3D; &#39;1986-01-01&#39;;</span><br></pre></td></tr></table></figure></li><li><p>논리 연산자</p><ul><li><p>두 개 이상의 조건문을 작성할 때 사용하는 연산자</p></li><li><p>and, or, not</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary, from_date</span><br><span class="line">from salaries</span><br><span class="line">where salary &gt;&#x3D; 60000 and from_date &gt;&#x3D; &#39;1990-01-01&#39;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &#39;d001&#39; or dept_no&#x3D;&#39;d002&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &#39;d003&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where not dept_no &#x3D; &#39;d003&#39;;</span><br></pre></td></tr></table></figure></li></ul></li><li><p>Between</p><ul><li>컬럼의 범위를 조건으로 사용할 때 사용한다.</li><li>and 대신 사용한다</li><li>컬럼명 between 값 1 and 값2</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary</span><br><span class="line">from salaries</span><br><span class="line">where salary between 60000 and 70000;</span><br></pre></td></tr></table></figure></li><li><p>in</p><ul><li>지정된 컬럼의 값이 특정 값에 해당되는 조건을 만들 때 사용한다.</li><li>or 대신 사용한다.</li><li>컬럼명 in (값1, 값2, …)</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no in(&#39;d001&#39;, &#39;d002&#39;);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;select 구문&lt;ul&gt;
-&lt;li&gt;select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.&lt;/li&gt;
-&lt;li&gt;select 컬럼명 from 테이블명&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="Database, MySQL" scheme="http://jbj828.github.io/categories/Database-MySQL/"/>
-    
-    
-      <category term="database, MySQL" scheme="http://jbj828.github.io/tags/database-MySQL/"/>
     
   </entry>
   
