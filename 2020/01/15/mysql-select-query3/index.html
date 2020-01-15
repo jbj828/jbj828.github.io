@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>MySQL select 쿼리문 - Developer Javit</title>
+    <title>날짜함수, group by, having - Developer Javit</title>
     <meta name="author" content="Javit">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\nselect 구문\nselect 구문은 저장되어 있는 데이터를 가져올 때 사용한다.\nselect 컬럼명 from 테이블명\n\n\n\n\n\n테이블의 모든 정보 가져오기\n\nselect * from 테이블명\n사원의 모든 정보를 가져올 경우 employess 테이블에 있으므로 \nselect * from employees\n\n\n\n\n일부 컬럼만 가져오기\n\nselect 컬럼명1, 컬럼명2, 컬럼명3 from 테이블명\nselect emp_no, first_name, last_name from employees;\n\n\n\n\n연산자 사용하기\n\n산술 연산자를 사용하면 데이터를 가져올 때 연산을 해서 가져올 수 있다.\n\nselect salary, salary + 1000, salary - 1000, salary *1000, salary / 1000from salaries;\n\nselect emp_no, salary, salary * 1.1, salary*0.9from salaries\n\n문자열은 0으로 취급함\n\ndistinct 연산자\n\n가져온 결과에 중복을 제거한다.\nselect distinct 컬럼명 from 테이블명\n\n\n\n\n\n\n조건 사용하기\n\nselect 구문에 where 절을 사용하면 조건을 설정할 수 있다.\n컬럼에 저장되어 있는 데이터를 기준으로 검색하면 원하는 데이터만 가져올 수 있다.1234567select emp_no, dept_nofrom dept_managerwhere dept_no &#x3D; &quot;d003&quot;;select emp_no, dept_nofrom dept_managerwhere dept_no &lt;&gt; &quot;d003&quot;; &#x2F;&#x2F; &lt;&gt; not 이라는 뜻\n\n\n\n날짜 데이터\n\n날짜 데이터를 조건절로 사용할 때도 비교 연산자를 이용하면 된다.\n\n123select emp_no, hire_date, first_name, last_namefrom employeeswhere hire_date &gt;&#x3D; &#39;1986-01-01&#39;;\n\n논리 연산자\n\n두 개 이상의 조건문을 작성할 때 사용하는 연산자\n\nand, or, not\n123456789101112131415select emp_no, salary, from_datefrom salarieswhere salary &gt;&#x3D; 60000 and from_date &gt;&#x3D; &#39;1990-01-01&#39;;select emp_no, dept_nofrom dept_managerwhere dept_no &#x3D; &#39;d001&#39; or dept_no&#x3D;&#39;d002&#39;;select dept_no, emp_nofrom dept_managerwhere dept_no &lt;&gt; &#39;d003&#39;;select dept_no, emp_nofrom dept_managerwhere not dept_no &#x3D; &#39;d003&#39;;\n\n\n\nBetween\n\n컬럼의 범위를 조건으로 사용할 때 사용한다.\nand 대신 사용한다\n컬럼명 between 값 1 and 값2\n\n123select emp_no, salaryfrom salarieswhere salary between 60000 and 70000;\n\nin\n\n지정된 컬럼의 값이 특정 값에 해당되는 조건을 만들 때 사용한다.\nor 대신 사용한다.\n컬럼명 in (값1, 값2, …)\n\n123select emp_no, dept_nofrom dept_managerwhere dept_no in(&#39;d001&#39;, &#39;d002&#39;);\n\n","dateCreated":"2020-01-15T00:46:25+09:00","dateModified":"2020-01-15T00:23:58+09:00","datePublished":"2020-01-15T00:46:25+09:00","description":"\nselect 구문\nselect 구문은 저장되어 있는 데이터를 가져올 때 사용한다.\nselect 컬럼명 from 테이블명\n\n\n","headline":"MySQL select 쿼리문","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/15/MySQL-select-query/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/15/MySQL-select-query/","keywords":"database, MySQL"}</script>
-    <meta name="description" content="select 구문 select 구문은 저장되어 있는 데이터를 가져올 때 사용한다. select 컬럼명 from 테이블명">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n날짜에 대한 작업을 하는 함수\nnow(), sysdate(), current_timestamp() : 현재 날짜와 시간을 반환한다\n\n\n\n\n\n\ncurdate(), current_date() : 현재 날짜를 반환한다\ncurtime(), current_time() : 현재 시간을 반환한다\ndate_add(날짜, interval 기준값) : 날짜에서 기준값만큼 더한다(year, month, day, hour, minute, second)\ndate_sub(날짜, interval 기준값) : 날짜에서 기준값만큼 뺀다(year, month, day, hour, minute, second)\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152select hire_date, date_add(hire_date, interval 100 day)from employees;select count(*) from employees;select count(*)from employeeswhere gender&#x3D;&quot;M&quot;;select count(*)from dept_empwhere dept_no&#x3D;&#39;d005&#39; and to_date&#x3D;&#39;9999-01-01&#39;;select avg(salary)from salarieswhere to_date&#x3D;&#39;9999-01-01&#39;;-- 사원의 수를 성별로 구분하여 가져온다select gender, count(*)from employeesgroup by gender;-- 각 부서에 근무하고 있는 사원의 수select dept_no, count(*)from dept_empwhere to_date&#x3D;&#39;9999-01-01&#39;group by dept_no;-- 각 부서별 과거의 매니저의 수를 구한다select dept_no, count(*)from dept_managerwhere not to_date&#x3D;&#39;9999-01-01&#39;group by dept_no;-- 급여수령 시작일 별 급여 총합을 구한다select from_date, sum(salary)from salariesgroup by from_date;-- 10만명 이상이 사용하고 있는 직함의 이름과 직원의 수를 가져온다select title, count(emp_no)from titlesgroup by titlehaving count(emp_no) &gt;&#x3D; 100000;-- 5만명 이상이 근무하고 있는 부서의 부서 번호와 부서 소속 사원의 수를 가져온다select dept_no, count(*)from dept_empgroup by dept_nohaving count(*) &gt;&#x3D; 50000;","dateCreated":"2020-01-15T11:46:25+09:00","dateModified":"2020-01-15T12:22:05+09:00","datePublished":"2020-01-15T11:46:25+09:00","description":"\n날짜에 대한 작업을 하는 함수\nnow(), sysdate(), current_timestamp() : 현재 날짜와 시간을 반환한다\n\n\n","headline":"날짜함수, group by, having","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/15/mysql-select-query3/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/15/mysql-select-query3/","keywords":"database, MySQL"}</script>
+    <meta name="description" content="날짜에 대한 작업을 하는 함수 now(), sysdate(), current_timestamp() : 현재 날짜와 시간을 반환한다">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="MySQL select 쿼리문">
-<meta property="og:url" content="http://jbj828.github.io/2020/01/15/MySQL-select-query/index.html">
+<meta property="og:title" content="날짜함수, group by, having">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/15/mysql-select-query3/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="select 구문 select 구문은 저장되어 있는 데이터를 가져올 때 사용한다. select 컬럼명 from 테이블명">
+<meta property="og:description" content="날짜에 대한 작업을 하는 함수 now(), sysdate(), current_timestamp() : 현재 날짜와 시간을 반환한다">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-14T15:46:25.000Z">
-<meta property="article:modified_time" content="2020-01-14T15:23:58.740Z">
+<meta property="article:published_time" content="2020-01-15T02:46:25.000Z">
+<meta property="article:modified_time" content="2020-01-15T03:22:05.655Z">
 <meta property="article:author" content="Javit">
 <meta property="article:tag" content="database, MySQL">
 <meta name="twitter:card" content="summary">
@@ -227,12 +227,12 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            MySQL select 쿼리문
+            날짜함수, group by, having
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-01-15T00:46:25+09:00">
+    <time datetime="2020-01-15T11:46:25+09:00">
 	
 		    Jan 15, 2020
     	
@@ -253,90 +253,20 @@
     <div class="post-content markdown">
         <div class="main-content-wrap">
             <ul>
-<li>select 구문<ul>
-<li>select 구문은 저장되어 있는 데이터를 가져올 때 사용한다.</li>
-<li>select 컬럼명 from 테이블명</li>
+<li>날짜에 대한 작업을 하는 함수<ul>
+<li>now(), sysdate(), current_timestamp() : 현재 날짜와 시간을 반환한다</li>
 </ul>
 </li>
 </ul>
 <a id="more"></a>
-<ul>
-<li><p>테이블의 모든 정보 가져오기</p>
-<ul>
-<li>select * from 테이블명</li>
-<li>사원의 모든 정보를 가져올 경우 employess 테이블에 있으므로 <ul>
-<li>select * from employees</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>일부 컬럼만 가져오기</p>
-<ul>
-<li>select 컬럼명1, 컬럼명2, 컬럼명3 from 테이블명</li>
-<li>select emp_no, first_name, last_name from employees;</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>연산자 사용하기</p>
-<ul>
-<li><p>산술 연산자를 사용하면 데이터를 가져올 때 연산을 해서 가져올 수 있다.</p>
-</li>
-<li><p>select salary, salary + 1000, salary - 1000, salary *1000, salary / 1000<br>from salaries;</p>
-</li>
-<li><p>select emp_no, salary, salary * 1.1, salary*0.9<br>from salaries</p>
-</li>
-<li><p>문자열은 0으로 취급함</p>
-</li>
-<li><p>distinct 연산자</p>
-<ul>
-<li>가져온 결과에 중복을 제거한다.</li>
-<li>select distinct 컬럼명 from 테이블명</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>조건 사용하기</p>
-<ul>
-<li>select 구문에 where 절을 사용하면 조건을 설정할 수 있다.</li>
-<li>컬럼에 저장되어 있는 데이터를 기준으로 검색하면 원하는 데이터만 가져올 수 있다.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &quot;d003&quot;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &quot;d003&quot;; &#x2F;&#x2F; &lt;&gt; not 이라는 뜻</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>날짜 데이터</p>
-<ul>
-<li>날짜 데이터를 조건절로 사용할 때도 비교 연산자를 이용하면 된다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, hire_date, first_name, last_name</span><br><span class="line">from employees</span><br><span class="line">where hire_date &gt;&#x3D; &#39;1986-01-01&#39;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>논리 연산자</p>
-<ul>
-<li><p>두 개 이상의 조건문을 작성할 때 사용하는 연산자</p>
-</li>
-<li><p>and, or, not</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary, from_date</span><br><span class="line">from salaries</span><br><span class="line">where salary &gt;&#x3D; 60000 and from_date &gt;&#x3D; &#39;1990-01-01&#39;;</span><br><span class="line"></span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &#x3D; &#39;d001&#39; or dept_no&#x3D;&#39;d002&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no &lt;&gt; &#39;d003&#39;;</span><br><span class="line"></span><br><span class="line">select dept_no, emp_no</span><br><span class="line">from dept_manager</span><br><span class="line">where not dept_no &#x3D; &#39;d003&#39;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Between</p>
-<ul>
-<li>컬럼의 범위를 조건으로 사용할 때 사용한다.</li>
-<li>and 대신 사용한다</li>
-<li>컬럼명 between 값 1 and 값2</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, salary</span><br><span class="line">from salaries</span><br><span class="line">where salary between 60000 and 70000;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>in</p>
-<ul>
-<li>지정된 컬럼의 값이 특정 값에 해당되는 조건을 만들 때 사용한다.</li>
-<li>or 대신 사용한다.</li>
-<li>컬럼명 in (값1, 값2, …)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_manager</span><br><span class="line">where dept_no in(&#39;d001&#39;, &#39;d002&#39;);</span><br></pre></td></tr></table></figure></li>
-</ul>
 
+<ul>
+<li>curdate(), current_date() : 현재 날짜를 반환한다</li>
+<li>curtime(), current_time() : 현재 시간을 반환한다</li>
+<li>date_add(날짜, interval 기준값) : 날짜에서 기준값만큼 더한다<br>(year, month, day, hour, minute, second)</li>
+<li>date_sub(날짜, interval 기준값) : 날짜에서 기준값만큼 뺀다<br>(year, month, day, hour, minute, second)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">select hire_date, date_add(hire_date, interval 100 day)</span><br><span class="line">from employees;</span><br><span class="line"></span><br><span class="line">select count(*) from employees;</span><br><span class="line"></span><br><span class="line">select count(*)</span><br><span class="line">from employees</span><br><span class="line">where gender&#x3D;&quot;M&quot;;</span><br><span class="line"></span><br><span class="line">select count(*)</span><br><span class="line">from dept_emp</span><br><span class="line">where dept_no&#x3D;&#39;d005&#39; and to_date&#x3D;&#39;9999-01-01&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">select avg(salary)</span><br><span class="line">from salaries</span><br><span class="line">where to_date&#x3D;&#39;9999-01-01&#39;;</span><br><span class="line"></span><br><span class="line">-- 사원의 수를 성별로 구분하여 가져온다</span><br><span class="line">select gender, count(*)</span><br><span class="line">from employees</span><br><span class="line">group by gender;</span><br><span class="line"></span><br><span class="line">-- 각 부서에 근무하고 있는 사원의 수</span><br><span class="line">select dept_no, count(*)</span><br><span class="line">from dept_emp</span><br><span class="line">where to_date&#x3D;&#39;9999-01-01&#39;</span><br><span class="line">group by dept_no;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 각 부서별 과거의 매니저의 수를 구한다</span><br><span class="line">select dept_no, count(*)</span><br><span class="line">from dept_manager</span><br><span class="line">where not to_date&#x3D;&#39;9999-01-01&#39;</span><br><span class="line">group by dept_no;</span><br><span class="line"></span><br><span class="line">-- 급여수령 시작일 별 급여 총합을 구한다</span><br><span class="line">select from_date, sum(salary)</span><br><span class="line">from salaries</span><br><span class="line">group by from_date;</span><br><span class="line"></span><br><span class="line">-- 10만명 이상이 사용하고 있는 직함의 이름과 직원의 수를 가져온다</span><br><span class="line">select title, count(emp_no)</span><br><span class="line">from titles</span><br><span class="line">group by title</span><br><span class="line">having count(emp_no) &gt;&#x3D; 100000;</span><br><span class="line"></span><br><span class="line">-- 5만명 이상이 근무하고 있는 부서의 부서 번호와 부서 소속 사원의 수를 가져온다</span><br><span class="line">select dept_no, count(*)</span><br><span class="line">from dept_emp</span><br><span class="line">group by dept_no</span><br><span class="line">having count(*) &gt;&#x3D; 50000;</span><br></pre></td></tr></table></figure>
             
 
 
@@ -360,9 +290,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/15/MySQL-select-query2/"
-                    data-tooltip="MySQL select 쿼리문2"
-                    aria-label="PREVIOUS: MySQL select 쿼리문2"
+                    href="/2020/01/15/postmysql-join/"
+                    data-tooltip="Join문, 서브쿼리, Set"
+                    aria-label="PREVIOUS: Join문, 서브쿼리, Set"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -374,9 +304,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/14/db-basic/"
-                    data-tooltip="DataBase Basic"
-                    aria-label="NEXT: DataBase Basic"
+                    href="/2020/01/15/MySQL-select-query2/"
+                    data-tooltip="MySQL select 쿼리문2"
+                    aria-label="NEXT: MySQL select 쿼리문2"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -401,7 +331,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -414,7 +344,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -427,7 +357,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -475,9 +405,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/15/MySQL-select-query2/"
-                    data-tooltip="MySQL select 쿼리문2"
-                    aria-label="PREVIOUS: MySQL select 쿼리문2"
+                    href="/2020/01/15/postmysql-join/"
+                    data-tooltip="Join문, 서브쿼리, Set"
+                    aria-label="PREVIOUS: Join문, 서브쿼리, Set"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -489,9 +419,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/14/db-basic/"
-                    data-tooltip="DataBase Basic"
-                    aria-label="NEXT: DataBase Basic"
+                    href="/2020/01/15/MySQL-select-query2/"
+                    data-tooltip="MySQL select 쿼리문2"
+                    aria-label="NEXT: MySQL select 쿼리문2"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -516,7 +446,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -529,7 +459,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -542,7 +472,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -576,7 +506,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -589,7 +519,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -602,7 +532,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/MySQL-select-query/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/mysql-select-query3/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
