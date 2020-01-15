@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Join문, 서브쿼리, Set - Developer Javit</title>
+    <title>Transaction - Developer Javit</title>
     <meta name="author" content="Javit">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\njoin\n데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다\n\n\n\n\n\njoin문을 사용하면 여러 테이블의 데이터를 한 번에 가져올 수 있다\njoin 문을 사용하면 다 대 다의 관계로 가져온다. 이 때문에 잘못된 데이터가 구성될 수 있는데 이를 위해 join조건문을 작성해야 한다.\n\n1234567891011121314151617181920select a2.emp_no, a2.dept_no, a1.dept_no, a1.dept_namefrom departments a1, dept_emp a2where a1.dept_no &#x3D; a2.dept_noorder by a2.emp_no;select a1.emp_no, a1.first_name, a2.dept_no from employees a1, dept_emp a2where a1.emp_no &#x3D; a2.emp_no;select a1.emp_no, a1.first_name, a2.salaryfrom employees a1, salaries a2where a1.emp_no &#x3D; a2.emp_no\tand a2.to_date &#x3D; &#39;9999-01-01&#39;;        select a1.emp_no, a1.first_name, a2.dept_namefrom employees a1, departments a2, dept_emp a3where a3.emp_no &#x3D; a1.emp_no and a3.dept_no &#x3D; a2.dept_no;\n\n\n서브쿼리\n쿼리문 안에 쿼리문이 있는 것을 서브쿼리라고 부른다\n조건문 등을 만들 때 값을 직접 지정하지 못하고 쿼리문을 통해 구해야와 할 경우 서브쿼리를 통해 값을 구해와 조건문을 완성 할 수 있다\n\n\n\n12345678910111213141516-- 현재 받는 급여의 평균보다 많이 받는 사람들의 사원번호, 급여액을 가져온다select emp_no, salaryfrom salarieswhere salary &gt; (select avg(salary) from salaries where to_date&#x3D;&quot;9999-01-01&quot;)\t\t\t\tand to_date&#x3D;&quot;9999-01-01&quot;;                -- d001부서에 근무하고 있는 사원들의 사원번호와 first_name을 가져온다select emp_no, first_namefrom employeeswhere emp_no in(select emp_no from dept_emp where  dept_no&#x3D;&#39;d001&#39;);-- 1960년 이후에 태어난 사원들이 근무하고 있는 사원들의 사원번호, 근무 부서 번호를 가져온다select emp_no, dept_nofrom dept_empwhere emp_no in(select emp_no from employees where birth_date &gt;&#x3D; &#39;1960-01-01&#39;);\n\n\nset\n\n두 select 문을 통해 얻어온 결과를 집합 연산을 통해 하나의 결과로 만드는 것을 set이라고 한다.\n\n합집합, 교집합, 차집합 등 집합 연산을 할 수 있다\n\n집합 연산을 하기 위해서는 두 select문을 통해 가져오는 컬럼이 같아야 한다.\n\n합집합\n\n두 select문의 결과를 모두 포함하는 최종 결과 반환\nunion : 중복되는 데이터는 하나만 가져옴\nunion all: 중복되는 데이터도 모두 가져옴\n\n\n\n\n\n123select emp_no from titles where title&#x3D;&#39;Senior Staff&#39;unionselect emp_no from titles where title&#x3D;&#39;Staff&#39;;\n\n\n교집합\n\njoin문을 사용한다\n\n\n차집합\n\n차집합은 서브쿼리를 이용한다\n\n\n\n","dateCreated":"2020-01-15T12:46:25+09:00","dateModified":"2020-01-15T13:30:43+09:00","datePublished":"2020-01-15T12:46:25+09:00","description":"\njoin\n데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다\n\n\n","headline":"Join문, 서브쿼리, Set","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/15/postmysql-join/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/15/postmysql-join/","keywords":"database, MySQL"}</script>
-    <meta name="description" content="join 데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n트랜젝션\n\n데이터베이스에서 데이터 처리의 한 단위를 트랜젝션이라고 한다.\n\n데이터 저장, 수정, 삭제 등 일련의 활동은 즉시 하드디스크에 반영되지 않는다.\n\n커밋을 하기 전에 발생한 변화는 메모리 상에서만 동작한다. 커밋을 하면 하드디스크에 적용된다.\n\n개발자가 데이터 작업을 위해 입력하는 명령문의 시작부터 커밋까지의 과정을 트랜젝션이라고 부른다.\n\nrollback\n\n데이터 저장, 삭제, 수정 작업을 한 뒤에 원래 형태로 되돌리는 작업\n커밋을 한 후 RollBack 작업을 해도 원래 상태로 되돌리지 못한다.\nworkbench와 같은 프로그램에서는 자동으로 커밋작업이 발생하므로 RollBack을 해도 작동되지 않는다.\n\n\n\n\n\n1234567select * from test_table2;delete from test_table2;select * from test_table2;rollback;select * from test_table2;\n\n\nsavepoint\nsavepoint를 지정하면 rollback 시 지정된 위치로 복원 가능\nsavepoint 명령어로 지점을 지정하고 rollback 명령어로 복원한다\n\n\n\n123456789101112insert into test_table2 (data1, data2, data3) values (100, &quot;lang1&quot;, 11.1);insert into test_table2 (data1, data2, data3) values (200, &quot;lang2&quot;, 22.1);insert into test_table2 (data1, data2, data3) values (300, &quot;lang3&quot;, 33.1);commit;\tselect * from test_table2;update test_table2 set data2&#x3D;&quot;newlang&quot;, data3&#x3D;44.4 where data1&#x3D;100;savepoint aa;delete from test_table2 where data1&#x3D;100;rollback to aa;select * from test_table2;\n\n\ntruncate\ntruncate를 사용하면 지정된 테이블의 모든 로우를 삭제한다.\ndelete문은 데이터베이스에 바로 반영하지\n않으므로 rollback이 가능하지만, truncate는 바로 데이터베이스에 반영하므로 rollback이 불가능\n\n\n\n12345truncate test_table2;rollback;select * from test_table2;&#x2F;&#x2F;복원되지 않음\n\n","dateCreated":"2020-01-16T00:12:25+09:00","dateModified":"2020-01-16T00:15:59+09:00","datePublished":"2020-01-16T00:12:25+09:00","description":"\n트랜젝션\n\n데이터베이스에서 데이터 처리의 한 단위를 트랜젝션이라고 한다.\n\n데이터 저장, 수정, 삭제 등 일련의 활동은 즉시 하드디스크에 반영되지 않는다.","headline":"Transaction","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/16/transaction-management/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/16/transaction-management/","keywords":"database, MySQL"}</script>
+    <meta name="description" content="트랜젝션  데이터베이스에서 데이터 처리의 한 단위를 트랜젝션이라고 한다.  데이터 저장, 수정, 삭제 등 일련의 활동은 즉시 하드디스크에 반영되지 않는다.">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Join문, 서브쿼리, Set">
-<meta property="og:url" content="http://jbj828.github.io/2020/01/15/postmysql-join/index.html">
+<meta property="og:title" content="Transaction">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/16/transaction-management/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="join 데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다">
+<meta property="og:description" content="트랜젝션  데이터베이스에서 데이터 처리의 한 단위를 트랜젝션이라고 한다.  데이터 저장, 수정, 삭제 등 일련의 활동은 즉시 하드디스크에 반영되지 않는다.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-15T03:46:25.000Z">
-<meta property="article:modified_time" content="2020-01-15T04:30:43.677Z">
+<meta property="article:published_time" content="2020-01-15T15:12:25.000Z">
+<meta property="article:modified_time" content="2020-01-15T15:15:59.490Z">
 <meta property="article:author" content="Javit">
 <meta property="article:tag" content="database, MySQL">
 <meta name="twitter:card" content="summary">
@@ -227,14 +227,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Join문, 서브쿼리, Set
+            Transaction
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-01-15T12:46:25+09:00">
+    <time datetime="2020-01-16T00:12:25+09:00">
 	
-		    Jan 15, 2020
+		    Jan 16, 2020
     	
     </time>
     
@@ -253,60 +253,47 @@
     <div class="post-content markdown">
         <div class="main-content-wrap">
             <ul>
-<li>join<ul>
-<li>데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다</li>
+<li><p>트랜젝션</p>
+<ul>
+<li><p>데이터베이스에서 데이터 처리의 한 단위를 트랜젝션이라고 한다.</p>
+</li>
+<li><p>데이터 저장, 수정, 삭제 등 일련의 활동은 즉시 하드디스크에 반영되지 않는다.</p>
+<a id="more"></a></li>
+<li><p>커밋을 하기 전에 발생한 변화는 메모리 상에서만 동작한다. 커밋을 하면 하드디스크에 적용된다.</p>
+</li>
+<li><p>개발자가 데이터 작업을 위해 입력하는 명령문의 시작부터 커밋까지의 과정을 트랜젝션이라고 부른다.</p>
+</li>
+<li><p>rollback</p>
+<ul>
+<li>데이터 저장, 삭제, 수정 작업을 한 뒤에 원래 형태로 되돌리는 작업</li>
+<li>커밋을 한 후 RollBack 작업을 해도 원래 상태로 되돌리지 못한다.</li>
+<li>workbench와 같은 프로그램에서는 자동으로 커밋작업이 발생하므로 RollBack을 해도 작동되지 않는다.</li>
 </ul>
 </li>
 </ul>
-<a id="more"></a>
-<ul>
-<li>join문을 사용하면 여러 테이블의 데이터를 한 번에 가져올 수 있다</li>
-<li>join 문을 사용하면 다 대 다의 관계로 가져온다. 이 때문에 잘못된 데이터가 구성될 수 있는데 이를 위해 join조건문을 작성해야 한다.</li>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select a2.emp_no, a2.dept_no, a1.dept_no, a1.dept_name</span><br><span class="line">from departments a1, dept_emp a2</span><br><span class="line">where a1.dept_no &#x3D; a2.dept_no</span><br><span class="line">order by a2.emp_no;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">select a1.emp_no, a1.first_name, a2.dept_no </span><br><span class="line">from employees a1, dept_emp a2</span><br><span class="line">where a1.emp_no &#x3D; a2.emp_no;</span><br><span class="line"></span><br><span class="line">select a1.emp_no, a1.first_name, a2.salary</span><br><span class="line">from employees a1, salaries a2</span><br><span class="line">where a1.emp_no &#x3D; a2.emp_no</span><br><span class="line">	and a2.to_date &#x3D; &#39;9999-01-01&#39;;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">select a1.emp_no, a1.first_name, a2.dept_name</span><br><span class="line">from employees a1, departments a2, dept_emp a3</span><br><span class="line">where a3.emp_no &#x3D; a1.emp_no and a3.dept_no &#x3D; a2.dept_no;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select * from test_table2;</span><br><span class="line"></span><br><span class="line">delete from test_table2;</span><br><span class="line">select * from test_table2;</span><br><span class="line"></span><br><span class="line">rollback;</span><br><span class="line">select * from test_table2;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>서브쿼리<ul>
-<li>쿼리문 안에 쿼리문이 있는 것을 서브쿼리라고 부른다</li>
-<li>조건문 등을 만들 때 값을 직접 지정하지 못하고 쿼리문을 통해 구해야와 할 경우 서브쿼리를 통해 값을 구해와 조건문을 완성 할 수 있다</li>
+<li>savepoint<ul>
+<li>savepoint를 지정하면 rollback 시 지정된 위치로 복원 가능</li>
+<li>savepoint 명령어로 지점을 지정하고 rollback 명령어로 복원한다</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-- 현재 받는 급여의 평균보다 많이 받는 사람들의 사원번호, 급여액을 가져온다</span><br><span class="line"></span><br><span class="line">select emp_no, salary</span><br><span class="line">from salaries</span><br><span class="line">where salary &gt; (select avg(salary) from salaries where to_date&#x3D;&quot;9999-01-01&quot;)</span><br><span class="line">				and to_date&#x3D;&quot;9999-01-01&quot;;</span><br><span class="line">                </span><br><span class="line">-- d001부서에 근무하고 있는 사원들의 사원번호와 first_name을 가져온다</span><br><span class="line">select emp_no, first_name</span><br><span class="line">from employees</span><br><span class="line">where emp_no in(select emp_no from dept_emp where  dept_no&#x3D;&#39;d001&#39;);</span><br><span class="line"></span><br><span class="line">-- 1960년 이후에 태어난 사원들이 근무하고 있는 사원들의 사원번호, 근무 부서 번호를 가져온다</span><br><span class="line">select emp_no, dept_no</span><br><span class="line">from dept_emp</span><br><span class="line">where emp_no in(select emp_no from employees where birth_date &gt;&#x3D; &#39;1960-01-01&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">insert into test_table2 (data1, data2, data3) values (100, &quot;lang1&quot;, 11.1);</span><br><span class="line">insert into test_table2 (data1, data2, data3) values (200, &quot;lang2&quot;, 22.1);</span><br><span class="line">insert into test_table2 (data1, data2, data3) values (300, &quot;lang3&quot;, 33.1);</span><br><span class="line"></span><br><span class="line">commit;	</span><br><span class="line"></span><br><span class="line">select * from test_table2;</span><br><span class="line">update test_table2 set data2&#x3D;&quot;newlang&quot;, data3&#x3D;44.4 where data1&#x3D;100;</span><br><span class="line">savepoint aa;</span><br><span class="line">delete from test_table2 where data1&#x3D;100;</span><br><span class="line">rollback to aa;</span><br><span class="line">select * from test_table2;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>set</p>
-<ul>
-<li><p>두 select 문을 통해 얻어온 결과를 집합 연산을 통해 하나의 결과로 만드는 것을 set이라고 한다.</p>
-</li>
-<li><p>합집합, 교집합, 차집합 등 집합 연산을 할 수 있다</p>
-</li>
-<li><p>집합 연산을 하기 위해서는 두 select문을 통해 가져오는 컬럼이 같아야 한다.</p>
-</li>
-<li><p>합집합</p>
-<ul>
-<li>두 select문의 결과를 모두 포함하는 최종 결과 반환</li>
-<li>union : 중복되는 데이터는 하나만 가져옴</li>
-<li>union all: 중복되는 데이터도 모두 가져옴</li>
+<li>truncate<ul>
+<li>truncate를 사용하면 지정된 테이블의 모든 로우를 삭제한다.</li>
+<li>delete문은 데이터베이스에 바로 반영하지</li>
+<li>않으므로 rollback이 가능하지만, truncate는 바로 데이터베이스에 반영하므로 rollback이 불가능</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select emp_no from titles where title&#x3D;&#39;Senior Staff&#39;</span><br><span class="line">union</span><br><span class="line">select emp_no from titles where title&#x3D;&#39;Staff&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">truncate test_table2;</span><br><span class="line">rollback;</span><br><span class="line">select * from test_table2;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;복원되지 않음</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>교집합</p>
-<ul>
-<li>join문을 사용한다</li>
-</ul>
-</li>
-<li><p>차집합</p>
-<ul>
-<li>차집합은 서브쿼리를 이용한다</li>
-</ul>
-</li>
-</ul>
 
             
 
@@ -331,9 +318,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/15/makeDB/"
-                    data-tooltip="Making DataBase"
-                    aria-label="PREVIOUS: Making DataBase"
+                    href="/2020/01/16/change-table/"
+                    data-tooltip="테이블 변경하기"
+                    aria-label="PREVIOUS: 테이블 변경하기"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -345,9 +332,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/15/mysql-select-query3/"
-                    data-tooltip="날짜함수, group by, having"
-                    aria-label="NEXT: 날짜함수, group by, having"
+                    href="/2020/01/15/makeDB/"
+                    data-tooltip="Making DataBase"
+                    aria-label="NEXT: Making DataBase"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -372,7 +359,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/transaction-management/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -385,7 +372,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/transaction-management/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -398,7 +385,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/transaction-management/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -446,9 +433,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/15/makeDB/"
-                    data-tooltip="Making DataBase"
-                    aria-label="PREVIOUS: Making DataBase"
+                    href="/2020/01/16/change-table/"
+                    data-tooltip="테이블 변경하기"
+                    aria-label="PREVIOUS: 테이블 변경하기"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -460,9 +447,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/15/mysql-select-query3/"
-                    data-tooltip="날짜함수, group by, having"
-                    aria-label="NEXT: 날짜함수, group by, having"
+                    href="/2020/01/15/makeDB/"
+                    data-tooltip="Making DataBase"
+                    aria-label="NEXT: Making DataBase"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -487,7 +474,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/transaction-management/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -500,7 +487,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/transaction-management/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -513,7 +500,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/transaction-management/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -547,7 +534,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/transaction-management/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -560,7 +547,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/transaction-management/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -573,7 +560,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/15/postmysql-join/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/transaction-management/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
