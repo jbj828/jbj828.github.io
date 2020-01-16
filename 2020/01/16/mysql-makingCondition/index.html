@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>제약조건 - Developer Javit</title>
+    <meta name="author" content="Javit">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n제약조건\n\n컬럼에 저장 될 데이터의 조건을 설정하는 것\n\n제약 조건을 설정하면 조건에 위배되는 데이터는 저장할 수 없다.\n\n데이터베이스 내의 테이블은 여러 개발자가 사용하므로 제약 조건 설정이 중요하다.\n\nprimary key : 컬럼에 중복으로 데이터를 저장할 수 없으며, null 값을 허용하지 않는다. 주로 각 로우를 구분하기 위한 유일한 값을 저장하는 컬럼에 사용한다. 기본키라고도 부른다.\n\nforeign key : 특정 테이블의 primary key 컬럼에 저장되어 있는 값만 저장할 수 있도록 한다. 흔히 참조키, 외래키라고 부르며 지정된 테이블의 기본키 컬럼을 참조하여 참조하는 기본키 컬럼에 저장되어 있는 값만 저장할 수 있다. null 값을 허용한다.\n\nnot null : 컬럼에 null 값을 저장할 수 없으며 쿼리문을 통해 반드시 값이 지정되어야 한다.\n1234567891011121314151617181920212223242526272829303132333435363738394041424344create table test_table10(data1 int not null);insert into test_table10 (data1) value (1);insert into test_table10 (data1) value (2);insert into test_table10 (data1) value (3);select * from test_table10;insert into test_table10 (data1) value (null); -- 에러메시지 뜸create table test_table20(data1 int,data2 int not null,constraint pk1 primary key(data1));insert into test_table20 (data1, data2) values (10, 100);insert into test_table20 (data1, data2) values (20, 200);insert into test_table20 (data1, data2) values (30, 300);select * from test_table20;insert into test_table20 (data1, data2) values (10, 100); -- 에러메시지 뜸insert into test_table20 (data1, data2) values (10, null); -- 에러메시지 뜸create table test_table30(data1 int,data2 int,constraint pk2 primary key (data1),constraint fk2 foreign key (data2) references test_table20 (data1));select * from test_table20;insert into test_table30 (data1, data2) values (1,10);insert into test_table30 (data1, data2) values (1, 40); -- 에러메시지 (data1에는 40 이라는 값이 없음)insert into test_table30 (data1, data2) values (2, null);insert into test_table30 (data1) values (6);select * from test_table30;\n\nunique : 컬럼에 중복된 값을 저장할 수 없다. null은 허용한다\n\ncheck : 값의 범위나 종류를 지정하여 조건에 맞는 값만 저장할 수 있도록 한다. check 제약조건은 mysql에서 지원하지 않는다.\n\ndefault : null이 들어올 경우 기본 설정되는 값을 지정한다. default를 설정할 경우 컬럼에 null을 저장할 수 없다.\n\n\n\n\n12345678910111213141516171819202122232425262728293031323334353637create table test_table40(data1 int,data2 int not null,constraint uk1 unique (data1),constraint uk2 unique (data2));insert into test_table40 (data1, data2) values (1, 10);insert into test_table40 (data1, data2) values (2, 20);select * from test_table40;insert into test_table40 (data1, data2) values (1, 30); -- errorinsert into test_table40 (data1, data2) values (3, 10); -- errorinsert into test_table40 (data1, data2) values (null, 40);insert into test_table40 (data1, data2) values (null, 50);select * from test_table40;create table test_table50(data1 int not null,data2 int not null,constraint chk1 check (data1 &gt; 10), -- 10보다 큰 것만 넣어라constraint chk2 check (data2 in(10, 20, 30)) -- 10,20,30 만 넣어라);create table test_table60(data1 int not null default 1,data2 int not null default 10);insert into test_table60 (data1, data2) values (null, null);select * from test_table60; -- null 지정한건 생략해버림insert into test_table60 (data1) values (100); -- 100 10 insert into test_table60 (data2) values (200); -- 1 200select * from test_table60;\n","dateCreated":"2020-01-16T23:46:25+09:00","dateModified":"2020-01-16T23:04:01+09:00","datePublished":"2020-01-16T23:46:25+09:00","description":"\n제약조건\n\n컬럼에 저장 될 데이터의 조건을 설정하는 것\n\n제약 조건을 설정하면 조건에 위배되는 데이터는 저장할 수 없다.","headline":"제약조건","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/16/mysql-makingCondition/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/16/mysql-makingCondition/","keywords":"database, MySQL"}</script>
+    <meta name="description" content="제약조건  컬럼에 저장 될 데이터의 조건을 설정하는 것  제약 조건을 설정하면 조건에 위배되는 데이터는 저장할 수 없다.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="제약조건">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/16/mysql-makingCondition/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="제약조건  컬럼에 저장 될 데이터의 조건을 설정하는 것  제약 조건을 설정하면 조건에 위배되는 데이터는 저장할 수 없다.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-16T14:46:25.000Z">
+<meta property="article:modified_time" content="2020-01-16T14:04:01.961Z">
+<meta property="article:author" content="Javit">
+<meta property="article:tag" content="database, MySQL">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            제약조건
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-01-16T23:46:25+09:00">
+	
+		    Jan 16, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Database-MySQL/">Database, MySQL</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <ul>
+<li><p>제약조건</p>
+<ul>
+<li><p>컬럼에 저장 될 데이터의 조건을 설정하는 것</p>
+</li>
+<li><p>제약 조건을 설정하면 조건에 위배되는 데이터는 저장할 수 없다.</p>
+<a id="more"></a></li>
+<li><p>데이터베이스 내의 테이블은 여러 개발자가 사용하므로 제약 조건 설정이 중요하다.</p>
+</li>
+<li><p>primary key : 컬럼에 중복으로 데이터를 저장할 수 없으며, null 값을 허용하지 않는다. 주로 각 로우를 구분하기 위한 유일한 값을 저장하는 컬럼에 사용한다. 기본키라고도 부른다.</p>
+</li>
+<li><p>foreign key : 특정 테이블의 primary key 컬럼에 저장되어 있는 값만 저장할 수 있도록 한다. 흔히 참조키, 외래키라고 부르며 지정된 테이블의 기본키 컬럼을 참조하여 참조하는 기본키 컬럼에 저장되어 있는 값만 저장할 수 있다. null 값을 허용한다.</p>
+</li>
+<li><p>not null : 컬럼에 null 값을 저장할 수 없으며 쿼리문을 통해 반드시 값이 지정되어야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">create table test_table10(</span><br><span class="line">data1 int not null</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into test_table10 (data1) value (1);</span><br><span class="line">insert into test_table10 (data1) value (2);</span><br><span class="line">insert into test_table10 (data1) value (3);</span><br><span class="line"></span><br><span class="line">select * from test_table10;</span><br><span class="line"></span><br><span class="line">insert into test_table10 (data1) value (null); -- 에러메시지 뜸</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create table test_table20(</span><br><span class="line">data1 int,</span><br><span class="line">data2 int not null,</span><br><span class="line">constraint pk1 primary key(data1)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into test_table20 (data1, data2) values (10, 100);</span><br><span class="line">insert into test_table20 (data1, data2) values (20, 200);</span><br><span class="line">insert into test_table20 (data1, data2) values (30, 300);</span><br><span class="line"></span><br><span class="line">select * from test_table20;</span><br><span class="line"></span><br><span class="line">insert into test_table20 (data1, data2) values (10, 100); -- 에러메시지 뜸</span><br><span class="line">insert into test_table20 (data1, data2) values (10, null); -- 에러메시지 뜸</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create table test_table30(</span><br><span class="line">data1 int,</span><br><span class="line">data2 int,</span><br><span class="line">constraint pk2 primary key (data1),</span><br><span class="line">constraint fk2 foreign key (data2) references test_table20 (data1)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">select * from test_table20;</span><br><span class="line">insert into test_table30 (data1, data2) values (1,10);</span><br><span class="line"></span><br><span class="line">insert into test_table30 (data1, data2) values (1, 40); -- 에러메시지 (data1에는 40 이라는 값이 없음)</span><br><span class="line">insert into test_table30 (data1, data2) values (2, null);</span><br><span class="line">insert into test_table30 (data1) values (6);</span><br><span class="line"></span><br><span class="line">select * from test_table30;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unique : 컬럼에 중복된 값을 저장할 수 없다. null은 허용한다</p>
+</li>
+<li><p>check : 값의 범위나 종류를 지정하여 조건에 맞는 값만 저장할 수 있도록 한다. check 제약조건은 mysql에서 지원하지 않는다.</p>
+</li>
+<li><p>default : null이 들어올 경우 기본 설정되는 값을 지정한다. default를 설정할 경우 컬럼에 null을 저장할 수 없다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">create table test_table40(</span><br><span class="line">data1 int,</span><br><span class="line">data2 int not null,</span><br><span class="line">constraint uk1 unique (data1),</span><br><span class="line">constraint uk2 unique (data2)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into test_table40 (data1, data2) values (1, 10);</span><br><span class="line">insert into test_table40 (data1, data2) values (2, 20);</span><br><span class="line">select * from test_table40;</span><br><span class="line">insert into test_table40 (data1, data2) values (1, 30); -- error</span><br><span class="line">insert into test_table40 (data1, data2) values (3, 10); -- error</span><br><span class="line"></span><br><span class="line">insert into test_table40 (data1, data2) values (null, 40);</span><br><span class="line">insert into test_table40 (data1, data2) values (null, 50);</span><br><span class="line"></span><br><span class="line">select * from test_table40;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">create table test_table50(</span><br><span class="line">data1 int not null,</span><br><span class="line">data2 int not null,</span><br><span class="line">constraint chk1 check (data1 &gt; 10), -- 10보다 큰 것만 넣어라</span><br><span class="line">constraint chk2 check (data2 in(10, 20, 30)) -- 10,20,30 만 넣어라</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table test_table60(</span><br><span class="line">data1 int not null default 1,</span><br><span class="line">data2 int not null default 10</span><br><span class="line">);</span><br><span class="line">insert into test_table60 (data1, data2) values (null, null);</span><br><span class="line"></span><br><span class="line">select * from test_table60; -- null 지정한건 생략해버림</span><br><span class="line"></span><br><span class="line">insert into test_table60 (data1) values (100); -- 100 10 </span><br><span class="line">insert into test_table60 (data2) values (200); -- 1 200</span><br><span class="line">select * from test_table60;</span><br></pre></td></tr></table></figure>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/database-MySQL/" rel="tag">database, MySQL</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/16/mysql-sequence-limit/"
+                    data-tooltip="sequence, limit, view"
+                    aria-label="PREVIOUS: sequence, limit, view"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/16/change-table/"
+                    data-tooltip="테이블 변경하기"
+                    aria-label="NEXT: 테이블 변경하기"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Javit. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/16/mysql-sequence-limit/"
+                    data-tooltip="sequence, limit, view"
+                    aria-label="PREVIOUS: sequence, limit, view"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/16/change-table/"
+                    data-tooltip="테이블 변경하기"
+                    aria-label="NEXT: 테이블 변경하기"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/mysql-makingCondition/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Javit</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

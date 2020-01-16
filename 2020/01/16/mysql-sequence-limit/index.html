@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>테이블 변경하기 - Developer Javit</title>
+    <title>sequence, limit, view - Developer Javit</title>
     <meta name="author" content="Javit">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\nrename 명령문 : 테이블 이름을 변경\nalter 명령문 : 테이블의 컬럼을 추가, 변경, 삭제\ndrop table 명령문 : 테이블 삭제\n\n\n\n12345678910111213141516171819202122232425show tables;-- renamerename table test_table1 to test_table3;show tables;-- 속성변경desc test_table3;alter table test_table3 modify data1 int(100);desc test_table3;-- 컬럼변경alter table test_table3 change data1 data10 int(200);desc test_table3;-- 컬럼추가alter table test_table3 add data4 int(10);desc test_table3;-- 컬럼삭제alter table test_table3 drop data4;desc test_table3;-- 테이블 삭제drop table test_table3;show tables;\n\n\n\n\n\n\n","dateCreated":"2020-01-16T00:40:25+09:00","dateModified":"2020-01-16T00:21:36+09:00","datePublished":"2020-01-16T00:40:25+09:00","description":"\nrename 명령문 : 테이블 이름을 변경\nalter 명령문 : 테이블의 컬럼을 추가, 변경, 삭제\ndrop table 명령문 : 테이블 삭제","headline":"테이블 변경하기","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/16/change-table/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/16/change-table/","keywords":"database, MySQL"}</script>
-    <meta name="description" content="rename 명령문 : 테이블 이름을 변경 alter 명령문 : 테이블의 컬럼을 추가, 변경, 삭제 drop table 명령문 : 테이블 삭제">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\nsequence\n로우를 추가할 때 자동으로 증가하는 값이 저장되는 것을 시퀀스라고 부른다\n시퀀스는 데이터베이스 별 사용하는 방법이 다르므로 반드시 파악\nmysql은 auto_increment 키워드를 설정해주면 된다.\n데이터를 insert 할 때 auto_increment를 설정한 컬럼은 제외한다\n\n\n\n123456789101112create table test_table100(data1 int auto_increment,data2 int not null,data3 int not null,constraint pk1 primary key (data1));insert into test_table100 (data2, data3) values (100, 200);insert into test_table100 (data2, data3) values (101, 201);insert into test_table100 (data2, data3) values (102, 202);select * from test_table100;\n\n\nlimit\nselect 해서 가져온 로우에서 원하는 범위의 로우만 가지고 올 때 사용한다.\n게시판 등에서 사용하는 페이징 기법을 구현할 때 사용한다.\n데이터베이스 별 구현 방법 다르다\nselect 문 limit 시작인덱스, 개수\n\n\n\n123456use employees;select * from employees;select * from employees order by emp_no;select * from employees order by emp_no limit 0, 10;select * from employees order by emp_no limit 10, 10;\n\n\nview\n\nview 는 가상의 테이블을 의미한다\n\n두 개 이상의 테이블을 조인하거나 서브쿼리를 사용하는 select 문은 쿼리문이 복잡해지게 되는데 이를 매번 사용하게 되면 개발자의 불편함이 따르게 된다.\n\n이 때 조인이나 서브쿼리를 사용해 얻어진 결과를 뷰로 만들어 놓으면 개발자는 뷰를 통해 결과를 얻어올 수 있다.\n\n사실 뷰는 select문을 통해 얻어진 결과를 가지고 있는 것이 아니라 select문 자체를 가지고 있어 뷰를 select하면 이전에 사용한 쿼리문이 실행되어 결과를 가져오게 된다.\n\ncreate view 뷰이름 as select 쿼리문\n\ndrop view 뷰이름\n\n\n\n\n1234567891011121314151617181920212223242526272829303132333435create table test_table4000(data1 int,data2 int not null,constraint pk1 primary key (data1));create table test_table5000(data1 int not null,data3 int not null,constraint fk10 foreign key (data1) references test_table4000 (data1));insert into test_table4000 (data1, data2) values (1,10);insert into test_table4000 (data1, data2) values (2,20);insert into test_table4000 (data1, data2) values (3,30);insert into test_table5000 (data1, data3) values (1, 100);insert into test_table5000 (data1, data3) values (2, 200);insert into test_table5000 (data1, data3) values (3, 300);select a1.data1, a1.data2, a2.data3from test_table4000 a1, test_table5000 a2where a1.data1 &#x3D; a2.data1;create view test_viewas select a1.data1, a1.data2, a2.data3from test_table4000 a1, test_table5000 a2where a1.data1 &#x3D; a2.data1;select * from test_view;drop view test_view;select * from test_view;\n\n\n","dateCreated":"2020-01-16T23:46:25+09:00","dateModified":"2020-01-16T23:41:16+09:00","datePublished":"2020-01-16T23:46:25+09:00","description":"\nsequence\n로우를 추가할 때 자동으로 증가하는 값이 저장되는 것을 시퀀스라고 부른다\n시퀀스는 데이터베이스 별 사용하는 방법이 다르므로 반드시 파악","headline":"sequence, limit, view","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/16/mysql-sequence-limit/","keywords":"database, MySQL"}</script>
+    <meta name="description" content="sequence 로우를 추가할 때 자동으로 증가하는 값이 저장되는 것을 시퀀스라고 부른다 시퀀스는 데이터베이스 별 사용하는 방법이 다르므로 반드시 파악">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="테이블 변경하기">
-<meta property="og:url" content="http://jbj828.github.io/2020/01/16/change-table/index.html">
+<meta property="og:title" content="sequence, limit, view">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/16/mysql-sequence-limit/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="rename 명령문 : 테이블 이름을 변경 alter 명령문 : 테이블의 컬럼을 추가, 변경, 삭제 drop table 명령문 : 테이블 삭제">
+<meta property="og:description" content="sequence 로우를 추가할 때 자동으로 증가하는 값이 저장되는 것을 시퀀스라고 부른다 시퀀스는 데이터베이스 별 사용하는 방법이 다르므로 반드시 파악">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-15T15:40:25.000Z">
-<meta property="article:modified_time" content="2020-01-15T15:21:36.166Z">
+<meta property="article:published_time" content="2020-01-16T14:46:25.000Z">
+<meta property="article:modified_time" content="2020-01-16T14:41:16.702Z">
 <meta property="article:author" content="Javit">
 <meta property="article:tag" content="database, MySQL">
 <meta name="twitter:card" content="summary">
@@ -227,12 +227,12 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            테이블 변경하기
+            sequence, limit, view
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-01-16T00:40:25+09:00">
+    <time datetime="2020-01-16T23:46:25+09:00">
 	
 		    Jan 16, 2020
     	
@@ -253,17 +253,46 @@
     <div class="post-content markdown">
         <div class="main-content-wrap">
             <ul>
-<li>rename 명령문 : 테이블 이름을 변경</li>
-<li>alter 명령문 : 테이블의 컬럼을 추가, 변경, 삭제</li>
-<li>drop table 명령문 : 테이블 삭제<a id="more"></a>
-
+<li>sequence<ul>
+<li>로우를 추가할 때 자동으로 증가하는 값이 저장되는 것을 시퀀스라고 부른다</li>
+<li>시퀀스는 데이터베이스 별 사용하는 방법이 다르므로 반드시 파악<a id="more"></a></li>
+<li>mysql은 auto_increment 키워드를 설정해주면 된다.</li>
+<li>데이터를 insert 할 때 auto_increment를 설정한 컬럼은 제외한다</li>
+</ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br><span class="line">-- rename</span><br><span class="line">rename table test_table1 to test_table3;</span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">-- 속성변경</span><br><span class="line">desc test_table3;</span><br><span class="line">alter table test_table3 modify data1 int(100);</span><br><span class="line">desc test_table3;</span><br><span class="line"></span><br><span class="line">-- 컬럼변경</span><br><span class="line">alter table test_table3 change data1 data10 int(200);</span><br><span class="line">desc test_table3;</span><br><span class="line"></span><br><span class="line">-- 컬럼추가</span><br><span class="line">alter table test_table3 add data4 int(10);</span><br><span class="line">desc test_table3;</span><br><span class="line"></span><br><span class="line">-- 컬럼삭제</span><br><span class="line">alter table test_table3 drop data4;</span><br><span class="line">desc test_table3;</span><br><span class="line"></span><br><span class="line">-- 테이블 삭제</span><br><span class="line">drop table test_table3;</span><br><span class="line">show tables;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create table test_table100(</span><br><span class="line">data1 int auto_increment,</span><br><span class="line">data2 int not null,</span><br><span class="line">data3 int not null,</span><br><span class="line">constraint pk1 primary key (data1)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into test_table100 (data2, data3) values (100, 200);</span><br><span class="line">insert into test_table100 (data2, data3) values (101, 201);</span><br><span class="line">insert into test_table100 (data2, data3) values (102, 202);</span><br><span class="line"></span><br><span class="line">select * from test_table100;</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>limit<ul>
+<li>select 해서 가져온 로우에서 원하는 범위의 로우만 가지고 올 때 사용한다.</li>
+<li>게시판 등에서 사용하는 페이징 기법을 구현할 때 사용한다.</li>
+<li>데이터베이스 별 구현 방법 다르다</li>
+<li>select 문 limit 시작인덱스, 개수</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use employees;</span><br><span class="line">select * from employees;</span><br><span class="line"></span><br><span class="line">select * from employees order by emp_no;</span><br><span class="line">select * from employees order by emp_no limit 0, 10;</span><br><span class="line">select * from employees order by emp_no limit 10, 10;</span><br></pre></td></tr></table></figure>
 
-
-
+<ul>
+<li><p>view</p>
+<ul>
+<li><p>view 는 가상의 테이블을 의미한다</p>
+</li>
+<li><p>두 개 이상의 테이블을 조인하거나 서브쿼리를 사용하는 select 문은 쿼리문이 복잡해지게 되는데 이를 매번 사용하게 되면 개발자의 불편함이 따르게 된다.</p>
+</li>
+<li><p>이 때 조인이나 서브쿼리를 사용해 얻어진 결과를 뷰로 만들어 놓으면 개발자는 뷰를 통해 결과를 얻어올 수 있다.</p>
+</li>
+<li><p>사실 뷰는 select문을 통해 얻어진 결과를 가지고 있는 것이 아니라 select문 자체를 가지고 있어 뷰를 select하면 이전에 사용한 쿼리문이 실행되어 결과를 가져오게 된다.</p>
+</li>
+<li><p>create view 뷰이름 as select 쿼리문</p>
+</li>
+<li><p>drop view 뷰이름</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">create table test_table4000(</span><br><span class="line">data1 int,</span><br><span class="line">data2 int not null,</span><br><span class="line">constraint pk1 primary key (data1)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table test_table5000(</span><br><span class="line">data1 int not null,</span><br><span class="line">data3 int not null,</span><br><span class="line">constraint fk10 foreign key (data1) references test_table4000 (data1)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into test_table4000 (data1, data2) values (1,10);</span><br><span class="line">insert into test_table4000 (data1, data2) values (2,20);</span><br><span class="line">insert into test_table4000 (data1, data2) values (3,30);</span><br><span class="line"></span><br><span class="line">insert into test_table5000 (data1, data3) values (1, 100);</span><br><span class="line">insert into test_table5000 (data1, data3) values (2, 200);</span><br><span class="line">insert into test_table5000 (data1, data3) values (3, 300);</span><br><span class="line"></span><br><span class="line">select a1.data1, a1.data2, a2.data3</span><br><span class="line">from test_table4000 a1, test_table5000 a2</span><br><span class="line">where a1.data1 &#x3D; a2.data1;</span><br><span class="line"></span><br><span class="line">create view test_view</span><br><span class="line">as </span><br><span class="line">select a1.data1, a1.data2, a2.data3</span><br><span class="line">from test_table4000 a1, test_table5000 a2</span><br><span class="line">where a1.data1 &#x3D; a2.data1;</span><br><span class="line"></span><br><span class="line">select * from test_view;</span><br><span class="line"></span><br><span class="line">drop view test_view;</span><br><span class="line"></span><br><span class="line">select * from test_view;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -287,14 +316,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/16/mysql-makingCondition/"
-                    data-tooltip="제약조건"
-                    aria-label="PREVIOUS: 제약조건"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -304,9 +330,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/16/transaction-management/"
-                    data-tooltip="Transaction"
-                    aria-label="NEXT: Transaction"
+                    href="/2020/01/16/mysql-makingCondition/"
+                    data-tooltip="제약조건"
+                    aria-label="NEXT: 제약조건"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -331,7 +357,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/change-table/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -344,7 +370,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/change-table/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -357,7 +383,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/change-table/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -402,14 +428,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/16/mysql-makingCondition/"
-                    data-tooltip="제약조건"
-                    aria-label="PREVIOUS: 제약조건"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -419,9 +442,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/16/transaction-management/"
-                    data-tooltip="Transaction"
-                    aria-label="NEXT: Transaction"
+                    href="/2020/01/16/mysql-makingCondition/"
+                    data-tooltip="제약조건"
+                    aria-label="NEXT: 제약조건"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -446,7 +469,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/change-table/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -459,7 +482,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/change-table/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -472,7 +495,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/change-table/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -506,7 +529,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/change-table/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -519,7 +542,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/change-table/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -532,7 +555,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/change-table/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/16/mysql-sequence-limit/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
