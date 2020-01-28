@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>TIL - Developer Javit</title>
+    <title>Model 2 - Expression language - Developer Javit</title>
     <meta name="author" content="Javit">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n\nConnection Pool을 사용하지 않고 게시판을 만들어 보았다.\n이전에 공부했던 connection pool사용한 회원가입-로그인 프로젝트는 별도로 server에 환경설정해야 하는 것과 달리 pool을 사용하지 않으면 DBO 클래스에서 데이터베이스에 연결만 시킬 뿐 환경설정은 필요하지 않다.\n하지만 역시 connection pool을 사용하는게 재정비 및 다수의 사용자를 받아들이기엔 이상적이다.\n오늘부터 정보처리산업기사 공부를 시작한다. 일주일에 한 챕터씩 끝내는 것을 목표로 나아가자!!\n","dateCreated":"2020-01-25T22:46:25+09:00","dateModified":"2020-01-25T22:47:03+09:00","datePublished":"2020-01-25T22:46:25+09:00","description":"","headline":"TIL","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/25/jsp-model1/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/25/jsp-model1/","keywords":"jsp"}</script>
-    <meta name="description" content="Connection Pool을 사용하지 않고 게시판을 만들어 보았다. 이전에 공부했던 connection pool사용한 회원가입-로그인 프로젝트는 별도로 server에 환경설정해야 하는 것과 달리 pool을 사용하지 않으면 DBO 클래스에서 데이터베이스에 연결만 시킬 뿐 환경설정은 필요하지 않다. 하지만 역시 connection pool을 사용하는게 재">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\nEL(Expression Language)\n표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어\nattribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력\n파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력\n\n\n\n\n\n","dateCreated":"2020-01-27T13:10:25+09:00","dateModified":"2020-01-27T23:21:43+09:00","datePublished":"2020-01-27T13:10:25+09:00","description":"\nEL(Expression Language)\n표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어\nattribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력\n파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력\n\n\n","headline":"Model 2 - Expression language","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/27/jsp-model2-theory/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/27/jsp-model2-theory/","keywords":"jsp"}</script>
+    <meta name="description" content="EL(Expression Language) 표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어 attribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력 파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="TIL">
-<meta property="og:url" content="http://jbj828.github.io/2020/01/25/jsp-model1/index.html">
+<meta property="og:title" content="Model 2 - Expression language">
+<meta property="og:url" content="http://jbj828.github.io/2020/01/27/jsp-model2-theory/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Connection Pool을 사용하지 않고 게시판을 만들어 보았다. 이전에 공부했던 connection pool사용한 회원가입-로그인 프로젝트는 별도로 server에 환경설정해야 하는 것과 달리 pool을 사용하지 않으면 DBO 클래스에서 데이터베이스에 연결만 시킬 뿐 환경설정은 필요하지 않다. 하지만 역시 connection pool을 사용하는게 재">
+<meta property="og:description" content="EL(Expression Language) 표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어 attribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력 파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-01-25T13:46:25.000Z">
-<meta property="article:modified_time" content="2020-01-25T13:47:03.723Z">
+<meta property="article:published_time" content="2020-01-27T04:10:25.000Z">
+<meta property="article:modified_time" content="2020-01-27T14:21:43.547Z">
 <meta property="article:author" content="Javit">
 <meta property="article:tag" content="jsp">
 <meta name="twitter:card" content="summary">
@@ -227,14 +227,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            TIL
+            Model 2 - Expression language
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-01-25T22:46:25+09:00">
+    <time datetime="2020-01-27T13:10:25+09:00">
 	
-		    Jan 25, 2020
+		    Jan 27, 2020
     	
     </time>
     
@@ -252,12 +252,16 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <a id="more"></a>
+            <ul>
+<li>EL(Expression Language)<ul>
+<li>표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어</li>
+<li>attribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력</li>
+<li>파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
 
-<p>Connection Pool을 사용하지 않고 게시판을 만들어 보았다.</p>
-<p>이전에 공부했던 connection pool사용한 회원가입-로그인 프로젝트는 별도로 server에 환경설정해야 하는 것과 달리 pool을 사용하지 않으면 DBO 클래스에서 데이터베이스에 연결만 시킬 뿐 환경설정은 필요하지 않다.</p>
-<p>하지만 역시 connection pool을 사용하는게 재정비 및 다수의 사용자를 받아들이기엔 이상적이다.</p>
-<p>오늘부터 정보처리산업기사 공부를 시작한다. 일주일에 한 챕터씩 끝내는 것을 목표로 나아가자!!</p>
 
             
 
@@ -282,9 +286,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/27/jsp-model2-theory/"
-                    data-tooltip="Model 2 - Expression language"
-                    aria-label="PREVIOUS: Model 2 - Expression language"
+                    href="/2020/01/28/recursion/"
+                    data-tooltip="Reucursive"
+                    aria-label="PREVIOUS: Reucursive"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -296,9 +300,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/22/SessionLogin/"
-                    data-tooltip="Session Login Form"
-                    aria-label="NEXT: Session Login Form"
+                    href="/2020/01/25/jsp-model1/"
+                    data-tooltip="TIL"
+                    aria-label="NEXT: TIL"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -323,7 +327,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -336,7 +340,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -349,7 +353,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -397,9 +401,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/27/jsp-model2-theory/"
-                    data-tooltip="Model 2 - Expression language"
-                    aria-label="PREVIOUS: Model 2 - Expression language"
+                    href="/2020/01/28/recursion/"
+                    data-tooltip="Reucursive"
+                    aria-label="PREVIOUS: Reucursive"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -411,9 +415,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/01/22/SessionLogin/"
-                    data-tooltip="Session Login Form"
-                    aria-label="NEXT: Session Login Form"
+                    href="/2020/01/25/jsp-model1/"
+                    data-tooltip="TIL"
+                    aria-label="NEXT: TIL"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -438,7 +442,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -451,7 +455,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -464,7 +468,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -498,7 +502,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -511,7 +515,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -524,7 +528,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/25/jsp-model1/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/01/27/jsp-model2-theory/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
