@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Single Linked List - Developer Javit</title>
+    <meta name="author" content="Javit">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"The method which could be applied on the Single linked list\n\n\nSingleNode.java\n12345678910111213141516171819202122232425262728package com.chung;public class SingleNode &#123;    private int value;    private SingleNode next;    public int getValue() &#123;        return value;    &#125;    public void setValue(int value) &#123;        this.value &#x3D; value;    &#125;    public SingleNode getNext() &#123;        return next;    &#125;    public void setNext(SingleNode next) &#123;        this.next &#x3D; next;    &#125;    @Override    public String toString() &#123;        return value + &quot;&quot;;    &#125;&#125;\n\nSingleLinkedList.java\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159package com.chung;public class SingleLinkedList &#123;\tprivate SingleNode head;\tprivate SingleNode tail;\tprivate int size;&#x2F;&#x2F; denotes size of list\t\t\tpublic SingleNode getHead() &#123;\t\treturn head;\t&#125;\tpublic void setHead(SingleNode head) &#123;\t\tthis.head &#x3D; head;\t&#125;\tpublic SingleNode getTail() &#123;\t\treturn tail;\t&#125;\tpublic void setTail(SingleNode tail) &#123;\t\tthis.tail &#x3D; tail;\t&#125;\tpublic int getSize() &#123;\t\treturn size;\t&#125;\tpublic void setSize(int size) &#123;\t\tthis.size &#x3D; size;\t&#125;\tpublic SingleNode createSingleLinkedList(int nodeValue) &#123;\t\thead &#x3D; new SingleNode();\t\tSingleNode node &#x3D; new SingleNode();\t\tnode.setValue(nodeValue);\t\tnode.setNext(null);\t\thead &#x3D; node;\t\ttail &#x3D; node;\t\tsize &#x3D; 1;&#x2F;&#x2F; size &#x3D;1\t\treturn head;\t&#125;\tpublic void insertInLinkedList(int nodeValue, int location) &#123;\t\tSingleNode node &#x3D; new SingleNode();\t\tnode.setValue(nodeValue);\t\tif (!existsLinkedList()) &#123; &#x2F;&#x2F; Linked List does not exists\t\t\tSystem.out.println(&quot;The linked list does not exist!!&quot;);\t\t\treturn; \t\t&#125; else if (location &#x3D;&#x3D; 0) &#123;&#x2F;&#x2F; insert at first position\t\t\tnode.setNext(head);\t\t\thead &#x3D; node;\t\t&#125; else if (location &gt;&#x3D; size) &#123;&#x2F;&#x2F; insert at last position\t\t\tnode.setNext(null);\t\t\ttail.setNext(node);\t\t\ttail &#x3D; node; \t\t&#125; else &#123;&#x2F;&#x2F; insert at specified location\t\t\tSingleNode tempNode &#x3D; head;\t\t\tint index &#x3D; 0;\t\t\twhile (index &lt; location - 1) &#123;&#x2F;&#x2F; loop till we reach specified node\t\t\t\ttempNode &#x3D; tempNode.getNext();\t\t\t\tindex++;\t\t\t&#125;&#x2F;&#x2F;tempNode currently references to node after which we should insert new node\t\t\tSingleNode nextNode &#x3D; tempNode.getNext(); &#x2F;&#x2F;this is the immediate next node after new node\t\t\ttempNode.setNext(node);&#x2F;&#x2F;update reference of tempNode to reference to new node\t\t\tnode.setNext(nextNode);&#x2F;&#x2F;update newly added nodes&#39; next.\t\t&#125;\t\tsetSize(getSize()+1);\t&#125;\t\tpublic boolean existsLinkedList() &#123;\t\t&#x2F;&#x2F; if head is not null retrun true otherwise return false\t\treturn head !&#x3D; null;\t&#125;\t\t\t&#x2F;&#x2F;Traverses Linked List\tvoid traverseLinkedList() &#123;\t\tif (existsLinkedList()) &#123;\t\t\tSingleNode tempNode &#x3D; head;\t\t\tfor (int i &#x3D; 0; i &lt; getSize(); i++) &#123;\t\t\t\tSystem.out.print(tempNode.getValue());\t\t\t\tif (i !&#x3D; getSize() - 1) &#123;\t\t\t\t\tSystem.out.print(&quot; -&gt; &quot;);\t\t\t\t&#125;\t\t\t\ttempNode &#x3D; tempNode.getNext();\t\t\t&#125;\t\t&#125;else &#123;\t\t\tSystem.out.println(&quot;Linked List does not exists !&quot;);\t\t&#125;\t\tSystem.out.println(&quot;\\n&quot;);\t&#125;\t\t&#x2F;&#x2F;Deletes entire Linked List\tvoid deleteLinkedList() &#123;\t\tSystem.out.println(&quot;\\n\\nDeleting Linked List...&quot;);\t\thead &#x3D; null;\t\ttail &#x3D; null;\t\tSystem.out.println(&quot;Linked List deleted successfully !&quot;);\t&#125;\t\t&#x2F;&#x2F;Searches a node with given value\tboolean searchNode(int nodeValue) &#123;\t\tif (existsLinkedList()) &#123;\t\t\tSingleNode tempNode &#x3D; head;\t\t\tfor (int i &#x3D; 0; i &lt; getSize(); i++) &#123;\t\t\t\tif (tempNode.getValue() &#x3D;&#x3D; nodeValue) &#123;\t\t\t\t\tSystem.out.print(&quot;Found the node at location: &quot;+i+&quot;\\n&quot;);\t\t\t\t\treturn true;\t\t\t\t&#125;\t\t\t\ttempNode &#x3D; tempNode.getNext();\t\t\t&#125;\t\t&#125;\t\tSystem.out.print(&quot;Node not found!! \\n&quot;);\t\treturn false;\t&#125;\t\t\t&#x2F;&#x2F;Deletes a node having a given value\tpublic void deletionOfNode(int location) &#123;\t\tif (!existsLinkedList()) &#123;\t\t\tSystem.out.println(&quot;The linked list does not exist!!&quot;);&#x2F;&#x2F; Linked List does not exists\t\t\treturn;\t\t&#125; else if (location &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; we want to delete first element\t\t\thead &#x3D; head.getNext();\t\t\tsetSize(getSize()-1);\t\t\tif(getSize() &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; if there are no more nodes in this list\t\t\t\ttail &#x3D; null;\t\t\t&#125;\t\t\t&#125;else if (location &gt;&#x3D; getSize())&#123; &#x2F;&#x2F;If location is not in range or equal, then delete last node\t\t\tSingleNode tempNode &#x3D; head;\t\t\tfor (int i &#x3D; 0; i &lt; size - 1; i++) &#123;\t\t\t\ttempNode &#x3D; tempNode.getNext(); &#x2F;&#x2F;temp node points to 2nd last node\t\t\t&#125;\t\t\tif (tempNode &#x3D;&#x3D; head) &#123; &#x2F;&#x2F;if this is the only element in the list\t\t\t\ttail &#x3D; head &#x3D; null;\t\t\t\tsetSize(getSize()-1);\t\t\t\treturn;\t\t\t&#125;\t\t\ttempNode.setNext(null); \t\t\ttail&#x3D; tempNode;\t\t\tsetSize(getSize()-1);\t\t\t\t\t&#125;else &#123; &#x2F;&#x2F;if any inside node is to be deleted\t\t\tSingleNode tempNode &#x3D; head;\t\t\tfor (int i &#x3D; 0; i &lt; location - 1; i++) &#123;\t\t\t\ttempNode &#x3D; tempNode.getNext(); &#x2F;&#x2F; we need to traverse till we find the location\t\t\t&#125;\t\t\t\ttempNode.setNext(tempNode.getNext().getNext()); &#x2F;&#x2F; delete the required node\t\t\tsetSize(getSize()-1);\t\t&#125;&#x2F;&#x2F;end of else\t\t\t\t&#125;&#x2F;&#x2F;end of method\t&#125;&#x2F;&#x2F; end of class\n\n","dateCreated":"2020-02-01T15:23:25+09:00","dateModified":"2020-02-01T14:39:16+09:00","datePublished":"2020-02-01T15:23:25+09:00","description":"The method which could be applied on the Single linked list","headline":"Single Linked List","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/01/SingleLinkedList/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/02/01/SingleLinkedList/","keywords":"Algorithm"}</script>
+    <meta name="description" content="The method which could be applied on the Single linked list">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Single Linked List">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/01/SingleLinkedList/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="The method which could be applied on the Single linked list">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-01T06:23:25.000Z">
+<meta property="article:modified_time" content="2020-02-01T05:39:16.521Z">
+<meta property="article:author" content="Javit">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Single Linked List
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-02-01T15:23:25+09:00">
+	
+		    Feb 01, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Alogrithm/">Alogrithm</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>The method which could be applied on the Single linked list</p>
+<a id="more"></a>
+
+<p>SingleNode.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">public class SingleNode &#123;</span><br><span class="line"></span><br><span class="line">    private int value;</span><br><span class="line">    private SingleNode next;</span><br><span class="line"></span><br><span class="line">    public int getValue() &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setValue(int value) &#123;</span><br><span class="line">        this.value &#x3D; value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public SingleNode getNext() &#123;</span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setNext(SingleNode next) &#123;</span><br><span class="line">        this.next &#x3D; next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return value + &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SingleLinkedList.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">public class SingleLinkedList &#123;</span><br><span class="line">	private SingleNode head;</span><br><span class="line">	private SingleNode tail;</span><br><span class="line">	private int size;&#x2F;&#x2F; denotes size of list</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	public SingleNode getHead() &#123;</span><br><span class="line">		return head;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setHead(SingleNode head) &#123;</span><br><span class="line">		this.head &#x3D; head;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public SingleNode getTail() &#123;</span><br><span class="line">		return tail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setTail(SingleNode tail) &#123;</span><br><span class="line">		this.tail &#x3D; tail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int getSize() &#123;</span><br><span class="line">		return size;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setSize(int size) &#123;</span><br><span class="line">		this.size &#x3D; size;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public SingleNode createSingleLinkedList(int nodeValue) &#123;</span><br><span class="line">		head &#x3D; new SingleNode();</span><br><span class="line">		SingleNode node &#x3D; new SingleNode();</span><br><span class="line">		node.setValue(nodeValue);</span><br><span class="line">		node.setNext(null);</span><br><span class="line">		head &#x3D; node;</span><br><span class="line">		tail &#x3D; node;</span><br><span class="line">		size &#x3D; 1;&#x2F;&#x2F; size &#x3D;1</span><br><span class="line">		return head;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void insertInLinkedList(int nodeValue, int location) &#123;</span><br><span class="line">		SingleNode node &#x3D; new SingleNode();</span><br><span class="line">		node.setValue(nodeValue);</span><br><span class="line">		if (!existsLinkedList()) &#123; &#x2F;&#x2F; Linked List does not exists</span><br><span class="line">			System.out.println(&quot;The linked list does not exist!!&quot;);</span><br><span class="line">			return; </span><br><span class="line">		&#125; else if (location &#x3D;&#x3D; 0) &#123;&#x2F;&#x2F; insert at first position</span><br><span class="line">			node.setNext(head);</span><br><span class="line">			head &#x3D; node;</span><br><span class="line">		&#125; else if (location &gt;&#x3D; size) &#123;&#x2F;&#x2F; insert at last position</span><br><span class="line">			node.setNext(null);</span><br><span class="line">			tail.setNext(node);</span><br><span class="line">			tail &#x3D; node; </span><br><span class="line">		&#125; else &#123;&#x2F;&#x2F; insert at specified location</span><br><span class="line">			SingleNode tempNode &#x3D; head;</span><br><span class="line">			int index &#x3D; 0;</span><br><span class="line">			while (index &lt; location - 1) &#123;&#x2F;&#x2F; loop till we reach specified node</span><br><span class="line">				tempNode &#x3D; tempNode.getNext();</span><br><span class="line">				index++;</span><br><span class="line">			&#125;&#x2F;&#x2F;tempNode currently references to node after which we should insert new node</span><br><span class="line">			SingleNode nextNode &#x3D; tempNode.getNext(); &#x2F;&#x2F;this is the immediate next node after new node</span><br><span class="line">			tempNode.setNext(node);&#x2F;&#x2F;update reference of tempNode to reference to new node</span><br><span class="line">			node.setNext(nextNode);&#x2F;&#x2F;update newly added nodes&#39; next.</span><br><span class="line">		&#125;</span><br><span class="line">		setSize(getSize()+1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public boolean existsLinkedList() &#123;</span><br><span class="line">		&#x2F;&#x2F; if head is not null retrun true otherwise return false</span><br><span class="line">		return head !&#x3D; null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Traverses Linked List</span><br><span class="line">	void traverseLinkedList() &#123;</span><br><span class="line">		if (existsLinkedList()) &#123;</span><br><span class="line">			SingleNode tempNode &#x3D; head;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; getSize(); i++) &#123;</span><br><span class="line">				System.out.print(tempNode.getValue());</span><br><span class="line">				if (i !&#x3D; getSize() - 1) &#123;</span><br><span class="line">					System.out.print(&quot; -&gt; &quot;);</span><br><span class="line">				&#125;</span><br><span class="line">				tempNode &#x3D; tempNode.getNext();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;Linked List does not exists !&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;\n&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Deletes entire Linked List</span><br><span class="line">	void deleteLinkedList() &#123;</span><br><span class="line">		System.out.println(&quot;\n\nDeleting Linked List...&quot;);</span><br><span class="line">		head &#x3D; null;</span><br><span class="line">		tail &#x3D; null;</span><br><span class="line">		System.out.println(&quot;Linked List deleted successfully !&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Searches a node with given value</span><br><span class="line">	boolean searchNode(int nodeValue) &#123;</span><br><span class="line">		if (existsLinkedList()) &#123;</span><br><span class="line">			SingleNode tempNode &#x3D; head;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; getSize(); i++) &#123;</span><br><span class="line">				if (tempNode.getValue() &#x3D;&#x3D; nodeValue) &#123;</span><br><span class="line">					System.out.print(&quot;Found the node at location: &quot;+i+&quot;\n&quot;);</span><br><span class="line">					return true;</span><br><span class="line">				&#125;</span><br><span class="line">				tempNode &#x3D; tempNode.getNext();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(&quot;Node not found!! \n&quot;);</span><br><span class="line">		return false;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Deletes a node having a given value</span><br><span class="line">	public void deletionOfNode(int location) &#123;</span><br><span class="line">		if (!existsLinkedList()) &#123;</span><br><span class="line">			System.out.println(&quot;The linked list does not exist!!&quot;);&#x2F;&#x2F; Linked List does not exists</span><br><span class="line">			return;</span><br><span class="line">		&#125; else if (location &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; we want to delete first element</span><br><span class="line">			head &#x3D; head.getNext();</span><br><span class="line">			setSize(getSize()-1);</span><br><span class="line">			if(getSize() &#x3D;&#x3D; 0) &#123; &#x2F;&#x2F; if there are no more nodes in this list</span><br><span class="line">				tail &#x3D; null;</span><br><span class="line">			&#125;	</span><br><span class="line">		&#125;else if (location &gt;&#x3D; getSize())&#123; &#x2F;&#x2F;If location is not in range or equal, then delete last node</span><br><span class="line">			SingleNode tempNode &#x3D; head;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; size - 1; i++) &#123;</span><br><span class="line">				tempNode &#x3D; tempNode.getNext(); &#x2F;&#x2F;temp node points to 2nd last node</span><br><span class="line">			&#125;</span><br><span class="line">			if (tempNode &#x3D;&#x3D; head) &#123; &#x2F;&#x2F;if this is the only element in the list</span><br><span class="line">				tail &#x3D; head &#x3D; null;</span><br><span class="line">				setSize(getSize()-1);</span><br><span class="line">				return;</span><br><span class="line">			&#125;</span><br><span class="line">			tempNode.setNext(null); </span><br><span class="line">			tail&#x3D; tempNode;</span><br><span class="line">			setSize(getSize()-1);</span><br><span class="line">			</span><br><span class="line">		&#125;else &#123; &#x2F;&#x2F;if any inside node is to be deleted</span><br><span class="line">			SingleNode tempNode &#x3D; head;</span><br><span class="line">			for (int i &#x3D; 0; i &lt; location - 1; i++) &#123;</span><br><span class="line">				tempNode &#x3D; tempNode.getNext(); &#x2F;&#x2F; we need to traverse till we find the location</span><br><span class="line">			&#125;	</span><br><span class="line">			tempNode.setNext(tempNode.getNext().getNext()); &#x2F;&#x2F; delete the required node</span><br><span class="line">			setSize(getSize()-1);</span><br><span class="line">		&#125;&#x2F;&#x2F;end of else	</span><br><span class="line">		</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">&#125;&#x2F;&#x2F; end of class</span><br></pre></td></tr></table></figure>
+
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Algorithm/" rel="tag">Algorithm</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/30/LinkedList/"
+                    data-tooltip="Linked List"
+                    aria-label="NEXT: Linked List"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Javit. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/01/30/LinkedList/"
+                    data-tooltip="Linked List"
+                    aria-label="NEXT: Linked List"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/01/SingleLinkedList/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Javit</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
