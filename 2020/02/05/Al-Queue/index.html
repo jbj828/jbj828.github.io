@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Queue - Developer Javit</title>
+    <meta name="author" content="Javit">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n\n\nWhat is a Queue?\n\nProperty of Queue\n\nfollows FIFO(First In First Out) method\n\n\nReason why learning\n\nWhen we need to create an application which utilizes “first incoming data first”.\n\n\n\n\nImplementation options of Queue\n\nArray\nLinear Queue\nCircular Queue\n\n\n\n\n\n\nLinked list\nLinear Queue\n\n\n\n\nLinear Queue by Array\nQueueByArray.java\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495package com.chung;public class QueueByArray&#123;\t\tint[] arr;\tint topOfQueue;\tint beginningOfQueue;\t\tpublic QueueByArray(int size) &#123;\t\tthis.arr &#x3D; new int[size];\t\tthis.topOfQueue &#x3D; -1;\t\tthis.beginningOfQueue &#x3D; -1;\t\tSystem.out.println(&quot;Successfully created an empty queue of size: &quot;+size);\t&#125;&#x2F;&#x2F;end of method\tpublic void enQueue(int value) &#123;\t\tif (isQueueFull()) &#123;\t\t\tSystem.out.println(&quot;Queue overflow error!!&quot;);\t\t&#125;else if (isQueueEmpty()) &#123; &#x2F;&#x2F;If the queue is empty then we need to initialize beginning index \t\t\tbeginningOfQueue&#x3D;0;\t\t\ttopOfQueue++;\t\t\tarr[topOfQueue] &#x3D; value;\t\t\tSystem.out.println(&quot;Successfully inserted &quot;+value+&quot; in the queue&quot;);\t\t&#125;else &#123; &#x2F;&#x2F;if the queue already has some elements in it then no need to initialize beginning index\t\t\ttopOfQueue++;\t\t\tarr[topOfQueue] &#x3D; value;\t\t\tSystem.out.println(&quot;Successfully inserted &quot;+value+&quot; in the queue&quot;);\t\t&#125;\t\tprintQueue();\t&#125;&#x2F;&#x2F;end of method\t\t\t\tpublic void printQueue() &#123;\t\tif(!isQueueEmpty()) &#123;\t\t\tSystem.out.println(&quot;Queue now ...&quot;);\t\t\tfor(int i&#x3D;beginningOfQueue; i&lt;&#x3D;topOfQueue; i++) &#123;\t\t\t\tSystem.out.println(arr[i] + &quot;   &quot;);\t\t\t&#125;\t\t\tSystem.out.println();\t\t&#125;else &#123;\t\t\tSystem.out.println(&quot;Queue is empty !&quot;);\t\t&#125;\t&#125;\t\tpublic void deQueue() &#123;\t\tif (isQueueEmpty()) &#123;\t\t\tSystem.out.println(&quot;Queue underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tSystem.out.println(&quot;Dequeing value from Queue...&quot;);\t\t\tSystem.out.println(&quot;Dequeued: &quot;+arr[beginningOfQueue]+&quot; from queue&quot;);\t\t\tbeginningOfQueue++;\t\t\tif(beginningOfQueue &gt; topOfQueue) &#123; &#x2F;&#x2F;If last element in the Queue is Dequeued\t\t\t\tbeginningOfQueue &#x3D; topOfQueue &#x3D; -1;\t\t\t&#125;\t\t&#125;\t\tprintQueue();\t\tSystem.out.println();\t&#125;&#x2F;&#x2F;end of method\t\tpublic boolean isQueueEmpty() &#123;\t\tif ((beginningOfQueue &#x3D;&#x3D; -1) || (beginningOfQueue &#x3D;&#x3D; arr.length))\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F;end of method\t\tpublic boolean isQueueFull() &#123;\t\tif (topOfQueue &#x3D;&#x3D; arr.length-1) &#123;\t\t\treturn true;\t\t&#125;\t\telse &#123;\t\t\treturn false;\t\t&#125;\t\t\t\t&#125;&#x2F;&#x2F;end of method\t\tpublic void peekOperation() &#123;\t\tif (!isQueueEmpty()) &#123;\t\t\tSystem.out.println(arr[beginningOfQueue]); \t\t&#125;else &#123;\t\t\tSystem.out.println(&quot;The queue is empty!!&quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\tpublic void deleteQueue() &#123;\t\tarr &#x3D; null;\t\tSystem.out.println(&quot;Queue is successfully deleted !&quot;);\t&#125;&#x2F;&#x2F;end of method&#125;&#x2F;&#x2F;end of class","dateCreated":"2020-02-05T10:30:25+09:00","dateModified":"2020-02-05T12:00:09+09:00","datePublished":"2020-02-05T10:30:25+09:00","description":"","headline":"Queue","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/05/Al-Queue/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/02/05/Al-Queue/","keywords":"algorithm"}</script>
+    <meta name="description" content="What is a Queue?  Property of Queue  follows FIFO(First In First Out) method   Reason why learning  When we need to create an application which utilizes “first incoming data first”.     Implementat">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Queue">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/05/Al-Queue/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="What is a Queue?  Property of Queue  follows FIFO(First In First Out) method   Reason why learning  When we need to create an application which utilizes “first incoming data first”.     Implementat">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-05T01:30:25.000Z">
+<meta property="article:modified_time" content="2020-02-05T03:00:09.401Z">
+<meta property="article:author" content="Javit">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Queue
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-02-05T10:30:25+09:00">
+	
+		    Feb 05, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <a id="more"></a>
+
+
+<p><strong>What is a Queue?</strong></p>
+<ul>
+<li><p>Property of Queue</p>
+<ul>
+<li>follows FIFO(First In First Out) method</li>
+</ul>
+</li>
+<li><p>Reason why learning</p>
+<ul>
+<li>When we need to create an application which utilizes “first incoming data first”.</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<p><strong>Implementation options of Queue</strong></p>
+<ul>
+<li>Array<ul>
+<li>Linear Queue</li>
+<li>Circular Queue</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<ul>
+<li>Linked list<ul>
+<li>Linear Queue</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<p><strong>Linear Queue by Array</strong><br><br></p>
+<p>QueueByArray.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line">public class QueueByArray&#123;</span><br><span class="line">	</span><br><span class="line">	int[] arr;</span><br><span class="line">	int topOfQueue;</span><br><span class="line">	int beginningOfQueue;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public QueueByArray(int size) &#123;</span><br><span class="line">		this.arr &#x3D; new int[size];</span><br><span class="line">		this.topOfQueue &#x3D; -1;</span><br><span class="line">		this.beginningOfQueue &#x3D; -1;</span><br><span class="line">		System.out.println(&quot;Successfully created an empty queue of size: &quot;+size);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public void enQueue(int value) &#123;</span><br><span class="line">		if (isQueueFull()) &#123;</span><br><span class="line">			System.out.println(&quot;Queue overflow error!!&quot;);</span><br><span class="line">		&#125;else if (isQueueEmpty()) &#123; &#x2F;&#x2F;If the queue is empty then we need to initialize beginning index </span><br><span class="line">			beginningOfQueue&#x3D;0;</span><br><span class="line">			topOfQueue++;</span><br><span class="line">			arr[topOfQueue] &#x3D; value;</span><br><span class="line">			System.out.println(&quot;Successfully inserted &quot;+value+&quot; in the queue&quot;);</span><br><span class="line">		&#125;else &#123; &#x2F;&#x2F;if the queue already has some elements in it then no need to initialize beginning index</span><br><span class="line">			topOfQueue++;</span><br><span class="line">			arr[topOfQueue] &#x3D; value;</span><br><span class="line">			System.out.println(&quot;Successfully inserted &quot;+value+&quot; in the queue&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		printQueue();</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">	public void printQueue() &#123;</span><br><span class="line">		if(!isQueueEmpty()) &#123;</span><br><span class="line">			System.out.println(&quot;Queue now ...&quot;);</span><br><span class="line">			for(int i&#x3D;beginningOfQueue; i&lt;&#x3D;topOfQueue; i++) &#123;</span><br><span class="line">				System.out.println(arr[i] + &quot;   &quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;Queue is empty !&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void deQueue() &#123;</span><br><span class="line">		if (isQueueEmpty()) &#123;</span><br><span class="line">			System.out.println(&quot;Queue underflow error!!&quot;);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			System.out.println(&quot;Dequeing value from Queue...&quot;);</span><br><span class="line">			System.out.println(&quot;Dequeued: &quot;+arr[beginningOfQueue]+&quot; from queue&quot;);</span><br><span class="line">			beginningOfQueue++;</span><br><span class="line">			if(beginningOfQueue &gt; topOfQueue) &#123; &#x2F;&#x2F;If last element in the Queue is Dequeued</span><br><span class="line">				beginningOfQueue &#x3D; topOfQueue &#x3D; -1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		printQueue();</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public boolean isQueueEmpty() &#123;</span><br><span class="line">		if ((beginningOfQueue &#x3D;&#x3D; -1) || (beginningOfQueue &#x3D;&#x3D; arr.length))</span><br><span class="line">			return true;</span><br><span class="line">		else</span><br><span class="line">			return false;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public boolean isQueueFull() &#123;</span><br><span class="line">		if (topOfQueue &#x3D;&#x3D; arr.length-1) &#123;</span><br><span class="line">			return true;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public void peekOperation() &#123;</span><br><span class="line">		if (!isQueueEmpty()) &#123;</span><br><span class="line">			System.out.println(arr[beginningOfQueue]); </span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;The queue is empty!!&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public void deleteQueue() &#123;</span><br><span class="line">		arr &#x3D; null;</span><br><span class="line">		System.out.println(&quot;Queue is successfully deleted !&quot;);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">&#125;&#x2F;&#x2F;end of class</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/05/Al-CircularQueue/"
+                    data-tooltip="Circular Queue"
+                    aria-label="PREVIOUS: Circular Queue"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/04/Stack/"
+                    data-tooltip="Stack"
+                    aria-label="NEXT: Stack"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Javit. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/05/Al-CircularQueue/"
+                    data-tooltip="Circular Queue"
+                    aria-label="PREVIOUS: Circular Queue"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/04/Stack/"
+                    data-tooltip="Stack"
+                    aria-label="NEXT: Stack"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/05/Al-Queue/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Javit</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Stack - Developer Javit</title>
+    <meta name="author" content="Javit">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n\nImplementation options of Stack\n\nArray\npros : Easy to implement\ncons : Fixed size\n\n\n\n\n\n\nLinked List\npros : Variable size\ncons : Moderate in implementation\n\n\n\n\n\n\nWhen to use / avoid Stack\n\nWhen to use\nHelps manage the data in particular way(LIFO)\nCannnot be easily corrupted(No one can insert data in middle)\n\n\nWhen to avoid\nRandom access not possible - if we have done some mistake, its costly to rectify.\n\n\n\n\nStack By Array\n\nStackByArray.java12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273package com.chung;public class StackByArray &#123;\t\tint[] arr;\tint topOfStack;&#x2F;&#x2F;keeps track of the cell which is last occupied in Array, this will help in insertion&#x2F;deletion\t\tpublic StackByArray(int size) &#123;\t\tthis.arr &#x3D; new int[size];\t\tthis.topOfStack &#x3D; -1;\t\tSystem.out.println(&quot;Successfully created an empty Stack of Size: &quot;+size);\t&#125;&#x2F;&#x2F;end of method\t\tpublic void push(int value) &#123;\t\t&#x2F;&#x2F;if array is full, show stack overflow error\t\tif (isFullStack()) &#123;\t\t\tSystem.out.println(&quot;Stack overflow error!!&quot;);\t\t&#125; else &#123;\t\t\tarr[topOfStack+1] &#x3D; value;\t\t\ttopOfStack++;\t\t\tSystem.out.println(&quot;Successfully inserted &quot; + value + &quot; in the stack&quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void pop() &#123;\t\t&#x2F;&#x2F;if array is empty, show stack underflow error\t\t\t\tif (isEmptyStack()) &#123;\t\t\tSystem.out.println(&quot;Stack underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tSystem.out.println(&quot;Poping value from Stack: &quot; + arr[topOfStack] + &quot;...&quot;);\t\t\ttopOfStack--;\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\tpublic boolean isEmptyStack() &#123;\t\t&#x2F;&#x2F;if top pointer is zero, the stack is empty\t\tif (topOfStack &#x3D;&#x3D; -1)\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic boolean isFullStack() &#123;\t\tif (topOfStack &#x3D;&#x3D; arr.length-1) &#123;\t\t\tSystem.out.println(&quot;Stack is full !&quot;);\t\t\treturn true;\t\t&#125;else &#123;\t\t\treturn false;\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void peekOperation() &#123;\t\tif (!isEmptyStack())\t\t\tSystem.out.println(&quot;Top of Stack: &quot; + arr[topOfStack]);\t\telse &#123;\t\t\tSystem.out.println(&quot;The stack is empty!!&quot;);\t\t&#125;\t\tSystem.out.println();System.out.println();\t&#125;&#x2F;&#x2F;end of method\t\tpublic void deleteStack() &#123;\t\tarr &#x3D; null;\t\tSystem.out.println(&quot;Stack is successfully deleted&quot;);\t&#125;&#x2F;&#x2F;end of method&#125;&#x2F;&#x2F;end of class\n\n\n\n\nStack By Linked List\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859package com.chung;import linkedList.SingleLinkedList;public class StackByLinkedList &#123;\tSingleLinkedList list;\t\t&#x2F;&#x2F;constructor\tpublic  StackByLinkedList() &#123;\t\tlist &#x3D; new SingleLinkedList();\t&#125;&#x2F;&#x2F;end of method\t\tpublic void push(int value) &#123;\t\tif(list.getHead()&#x3D;&#x3D; null) &#123;\t\t\tlist.createSingleLinkedList(value);\t\t&#125;else &#123;\t\t\tlist.insertInLinkedList(value, 0);\t\t\t&#125;\t\tSystem.out.println(&quot;Inserted &quot; + value + &quot; in Stack !&quot;);\t&#125;&#x2F;&#x2F;end of method\t\tpublic int pop() &#123;\t\tint value &#x3D; -1;\t\tif (isEmpty()) &#123;\t\t\tSystem.out.println(&quot;Stack underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tvalue &#x3D; list.getHead().getValue();\t\t\tlist.deletionOfNode(0);\t\t&#125;\t\treturn value;\t&#125;&#x2F;&#x2F; end of method\t\tpublic boolean isEmpty() &#123;\t\tif (list.getHead() &#x3D;&#x3D; null)\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F; end of method\t\tpublic int peek() &#123;\t\tif (!isEmpty())\t\t\treturn list.getHead().getValue();\t\telse &#123;\t\t\tSystem.out.println(&quot;The stack is empty!!&quot;);\t\t\treturn -1;\t\t&#125;\t&#125;&#x2F;&#x2F; end of method\t\tpublic void deleteStack() &#123;\t\tlist.setHead(null);\t&#125;&#x2F;&#x2F;end of method\t&#125;&#x2F;&#x2F;end of method","dateCreated":"2020-02-04T11:30:25+09:00","dateModified":"2020-02-04T23:48:02+09:00","datePublished":"2020-02-04T11:30:25+09:00","description":"","headline":"Stack","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/04/Stack/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/02/04/Stack/","keywords":"algorithm"}</script>
+    <meta name="description" content="Implementation options of Stack  Array pros : Easy to implement cons : Fixed size       Linked List pros : Variable size cons : Moderate in implementation       When to use &#x2F; avoid Stack  When to us">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Stack">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/04/Stack/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="Implementation options of Stack  Array pros : Easy to implement cons : Fixed size       Linked List pros : Variable size cons : Moderate in implementation       When to use &#x2F; avoid Stack  When to us">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-04T02:30:25.000Z">
+<meta property="article:modified_time" content="2020-02-04T14:48:02.964Z">
+<meta property="article:author" content="Javit">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/%20"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/mailto"
+                            title="Mail"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Stack
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-02-04T11:30:25+09:00">
+	
+		    Feb 04, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <a id="more"></a>
+
+<p><strong>Implementation options of Stack</strong></p>
+<ul>
+<li>Array<ul>
+<li>pros : Easy to implement</li>
+<li>cons : Fixed size</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<ul>
+<li>Linked List<ul>
+<li>pros : Variable size</li>
+<li>cons : Moderate in implementation</li>
+</ul>
+</li>
+</ul>
+<br>
+<br>
+
+<p><strong>When to use / avoid Stack</strong><br><br></p>
+<ul>
+<li>When to use<ul>
+<li>Helps manage the data in particular way(LIFO)</li>
+<li>Cannnot be easily corrupted(No one can insert data in middle)<br></li>
+</ul>
+</li>
+<li>When to avoid<ul>
+<li>Random access not possible - if we have done some mistake, its costly to rectify.</li>
+</ul>
+</li>
+</ul>
+<p><br><br></p>
+<p><strong>Stack By Array</strong></p>
+<ul>
+<li>StackByArray.java<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">public class StackByArray &#123;</span><br><span class="line">	</span><br><span class="line">	int[] arr;</span><br><span class="line">	int topOfStack;&#x2F;&#x2F;keeps track of the cell which is last occupied in Array, this will help in insertion&#x2F;deletion</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public StackByArray(int size) &#123;</span><br><span class="line">		this.arr &#x3D; new int[size];</span><br><span class="line">		this.topOfStack &#x3D; -1;</span><br><span class="line">		System.out.println(&quot;Successfully created an empty Stack of Size: &quot;+size);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public void push(int value) &#123;</span><br><span class="line">		&#x2F;&#x2F;if array is full, show stack overflow error</span><br><span class="line">		if (isFullStack()) &#123;</span><br><span class="line">			System.out.println(&quot;Stack overflow error!!&quot;);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			arr[topOfStack+1] &#x3D; value;</span><br><span class="line">			topOfStack++;</span><br><span class="line">			System.out.println(&quot;Successfully inserted &quot; + value + &quot; in the stack&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public void pop() &#123;</span><br><span class="line">		&#x2F;&#x2F;if array is empty, show stack underflow error		</span><br><span class="line">		if (isEmptyStack()) &#123;</span><br><span class="line">			System.out.println(&quot;Stack underflow error!!&quot;);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			System.out.println(&quot;Poping value from Stack: &quot; + arr[topOfStack] + &quot;...&quot;);</span><br><span class="line">			topOfStack--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public boolean isEmptyStack() &#123;</span><br><span class="line">		&#x2F;&#x2F;if top pointer is zero, the stack is empty</span><br><span class="line">		if (topOfStack &#x3D;&#x3D; -1)</span><br><span class="line">			return true;</span><br><span class="line">		else</span><br><span class="line">			return false;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public boolean isFullStack() &#123;</span><br><span class="line">		if (topOfStack &#x3D;&#x3D; arr.length-1) &#123;</span><br><span class="line">			System.out.println(&quot;Stack is full !&quot;);</span><br><span class="line">			return true;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	public void peekOperation() &#123;</span><br><span class="line">		if (!isEmptyStack())</span><br><span class="line">			System.out.println(&quot;Top of Stack: &quot; + arr[topOfStack]);</span><br><span class="line">		else &#123;</span><br><span class="line">			System.out.println(&quot;The stack is empty!!&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();System.out.println();</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public void deleteStack() &#123;</span><br><span class="line">		arr &#x3D; null;</span><br><span class="line">		System.out.println(&quot;Stack is successfully deleted&quot;);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">&#125;&#x2F;&#x2F;end of class</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><br><br></p>
+<p><strong>Stack By Linked List</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line">import linkedList.SingleLinkedList;</span><br><span class="line"></span><br><span class="line">public class StackByLinkedList &#123;</span><br><span class="line"></span><br><span class="line">	SingleLinkedList list;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;constructor</span><br><span class="line">	public  StackByLinkedList() &#123;</span><br><span class="line">		list &#x3D; new SingleLinkedList();</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public void push(int value) &#123;</span><br><span class="line">		if(list.getHead()&#x3D;&#x3D; null) &#123;</span><br><span class="line">			list.createSingleLinkedList(value);</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			list.insertInLinkedList(value, 0);	</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;Inserted &quot; + value + &quot; in Stack !&quot;);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public int pop() &#123;</span><br><span class="line">		int value &#x3D; -1;</span><br><span class="line">		if (isEmpty()) &#123;</span><br><span class="line">			System.out.println(&quot;Stack underflow error!!&quot;);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			value &#x3D; list.getHead().getValue();</span><br><span class="line">			list.deletionOfNode(0);</span><br><span class="line">		&#125;</span><br><span class="line">		return value;</span><br><span class="line">	&#125;&#x2F;&#x2F; end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public boolean isEmpty() &#123;</span><br><span class="line">		if (list.getHead() &#x3D;&#x3D; null)</span><br><span class="line">			return true;</span><br><span class="line">		else</span><br><span class="line">			return false;</span><br><span class="line">	&#125;&#x2F;&#x2F; end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public int peek() &#123;</span><br><span class="line">		if (!isEmpty())</span><br><span class="line">			return list.getHead().getValue();</span><br><span class="line">		else &#123;</span><br><span class="line">			System.out.println(&quot;The stack is empty!!&quot;);</span><br><span class="line">			return -1;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F; end of method</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	public void deleteStack() &#123;</span><br><span class="line">		list.setHead(null);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">&#125;&#x2F;&#x2F;end of method</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/05/Al-Queue/"
+                    data-tooltip="Queue"
+                    aria-label="PREVIOUS: Queue"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/03/Al-circularDoubleLinkedList/"
+                    data-tooltip="Circular Double Linked List"
+                    aria-label="NEXT: Circular Double Linked List"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/04/Stack/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/04/Stack/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/04/Stack/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Javit. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/05/Al-Queue/"
+                    data-tooltip="Queue"
+                    aria-label="PREVIOUS: Queue"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/03/Al-circularDoubleLinkedList/"
+                    data-tooltip="Circular Double Linked List"
+                    aria-label="NEXT: Circular Double Linked List"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/04/Stack/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/04/Stack/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/04/Stack/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/04/Stack/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/04/Stack/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/04/Stack/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Javit</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
