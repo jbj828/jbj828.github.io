@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
     <title>Java Bean and useBean - Developer Javit</title>
-    <meta name="author" content="Javit">
+    <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"Java Bean?\n자바 빈(Bean)이란?\n\n웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.\n웹 페이지를 보다 효율적이고 생산적으로 작성하려면 코드를 재활용 할 수 있어야 한다.\n\n\n웹 사이트를 개발할 때, JSP로 웹 페이지를 디자인 하고 내부적인 데이터 처리는 자바 빈으로 구현한다.\n\n빈(Bean)은 재활용이 가능한 컴포넌트(Component)와 마찬가지로 소프트웨어를 부품화 한것이다.\n\n소프트웨어도 부품화하여 개발하는데 이를 자바에서 빈(Bean)이라고 하고 일반적으로 컴포넌트라고 한다.\n\n빈(Bean)은 한번 개발하고 나면 여러가지 페이지에서 동시에 가져다 사용할 수 있다.\n\n빈(Bean)은 재사용 가능한 객체로서 대부분 데이터를 저장하는 역할을 한다.\n\n\n\n\n\n다음은  java bean 과 useBean을 활용한 예시이다.\nMemberJoin.jsp\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;center&gt;\t&lt;h2&gt;Join&lt;/h2&gt;\t\t&lt;form action=\"MemberJoinProc.jsp\" method=\"post\"&gt;\t\t\t\t\t&lt;table width=\"500\" border=\"1\"&gt;\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;ID&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"text\" name=\"id\" size=\"40\" placeholder=\"Write the ID\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;Password&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"password\" name=\"pass1\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;E-mail&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"email\" name=\"email\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;Phone Number&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"tel\" name=\"tel\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;Address&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"text\" name=\"address\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt;\t\t\t\t\t&lt;input type=\"submit\" value=\"Join Now\"&gt;\t\t\t\t\t&lt;input type=\"reset\" value=\"Cancel\"&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t&lt;/table&gt;\t\t&lt;/form&gt;\t&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\n\nJava Resources 파일bean.MemberBean.java\n1234567891011121314151617181920212223242526272829303132333435363738394041424344package bean;public class MemberBean &#123;\t\tprivate String id;\tprivate String pass1;\tprivate String email;\tprivate String tel;\tprivate String address;\t\t\tpublic String getId() &#123;\t\treturn id;\t&#125;\tpublic void setId(String id) &#123;\t\tthis.id = id;\t&#125;\tpublic String getPass1() &#123;\t\treturn pass1;\t&#125;\tpublic void setPass1(String pass1) &#123;\t\tthis.pass1 = pass1;\t&#125;\tpublic String getEmail() &#123;\t\treturn email;\t&#125;\tpublic void setEmail(String email) &#123;\t\tthis.email = email;\t&#125;\tpublic String getTel() &#123;\t\treturn tel;\t&#125;\tpublic void setTel(String tel) &#123;\t\tthis.tel = tel;\t&#125;\tpublic String getAddress() &#123;\t\treturn address;\t&#125;\tpublic void setAddress(String address) &#123;\t\tthis.address = address;\t&#125;&#125;\n\n\nMemberJoinProc.jsp\n1234567891011121314151617181920212223242526272829&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;center&gt;\t\t&lt;h2&gt;User's Information&lt;/h2&gt;\t\t\t\t&lt;%\t\t\trequest.setCharacterEncoding(\"euc-kr\");\t\t\t\t%&gt;\t\t\t\t&lt;!-- request로 넘어온 데이터를 자바 빈즈랑 맵핑 시켜주는 useBean  --&gt;\t\t&lt;jsp:useBean id=\"mbean\" class=\"bean.MemberBean\"&gt;&lt;!-- 객체생성 MemberBean mbean = new MemberBean()  --&gt;\t\t&lt;!-- jsp 내용을 자바빈 클래스(MemberBean을 의미)에 데이터를 맵핑(넣어줌) --&gt;\t\t\t&lt;jsp:setProperty name=\"mbean\" property=\"*\"/&gt;&lt;!-- 자동으로 모두 맵핑 시켜주세요  --&gt;\t\t&lt;/jsp:useBean&gt;\t\t\t\t&lt;h2&gt;Your id is &lt;jsp:getProperty property=\"id\" name=\"mbean\"/&gt;&lt;/h2&gt;\t\t&lt;h2&gt;Your password is &lt;jsp:getProperty property=\"pass1\" name=\"mbean\"/&gt;&lt;/h2&gt;\t\t&lt;h2&gt;Your email is &lt;jsp:getProperty property=\"email\" name=\"mbean\"/&gt;&lt;/h2&gt;\t\t\t\t&lt;h2&gt;Your phone number is &lt;%= mbean.getTel() %&gt;&lt;/h2&gt;\t\t\t&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\n","dateCreated":"2020-01-12T10:14:25+09:00","dateModified":"2020-01-12T10:18:40+09:00","datePublished":"2020-01-12T10:14:25+09:00","description":"Java Bean?\n자바 빈(Bean)이란?\n\n웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.","headline":"Java Bean and useBean","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/12/jsp-useBean/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/12/jsp-useBean/","keywords":"jsp"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Java Bean?\n자바 빈(Bean)이란?\n\n웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.\n웹 페이지를 보다 효율적이고 생산적으로 작성하려면 코드를 재활용 할 수 있어야 한다.\n\n\n웹 사이트를 개발할 때, JSP로 웹 페이지를 디자인 하고 내부적인 데이터 처리는 자바 빈으로 구현한다.\n\n빈(Bean)은 재활용이 가능한 컴포넌트(Component)와 마찬가지로 소프트웨어를 부품화 한것이다.\n\n소프트웨어도 부품화하여 개발하는데 이를 자바에서 빈(Bean)이라고 하고 일반적으로 컴포넌트라고 한다.\n\n빈(Bean)은 한번 개발하고 나면 여러가지 페이지에서 동시에 가져다 사용할 수 있다.\n\n빈(Bean)은 재사용 가능한 객체로서 대부분 데이터를 저장하는 역할을 한다.\n\n\n\n\n\n다음은  java bean 과 useBean을 활용한 예시이다.\nMemberJoin.jsp\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;center&gt;\t&lt;h2&gt;Join&lt;/h2&gt;\t\t&lt;form action=\"MemberJoinProc.jsp\" method=\"post\"&gt;\t\t\t\t\t&lt;table width=\"500\" border=\"1\"&gt;\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;ID&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"text\" name=\"id\" size=\"40\" placeholder=\"Write the ID\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;Password&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"password\" name=\"pass1\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;E-mail&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"email\" name=\"email\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;Phone Number&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"tel\" name=\"tel\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td width=\"150\" align=\"center\"&gt;Address&lt;/td&gt;\t\t\t\t\t&lt;td width=\"350\" align=\"center\"&gt; \t\t\t\t\t&lt;input type=\"text\" name=\"address\" size=\"40\" /&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t\t\t\t\t\t&lt;tr height=\"50\"&gt;\t\t\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt;\t\t\t\t\t&lt;input type=\"submit\" value=\"Join Now\"&gt;\t\t\t\t\t&lt;input type=\"reset\" value=\"Cancel\"&gt;\t\t\t\t\t&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t\t\t&lt;/table&gt;\t\t&lt;/form&gt;\t&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\n\nJava Resources 파일bean.MemberBean.java\n1234567891011121314151617181920212223242526272829303132333435363738394041424344package bean;public class MemberBean &#123;\t\tprivate String id;\tprivate String pass1;\tprivate String email;\tprivate String tel;\tprivate String address;\t\t\tpublic String getId() &#123;\t\treturn id;\t&#125;\tpublic void setId(String id) &#123;\t\tthis.id = id;\t&#125;\tpublic String getPass1() &#123;\t\treturn pass1;\t&#125;\tpublic void setPass1(String pass1) &#123;\t\tthis.pass1 = pass1;\t&#125;\tpublic String getEmail() &#123;\t\treturn email;\t&#125;\tpublic void setEmail(String email) &#123;\t\tthis.email = email;\t&#125;\tpublic String getTel() &#123;\t\treturn tel;\t&#125;\tpublic void setTel(String tel) &#123;\t\tthis.tel = tel;\t&#125;\tpublic String getAddress() &#123;\t\treturn address;\t&#125;\tpublic void setAddress(String address) &#123;\t\tthis.address = address;\t&#125;&#125;\n\n\nMemberJoinProc.jsp\n1234567891011121314151617181920212223242526272829&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;center&gt;\t\t&lt;h2&gt;User's Information&lt;/h2&gt;\t\t\t\t&lt;%\t\t\trequest.setCharacterEncoding(\"euc-kr\");\t\t\t\t%&gt;\t\t\t\t&lt;!-- request로 넘어온 데이터를 자바 빈즈랑 맵핑 시켜주는 useBean  --&gt;\t\t&lt;jsp:useBean id=\"mbean\" class=\"bean.MemberBean\"&gt;&lt;!-- 객체생성 MemberBean mbean = new MemberBean()  --&gt;\t\t&lt;!-- jsp 내용을 자바빈 클래스(MemberBean을 의미)에 데이터를 맵핑(넣어줌) --&gt;\t\t\t&lt;jsp:setProperty name=\"mbean\" property=\"*\"/&gt;&lt;!-- 자동으로 모두 맵핑 시켜주세요  --&gt;\t\t&lt;/jsp:useBean&gt;\t\t\t\t&lt;h2&gt;Your id is &lt;jsp:getProperty property=\"id\" name=\"mbean\"/&gt;&lt;/h2&gt;\t\t&lt;h2&gt;Your password is &lt;jsp:getProperty property=\"pass1\" name=\"mbean\"/&gt;&lt;/h2&gt;\t\t&lt;h2&gt;Your email is &lt;jsp:getProperty property=\"email\" name=\"mbean\"/&gt;&lt;/h2&gt;\t\t\t\t&lt;h2&gt;Your phone number is &lt;%= mbean.getTel() %&gt;&lt;/h2&gt;\t\t\t&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\n","dateCreated":"2020-01-12T10:14:25+09:00","dateModified":"2020-01-12T10:18:40+09:00","datePublished":"2020-01-12T10:14:25+09:00","description":"Java Bean?\n자바 빈(Bean)이란?\n\n웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.","headline":"Java Bean and useBean","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/12/jsp-useBean/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/01/12/jsp-useBean/","keywords":"jsp"}</script>
     <meta name="description" content="Java Bean? 자바 빈(Bean)이란?  웹 페이지를 구축하다보면 같은 기능을 갖지만 페이지 구성이 달라질 경우 같은 수고를 반복할 경우가 있다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Java Bean and useBean">
@@ -23,7 +23,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-12T01:14:25.000Z">
 <meta property="article:modified_time" content="2020-01-12T01:18:40.996Z">
-<meta property="article:author" content="Javit">
+<meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="jsp">
 <meta name="twitter:card" content="summary">
     
@@ -178,18 +178,6 @@
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
                     </a>
             </li>
             
@@ -409,7 +397,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Javit. All Rights Reserved.
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
     </span>
 </footer>
 
@@ -573,16 +561,16 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <h4 id="about-card-name">Javit</h4>
+            <h4 id="about-card-name">Jay Chung</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>Web BackEnd Developer</p>
 
             </div>
         

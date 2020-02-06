@@ -7,23 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
     <title>Stack - Developer Javit</title>
-    <meta name="author" content="Javit">
+    <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\n\nImplementation options of Stack\n\nArray\npros : Easy to implement\ncons : Fixed size\n\n\n\n\n\n\nLinked List\npros : Variable size\ncons : Moderate in implementation\n\n\n\n\n\n\nWhen to use / avoid Stack\n\nWhen to use\nHelps manage the data in particular way(LIFO)\nCannnot be easily corrupted(No one can insert data in middle)\n\n\nWhen to avoid\nRandom access not possible - if we have done some mistake, its costly to rectify.\n\n\n\n\nStack By Array\n\nStackByArray.java12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273package com.chung;public class StackByArray &#123;\t\tint[] arr;\tint topOfStack;&#x2F;&#x2F;keeps track of the cell which is last occupied in Array, this will help in insertion&#x2F;deletion\t\tpublic StackByArray(int size) &#123;\t\tthis.arr &#x3D; new int[size];\t\tthis.topOfStack &#x3D; -1;\t\tSystem.out.println(&quot;Successfully created an empty Stack of Size: &quot;+size);\t&#125;&#x2F;&#x2F;end of method\t\tpublic void push(int value) &#123;\t\t&#x2F;&#x2F;if array is full, show stack overflow error\t\tif (isFullStack()) &#123;\t\t\tSystem.out.println(&quot;Stack overflow error!!&quot;);\t\t&#125; else &#123;\t\t\tarr[topOfStack+1] &#x3D; value;\t\t\ttopOfStack++;\t\t\tSystem.out.println(&quot;Successfully inserted &quot; + value + &quot; in the stack&quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void pop() &#123;\t\t&#x2F;&#x2F;if array is empty, show stack underflow error\t\t\t\tif (isEmptyStack()) &#123;\t\t\tSystem.out.println(&quot;Stack underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tSystem.out.println(&quot;Poping value from Stack: &quot; + arr[topOfStack] + &quot;...&quot;);\t\t\ttopOfStack--;\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\tpublic boolean isEmptyStack() &#123;\t\t&#x2F;&#x2F;if top pointer is zero, the stack is empty\t\tif (topOfStack &#x3D;&#x3D; -1)\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic boolean isFullStack() &#123;\t\tif (topOfStack &#x3D;&#x3D; arr.length-1) &#123;\t\t\tSystem.out.println(&quot;Stack is full !&quot;);\t\t\treturn true;\t\t&#125;else &#123;\t\t\treturn false;\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void peekOperation() &#123;\t\tif (!isEmptyStack())\t\t\tSystem.out.println(&quot;Top of Stack: &quot; + arr[topOfStack]);\t\telse &#123;\t\t\tSystem.out.println(&quot;The stack is empty!!&quot;);\t\t&#125;\t\tSystem.out.println();System.out.println();\t&#125;&#x2F;&#x2F;end of method\t\tpublic void deleteStack() &#123;\t\tarr &#x3D; null;\t\tSystem.out.println(&quot;Stack is successfully deleted&quot;);\t&#125;&#x2F;&#x2F;end of method&#125;&#x2F;&#x2F;end of class\n\n\n\n\nStack By Linked List\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859package com.chung;import linkedList.SingleLinkedList;public class StackByLinkedList &#123;\tSingleLinkedList list;\t\t&#x2F;&#x2F;constructor\tpublic  StackByLinkedList() &#123;\t\tlist &#x3D; new SingleLinkedList();\t&#125;&#x2F;&#x2F;end of method\t\tpublic void push(int value) &#123;\t\tif(list.getHead()&#x3D;&#x3D; null) &#123;\t\t\tlist.createSingleLinkedList(value);\t\t&#125;else &#123;\t\t\tlist.insertInLinkedList(value, 0);\t\t\t&#125;\t\tSystem.out.println(&quot;Inserted &quot; + value + &quot; in Stack !&quot;);\t&#125;&#x2F;&#x2F;end of method\t\tpublic int pop() &#123;\t\tint value &#x3D; -1;\t\tif (isEmpty()) &#123;\t\t\tSystem.out.println(&quot;Stack underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tvalue &#x3D; list.getHead().getValue();\t\t\tlist.deletionOfNode(0);\t\t&#125;\t\treturn value;\t&#125;&#x2F;&#x2F; end of method\t\tpublic boolean isEmpty() &#123;\t\tif (list.getHead() &#x3D;&#x3D; null)\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F; end of method\t\tpublic int peek() &#123;\t\tif (!isEmpty())\t\t\treturn list.getHead().getValue();\t\telse &#123;\t\t\tSystem.out.println(&quot;The stack is empty!!&quot;);\t\t\treturn -1;\t\t&#125;\t&#125;&#x2F;&#x2F; end of method\t\tpublic void deleteStack() &#123;\t\tlist.setHead(null);\t&#125;&#x2F;&#x2F;end of method\t&#125;&#x2F;&#x2F;end of method","dateCreated":"2020-02-04T11:30:25+09:00","dateModified":"2020-02-04T23:48:02+09:00","datePublished":"2020-02-04T11:30:25+09:00","description":"","headline":"Stack","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/04/Stack/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/02/04/Stack/","keywords":"algorithm"}</script>
-    <meta name="description" content="Implementation options of Stack  Array pros : Easy to implement cons : Fixed size       Linked List pros : Variable size cons : Moderate in implementation       When to use &#x2F; avoid Stack  When to us">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Stack data structure\n\n\nImplementation options of Stack\n\nArray\npros : Easy to implement\ncons : Fixed size\n\n\n\n\n\n\nLinked List\npros : Variable size\ncons : Moderate in implementation\n\n\n\n\n\n\nWhen to use / avoid Stack\n\nWhen to use\nHelps manage the data in particular way(LIFO)\nCannnot be easily corrupted(No one can insert data in middle)\n\n\nWhen to avoid\nRandom access not possible - if we have done some mistake, its costly to rectify.\n\n\n\n\nStack By Array\n\nStackByArray.java12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273package com.chung;public class StackByArray &#123;\t\tint[] arr;\tint topOfStack;&#x2F;&#x2F;keeps track of the cell which is last occupied in Array, this will help in insertion&#x2F;deletion\t\tpublic StackByArray(int size) &#123;\t\tthis.arr &#x3D; new int[size];\t\tthis.topOfStack &#x3D; -1;\t\tSystem.out.println(&quot;Successfully created an empty Stack of Size: &quot;+size);\t&#125;&#x2F;&#x2F;end of method\t\tpublic void push(int value) &#123;\t\t&#x2F;&#x2F;if array is full, show stack overflow error\t\tif (isFullStack()) &#123;\t\t\tSystem.out.println(&quot;Stack overflow error!!&quot;);\t\t&#125; else &#123;\t\t\tarr[topOfStack+1] &#x3D; value;\t\t\ttopOfStack++;\t\t\tSystem.out.println(&quot;Successfully inserted &quot; + value + &quot; in the stack&quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void pop() &#123;\t\t&#x2F;&#x2F;if array is empty, show stack underflow error\t\t\t\tif (isEmptyStack()) &#123;\t\t\tSystem.out.println(&quot;Stack underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tSystem.out.println(&quot;Poping value from Stack: &quot; + arr[topOfStack] + &quot;...&quot;);\t\t\ttopOfStack--;\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\tpublic boolean isEmptyStack() &#123;\t\t&#x2F;&#x2F;if top pointer is zero, the stack is empty\t\tif (topOfStack &#x3D;&#x3D; -1)\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic boolean isFullStack() &#123;\t\tif (topOfStack &#x3D;&#x3D; arr.length-1) &#123;\t\t\tSystem.out.println(&quot;Stack is full !&quot;);\t\t\treturn true;\t\t&#125;else &#123;\t\t\treturn false;\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void peekOperation() &#123;\t\tif (!isEmptyStack())\t\t\tSystem.out.println(&quot;Top of Stack: &quot; + arr[topOfStack]);\t\telse &#123;\t\t\tSystem.out.println(&quot;The stack is empty!!&quot;);\t\t&#125;\t\tSystem.out.println();System.out.println();\t&#125;&#x2F;&#x2F;end of method\t\tpublic void deleteStack() &#123;\t\tarr &#x3D; null;\t\tSystem.out.println(&quot;Stack is successfully deleted&quot;);\t&#125;&#x2F;&#x2F;end of method&#125;&#x2F;&#x2F;end of class\n\n\n\n\nStack By Linked List\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859package com.chung;import linkedList.SingleLinkedList;public class StackByLinkedList &#123;\tSingleLinkedList list;\t\t&#x2F;&#x2F;constructor\tpublic  StackByLinkedList() &#123;\t\tlist &#x3D; new SingleLinkedList();\t&#125;&#x2F;&#x2F;end of method\t\tpublic void push(int value) &#123;\t\tif(list.getHead()&#x3D;&#x3D; null) &#123;\t\t\tlist.createSingleLinkedList(value);\t\t&#125;else &#123;\t\t\tlist.insertInLinkedList(value, 0);\t\t\t&#125;\t\tSystem.out.println(&quot;Inserted &quot; + value + &quot; in Stack !&quot;);\t&#125;&#x2F;&#x2F;end of method\t\tpublic int pop() &#123;\t\tint value &#x3D; -1;\t\tif (isEmpty()) &#123;\t\t\tSystem.out.println(&quot;Stack underflow error!!&quot;);\t\t&#125; else &#123;\t\t\tvalue &#x3D; list.getHead().getValue();\t\t\tlist.deletionOfNode(0);\t\t&#125;\t\treturn value;\t&#125;&#x2F;&#x2F; end of method\t\tpublic boolean isEmpty() &#123;\t\tif (list.getHead() &#x3D;&#x3D; null)\t\t\treturn true;\t\telse\t\t\treturn false;\t&#125;&#x2F;&#x2F; end of method\t\tpublic int peek() &#123;\t\tif (!isEmpty())\t\t\treturn list.getHead().getValue();\t\telse &#123;\t\t\tSystem.out.println(&quot;The stack is empty!!&quot;);\t\t\treturn -1;\t\t&#125;\t&#125;&#x2F;&#x2F; end of method\t\tpublic void deleteStack() &#123;\t\tlist.setHead(null);\t&#125;&#x2F;&#x2F;end of method\t&#125;&#x2F;&#x2F;end of method","dateCreated":"2020-02-04T11:30:25+09:00","dateModified":"2020-02-06T22:59:45+09:00","datePublished":"2020-02-04T11:30:25+09:00","description":"Stack data structure","headline":"Stack","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/04/Stack/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/04/Stack/","keywords":"algorithm"}</script>
+    <meta name="description" content="Stack data structure">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Stack">
 <meta property="og:url" content="http://jbj828.github.io/2020/02/04/Stack/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Implementation options of Stack  Array pros : Easy to implement cons : Fixed size       Linked List pros : Variable size cons : Moderate in implementation       When to use &#x2F; avoid Stack  When to us">
+<meta property="og:description" content="Stack data structure">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-04T02:30:25.000Z">
-<meta property="article:modified_time" content="2020-02-04T14:48:02.964Z">
-<meta property="article:author" content="Javit">
+<meta property="article:modified_time" content="2020-02-06T13:59:45.266Z">
+<meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
     
@@ -181,18 +181,6 @@
                     </a>
             </li>
             
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
         </ul>
         
             <ul class="sidebar-buttons">
@@ -252,7 +240,8 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <a id="more"></a>
+            <p>Stack data structure</p>
+<a id="more"></a>
 
 <p><strong>Implementation options of Stack</strong></p>
 <ul>
@@ -419,7 +408,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Javit. All Rights Reserved.
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
     </span>
 </footer>
 
@@ -583,16 +572,16 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <h4 id="about-card-name">Javit</h4>
+            <h4 id="about-card-name">Jay Chung</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>Web BackEnd Developer</p>
 
             </div>
         

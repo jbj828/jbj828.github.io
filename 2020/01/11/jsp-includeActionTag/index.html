@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
     <title>JSP include action tag - Developer Javit</title>
-    <meta name="author" content="Javit">
+    <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"Include action tag?\ninclude 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.\n\n\n\n\n\n\ninclude 액션태그를 이용한 홈페이지 작성\n\n\nMain.jsp\n12345678910111213141516171819202122232425262728293031323334353637&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;center&gt;\t&lt;table width=\"800\" border=\"1\"&gt;\t&lt;!-- Top --&gt;\t\t&lt;tr height=\"150\"&gt;\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt; \t\t\t\t&lt;jsp:include page=\"Top.jsp\"&gt;\t\t\t\t\t&lt;jsp:param value=\"jbj828\" name=\"id\"/&gt;\t\t\t\t&lt;/jsp:include&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;!-- Left  Center--&gt;\t\t&lt;tr height=\"400\"&gt;\t\t\t&lt;td align=\"center\" width=\"200\"&gt;\t\t\t\t&lt;jsp:include page=\"Left.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t\t&lt;td align=\"center\" width=\"600\"&gt;\t\t\t\t&lt;jsp:include page=\"Center.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;!-- Bottom  --&gt;\t\t&lt;tr height=\"100\"&gt;\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt;\t\t\t\t&lt;jsp:include page=\"Bottom.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;/table&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\nTop.jsp\n123456789101112131415161718192021222324252627282930&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;!-- Top  --&gt;\t&lt;table width=\"800\"&gt;\t\t&lt;tr height=\"100\"&gt;\t\t&lt;!-- logo image --&gt;\t\t\t&lt;td colspan=\"2\" align=\"center\" width=\"260\"&gt;\t\t\t\t&lt;img src=\"img/campingLogo.png\" width=\"200\" height=\"60\"&gt;\t\t\t&lt;/td&gt;\t\t\t&lt;td colspan=\"4\" align=\"center\"&gt;\t\t\t&lt;font size=\"13\"&gt;Camping Site&lt;/font&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"50\"&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Tent&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Hat&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Food&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Knife&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Chair&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Table&lt;/td&gt;\t\t\t&lt;td width=\"140\" align=\"center\"&gt;&lt;%= request.getParameter(\"id\")%&gt;&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nLeft.jsp\n123456789101112131415161718192021222324&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;table width=\"200\" &gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;SnowPeak&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Coleman&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Zip&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Cobea&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nCenter.jsp\n1234567891011121314151617181920&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=\"EUC-KR\"&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\t&lt;table width=\"600\"&gt;\t\t&lt;tr height=\"400\"&gt;\t\t\t&lt;td align=\"center\"&gt;\t\t\t\t&lt;img src=\"img/campingSite.png\" width=\"400\" height=\"300\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t \t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nBottom.jsp\n123456789101112131415161718192021222324252627&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;table width=\"800\"&gt;\t\t&lt;tr height=\"100\"&gt;\t\t\t&lt;td align=\"center\"&gt;\t\t\t\tBlog\t\t\t\tAbout\t\t\t\tShop\t\t\t\tContact\t\t\t\tPricing\t\t\t\tAPI\t\t\t\tTraining\t\t\t\tStatus &lt;br&gt;\t\t\t\tSecurity\t\t\t\tTerms\t\t\t\tPrivacy\t\t\t\tHelp\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\n\n\n","dateCreated":"2020-01-11T14:01:25+09:00","dateModified":"2020-01-11T14:10:28+09:00","datePublished":"2020-01-11T14:01:25+09:00","description":"Include action tag?\ninclude 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.\n","headline":"JSP include action tag","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/11/jsp-includeActionTag/","keywords":"jsp"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Include action tag?\ninclude 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.\n\n\n\n\n\n\ninclude 액션태그를 이용한 홈페이지 작성\n\n\nMain.jsp\n12345678910111213141516171819202122232425262728293031323334353637&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;&lt;center&gt;\t&lt;table width=\"800\" border=\"1\"&gt;\t&lt;!-- Top --&gt;\t\t&lt;tr height=\"150\"&gt;\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt; \t\t\t\t&lt;jsp:include page=\"Top.jsp\"&gt;\t\t\t\t\t&lt;jsp:param value=\"jbj828\" name=\"id\"/&gt;\t\t\t\t&lt;/jsp:include&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;!-- Left  Center--&gt;\t\t&lt;tr height=\"400\"&gt;\t\t\t&lt;td align=\"center\" width=\"200\"&gt;\t\t\t\t&lt;jsp:include page=\"Left.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t\t&lt;td align=\"center\" width=\"600\"&gt;\t\t\t\t&lt;jsp:include page=\"Center.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;!-- Bottom  --&gt;\t\t&lt;tr height=\"100\"&gt;\t\t\t&lt;td align=\"center\" colspan=\"2\"&gt;\t\t\t\t&lt;jsp:include page=\"Bottom.jsp\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;/table&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;\n\nTop.jsp\n123456789101112131415161718192021222324252627282930&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;!-- Top  --&gt;\t&lt;table width=\"800\"&gt;\t\t&lt;tr height=\"100\"&gt;\t\t&lt;!-- logo image --&gt;\t\t\t&lt;td colspan=\"2\" align=\"center\" width=\"260\"&gt;\t\t\t\t&lt;img src=\"img/campingLogo.png\" width=\"200\" height=\"60\"&gt;\t\t\t&lt;/td&gt;\t\t\t&lt;td colspan=\"4\" align=\"center\"&gt;\t\t\t&lt;font size=\"13\"&gt;Camping Site&lt;/font&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"50\"&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Tent&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Hat&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Food&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Knife&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Chair&lt;/td&gt;\t\t\t&lt;td width=\"110\" align=\"center\"&gt;Table&lt;/td&gt;\t\t\t&lt;td width=\"140\" align=\"center\"&gt;&lt;%= request.getParameter(\"id\")%&gt;&lt;/td&gt;\t\t\t\t&lt;/tr&gt;\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nLeft.jsp\n123456789101112131415161718192021222324&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;table width=\"200\" &gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;SnowPeak&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Coleman&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Zip&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;tr height=\"40\"&gt;\t\t\t&lt;td width=\"200\" align=\"center\"&gt; &lt;a href=\"#\"&gt;Cobea&lt;/a&gt;&lt;/td&gt;\t\t&lt;/tr&gt;\t\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nCenter.jsp\n1234567891011121314151617181920&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset=\"EUC-KR\"&gt;&lt;title&gt;Insert title here&lt;/title&gt;&lt;/head&gt;&lt;body&gt;\t&lt;table width=\"600\"&gt;\t\t&lt;tr height=\"400\"&gt;\t\t\t&lt;td align=\"center\"&gt;\t\t\t\t&lt;img src=\"img/campingSite.png\" width=\"400\" height=\"300\"/&gt;\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t \t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\nBottom.jsp\n123456789101112131415161718192021222324252627&lt;%@ page language=\"java\" contentType=\"text/html; charset=EUC-KR\"    pageEncoding=\"EUC-KR\"%&gt;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body&gt;\t&lt;table width=\"800\"&gt;\t\t&lt;tr height=\"100\"&gt;\t\t\t&lt;td align=\"center\"&gt;\t\t\t\tBlog\t\t\t\tAbout\t\t\t\tShop\t\t\t\tContact\t\t\t\tPricing\t\t\t\tAPI\t\t\t\tTraining\t\t\t\tStatus &lt;br&gt;\t\t\t\tSecurity\t\t\t\tTerms\t\t\t\tPrivacy\t\t\t\tHelp\t\t\t&lt;/td&gt;\t\t&lt;/tr&gt;\t&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;\n\n\n\n","dateCreated":"2020-01-11T14:01:25+09:00","dateModified":"2020-01-11T14:10:28+09:00","datePublished":"2020-01-11T14:01:25+09:00","description":"Include action tag?\ninclude 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.\n","headline":"JSP include action tag","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/11/jsp-includeActionTag/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/01/11/jsp-includeActionTag/","keywords":"jsp"}</script>
     <meta name="description" content="Include action tag? include 액션 태그는 include 디렉티브(&lt;%@include&gt;) 와 같이 다른 페이지를 현재 페이지에 포함시킬 수 있다. include 디렉티브는 단순하게 소스의 내용이 텍스트로 포함 되지만 include 액션 태그는 포함시킬 페이지의 처리 결과를 포함시킬 수 있다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="JSP include action tag">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://jbj828.github.io/2020/01/11/jsp-includeActionTag/jsp-include.png">
 <meta property="article:published_time" content="2020-01-11T05:01:25.000Z">
 <meta property="article:modified_time" content="2020-01-11T05:10:28.015Z">
-<meta property="article:author" content="Javit">
+<meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="jsp">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://jbj828.github.io/2020/01/11/jsp-includeActionTag/jsp-include.png">
@@ -180,18 +180,6 @@
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
                     </a>
             </li>
             
@@ -406,7 +394,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Javit. All Rights Reserved.
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
     </span>
 </footer>
 
@@ -570,16 +558,16 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <h4 id="about-card-name">Javit</h4>
+            <h4 id="about-card-name">Jay Chung</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>Web BackEnd Developer</p>
 
             </div>
         

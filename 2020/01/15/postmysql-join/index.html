@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
     <title>Join문, 서브쿼리, Set - Developer Javit</title>
-    <meta name="author" content="Javit">
+    <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"articleBody":"\njoin\n데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다\n\n\n\n\n\njoin문을 사용하면 여러 테이블의 데이터를 한 번에 가져올 수 있다\njoin 문을 사용하면 다 대 다의 관계로 가져온다. 이 때문에 잘못된 데이터가 구성될 수 있는데 이를 위해 join조건문을 작성해야 한다.\n\n1234567891011121314151617181920select a2.emp_no, a2.dept_no, a1.dept_no, a1.dept_namefrom departments a1, dept_emp a2where a1.dept_no &#x3D; a2.dept_noorder by a2.emp_no;select a1.emp_no, a1.first_name, a2.dept_no from employees a1, dept_emp a2where a1.emp_no &#x3D; a2.emp_no;select a1.emp_no, a1.first_name, a2.salaryfrom employees a1, salaries a2where a1.emp_no &#x3D; a2.emp_no\tand a2.to_date &#x3D; &#39;9999-01-01&#39;;        select a1.emp_no, a1.first_name, a2.dept_namefrom employees a1, departments a2, dept_emp a3where a3.emp_no &#x3D; a1.emp_no and a3.dept_no &#x3D; a2.dept_no;\n\n\n서브쿼리\n쿼리문 안에 쿼리문이 있는 것을 서브쿼리라고 부른다\n조건문 등을 만들 때 값을 직접 지정하지 못하고 쿼리문을 통해 구해야와 할 경우 서브쿼리를 통해 값을 구해와 조건문을 완성 할 수 있다\n\n\n\n12345678910111213141516-- 현재 받는 급여의 평균보다 많이 받는 사람들의 사원번호, 급여액을 가져온다select emp_no, salaryfrom salarieswhere salary &gt; (select avg(salary) from salaries where to_date&#x3D;&quot;9999-01-01&quot;)\t\t\t\tand to_date&#x3D;&quot;9999-01-01&quot;;                -- d001부서에 근무하고 있는 사원들의 사원번호와 first_name을 가져온다select emp_no, first_namefrom employeeswhere emp_no in(select emp_no from dept_emp where  dept_no&#x3D;&#39;d001&#39;);-- 1960년 이후에 태어난 사원들이 근무하고 있는 사원들의 사원번호, 근무 부서 번호를 가져온다select emp_no, dept_nofrom dept_empwhere emp_no in(select emp_no from employees where birth_date &gt;&#x3D; &#39;1960-01-01&#39;);\n\n\nset\n\n두 select 문을 통해 얻어온 결과를 집합 연산을 통해 하나의 결과로 만드는 것을 set이라고 한다.\n\n합집합, 교집합, 차집합 등 집합 연산을 할 수 있다\n\n집합 연산을 하기 위해서는 두 select문을 통해 가져오는 컬럼이 같아야 한다.\n\n합집합\n\n두 select문의 결과를 모두 포함하는 최종 결과 반환\nunion : 중복되는 데이터는 하나만 가져옴\nunion all: 중복되는 데이터도 모두 가져옴\n\n\n\n\n\n123select emp_no from titles where title&#x3D;&#39;Senior Staff&#39;unionselect emp_no from titles where title&#x3D;&#39;Staff&#39;;\n\n\n교집합\n\njoin문을 사용한다\n\n\n차집합\n\n차집합은 서브쿼리를 이용한다\n\n\n\n","dateCreated":"2020-01-15T12:46:25+09:00","dateModified":"2020-01-15T13:30:43+09:00","datePublished":"2020-01-15T12:46:25+09:00","description":"\njoin\n데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다\n\n\n","headline":"Join문, 서브쿼리, Set","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/15/postmysql-join/"},"publisher":{"@type":"Organization","name":"Javit","sameAs":["https://github.com/jbj828","mailto"]},"url":"http://jbj828.github.io/2020/01/15/postmysql-join/","keywords":"database, MySQL"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"\njoin\n데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다\n\n\n\n\n\njoin문을 사용하면 여러 테이블의 데이터를 한 번에 가져올 수 있다\njoin 문을 사용하면 다 대 다의 관계로 가져온다. 이 때문에 잘못된 데이터가 구성될 수 있는데 이를 위해 join조건문을 작성해야 한다.\n\n1234567891011121314151617181920select a2.emp_no, a2.dept_no, a1.dept_no, a1.dept_namefrom departments a1, dept_emp a2where a1.dept_no &#x3D; a2.dept_noorder by a2.emp_no;select a1.emp_no, a1.first_name, a2.dept_no from employees a1, dept_emp a2where a1.emp_no &#x3D; a2.emp_no;select a1.emp_no, a1.first_name, a2.salaryfrom employees a1, salaries a2where a1.emp_no &#x3D; a2.emp_no\tand a2.to_date &#x3D; &#39;9999-01-01&#39;;        select a1.emp_no, a1.first_name, a2.dept_namefrom employees a1, departments a2, dept_emp a3where a3.emp_no &#x3D; a1.emp_no and a3.dept_no &#x3D; a2.dept_no;\n\n\n서브쿼리\n쿼리문 안에 쿼리문이 있는 것을 서브쿼리라고 부른다\n조건문 등을 만들 때 값을 직접 지정하지 못하고 쿼리문을 통해 구해야와 할 경우 서브쿼리를 통해 값을 구해와 조건문을 완성 할 수 있다\n\n\n\n12345678910111213141516-- 현재 받는 급여의 평균보다 많이 받는 사람들의 사원번호, 급여액을 가져온다select emp_no, salaryfrom salarieswhere salary &gt; (select avg(salary) from salaries where to_date&#x3D;&quot;9999-01-01&quot;)\t\t\t\tand to_date&#x3D;&quot;9999-01-01&quot;;                -- d001부서에 근무하고 있는 사원들의 사원번호와 first_name을 가져온다select emp_no, first_namefrom employeeswhere emp_no in(select emp_no from dept_emp where  dept_no&#x3D;&#39;d001&#39;);-- 1960년 이후에 태어난 사원들이 근무하고 있는 사원들의 사원번호, 근무 부서 번호를 가져온다select emp_no, dept_nofrom dept_empwhere emp_no in(select emp_no from employees where birth_date &gt;&#x3D; &#39;1960-01-01&#39;);\n\n\nset\n\n두 select 문을 통해 얻어온 결과를 집합 연산을 통해 하나의 결과로 만드는 것을 set이라고 한다.\n\n합집합, 교집합, 차집합 등 집합 연산을 할 수 있다\n\n집합 연산을 하기 위해서는 두 select문을 통해 가져오는 컬럼이 같아야 한다.\n\n합집합\n\n두 select문의 결과를 모두 포함하는 최종 결과 반환\nunion : 중복되는 데이터는 하나만 가져옴\nunion all: 중복되는 데이터도 모두 가져옴\n\n\n\n\n\n123select emp_no from titles where title&#x3D;&#39;Senior Staff&#39;unionselect emp_no from titles where title&#x3D;&#39;Staff&#39;;\n\n\n교집합\n\njoin문을 사용한다\n\n\n차집합\n\n차집합은 서브쿼리를 이용한다\n\n\n\n","dateCreated":"2020-01-15T12:46:25+09:00","dateModified":"2020-01-15T13:30:43+09:00","datePublished":"2020-01-15T12:46:25+09:00","description":"\njoin\n데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다\n\n\n","headline":"Join문, 서브쿼리, Set","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/01/15/postmysql-join/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/01/15/postmysql-join/","keywords":"database, MySQL"}</script>
     <meta name="description" content="join 데이터의 중복을 최소화 하기 위해 테이블을 분리 시킨 후 데이터를 가져올 때 여러 테이블을 하나의 결과로 가져올 때 join문을 사용한다">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Join문, 서브쿼리, Set">
@@ -23,7 +23,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-15T03:46:25.000Z">
 <meta property="article:modified_time" content="2020-01-15T04:30:43.677Z">
-<meta property="article:author" content="Javit">
+<meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="database, MySQL">
 <meta name="twitter:card" content="summary">
     
@@ -178,18 +178,6 @@
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
                     </a>
             </li>
             
@@ -431,7 +419,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2020 Javit. All Rights Reserved.
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
     </span>
 </footer>
 
@@ -595,16 +583,16 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <h4 id="about-card-name">Javit</h4>
+            <h4 id="about-card-name">Jay Chung</h4>
         
-            <div id="about-card-bio"><p>author.bio</p>
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>author.job</p>
+                <p>Web BackEnd Developer</p>
 
             </div>
         
