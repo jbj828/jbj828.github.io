@@ -86,7 +86,7 @@
                 <li class="sidebar-button">
                     
                         <a  class="sidebar-button-link "
-                             href="/%20"
+                             href="/index.html"
                             
                             title="Home"
                         >
@@ -256,6 +256,31 @@
 <ul>
 <li>dequeue operation causes blank cells Linear Queue(Array Implementation). </li>
 <li>삭제하고 남은 자리를 뒤에서부터 차례대로 채워넣으면 되지만 time complexity가 O(n)이 되어버린다. 우리의 목표는 항상 O(1)이다.</li>
+</ul>
+<p><br><br></p>
+<p><strong>time / space complexity</strong></p>
+<ul>
+<li>Array는 만들 때 space complexity가 O(n) 나머지 메서드는 모두 O(1)</li>
+<li>Linked List는 모든 메서드 O(1)<br>
+그러므로 Queue를 사용하고자 한다면 Linked List가 Space Complexity에서 낫기 때문에 Linked List사용하도록 한다
+
+</li>
+</ul>
+<p><br><br></p>
+<p><strong>When to Use / Avoid Queue</strong></p>
+<ul>
+<li><p>When to Use</p>
+<ul>
+<li>Helps manage the data in particular way(FIFO)</li>
+<li>Not easily corrupted(No one can easily insert data in middle)<br>
+</li>
+</ul>
+</li>
+<li><p>When to Avoid</p>
+<ul>
+<li>Random access not possible - if we have done some mistake, it is costly to rectify</li>
+</ul>
+</li>
 </ul>
 <p><br><br></p>
 <p><strong>Circular Queue Coding</strong></p>
