@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Binary Tree - Array Implementation - Developer Javit</title>
+    <title>Binary Search Tree - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Binary Tree implemented by Array\n\n\nHow does tree looks when implemented via Array?\n\nLeft Child - cell[2x]\nRight Child - cell[2x+1]\ncell[0] = null \n\n\n\nCreation of Binary tree\n123createBinaryTree()  create a blank array of &#39;size&#39;  update lastUsedIndex to 0\n\n\n\nTime Complexity : O(1)\nSpace Complextiy : O(n)\n\n\n\nInsertion of node\n\nInsertion\nIf array is full, return error message\nInsert at first vacant cell in Array\n\n\n\n\n\n123456insertValueInBinaryTree()  if Tree is full    return error message  else    insert value in first unused cell of array    update lastUsedIndex\n\n\n\n\nTime Complexity : O(1)\nSpace Complextiy : O(1)\n\n\n\n\nSearch a node\n\nSearch\nWhen the value to be searched does not exists in the tree\nWhen the value to be searched exists in the tree\n\n\n\n\n\n12345searchValueInBinaryTree()  traverse the entire array from 1 to lastUsedIndex  if value is found    return success message  return error message\n\n\n\n\nTime Complexity : O(n)\nSpace Complextiy : O(1)\n\n\n\nIn-Order Traversal\n1234567InorderTraversal(index)  if index &gt; lastUsedIndex      return  else    InorderTraversal(index*2)    print current index.value    InorderTraversal(index*2 + 1)\n\n\n\n\nTime Complexity : O(n)\nSpace Complextiy : O(n) —- stack에 쌓이기 때문에\n\n\n\nLevle-Order Traversal\n123levelOrderTraversal()  loop: 1 to lastUsedIndex    print current index.value\n\n\n\n\nTime Complexity : O(n)\nSpace Complextiy : O(1) \n\n\n\nDeletion of Node\n\nDeletion\nWhen the value to be deleted is not existing in the tree\nWhen the value to be deleted is exists in the tree\n\n\n\n12345deleteNodeFromBinaryTree()  search for desired value in array    if value found      replace this cell&#39;s value with last cell and update lastUsedIndex  return error message\n\n\n\n\nTime Complexity : O(n)\nSpace Complextiy : O(1) \n\n\n\nDelete Binary Tree\n12deleteBinaryTree()  set array as null\n\n\n\n\nTime Complexity : O(1)\nSpace Complextiy : O(1) \n\n\n","dateCreated":"2020-02-09T22:30:25+09:00","dateModified":"2020-02-10T14:59:33+09:00","datePublished":"2020-02-09T22:30:25+09:00","description":"Binary Tree implemented by Array","headline":"Binary Tree - Array Implementation","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/09/Al-BT-array/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/09/Al-BT-array/","keywords":"algorithm"}</script>
-    <meta name="description" content="Binary Tree implemented by Array">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"The theory of BST\n\n\nWhat is BST?\n\nBinary Search Tree(BST) is a Binary Tree which all the nodes follows the below mentioned properties\nThe left sub-tree of a node has a key less than or equal to its parent node’s key.\nThe right sub tree of a node has a key greater than to its parent node’s key.\n\n\n\n\n\nWhy should we learn BST?\n\nBinary tree implemented by linked list has good space efficient compared to the BT implemented by Array. However, it is not good on Insertion, deletion, searching, traversing which has time complexity of O(n). BST will improve the time complexity of binary tree by O(log n).\n\n\nAlgorithm - Creation of blank BST\n12createBST()  Initialize Root with null\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1)\n\n\n\nAlgorithm - Searching a node in BST\n123456789BST_Search(root, value)  ------------T(n)  if(root is null)    return null  else if(root &#x3D;&#x3D; value)    return root  else if(value &lt; root)    BST_Search(root.left, value)  ----T(n&#x2F;2)  else if(value &gt; root)    BST_Search(root.right, value) ----T(n&#x2F;2)\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) —-beacuse of recursive call\n\n\n\nAlgorithm - Traverse in BST\n\nTotally same as traversing Binary Tree\n\n\n\n\nAlgorithm - Inserting a node in BST\n\nCases\nBST is  blank\nBST is non-blank\n\n\n\nUsing Stack on the behind of the scene.\n12345678BST_Insert(currentNode, valueToInsert)  if(currentNode is null)    create a node, insert &#39;valueToInsert&#39; in it  else if(valueToInsert &lt;&#x3D; currentNode&#39;s value)    currentNode.left &#x3D; BST_Insert(currentNode.left, valueToInsert)  else    currentNode.right &#x3D; BST_Insert(currentNode.right, valueToInsert)  return currentNode\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) \n\n\n\n\nAlgorithm - Deleting a node in BST\n\nCases\nNode to be deleted is leaf node\nNode to be deleted is having 1 child\nNode to be deleted has 2 child\n\n\n\nUsing Stack on the behind of the scene.\n1234567891011121314deleteNodeOfBST(root, valueToBeDeleted)  --------------------------------------T(n)  if(root &#x3D;&#x3D; null) return null;  if(valueToBeDeleted &lt; root.value)    then root.left &#x3D; deleteNodeOfBST(root.left, valueToBeDeleted)   ---------------T(n&#x2F;2)  else if(valueToBeDeleted &gt; root.value)    then root.right &#x3D; deleteNodeOfBST(root.right, valueToBeDeleted)  ---------------T(n&#x2F;2)  else &#x2F;&#x2F; if cuurentNode is the node to be deleted      if root have both children, then find minimum element from right subtree(Case#3)  -------------O(log n)          replace current node with minimum node from right subtree and delete minimum node from right      else if node ToBeDeleted has only left child(Case#2)            then root &#x3D; root.left();      else &#x2F;&#x2F; if node ToBeDeleted do not have child(Case#1)            root &#x3D; null;  return root;\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) \n\n\n\nAlgorithm - Deleting entire tree in BST\n12DeleteBST()  root &#x3D; null;\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1) \n\n","dateCreated":"2020-02-10T23:30:25+09:00","dateModified":"2020-02-11T11:55:18+09:00","datePublished":"2020-02-10T23:30:25+09:00","description":"The theory of BST","headline":"Binary Search Tree","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/10/Al-BST/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/10/Al-BST/","keywords":"algorithm"}</script>
+    <meta name="description" content="The theory of BST">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Binary Tree - Array Implementation">
-<meta property="og:url" content="http://jbj828.github.io/2020/02/09/Al-BT-array/index.html">
+<meta property="og:title" content="Binary Search Tree">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/10/Al-BST/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Binary Tree implemented by Array">
+<meta property="og:description" content="The theory of BST">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-02-09T13:30:25.000Z">
-<meta property="article:modified_time" content="2020-02-10T05:59:33.729Z">
+<meta property="article:published_time" content="2020-02-10T14:30:25.000Z">
+<meta property="article:modified_time" content="2020-02-11T02:55:18.265Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Binary Tree - Array Implementation
+            Binary Search Tree
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-02-09T22:30:25+09:00">
+    <time datetime="2020-02-10T23:30:25+09:00">
 	
-		    Feb 09, 2020
+		    Feb 10, 2020
     	
     </time>
     
@@ -240,119 +240,103 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Binary Tree implemented by Array</p>
+            <p>The theory of BST</p>
 <a id="more"></a>
 
-<p><strong>How does tree looks when implemented via Array?</strong></p>
+<p><strong>What is BST?</strong></p>
 <ul>
-<li>Left Child - cell[2x]</li>
-<li>Right Child - cell[2x+1]</li>
-<li>cell[0] = null </li>
-</ul>
-<br>
-
-<p><strong>Creation of Binary tree</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">createBinaryTree()</span><br><span class="line">  create a blank array of &#39;size&#39;</span><br><span class="line">  update lastUsedIndex to 0</span><br></pre></td></tr></table></figure>
-<br>
-
-<ul>
-<li>Time Complexity : O(1)</li>
-<li>Space Complextiy : O(n)</li>
-</ul>
-<br>
-
-<p><strong>Insertion of node</strong></p>
-<ul>
-<li>Insertion<ul>
-<li>If array is full, return error message</li>
-<li>Insert at first vacant cell in Array</li>
+<li>Binary Search Tree(BST) is a Binary Tree which all the nodes follows the below mentioned properties<ul>
+<li>The left sub-tree of a node has a key less than or equal to its parent node’s key.</li>
+<li>The right sub tree of a node has a key greater than to its parent node’s key.</li>
 </ul>
 </li>
 </ul>
 <br>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">insertValueInBinaryTree()</span><br><span class="line">  if Tree is full</span><br><span class="line">    return error message</span><br><span class="line">  else</span><br><span class="line">    insert value in first unused cell of array</span><br><span class="line">    update lastUsedIndex</span><br></pre></td></tr></table></figure>
+<p><strong>Why should we learn BST?</strong></p>
+<ul>
+<li>Binary tree implemented by linked list has good space efficient compared to the BT implemented by Array. However, it is not good on Insertion, deletion, searching, traversing which has time complexity of O(n). BST will improve the time complexity of binary tree by O(log n).</li>
+</ul>
+<p><br><br></p>
+<p><strong>Algorithm - Creation of blank BST</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">createBST()</span><br><span class="line">  Initialize Root with null</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <ul>
-<li>Time Complexity : O(1)</li>
-<li>Space Complextiy : O(1)</li>
+<li>Time Complexity - O(1)</li>
+<li>Space Complexity - O(1)</li>
+</ul>
+<br>
+
+<p><strong>Algorithm - Searching a node in BST</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">BST_Search(root, value)  ------------T(n)</span><br><span class="line">  if(root is null)</span><br><span class="line">    return null</span><br><span class="line">  else if(root &#x3D;&#x3D; value)</span><br><span class="line">    return root</span><br><span class="line">  else if(value &lt; root)</span><br><span class="line">    BST_Search(root.left, value)  ----T(n&#x2F;2)</span><br><span class="line">  else if(value &gt; root)</span><br><span class="line">    BST_Search(root.right, value) ----T(n&#x2F;2)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>Time Complexity - O(log n)</li>
+<li>Space Complexity - O(log n) —-beacuse of recursive call</li>
+</ul>
+<br>
+
+<p><strong>Algorithm - Traverse in BST</strong></p>
+<ul>
+<li>Totally same as traversing Binary Tree</li>
 </ul>
 <br>
 
 
-<p><strong>Search a node</strong></p>
+<p><strong>Algorithm - Inserting a node in BST</strong></p>
 <ul>
-<li>Search<ul>
-<li>When the value to be searched does not exists in the tree</li>
-<li>When the value to be searched exists in the tree</li>
+<li>Cases<ul>
+<li>BST is  blank</li>
+<li>BST is non-blank</li>
 </ul>
 </li>
 </ul>
-<br>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">searchValueInBinaryTree()</span><br><span class="line">  traverse the entire array from 1 to lastUsedIndex</span><br><span class="line">  if value is found</span><br><span class="line">    return success message</span><br><span class="line">  return error message</span><br></pre></td></tr></table></figure>
+<p>Using Stack on the behind of the scene.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">BST_Insert(currentNode, valueToInsert)</span><br><span class="line">  if(currentNode is null)</span><br><span class="line">    create a node, insert &#39;valueToInsert&#39; in it</span><br><span class="line">  else if(valueToInsert &lt;&#x3D; currentNode&#39;s value)</span><br><span class="line">    currentNode.left &#x3D; BST_Insert(currentNode.left, valueToInsert)</span><br><span class="line">  else</span><br><span class="line">    currentNode.right &#x3D; BST_Insert(currentNode.right, valueToInsert)</span><br><span class="line">  return currentNode</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <ul>
-<li>Time Complexity : O(n)</li>
-<li>Space Complextiy : O(1)</li>
+<li>Time Complexity - O(log n)</li>
+<li>Space Complexity - O(log n) </li>
 </ul>
 <br>
 
-<p><strong>In-Order Traversal</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">InorderTraversal(index)</span><br><span class="line">  if index &gt; lastUsedIndex</span><br><span class="line">      return</span><br><span class="line">  else</span><br><span class="line">    InorderTraversal(index*2)</span><br><span class="line">    print current index.value</span><br><span class="line">    InorderTraversal(index*2 + 1)</span><br></pre></td></tr></table></figure>
 
-<br>
-
+<p><strong>Algorithm - Deleting a node in BST</strong></p>
 <ul>
-<li>Time Complexity : O(n)</li>
-<li>Space Complextiy : O(n) —- stack에 쌓이기 때문에</li>
-</ul>
-<br>
-
-<p><strong>Levle-Order Traversal</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">levelOrderTraversal()</span><br><span class="line">  loop: 1 to lastUsedIndex</span><br><span class="line">    print current index.value</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<ul>
-<li>Time Complexity : O(n)</li>
-<li>Space Complextiy : O(1) </li>
-</ul>
-<br>
-
-<p><strong>Deletion of Node</strong></p>
-<ul>
-<li>Deletion<ul>
-<li>When the value to be deleted is not existing in the tree</li>
-<li>When the value to be deleted is exists in the tree</li>
+<li>Cases<ul>
+<li>Node to be deleted is leaf node</li>
+<li>Node to be deleted is having 1 child</li>
+<li>Node to be deleted has 2 child</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deleteNodeFromBinaryTree()</span><br><span class="line">  search for desired value in array</span><br><span class="line">    if value found</span><br><span class="line">      replace this cell&#39;s value with last cell and update lastUsedIndex</span><br><span class="line">  return error message</span><br></pre></td></tr></table></figure>
+<p>Using Stack on the behind of the scene.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">deleteNodeOfBST(root, valueToBeDeleted)  --------------------------------------T(n)</span><br><span class="line">  if(root &#x3D;&#x3D; null) return null;</span><br><span class="line">  if(valueToBeDeleted &lt; root.value)</span><br><span class="line">    then root.left &#x3D; deleteNodeOfBST(root.left, valueToBeDeleted)   ---------------T(n&#x2F;2)</span><br><span class="line">  else if(valueToBeDeleted &gt; root.value)</span><br><span class="line">    then root.right &#x3D; deleteNodeOfBST(root.right, valueToBeDeleted)  ---------------T(n&#x2F;2)</span><br><span class="line">  else &#x2F;&#x2F; if cuurentNode is the node to be deleted</span><br><span class="line">      if root have both children, then find minimum element from right subtree(Case#3)  -------------O(log n)</span><br><span class="line">          replace current node with minimum node from right subtree and delete minimum node from right</span><br><span class="line">      else if node ToBeDeleted has only left child(Case#2)</span><br><span class="line">            then root &#x3D; root.left();</span><br><span class="line">      else &#x2F;&#x2F; if node ToBeDeleted do not have child(Case#1)</span><br><span class="line">            root &#x3D; null;</span><br><span class="line">  return root;</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <ul>
-<li>Time Complexity : O(n)</li>
-<li>Space Complextiy : O(1) </li>
+<li>Time Complexity - O(log n)</li>
+<li>Space Complexity - O(log n) </li>
 </ul>
 <br>
 
-<p><strong>Delete Binary Tree</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deleteBinaryTree()</span><br><span class="line">  set array as null</span><br></pre></td></tr></table></figure>
+<p><strong>Algorithm - Deleting entire tree in BST</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DeleteBST()</span><br><span class="line">  root &#x3D; null;</span><br></pre></td></tr></table></figure>
 
 <br>
 
 <ul>
-<li>Time Complexity : O(1)</li>
-<li>Space Complextiy : O(1) </li>
+<li>Time Complexity - O(1)</li>
+<li>Space Complexity - O(1) </li>
 </ul>
 <br>
-
             
 
 
@@ -373,14 +357,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/10/Al-BT-arrayCode/"
-                    data-tooltip="Binary Tree Code(Array Implementation)"
-                    aria-label="PREVIOUS: Binary Tree Code(Array Implementation)"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -390,9 +371,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/08/Al-BT-linkedlist-code/"
-                    data-tooltip="Binary Tree Code(Linked list)"
-                    aria-label="NEXT: Binary Tree Code(Linked list)"
+                    href="/2020/02/10/Al-BT-arrayCode/"
+                    data-tooltip="Binary Tree Code(Array Implementation)"
+                    aria-label="NEXT: Binary Tree Code(Array Implementation)"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -417,7 +398,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/10/Al-BST/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -430,7 +411,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/10/Al-BST/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -443,7 +424,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/10/Al-BST/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -488,14 +469,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/10/Al-BT-arrayCode/"
-                    data-tooltip="Binary Tree Code(Array Implementation)"
-                    aria-label="PREVIOUS: Binary Tree Code(Array Implementation)"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -505,9 +483,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/08/Al-BT-linkedlist-code/"
-                    data-tooltip="Binary Tree Code(Linked list)"
-                    aria-label="NEXT: Binary Tree Code(Linked list)"
+                    href="/2020/02/10/Al-BT-arrayCode/"
+                    data-tooltip="Binary Tree Code(Array Implementation)"
+                    aria-label="NEXT: Binary Tree Code(Array Implementation)"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -532,7 +510,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/10/Al-BST/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -545,7 +523,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/10/Al-BST/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -558,7 +536,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/10/Al-BST/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -592,7 +570,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/10/Al-BST/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -605,7 +583,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/10/Al-BST/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -618,7 +596,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/09/Al-BT-array/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/10/Al-BST/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>

@@ -1,0 +1,576 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Binary Tree Code(Array Implementation) - Developer Javit</title>
+    <meta name="author" content="Jay Chung">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Array Implementation code\n\n\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118package com.chung;public class BinaryTreeByArray &#123;\tint [] arr;\tint lastUsedIndex;\t\t&#x2F;&#x2F;Constructor for blank Tree\tpublic BinaryTreeByArray(int size) &#123;\t\tarr &#x3D; new int[size+1];\t\tthis.lastUsedIndex &#x3D; 0; \t\t\tSystem.out.println(&quot;Blank Tree of size &quot; +size+ &quot; has been created !\\n&quot;);\t&#125;&#x2F;&#x2F;end of method\t\t&#x2F;&#x2F;Check if array is full\tboolean isTreeFull()&#123;\t\tif(arr.length-1 &#x3D;&#x3D; lastUsedIndex) &#123;\t\t\treturn true;\t\t&#125;else &#123;\t\t\treturn false;\t\t&#125;\t&#125;\t\t\t&#x2F;&#x2F; New node should be inserted at the first empty place in the array\tvoid insert(int value) &#123;\t\tif(!isTreeFull()) &#123;\t\t\tarr[lastUsedIndex+1] &#x3D; value;\t\t\tlastUsedIndex++;\t\t\tSystem.out.println(&quot;Successfully inserted &quot;+value+ &quot; in the tree!&quot;);\t\t&#125;else &#123;\t\t\tSystem.out.println(&quot;Could not insert value in the Tree as it is full !&quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t&#x2F;&#x2F;level-Order traversal of binary tree\tpublic void levelOrder() &#123;\t\tfor(int i&#x3D;1;i&lt;&#x3D;lastUsedIndex;i++ ) &#123;\t\t\tSystem.out.print(arr[i]+&quot; &quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t\t&#x2F;&#x2F; Pre-Order traversal of binary tree\tpublic void preOrder(int index) &#123;\t\tif (index &gt; lastUsedIndex) &#123;\t\t\treturn;\t\t&#125;\t\tSystem.out.print(arr[index] + &quot; &quot;);\t\tpreOrder(index * 2);\t\tpreOrder(index * 2 + 1);\t&#125;&#x2F;&#x2F;end of method\t\t\t&#x2F;&#x2F; Post-Order Traversal of binary tree\tvoid postOrder(int index) &#123;\t\tif (index &gt; lastUsedIndex) &#123;\t\t\treturn;\t\t&#125;\t\tpostOrder(index * 2);\t\tpostOrder(index * 2 + 1);\t\tSystem.out.print(arr[index] + &quot; &quot;);\t&#125;&#x2F;&#x2F;end of method\t\t&#x2F;&#x2F; In-Order Traversal of binary tree\tvoid inOrder(int index) &#123;\t\tif (index &gt; lastUsedIndex) &#123;\t\t\treturn;\t\t&#125;\t\tinOrder(index * 2);\t\tSystem.out.print(arr[index] + &quot; &quot;);\t\tinOrder(index * 2 + 1);\t&#125;&#x2F;&#x2F;end of method\t\t\t&#x2F;&#x2F; Do a linear search on the array \tpublic int search(int value) &#123;\t\tfor (int i &#x3D; 0; i &lt;&#x3D; lastUsedIndex; i++) &#123;\t\t\tif (arr[i] &#x3D;&#x3D; value) &#123;\t\t\t\tSystem.out.print(value +&quot; exists in the Tree! &quot;);\t\t\t\tSystem.out.println(&quot;It is at the location: &quot; + i);\t\t\t\treturn i;\t\t\t&#125;\t\t&#125;\t\tSystem.out.println(value + &quot; does not exists in Tree !&quot;);\t\tSystem.out.println();\t\treturn -1;\t&#125;&#x2F;&#x2F;end of method\t\t\t\t&#x2F;&#x2F; delete operation of binary tree\tpublic void delete(int value) &#123;\t\tint location &#x3D; search(value);\t\t&#x2F;&#x2F;If Value does not exists in Array\t\tif (location &#x3D;&#x3D; -1) &#123;\t\t\treturn;\t\t&#125;else &#123;\t\t\t&#x2F;&#x2F;insert last element of the Tree into current location\t\t\tarr[location] &#x3D; arr[lastUsedIndex];\t\t\tlastUsedIndex--;\t\t\tSystem.out.println(&quot;Successfully deleted &quot; + value + &quot; from the Tree !&quot;);\t\t&#125;\t\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic void deleteTree()&#123;\t\ttry &#123;\t\t\tarr &#x3D; null;\t\t\tSystem.out.println(&quot;Tree has been deleted successfully !&quot;);\t\t&#125;catch(Exception e)&#123;\t\t\tSystem.out.println(&quot;There was an error deleting the tree.&quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t&#125;&#x2F;&#x2F;end of class","dateCreated":"2020-02-10T22:30:25+09:00","dateModified":"2020-02-10T22:57:29+09:00","datePublished":"2020-02-10T22:30:25+09:00","description":"Array Implementation code","headline":"Binary Tree Code(Array Implementation)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/","keywords":"algorithm"}</script>
+    <meta name="description" content="Array Implementation code">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Binary Tree Code(Array Implementation)">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="Array Implementation code">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-10T13:30:25.000Z">
+<meta property="article:modified_time" content="2020-02-10T13:57:29.861Z">
+<meta property="article:author" content="Jay Chung">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/index.html"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Binary Tree Code(Array Implementation)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-02-10T22:30:25+09:00">
+	
+		    Feb 10, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>Array Implementation code</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">public class BinaryTreeByArray &#123;</span><br><span class="line">	int [] arr;</span><br><span class="line">	int lastUsedIndex;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F;Constructor for blank Tree</span><br><span class="line">	public BinaryTreeByArray(int size) &#123;</span><br><span class="line">		arr &#x3D; new int[size+1];</span><br><span class="line">		this.lastUsedIndex &#x3D; 0; 	</span><br><span class="line">		System.out.println(&quot;Blank Tree of size &quot; +size+ &quot; has been created !\n&quot;);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Check if array is full</span><br><span class="line">	boolean isTreeFull()&#123;</span><br><span class="line">		if(arr.length-1 &#x3D;&#x3D; lastUsedIndex) &#123;</span><br><span class="line">			return true;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; New node should be inserted at the first empty place in the array</span><br><span class="line">	void insert(int value) &#123;</span><br><span class="line">		if(!isTreeFull()) &#123;</span><br><span class="line">			arr[lastUsedIndex+1] &#x3D; value;</span><br><span class="line">			lastUsedIndex++;</span><br><span class="line">			System.out.println(&quot;Successfully inserted &quot;+value+ &quot; in the tree!&quot;);</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;Could not insert value in the Tree as it is full !&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F;level-Order traversal of binary tree</span><br><span class="line">	public void levelOrder() &#123;</span><br><span class="line">		for(int i&#x3D;1;i&lt;&#x3D;lastUsedIndex;i++ ) &#123;</span><br><span class="line">			System.out.print(arr[i]+&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; Pre-Order traversal of binary tree</span><br><span class="line">	public void preOrder(int index) &#123;</span><br><span class="line">		if (index &gt; lastUsedIndex) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(arr[index] + &quot; &quot;);</span><br><span class="line">		preOrder(index * 2);</span><br><span class="line">		preOrder(index * 2 + 1);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; Post-Order Traversal of binary tree</span><br><span class="line">	void postOrder(int index) &#123;</span><br><span class="line">		if (index &gt; lastUsedIndex) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		postOrder(index * 2);</span><br><span class="line">		postOrder(index * 2 + 1);</span><br><span class="line">		System.out.print(arr[index] + &quot; &quot;);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; In-Order Traversal of binary tree</span><br><span class="line">	void inOrder(int index) &#123;</span><br><span class="line">		if (index &gt; lastUsedIndex) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		inOrder(index * 2);</span><br><span class="line">		System.out.print(arr[index] + &quot; &quot;);</span><br><span class="line">		inOrder(index * 2 + 1);</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; Do a linear search on the array </span><br><span class="line">	public int search(int value) &#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt;&#x3D; lastUsedIndex; i++) &#123;</span><br><span class="line">			if (arr[i] &#x3D;&#x3D; value) &#123;</span><br><span class="line">				System.out.print(value +&quot; exists in the Tree! &quot;);</span><br><span class="line">				System.out.println(&quot;It is at the location: &quot; + i);</span><br><span class="line">				return i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(value + &quot; does not exists in Tree !&quot;);</span><br><span class="line">		System.out.println();</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; delete operation of binary tree</span><br><span class="line">	public void delete(int value) &#123;</span><br><span class="line">		int location &#x3D; search(value);</span><br><span class="line">		&#x2F;&#x2F;If Value does not exists in Array</span><br><span class="line">		if (location &#x3D;&#x3D; -1) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			&#x2F;&#x2F;insert last element of the Tree into current location</span><br><span class="line">			arr[location] &#x3D; arr[lastUsedIndex];</span><br><span class="line">			lastUsedIndex--;</span><br><span class="line">			System.out.println(&quot;Successfully deleted &quot; + value + &quot; from the Tree !&quot;);</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public void deleteTree()&#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			arr &#x3D; null;</span><br><span class="line">			System.out.println(&quot;Tree has been deleted successfully !&quot;);</span><br><span class="line">		&#125;catch(Exception e)&#123;</span><br><span class="line">			System.out.println(&quot;There was an error deleting the tree.&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">&#125;&#x2F;&#x2F;end of class</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/10/Al-BST/"
+                    data-tooltip="Binary Search Tree"
+                    aria-label="PREVIOUS: Binary Search Tree"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/09/Al-BT-array/"
+                    data-tooltip="Binary Tree - Array Implementation"
+                    aria-label="NEXT: Binary Tree - Array Implementation"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/10/Al-BST/"
+                    data-tooltip="Binary Search Tree"
+                    aria-label="PREVIOUS: Binary Search Tree"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/02/09/Al-BT-array/"
+                    data-tooltip="Binary Tree - Array Implementation"
+                    aria-label="NEXT: Binary Tree - Array Implementation"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/10/Al-BT-arrayCode/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Jay Chung</h4>
+        
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Web BackEnd Developer</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
