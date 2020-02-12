@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-02-11T10:25:35.382Z</updated>
+  <updated>2020-02-12T00:33:32.363Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AVL Tree</title>
+    <link href="http://jbj828.github.io/2020/02/12/Al-AVL-Tree/"/>
+    <id>http://jbj828.github.io/2020/02/12/Al-AVL-Tree/</id>
+    <published>2020-02-12T06:30:25.000Z</published>
+    <updated>2020-02-12T00:33:32.363Z</updated>
+    
+    <content type="html"><![CDATA[<p>AVL Tree</p><a id="more"></a><p><strong>Why AVL Tree?</strong></p><ul><li>Depending on Incoming data, A Binary Search tree can get skewed and hence its performance starts going down. Instead of O(log n) for insertion/searching/deleting it can go up to O(n)</li><li>AVL tree attempts to solve this problem of ‘skewing’ by introducing concept called ‘Rotation’.</li></ul><p><strong>What is AVL Tree?</strong></p><ul><li>An AVL tree is a balanced ‘Binary Search Tree’ where the height of immediate subtrees of any node differs by at most one(also called balance factor).</li><li>If at any time heights differ by more than one, rebalancing is done to restore this property(called rotation).</li><li>Empty height is always considered -1.</li></ul><br><h3 id="Algorithm-of-AVL-Tree"><a href="#Algorithm-of-AVL-Tree" class="headerlink" title="Algorithm of AVL Tree"></a>Algorithm of AVL Tree</h3><ul><li>create, search, traverse Algorithm is totally same as the BST.</li></ul><br><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;AVL Tree&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Binary Search Tree Coding</title>
@@ -462,36 +485,6 @@
     
     
       <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Model 2 - Expression language</title>
-    <link href="http://jbj828.github.io/2020/01/27/jsp-model2-theory/"/>
-    <id>http://jbj828.github.io/2020/01/27/jsp-model2-theory/</id>
-    <published>2020-01-27T04:10:25.000Z</published>
-    <updated>2020-01-27T14:21:43.547Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>EL(Expression Language)<ul><li>표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어</li><li>attribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력</li><li>파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력</li></ul></li></ul><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;EL(Expression Language)&lt;ul&gt;
-&lt;li&gt;표현식으로 attribute나 parameter 등을 JSP파일에서 출력할 용도로 사용하는 언어&lt;/li&gt;
-&lt;li&gt;attribute 를 출력할 때는 ${애트리뷰트 이름} 으로 출력&lt;/li&gt;
-&lt;li&gt;파라미터는 ${param.이름} 또는 ${paramValue.이름[idx]} 의 형태로 출력&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-    
-      <category term="JSP" scheme="http://jbj828.github.io/categories/JSP/"/>
-    
-    
-      <category term="jsp" scheme="http://jbj828.github.io/tags/jsp/"/>
     
   </entry>
   
