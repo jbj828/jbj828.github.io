@@ -13,7 +13,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"AVL Tree\n\n\nWhy AVL Tree?\n\nDepending on Incoming data, A Binary Search tree can get skewed and hence its performance starts going down. Instead of O(log n) for insertion/searching/deleting it can go up to O(n)\nAVL tree attempts to solve this problem of ‘skewing’ by introducing concept called ‘Rotation’.\n\nWhat is AVL Tree?\n\nAn AVL tree is a balanced ‘Binary Search Tree’ where the height of immediate subtrees of any node differs by at most one(also called balance factor).\nIf at any time heights differ by more than one, rebalancing is done to restore this property(called rotation).\nEmpty height is always considered -1.\n\n\n\nAlgorithm of AVL Tree\ncreate, search, traverse Algorithm is totally same as the BST.\n\n\n\n\n\n\n\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-02-12T15:30:25+09:00","dateModified":"2020-02-12T09:33:32+09:00","datePublished":"2020-02-12T15:30:25+09:00","description":"AVL Tree","headline":"AVL Tree","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/12/Al-AVL-Tree/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/12/Al-AVL-Tree/","keywords":"algorithm"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"AVL Tree\n\n\nWhy AVL Tree?\n\nDepending on Incoming data, A Binary Search tree can get skewed and hence its performance starts going down. Instead of O(log n) for insertion/searching/deleting it can go up to O(n)\nAVL tree attempts to solve this problem of ‘skewing’ by introducing concept called ‘Rotation’.\n\nWhat is AVL Tree?\n\nAn AVL tree is a balanced ‘Binary Search Tree’ where the height of immediate subtrees of any node differs by at most one(also called balance factor).\nIf at any time heights differ by more than one, rebalancing is done to restore this property(called rotation).\nEmpty height is always considered -1.\n\n\n\nAlgorithm of AVL Tree\ncreate, search, traverse Algorithm is totally same as the BST.\n\nInsertion of node in AVL Tree\nCase#1 - Whene ‘rotation’ is not required.\nThe algorithm is same as the BST Insertion.\n\n\nCase#2 - When ‘rotation is required(LL, LR, RR, RL).\n\nLeft-Left Condition\n\nWhat is Left-Left condition?\nLeft-Left Node from currentNode is causing disbalance.\nIn this case we do a ‘Right Rotation’.\n\n\n\n\n\n123456rightRotate(currentDisbalancedNode)  newRoot &#x3D; currentDisbalancedNode.left  currentDisbalancedNode.left &#x3D; currentDisbalancedNode.left.right  newRoot.right &#x3D; currentDisbalancedNode  currentDisabledNode.height &#x3D; calculateHeight(currentDisbalancedNode)  newRoot.height &#x3D; calculateHeight(newRoot)\n\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1)\n\n\n\nLeft-Right Condition\n\nWhat is Left-Right condition?\nLeft-Right Node from currentNode is causing disbalance.\nIn this case we do a ‘Left Rotation followed by Right Rotation’.\n\n\n\n\n\n12345678910leftRotate(currentDisbalancedNode&#39;sLeftChild)  newRoot &#x3D; currentDisbalancedNode&#39;sLeftChild.right  currentDisbalancedNode&#39;sLeftChild.right &#x3D; currentDisbalancedNode&#39;sLeftChild.right.left  newRoot.left &#x3D; currentDisbalancedNode&#39;sLeftChild  currentDisbalancedNode&#39;sLeftChild.Height &#x3D; calculateHeight(currentDisbalancedNode&#39;sLeftChild)  newRoot.Height &#x3D; calculateHeight(newRoot)  return newRoot  rightRotate(currentDisbalancedNode)  ------ left-left Condition이랑 같음\n\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1)\n\n\n\nRight-Right Condition\n\nWhat is Right-Right condition?\nRight-Right Node from currentNode is causing disbalance.\nIn this case we do a ‘Left Rotation’.\n\n\n\n\n\n1234567leftRotate(currentDisbalancedNode)  newRoot &#x3D; currentDisbalancedNode.right  currentDisbalancedNode.right &#x3D; currentDisbalancedNode.right.left  newRoot.left &#x3D; currentDisbalancedNode  currentDisbalancedNode.Height &#x3D; calculateHeight(currentDisbalancedNode)  newRoot.Height &#x3D; calculateHeight(newRoot)  return newRoot\n\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1)\n\n\n\nRight-left Condition\n\nWhat is Right-left condition?\nRight-left Node from currentNode is causing disbalance.\nIn this case we do a ‘Right Rotation followed by Left Rotation’.\n\n\n\n\n\n1234567891011121314rightRotate(currentDisableNode&#39;sRight)  newRoot &#x3D; currentDisableNode&#39;sRight.left  currentDisableNode&#39;sRight.left.right &#x3D; currentDisableNode&#39;sRight  currentDisableNode&#39;sRight.height &#x3D; calculateHeight(currentDisableNode&#39;sRight)  newRoot.height &#x3D; calculateHeight(newRoot)  return newRoot;leftRotate(currentDisabledNode)  newRoot &#x3D; currentDisabledNode.right  currentDisabledNode.right &#x3D; currentDisabledNode.right.left  newRoot.left &#x3D; currentDisabledNode  currentDisabledNode.height &#x3D; calculateHeight(currentDisabledNode)  newRoot.height &#x3D; calculateHeight(newRoot)  return newRoot\n\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1)\n\n\n\nInsertion Algorithm in AVL Tree\n12345678910111213141516171819202122Node Insert(Node root, int data)  if(root &#x3D;&#x3D; null) return new Node(data)  else if(data &lt;&#x3D; root.data) root.left &#x3D; insert(root.left, data)  else root.right &#x3D; insert(root.right, data)    int balance &#x3D; height(root.left) - height(root.right)  if(balance &gt; 1)    if height(root.left.left) &gt;&#x3D; height(root.left.right)      RightRotation(root) &#x2F;&#x2F;LL condition    else      LeftRotation(root.left)      RightRotation(root)  &#x2F;&#x2F; LR condition  else if(balance &lt; -1)  &#x2F;&#x2F; if right subtree is overloaded    if height(root.right.right) &gt;&#x3D; height(root.right.left)      LeftRotation(root)  &#x2F;&#x2F; RR condition    else      RightRotation(root.right)      LeftRotation(root)  &#x2F;&#x2F; RL condition    root.height &#x3D; max(root.left, root.right) + 1  return root\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n)\n\n\n\nDeletion of Node from AVL Tree\nDeletion of a node\nCase#1 - When tree does not exists\nCase#2 - When ‘rotation’ is not required(BST Conditions)\nNode to be deleted is leaf node\nNode to be deleted is having 1 child\nNode to be deleted has 2 children\n\n\nCase#3 - When ‘rotation’ is required(LL, LR, RR, RL)\n\n\n\n\n\n12345678910111213141516171819202122232425262728293031323334353637383940414243deleteNodeOfAVL(currentNode, valueToBeDeleted)  if(currentNode &#x3D;&#x3D; null) return null;  if(valueToBeDeleted &lt; currentNode.value)    then currentNode.left &#x3D; deleteNodeOfAVL(currentNode.left, valueToBeDeleted)  else if(valueToBeDeleted &gt; currentNode.value)    then currentNode.right &#x3D; deleteNodeOfAVL(currentNode.right, valueToBeDeleted)  else  &#x2F;&#x2F;if the currentNode is the node to be deleted      if currentNode have both children, then find minimum element from right subtree(Case#3)          replace current node with minimum node from right subtree and delete minimum node from right      else if nodeToBeDeleted has only left child(Case#2)            then currentNode &#x3D; currentNode.left      else if nodeToBeDeleted has only right child      (Case#2)            then currentNode &#x3D; currentNode.right            else &#x2F;&#x2F;if nodeToBeDeleted do not have child(Case#1)            currentNode &#x3D; null;  int balance &#x3D; checkBalance(currentNode.left, currentNode.right);  if(balance &gt; 1)      if(checkBalance(currentNode.left().left(), currentNode.left().right()) &gt; 0)          currentNode &#x3D; rightRotate(currentNode); &#x2F;&#x2F;LL Condition            else           currentNode.left &#x3D; leftRotate(currentNode.left);          currentNode &#x3D; rightRotate  &#x2F;&#x2F;LR condition        else if(balance &lt; -1)      if(checkBalance(currentNode.right().right(), currentNode.right().left()) &gt; 0)          currentNode &#x3D; leftRotate(currentNode); &#x2F;&#x2F;RR Condition      else           currentNode.right &#x3D; rightRotate(currentNode.right); &#x2F;&#x2F;RL condition          currentNode &#x3D; leftRotate(currentNode);  if(currentNode.left() !&#x3D; null) then currentNode.left().setHeight(calculateHeight(currentNode.left));  if(currentNode.right() !&#x3D; null) then currentNode.right().setHeight(calculateHeight(currentNode.right());  currentNode.setHeight(calculateHeight(currentNode));  return currentNode;\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n)\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-02-12T15:30:25+09:00","dateModified":"2020-02-12T23:47:49+09:00","datePublished":"2020-02-12T15:30:25+09:00","description":"AVL Tree","headline":"AVL Tree","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/12/Al-AVL-Tree/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/12/Al-AVL-Tree/","keywords":"algorithm"}</script>
     <meta name="description" content="AVL Tree">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="AVL Tree">
@@ -22,7 +22,7 @@
 <meta property="og:description" content="AVL Tree">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-12T06:30:25.000Z">
-<meta property="article:modified_time" content="2020-02-12T00:33:32.363Z">
+<meta property="article:modified_time" content="2020-02-12T14:47:49.330Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
@@ -259,14 +259,131 @@
 <h3 id="Algorithm-of-AVL-Tree"><a href="#Algorithm-of-AVL-Tree" class="headerlink" title="Algorithm of AVL Tree"></a>Algorithm of AVL Tree</h3><ul>
 <li>create, search, traverse Algorithm is totally same as the BST.</li>
 </ul>
+<h4 id="Insertion-of-node-in-AVL-Tree"><a href="#Insertion-of-node-in-AVL-Tree" class="headerlink" title="Insertion of node in AVL Tree"></a>Insertion of node in AVL Tree</h4><ul>
+<li>Case#1 - Whene ‘rotation’ is not required.<ul>
+<li>The algorithm is same as the BST Insertion.</li>
+</ul>
+</li>
+<li>Case#2 - When ‘rotation is required(LL, LR, RR, RL).</li>
+</ul>
+<p><strong>Left-Left Condition</strong></p>
+<ul>
+<li>What is Left-Left condition?<ul>
+<li>Left-Left Node from currentNode is causing disbalance.</li>
+<li>In this case we do a ‘Right Rotation’.</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rightRotate(currentDisbalancedNode)</span><br><span class="line">  newRoot &#x3D; currentDisbalancedNode.left</span><br><span class="line">  currentDisbalancedNode.left &#x3D; currentDisbalancedNode.left.right</span><br><span class="line">  newRoot.right &#x3D; currentDisbalancedNode</span><br><span class="line">  currentDisabledNode.height &#x3D; calculateHeight(currentDisbalancedNode)</span><br><span class="line">  newRoot.height &#x3D; calculateHeight(newRoot)</span><br></pre></td></tr></table></figure>
+
 <br>
 
 
+<ul>
+<li>Time Complexity - O(1)</li>
+<li>Space Complexity - O(1)</li>
+</ul>
+<br>
+
+<p><strong>Left-Right Condition</strong></p>
+<ul>
+<li>What is Left-Right condition?<ul>
+<li>Left-Right Node from currentNode is causing disbalance.</li>
+<li>In this case we do a ‘Left Rotation followed by Right Rotation’.</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">leftRotate(currentDisbalancedNode&#39;sLeftChild)</span><br><span class="line">  newRoot &#x3D; currentDisbalancedNode&#39;sLeftChild.right</span><br><span class="line">  currentDisbalancedNode&#39;sLeftChild.right &#x3D; currentDisbalancedNode&#39;sLeftChild.right.left</span><br><span class="line">  newRoot.left &#x3D; currentDisbalancedNode&#39;sLeftChild</span><br><span class="line">  currentDisbalancedNode&#39;sLeftChild.Height &#x3D; calculateHeight(currentDisbalancedNode&#39;sLeftChild)</span><br><span class="line">  newRoot.Height &#x3D; calculateHeight(newRoot)</span><br><span class="line">  return newRoot</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  rightRotate(currentDisbalancedNode)  ------ left-left Condition이랑 같음</span><br></pre></td></tr></table></figure>
+
+<br>
 
 
+<ul>
+<li>Time Complexity - O(1)</li>
+<li>Space Complexity - O(1)</li>
+</ul>
+<br>
+
+<p><strong>Right-Right Condition</strong></p>
+<ul>
+<li>What is Right-Right condition?<ul>
+<li>Right-Right Node from currentNode is causing disbalance.</li>
+<li>In this case we do a ‘Left Rotation’.</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">leftRotate(currentDisbalancedNode)</span><br><span class="line">  newRoot &#x3D; currentDisbalancedNode.right</span><br><span class="line">  currentDisbalancedNode.right &#x3D; currentDisbalancedNode.right.left</span><br><span class="line">  newRoot.left &#x3D; currentDisbalancedNode</span><br><span class="line">  currentDisbalancedNode.Height &#x3D; calculateHeight(currentDisbalancedNode)</span><br><span class="line">  newRoot.Height &#x3D; calculateHeight(newRoot)</span><br><span class="line">  return newRoot</span><br></pre></td></tr></table></figure>
+
+<br>
 
 
+<ul>
+<li>Time Complexity - O(1)</li>
+<li>Space Complexity - O(1)</li>
+</ul>
+<br>
 
+<p><strong>Right-left Condition</strong></p>
+<ul>
+<li>What is Right-left condition?<ul>
+<li>Right-left Node from currentNode is causing disbalance.</li>
+<li>In this case we do a ‘Right Rotation followed by Left Rotation’.</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">rightRotate(currentDisableNode&#39;sRight)</span><br><span class="line">  newRoot &#x3D; currentDisableNode&#39;sRight.left</span><br><span class="line">  currentDisableNode&#39;sRight.left.right &#x3D; currentDisableNode&#39;sRight</span><br><span class="line">  currentDisableNode&#39;sRight.height &#x3D; calculateHeight(currentDisableNode&#39;sRight)</span><br><span class="line">  newRoot.height &#x3D; calculateHeight(newRoot)</span><br><span class="line">  return newRoot;</span><br><span class="line"></span><br><span class="line">leftRotate(currentDisabledNode)</span><br><span class="line">  newRoot &#x3D; currentDisabledNode.right</span><br><span class="line">  currentDisabledNode.right &#x3D; currentDisabledNode.right.left</span><br><span class="line">  newRoot.left &#x3D; currentDisabledNode</span><br><span class="line">  currentDisabledNode.height &#x3D; calculateHeight(currentDisabledNode)</span><br><span class="line">  newRoot.height &#x3D; calculateHeight(newRoot)</span><br><span class="line">  return newRoot</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+<ul>
+<li>Time Complexity - O(1)</li>
+<li>Space Complexity - O(1)</li>
+</ul>
+<br>
+
+<p><strong>Insertion Algorithm in AVL Tree</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Node Insert(Node root, int data)</span><br><span class="line">  if(root &#x3D;&#x3D; null) return new Node(data)</span><br><span class="line">  else if(data &lt;&#x3D; root.data) root.left &#x3D; insert(root.left, data)</span><br><span class="line">  else root.right &#x3D; insert(root.right, data)</span><br><span class="line">  </span><br><span class="line">  int balance &#x3D; height(root.left) - height(root.right)</span><br><span class="line">  if(balance &gt; 1)</span><br><span class="line">    if height(root.left.left) &gt;&#x3D; height(root.left.right)</span><br><span class="line">      RightRotation(root) &#x2F;&#x2F;LL condition</span><br><span class="line">    else</span><br><span class="line">      LeftRotation(root.left)</span><br><span class="line">      RightRotation(root)  &#x2F;&#x2F; LR condition</span><br><span class="line"></span><br><span class="line">  else if(balance &lt; -1)  &#x2F;&#x2F; if right subtree is overloaded</span><br><span class="line">    if height(root.right.right) &gt;&#x3D; height(root.right.left)</span><br><span class="line">      LeftRotation(root)  &#x2F;&#x2F; RR condition</span><br><span class="line">    else</span><br><span class="line">      RightRotation(root.right)</span><br><span class="line">      LeftRotation(root)  &#x2F;&#x2F; RL condition</span><br><span class="line">  </span><br><span class="line">  root.height &#x3D; max(root.left, root.right) + 1</span><br><span class="line">  return root</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>Time Complexity - O(log n)</li>
+<li>Space Complexity - O(log n)</li>
+</ul>
+<br>
+
+<h4 id="Deletion-of-Node-from-AVL-Tree"><a href="#Deletion-of-Node-from-AVL-Tree" class="headerlink" title="Deletion of Node from AVL Tree"></a>Deletion of Node from AVL Tree</h4><ul>
+<li>Deletion of a node<ul>
+<li>Case#1 - When tree does not exists</li>
+<li>Case#2 - When ‘rotation’ is not required(BST Conditions)<ul>
+<li>Node to be deleted is leaf node</li>
+<li>Node to be deleted is having 1 child</li>
+<li>Node to be deleted has 2 children</li>
+</ul>
+</li>
+<li>Case#3 - When ‘rotation’ is required(LL, LR, RR, RL)</li>
+</ul>
+</li>
+</ul>
+<br>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">deleteNodeOfAVL(currentNode, valueToBeDeleted)</span><br><span class="line">  if(currentNode &#x3D;&#x3D; null) return null;</span><br><span class="line"></span><br><span class="line">  if(valueToBeDeleted &lt; currentNode.value)</span><br><span class="line">    then currentNode.left &#x3D; deleteNodeOfAVL(currentNode.left, valueToBeDeleted)</span><br><span class="line">  else if(valueToBeDeleted &gt; currentNode.value)</span><br><span class="line">    then currentNode.right &#x3D; deleteNodeOfAVL(currentNode.right, valueToBeDeleted)</span><br><span class="line">  else  &#x2F;&#x2F;if the currentNode is the node to be deleted</span><br><span class="line">      if currentNode have both children, then find minimum element from right subtree(Case#3)</span><br><span class="line">          replace current node with minimum node from right subtree and delete minimum node from right</span><br><span class="line"></span><br><span class="line">      else if nodeToBeDeleted has only left child(Case#2)</span><br><span class="line">            then currentNode &#x3D; currentNode.left</span><br><span class="line">      else if nodeToBeDeleted has only right child</span><br><span class="line">      (Case#2)</span><br><span class="line">            then currentNode &#x3D; currentNode.right</span><br><span class="line">      </span><br><span class="line">      else &#x2F;&#x2F;if nodeToBeDeleted do not have child(Case#1)</span><br><span class="line">            currentNode &#x3D; null;</span><br><span class="line"></span><br><span class="line">  int balance &#x3D; checkBalance(currentNode.left, currentNode.right);</span><br><span class="line"></span><br><span class="line">  if(balance &gt; 1)</span><br><span class="line">      if(checkBalance(currentNode.left().left(), currentNode.left().right()) &gt; 0)</span><br><span class="line">          currentNode &#x3D; rightRotate(currentNode); &#x2F;&#x2F;LL Condition</span><br><span class="line">      </span><br><span class="line">      else </span><br><span class="line">          currentNode.left &#x3D; leftRotate(currentNode.left);</span><br><span class="line">          currentNode &#x3D; rightRotate  &#x2F;&#x2F;LR condition</span><br><span class="line">    </span><br><span class="line">    else if(balance &lt; -1)</span><br><span class="line">      if(checkBalance(currentNode.right().right(), currentNode.right().left()) &gt; 0)</span><br><span class="line">          currentNode &#x3D; leftRotate(currentNode); &#x2F;&#x2F;RR Condition</span><br><span class="line"></span><br><span class="line">      else </span><br><span class="line">          currentNode.right &#x3D; rightRotate(currentNode.right); &#x2F;&#x2F;RL condition</span><br><span class="line">          currentNode &#x3D; leftRotate(currentNode);</span><br><span class="line"></span><br><span class="line">  if(currentNode.left() !&#x3D; null) then currentNode.left().setHeight(calculateHeight(currentNode.left));</span><br><span class="line">  if(currentNode.right() !&#x3D; null) then currentNode.right().setHeight(calculateHeight(currentNode.right());</span><br><span class="line">  currentNode.setHeight(calculateHeight(currentNode));</span><br><span class="line"></span><br><span class="line">  return currentNode;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<ul>
+<li>Time Complexity - O(log n)</li>
+<li>Space Complexity - O(log n)</li>
+</ul>
 <p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
 
             
