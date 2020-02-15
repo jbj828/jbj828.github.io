@@ -13,7 +13,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Binary Heap theory \n\n\n\n\nWhat is Binary Heap\n\nDefinition : Binary Heap is a Binary Tree with some special properties.\n1. Heap property\n    * Value of any given node must be = value of its children(Max-Heap)\n\n2. Complete tree\n    * All levels are completely filled except possibly the last level and the last level has all keys as left as possible.\n    * This makes Binary Heap ideal candidate for Array Implementation.\n\n\n\n\n\nWhy should we learn Binary Heap?\nThere are cases when we want to find ‘min/max’ number among set of numbers in log(n) time. Also, we want to make sure that Inserting additional numbers does not take more than O(log n) time.\n\n\n\nPossible Solutions:\nStore the numbers in sorted Array &lt;- Take O(n) time complexity\nStore the numbers in Linked List in sorted manner &lt;- Take O(n) time complexity\n\n\n\n\nBinary Heap will solve this problem with O(log n).\n\n\n\nTypes of Binary Heap\n\nMin-Heap : If the value of each node is less than or equal to value of both of its children.\nMax-Heap : If the value of each node is more than or equal to value of both of its children.\n\n\n\nPractical Use\n\nPrim’s Algorithm\nHeap Sort\nPriority Queue\n\n\nBinary Heap - Array Representaion\nImplementation options\nArray based Implementation\nReference/Pointer based Implementation\n\n\n\n\n\nInsertion in Heap\n1234567insertValueInHeap(value)  if tree does not exists    return error message  else    insert &#39;value&#39; in first unused cell of Array    sizeOfHeap++    heapifyBottomToTop(sizeOfHeap)  ----- O(log n) : this means the height of the tree, the recursive call will step every node until it reaches the number which is smaller(Min-Heap) than its children\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) \n\n\n\n\nExtractMin from Heap\n12345678extractMin()  if tree does not exist    return error message  else    extract 1st cell of Array    promote last element to first    sizeOfHeap--    heapifyTopToBottom(1)\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) \n\n\n\nDelete Heap\n\n\n12deleteHeap()  set array to null\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1) \n\n\n\nReason why we don’t use Reference implementation(linked list) on Binary Heap\n\nWhen we try to extract min/max number from the tree using reference, we need to loop all over the tree to find the value. This procedure takes O(n) time complexity. Inefficient!!\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-02-14T22:16:25+09:00","dateModified":"2020-02-14T23:10:11+09:00","datePublished":"2020-02-14T22:16:25+09:00","description":"Binary Heap theory ","headline":"Binary Heap","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/14/Al-BinaryHeap/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/14/Al-BinaryHeap/","keywords":"algorithm"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Binary Heap theory \n\n\n\n\nWhat is Binary Heap\n\nDefinition : Binary Heap is a Binary Tree with some special properties.\n\n\n\nHeap property\n\nValue of any given node must be &lt;= value of its children(Min-Heap)\nValue of any given node must be &gt;= value of its children(Max-Heap)\n\n\nComplete tree\n\nAll levels are completely filled except possibly the last level and the last level has all keys as left as possible.\nThis makes Binary Heap ideal candidate for Array Implementation.\n\n\n\n\n\n\n\nWhy should we learn Binary Heap?\nThere are cases when we want to find ‘min/max’ number among set of numbers in log(n) time. Also, we want to make sure that Inserting additional numbers does not take more than O(log n) time.\n\n\n\nPossible Solutions:\n\nStore the numbers in sorted Array &lt;- Take O(n) time complexity\nStore the numbers in Linked List in sorted manner &lt;- Take O(n) time complexity\n\n\n\n\nBinary Heap will solve this problem with O(log n).\n\n\n\nTypes of Binary Heap\n\nMin-Heap : If the value of each node is less than or equal to value of both of its children.\nMax-Heap : If the value of each node is more than or equal to value of both of its children.\n\n\n\nPractical Use\n\nPrim’s Algorithm\nHeap Sort\nPriority Queue\n\n\nBinary Heap - Array Representaion\nImplementation options\nArray based Implementation\nReference/Pointer based Implementation\n\n\n\n\n\nInsertion in Heap\n1234567insertValueInHeap(value)  if tree does not exists    return error message  else    insert &#39;value&#39; in first unused cell of Array    sizeOfHeap++    heapifyBottomToTop(sizeOfHeap)  ----- O(log n) : this means the height of the tree, the recursive call will step every node until it reaches the number which is smaller(Min-Heap) than its children\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) \n\n\n\n\nExtractMin from Heap\n12345678extractMin()  if tree does not exist    return error message  else    extract 1st cell of Array    promote last element to first    sizeOfHeap--    heapifyTopToBottom(1)\n\n\n\n\nTime Complexity - O(log n)\nSpace Complexity - O(log n) \n\n\n\nDelete Heap\n\n\n12deleteHeap()  set array to null\n\n\n\n\nTime Complexity - O(1)\nSpace Complexity - O(1) \n\n\n\nReason why we don’t use Reference implementation(linked list) on Binary Heap\n\nWhen we try to extract min/max number from the tree using reference, we need to loop all over the tree to find the value. This procedure takes O(n) time complexity. Inefficient!!\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-02-14T22:16:25+09:00","dateModified":"2020-02-15T23:46:04+09:00","datePublished":"2020-02-14T22:16:25+09:00","description":"Binary Heap theory ","headline":"Binary Heap","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/14/Al-BinaryHeap/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/14/Al-BinaryHeap/","keywords":"algorithm"}</script>
     <meta name="description" content="Binary Heap theory">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Binary Heap">
@@ -22,7 +22,7 @@
 <meta property="og:description" content="Binary Heap theory">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-14T13:16:25.000Z">
-<meta property="article:modified_time" content="2020-02-14T14:10:11.942Z">
+<meta property="article:modified_time" content="2020-02-15T14:46:04.039Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
@@ -247,15 +247,23 @@
 
 <p><strong>What is Binary Heap</strong></p>
 <ul>
-<li>Definition : Binary Heap is a Binary Tree with some special properties.<br>
-1. Heap property
-    * Value of any given node must be <= value of its children(Min-Heap)
-    * Value of any given node must be >= value of its children(Max-Heap)
+<li><p>Definition : Binary Heap is a Binary Tree with some special properties.</p>
 <br>
-2. Complete tree
-    * All levels are completely filled except possibly the last level and the last level has all keys as left as possible.
-    * This makes Binary Heap ideal candidate for Array Implementation.
 
+<ol>
+<li><p>Heap property</p>
+<ul>
+<li>Value of any given node must be &lt;= value of its children(Min-Heap)</li>
+<li>Value of any given node must be &gt;= value of its children(Max-Heap)<br></li>
+</ul>
+</li>
+<li><p>Complete tree</p>
+<ul>
+<li>All levels are completely filled except possibly the last level and the last level has all keys as left as possible.</li>
+<li>This makes Binary Heap ideal candidate for Array Implementation.</li>
+</ul>
+</li>
+</ol>
 </li>
 </ul>
 <Br>
@@ -265,7 +273,8 @@
 <br>
 
 <ul>
-<li>Possible Solutions:<ol>
+<li><p>Possible Solutions:</p>
+<ol>
 <li>Store the numbers in sorted Array &lt;- Take O(n) time complexity</li>
 <li>Store the numbers in Linked List in sorted manner &lt;- Take O(n) time complexity</li>
 </ol>
