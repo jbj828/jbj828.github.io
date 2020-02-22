@@ -6,35 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Hashing - Developer Javit</title>
+    <title>How to write ReadMe? - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Hashing\n\n\n\n\n\nWhat is Hashing\n\nHashing is a method of sorting and indexing data. The idea behind hasing is to allow large amounts of data to be indexed using keys commonly created by formulas.\n해시함수란 데이터의 효율적 관리를 목적으로 임의의 데이터를 고정된 길이의 데이터로 매핑하는 함수이다. 매핑 전 원래 데이터의 값을 키(key), 매핑 후 데이터의 값을 해시값(hash value), 매핑하는 과정 자체를 해싱(hashing) 이라고 한다.\n\nWhy we need Hashing\n\nTime efficient\n\n\n\n\n\nTerminologies\n\nHash Function : A hash function is any function that can be used to map data of arbitrary size to data of fixed size.\n\nKey : Input data given by user\n\nHash Value : The values returned by a hash function are called hash values, hash codes, digests, or simply hashes.\n\nHash Tables : It is a data structure which implements an associative array abstract data type, a structure that can map keys to values.\n\nCollision : A collision occurs when two different key to a hash function produce the same output called hash values.\n\n\n\n\n\n\nCharacteristics of good Hash function\n\nIt distributes hash values uniformly across the hash table.\nThe hash function uses all the input data.\n\n\n\nCollision Resolution Techniques\n\n\n\n\nDirect Chaining \n\nImplements the buckets as linked lists. Colliding elements are stored in these lists.\n\n\n\nOpen Addressing\n\nColliding elements are stored in other vacant buckets. During storage and lookup, there are found through so called “probing”\n\n\n\n\nLinear Probing :\n\nLinear probing is a strategy for resolving collisions by replacing the new key into the closest following empty cell.\n\n\n\n\nQuadratic Probing : \n\nQudratic probing operates by taking the original hash index and adding successive values of an arbitrary quadratic polynomial until an open slot is found.\n\n\n\nDouble Hashing :\n\nInterval between probes is computed by another hash function.\n\n\n\n\n\n\n\n\n\nWhat happens when Hash Table is full?\n\nDirect Chaining \n\nThis situation will never arise.\n\n\nOpen Addressing\n\nNeed to create 2x size of current table and redo Hashing for existing keys.\n\n\n\n\n\n\n\nPros &amp; Cons of Collision Resolution Technique\n\nDirect Chaining\n\nNo fear of exhausting Hash Table buckets.\nFear of big Linked Lists(can effect performance big time).\n\n\nOpen Addressing\n\nEasy implementation\nFear of exhasuting Hash Table buckets.\n\n\n\n\nIf input size is known then always use “Open Addressing”, else can use any of the two.\n\nIf Deletion is very high, then we should always go for ‘Direct Chaining’. Because when we delet a lot on ‘Open Addressing’, there’s gonna have lots of Hole and it will make problem. We can do “restruction”, but it’s not that efficient way.\n\n\n\n\n\nPractical Use of Hashing\n\nPassword Verification\nFile System : File path is mapped to physical location on disk.\n\n\n\nPros &amp; Cons of Hashing\n\nPros\n\nOn an average Insertion/Deletion/Search operation takes O(1) time.\n\n\nCons\n\nIn the worst case Insertion/Deletion/Search might take O(n) time(when hash function is not good enough)\n\n\n\n\n출처 : \"Data Structures & Algorithms\" by DS GUY\n\n","dateCreated":"2020-02-18T23:30:25+09:00","dateModified":"2020-02-19T09:59:23+09:00","datePublished":"2020-02-18T23:30:25+09:00","description":"Hashing","headline":"Hashing","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/18/Al-hasing/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/18/Al-hasing/","keywords":"algorithm"}</script>
-    <meta name="description" content="Hashing">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Information about writing ReadME documentation.\n\n\n\nAnatomy of a README\nWhat steps need to be taken?\nWhat should the user already have installed or configured?\nWhat might they have a hard time understading right away?\n\n\n\nBasic Structure12345678# 프로젝트 제목프로젝트 설명 (with 프로젝트 Logo)## 설치 방법 (Installation)설치 방법 설명 (with 예시코드)## 사용 방법 (Usage)사용 방법 설명 (with 예시코드)\n\n\nIf it is Open Source Project\n\n\n\n12345## 기여 방법 (Contributing)기여 방법 설명## 라이센스 (License)해당하는 License (choosealicense.com 참고)\n\n\nBig project\n\n123## 버그들 (Known Bugs)## FAQ (Frequently Asked Qustions)## ToC (Table of Contents)\n\n\n\nref : “Udacity - Writing READMEs”\n","dateCreated":"2020-02-22T13:30:25+09:00","dateModified":"2020-02-22T12:43:18+09:00","datePublished":"2020-02-22T13:30:25+09:00","description":"Information about writing ReadME documentation.","headline":"How to write ReadMe?","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/22/WritingReadMe/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/22/WritingReadMe/","keywords":"github"}</script>
+    <meta name="description" content="Information about writing ReadME documentation.">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Hashing">
-<meta property="og:url" content="http://jbj828.github.io/2020/02/18/Al-hasing/index.html">
+<meta property="og:title" content="How to write ReadMe?">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/22/WritingReadMe/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Hashing">
+<meta property="og:description" content="Information about writing ReadME documentation.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hasing1.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing2.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing3.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing4.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing5.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing6.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing7.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hashing8.png">
-<meta property="article:published_time" content="2020-02-18T14:30:25.000Z">
-<meta property="article:modified_time" content="2020-02-19T00:59:23.048Z">
+<meta property="article:published_time" content="2020-02-22T04:30:25.000Z">
+<meta property="article:modified_time" content="2020-02-22T03:43:18.193Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jbj828.github.io/2020/02/18/Al-hasing/hasing1.png">
     
     
         
@@ -224,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Hashing
+            How to write ReadMe?
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-02-18T23:30:25+09:00">
+    <time datetime="2020-02-22T13:30:25+09:00">
 	
-		    Feb 18, 2020
+		    Feb 22, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="category-link" href="/categories/Github/">Github</a>
 
 
     
@@ -249,156 +240,34 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Hashing</p>
+            <p>Information about writing ReadME documentation.</p>
 <a id="more"></a>
 
 
-<br>
-
-<p><strong>What is Hashing</strong></p>
-<ul>
-<li>Hashing is a method of sorting and indexing data. The idea behind hasing is to allow large amounts of data to be indexed using keys commonly created by formulas.</li>
-<li>해시함수란 데이터의 효율적 관리를 목적으로 임의의 데이터를 고정된 길이의 데이터로 매핑하는 함수이다. 매핑 전 원래 데이터의 값을 키(key), 매핑 후 데이터의 값을 해시값(hash value), 매핑하는 과정 자체를 해싱(hashing) 이라고 한다.</li>
-</ul>
-<p><strong>Why we need Hashing</strong></p>
-<ul>
-<li>Time efficient<img src="/2020/02/18/Al-hasing/hasing1.png" class="" width="400" height="200" title="hashing time complexity">
-
-</li>
-</ul>
-<br>
-
-<p><strong>Terminologies</strong></p>
-<ul>
-<li><p>Hash Function : A hash function is any function that can be used to map data of arbitrary size to data of fixed size.</p>
-</li>
-<li><p>Key : Input data given by user</p>
-</li>
-<li><p>Hash Value : The values returned by a hash function are called hash values, hash codes, digests, or simply hashes.</p>
-</li>
-<li><p>Hash Tables : It is a data structure which implements an associative array abstract data type, a structure that can map keys to values.</p>
-</li>
-<li><p>Collision : A collision occurs when two different key to a hash function produce the same output called hash values.</p>
-<img src="/2020/02/18/Al-hasing/hashing2.png" class="" width="600" height="500" title="hashing structure">
-
-</li>
-</ul>
-<br>
-
-<p><strong>Characteristics of good Hash function</strong></p>
-<ul>
-<li>It distributes hash values uniformly across the hash table.</li>
-<li>The hash function uses all the input data.</li>
-</ul>
-<br>
-
-<h4 id="Collision-Resolution-Techniques"><a href="#Collision-Resolution-Techniques" class="headerlink" title="Collision Resolution Techniques"></a>Collision Resolution Techniques</h4><img src="/2020/02/18/Al-hasing/hashing3.png" class="" width="400" height="300" title="hashing structure">
-
-<br>
-
-<ul>
-<li><p>Direct Chaining </p>
-<ul>
-<li>Implements the buckets as linked lists. Colliding elements are stored in these lists.<img src="/2020/02/18/Al-hasing/hashing4.png" class="" width="400" height="300" title="Direct Chaining">
-<br></li>
-</ul>
-</li>
-<li><p>Open Addressing</p>
-<ul>
-<li>Colliding elements are stored in other vacant buckets. During storage and lookup, there are found through so called “probing”<br>
-
-</li>
-</ul>
-<ul>
-<li><p>Linear Probing :</p>
-<ul>
-<li>Linear probing is a strategy for resolving collisions by replacing the new key into the closest following empty cell.<img src="/2020/02/18/Al-hasing/hashing5.png" class="" width="400" height="300" title="Linear Probing">
-<br>
-</li>
-</ul>
-</li>
-<li><p>Quadratic Probing : </p>
-<ul>
-<li>Qudratic probing operates by taking the original hash index and adding successive values of an arbitrary quadratic polynomial until an open slot is found.<img src="/2020/02/18/Al-hasing/hashing6.png" class="" width="400" height="300" title="Quadratic Probing">
-<br></li>
-</ul>
-</li>
-<li><p>Double Hashing :</p>
-<ul>
-<li>Interval between probes is computed by another hash function.<img src="/2020/02/18/Al-hasing/hashing7.png" class="" width="400" height="300" title="Double Hashing">
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<br>
-
-<p><strong>What happens when Hash Table is full?</strong></p>
-<ul>
-<li><p>Direct Chaining </p>
-<ul>
-<li>This situation will never arise.</li>
-</ul>
-</li>
-<li><p>Open Addressing</p>
-<ul>
-<li>Need to create 2x size of current table and redo Hashing for existing keys.<img src="/2020/02/18/Al-hasing/hashing8.png" class="" width="400" height="300" title="resizeHashTable">
-
-</li>
-</ul>
-</li>
-</ul>
-<br>
-
-<p><strong>Pros &amp; Cons of Collision Resolution Technique</strong></p>
-<ul>
-<li><p>Direct Chaining</p>
-<ul>
-<li>No fear of exhausting Hash Table buckets.</li>
-<li>Fear of big Linked Lists(can effect performance big time).</li>
-</ul>
-</li>
-<li><p>Open Addressing</p>
-<ul>
-<li>Easy implementation</li>
-<li>Fear of exhasuting Hash Table buckets.</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><p>If input size is known then always use “Open Addressing”, else can use any of the two.</p>
-</li>
-<li><p>If Deletion is very high, then we should always go for ‘Direct Chaining’. Because when we delet a lot on ‘Open Addressing’, there’s gonna have lots of Hole and it will make problem. We can do “restruction”, but it’s not that efficient way.</p>
-</li>
+<h3 id="Anatomy-of-a-README"><a href="#Anatomy-of-a-README" class="headerlink" title="Anatomy of a README"></a>Anatomy of a README</h3><ol>
+<li>What <strong>steps</strong> need to be taken?</li>
+<li>What should the user already have <strong>installed</strong> or <strong>configured</strong>?</li>
+<li>What might they have a hard time understading <strong>right away</strong>?</li>
 </ol>
 <br>
 
+<h3 id="Basic-Structure"><a href="#Basic-Structure" class="headerlink" title="Basic Structure"></a>Basic Structure</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 프로젝트 제목</span><br><span class="line">프로젝트 설명 (with 프로젝트 Logo)</span><br><span class="line"></span><br><span class="line">## 설치 방법 (Installation)</span><br><span class="line">설치 방법 설명 (with 예시코드)</span><br><span class="line"></span><br><span class="line">## 사용 방법 (Usage)</span><br><span class="line">사용 방법 설명 (with 예시코드)</span><br></pre></td></tr></table></figure>
 
-<p><strong>Practical Use of Hashing</strong></p>
 <ul>
-<li>Password Verification</li>
-<li>File System : File path is mapped to physical location on disk.</li>
-</ul>
-<br>
+<li>If it is Open Source Project<br>
 
-<p><strong>Pros &amp; Cons of Hashing</strong></p>
-<ul>
-<li><p>Pros</p>
-<ul>
-<li>On an average Insertion/Deletion/Search operation takes O(1) time.</li>
-</ul>
-</li>
-<li><p>Cons</p>
-<ul>
-<li>In the worst case Insertion/Deletion/Search might take O(n) time(when hash function is not good enough)</li>
-</ul>
 </li>
 </ul>
-<br>
-출처 : "Data Structures & Algorithms" by DS GUY
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## 기여 방법 (Contributing)</span><br><span class="line">기여 방법 설명</span><br><span class="line"></span><br><span class="line">## 라이센스 (License)</span><br><span class="line">해당하는 License (choosealicense.com 참고)</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>Big project</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 버그들 (Known Bugs)</span><br><span class="line">## FAQ (Frequently Asked Qustions)</span><br><span class="line">## ToC (Table of Contents)</span><br></pre></td></tr></table></figure>
+
+
+<p><Br><Br></p>
+<p>ref : “Udacity - Writing READMEs”</p>
 
             
 
@@ -410,7 +279,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/github/" rel="tag">github</a>
 
             </div>
         
@@ -420,14 +289,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/19/Al-HashingDirectChaining/"
-                    data-tooltip="Hashing - Direct Chaining Coding"
-                    aria-label="PREVIOUS: Hashing - Direct Chaining Coding"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -437,9 +303,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/18/Al-Trie-Coding/"
-                    data-tooltip="Trie Coding"
-                    aria-label="NEXT: Trie Coding"
+                    href="/2020/02/19/Al-HashingDirectChaining/"
+                    data-tooltip="Hashing - Direct Chaining Coding"
+                    aria-label="NEXT: Hashing - Direct Chaining Coding"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -464,7 +330,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -477,7 +343,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -490,7 +356,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -535,14 +401,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/19/Al-HashingDirectChaining/"
-                    data-tooltip="Hashing - Direct Chaining Coding"
-                    aria-label="PREVIOUS: Hashing - Direct Chaining Coding"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -552,9 +415,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/18/Al-Trie-Coding/"
-                    data-tooltip="Trie Coding"
-                    aria-label="NEXT: Trie Coding"
+                    href="/2020/02/19/Al-HashingDirectChaining/"
+                    data-tooltip="Hashing - Direct Chaining Coding"
+                    aria-label="NEXT: Hashing - Direct Chaining Coding"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -579,7 +442,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -592,7 +455,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -605,7 +468,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -639,7 +502,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -652,7 +515,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -665,7 +528,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/18/Al-hasing/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/22/WritingReadMe/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>

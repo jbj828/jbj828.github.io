@@ -212,6 +212,130 @@
                     
                         <a
                             class="link-unstyled"
+                            href="/2020/02/22/WritingReadMe/"
+                            aria-label=": How to write ReadMe?"
+                        >
+                            How to write ReadMe?
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2020-02-22T13:30:25+09:00">
+	
+		    Feb 22, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Github/">Github</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <p>Information about writing ReadME documentation.</p>
+                    
+                        <a
+                            href="/2020/02/22/WritingReadMe/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": How to write ReadMe?"
+                        >
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2020/02/19/Al-HashingDirectChaining/"
+                            aria-label=": Hashing - Direct Chaining Coding"
+                        >
+                            Hashing - Direct Chaining Coding
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2020-02-19T15:30:25+09:00">
+	
+		    Feb 19, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <a id="more"></a>
+<Br>
+
+
+<p>DirectChaining.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line">import java.util.LinkedList;</span><br><span class="line"></span><br><span class="line">public class DirectChaining &#123;</span><br><span class="line">	LinkedList&lt;String&gt;[] hashTable;</span><br><span class="line">	int maximumChainSize &#x3D; 5;</span><br><span class="line">	</span><br><span class="line">	DirectChaining() &#123;</span><br><span class="line">		hashTable &#x3D; new LinkedList[13];</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	&#x2F;&#x2F; HashFunction to be used on Keys</span><br><span class="line">	public int simpleASCIIHashFunction(String x, int M) &#123;</span><br><span class="line">		char ch[];</span><br><span class="line">		ch &#x3D; x.toCharArray();</span><br><span class="line">		int i, sum;</span><br><span class="line">		for (sum &#x3D; 0, i &#x3D; 0; i &lt; x.length(); i++) &#123;</span><br><span class="line">			sum &#x3D; sum + ch[i];</span><br><span class="line">		&#125;</span><br><span class="line">		&#x2F;&#x2F; System.out.println(&quot;Index from hashfunction: &quot; + sum % M);</span><br><span class="line">		return sum % M;</span><br><span class="line">	&#125;&#x2F;&#x2F; end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Insert Key in HashTable</span><br><span class="line">	public void insertKeyInHashTable(String value) &#123;</span><br><span class="line">		int newIndex &#x3D; simpleASCIIHashFunction(value, hashTable.length); &#x2F;&#x2F;returns in which index we need to store this string</span><br><span class="line">		if(hashTable[newIndex] &#x3D;&#x3D; null) &#123;</span><br><span class="line">			System.out.println(&quot;Index: &quot; + newIndex + &quot; is empty. Creating a new LinkedList there...&quot;);</span><br><span class="line">			hashTable[newIndex] &#x3D; new LinkedList&lt;String&gt;(); </span><br><span class="line">			hashTable[newIndex].add(value);</span><br><span class="line">			System.out.println(&quot;Successfully inserted &quot; + &quot;\&quot;&quot; + value + &quot;\&quot;&quot; + &quot; in location: &quot; + newIndex);</span><br><span class="line">			System.out.println(&quot;-------------------------------------------\n&quot;);</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;\nIndex: &quot; + newIndex + &quot; is having sufficient space. Inserting there...&quot;);</span><br><span class="line">			hashTable[newIndex].add(value);</span><br><span class="line">			System.out.println(&quot;Successfully inserted &quot; + &quot;\&quot;&quot; + value + &quot;\&quot;&quot; + &quot; in location: &quot; + newIndex);</span><br><span class="line">			System.out.println(&quot;-------------------------------------------\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">		</span><br><span class="line">	&#x2F;&#x2F;Search for a given key in hashTable</span><br><span class="line">	public boolean searchKeyInHashTable(String stringToBeSearched) &#123;</span><br><span class="line">		int newIndex &#x3D; simpleASCIIHashFunction(stringToBeSearched, hashTable.length);</span><br><span class="line">		if (hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].contains(stringToBeSearched)) &#123;</span><br><span class="line">			System.out.println(&quot;\n&quot; + &quot;\&quot;&quot; + stringToBeSearched + &quot;\&quot;&quot; + &quot; found in HashTable at location: &quot;+newIndex);</span><br><span class="line">			return true;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;\n&quot; + &quot;\&quot;&quot; + stringToBeSearched + &quot;\&quot;&quot; + &quot; not found in HashTable.&quot;);</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F;Delete key from HashTable</span><br><span class="line">	public void deleteKeyFromHashTable(String stringToBeDeleted) &#123;</span><br><span class="line">		int newIndex &#x3D; simpleASCIIHashFunction(stringToBeDeleted, hashTable.length);</span><br><span class="line">		if (hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].contains(stringToBeDeleted)) &#123;</span><br><span class="line">			System.out.println(&quot;\n&quot; + &quot;\&quot;&quot; + stringToBeDeleted + &quot;\&quot;&quot; + &quot; has been found in HashTable.&quot; );</span><br><span class="line">			hashTable[newIndex].remove(stringToBeDeleted);</span><br><span class="line">			System.out.println(&quot;\&quot;&quot; + stringToBeDeleted + &quot;\&quot;&quot; + &quot; has been deleted from HashTable !&quot; );</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;\nCould not find &quot; + &quot;\&quot;&quot; + stringToBeDeleted + &quot;\&quot;&quot; + &quot; in HashTable&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">	&#x2F;&#x2F; display the hash table</span><br><span class="line">	public void displayHashTable() &#123;</span><br><span class="line">		if(hashTable &#x3D;&#x3D; null) &#123;</span><br><span class="line">			System.out.println(&quot;\nHashTable does not exits !&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;else &#123;</span><br><span class="line">			System.out.println(&quot;\n---------- HashTable ---------&quot;);</span><br><span class="line">			for (int i &#x3D; 0; i &lt; hashTable.length; i++) &#123;</span><br><span class="line">				System.out.println(&quot;Index: &quot; + i + &quot;, key: &quot; + hashTable[i]);</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; &#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	&#x2F;&#x2F; Deletes entire HashTable</span><br><span class="line">	public void deleteHashTable() &#123;</span><br><span class="line">		hashTable &#x3D; null;</span><br><span class="line">		System.out.println(&quot;Successfully deleted HashTable !&quot;);</span><br><span class="line">	&#125;&#x2F;&#x2F; end of method</span><br><span class="line">	</span><br><span class="line">&#125;&#x2F;&#x2F;end of class</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>Main.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">public class DirectChainingMain &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F; Constructor</span><br><span class="line">		DirectChaining directChaining &#x3D; new DirectChaining();</span><br><span class="line"></span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;The&quot;);</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;quick&quot;);</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;brown&quot;);</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;fox&quot;);</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;over&quot;);</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;lazy&quot;);</span><br><span class="line">		directChaining.displayHashTable();</span><br><span class="line"></span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;fox&quot;); &#x2F;&#x2F; use for showing collision</span><br><span class="line">		directChaining.displayHashTable();</span><br><span class="line"></span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		directChaining.displayHashTable();</span><br><span class="line">		</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		directChaining.displayHashTable();</span><br><span class="line">		</span><br><span class="line">		directChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		directChaining.displayHashTable();</span><br><span class="line">		</span><br><span class="line">		&#x2F;*</span><br><span class="line">		 * DirectChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		 * DirectChaining.displayHashTable();</span><br><span class="line">		 * </span><br><span class="line">		 * DirectChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		 * DirectChaining.displayHashTable();</span><br><span class="line">		 * </span><br><span class="line">		 * DirectChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		 * DirectChaining.displayHashTable();</span><br><span class="line">		 * </span><br><span class="line">		 * DirectChaining.insertKeyInHashTable(&quot;fox&quot;); </span><br><span class="line">		 * DirectChaining.displayHashTable();</span><br><span class="line">		 * </span><br><span class="line">		 * </span><br><span class="line">		 * DirectChaining.searchKeyInHashTable(&quot;jump&quot;);</span><br><span class="line">		 * DirectChaining.searchKeyInHashTable(&quot;brown&quot;);</span><br><span class="line">		 * </span><br><span class="line">		 * </span><br><span class="line">		 * DirectChaining.deleteKeyFromHashTable(&quot;jump&quot;);</span><br><span class="line">		 * DirectChaining.deleteKeyFromHashTable(&quot;quick&quot;);</span><br><span class="line">		 * DirectChaining.displayHashTable();</span><br><span class="line">		 * </span><br><span class="line">		 * </span><br><span class="line">		 * DirectChaining.deleteHashTable(); </span><br><span class="line">		 * DirectChaining.displayHashTable();</span><br><span class="line">		 *&#x2F;</span><br><span class="line"></span><br><span class="line">	&#125;&#x2F;&#x2F; end of method</span><br><span class="line"></span><br><span class="line">&#125;&#x2F;&#x2F; end of class</span><br></pre></td></tr></table></figure>
+
+<br>
+
+
+<p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2020/02/19/Al-HashingDirectChaining/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-right">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
                             href="/2020/02/18/Al-hasing/"
                             aria-label=": Hashing"
                         >
@@ -600,108 +724,6 @@
                             href="/2020/02/11/Al-BST-code/"
                             class="postShorten-excerpt_link link"
                             aria-label=": Binary Search Tree Coding"
-                        >
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2020/02/10/Al-BST/"
-                            aria-label=": Binary Search Tree"
-                        >
-                            Binary Search Tree
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2020-02-10T23:30:25+09:00">
-	
-		    Feb 10, 2020
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>The theory of BST</p>
-                    
-                        <a
-                            href="/2020/02/10/Al-BST/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": Binary Search Tree"
-                        >
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-right">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2020/02/10/Al-BT-arrayCode/"
-                            aria-label=": Binary Tree Code(Array Implementation)"
-                        >
-                            Binary Tree Code(Array Implementation)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2020-02-10T22:30:25+09:00">
-	
-		    Feb 10, 2020
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>Array Implementation code</p>
-                    
-                        <a
-                            href="/2020/02/10/Al-BT-arrayCode/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": Binary Tree Code(Array Implementation)"
                         >
                             Continue reading
                         </a>
