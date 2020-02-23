@@ -6,25 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>How to write ReadMe? - Developer Javit</title>
+    <title>Regular Expression - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Information about writing ReadME documentation.\n\n\n\nAnatomy of a README\nWhat steps need to be taken?\nWhat should the user already have installed or configured?\nWhat might they have a hard time understading right away?\n\n\n\nBasic Structure12345678# 프로젝트 제목프로젝트 설명 (with 프로젝트 Logo)## 설치 방법 (Installation)설치 방법 설명 (with 예시코드)## 사용 방법 (Usage)사용 방법 설명 (with 예시코드)\n\n\nIf it is Open Source Project\n\n\n\n12345## 기여 방법 (Contributing)기여 방법 설명## 라이센스 (License)해당하는 License (choosealicense.com 참고)\n\n\nBig project\n\n123## 버그들 (Known Bugs)## FAQ (Frequently Asked Qustions)## ToC (Table of Contents)\n\n\n\nref : “Udacity - Writing READMEs”\n","dateCreated":"2020-02-22T13:30:25+09:00","dateModified":"2020-02-22T12:43:18+09:00","datePublished":"2020-02-22T13:30:25+09:00","description":"Information about writing ReadME documentation.","headline":"How to write ReadMe?","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/22/WritingReadMe/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/22/WritingReadMe/","keywords":"github"}</script>
-    <meta name="description" content="Information about writing ReadME documentation.">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"regular expression\n\n\nRegular Expression\n정규표현식(正規表現式, Regular Expression)은 문자열을 처리하는 방법 중의 하나로 특정한 조건의 문자를 ‘검색’하거나 ‘치환’하는 과정을 매우 간편하게 처리 할 수 있도록 하는 수단이다.\n\n\n\n정규표현식의 특징\n\nCase sensitive(대소문자 구분)  options : &quot;i&quot; 하면 대소문자 구분 없이 검색 가능\n\n\n\n정규표현식의 패턴\n\n^ : Character ^ matches the beginning of the line.\n$ : Dollar sign matches the end of the line\n\\ : Escaping the pattern to the normal text.\n\\$ : this means normal text of “$”\n\n\n. : Point . mathces any character   \n[] : Insid square brackets “[]” a list of characters can be provided. The expression matches if any of these characters is found. The order of character is insignificant.\n[x-y] : A range of characters can be specified with [-] syntax. ex) [c-k] : c부터 k까지 모두 선택\n[^ ] : If a character class starts with ^, then specified characters will not be selected.\n\n서브 패턴\n\n(on|ues|rida) : Alternating text can be enclosed in parentheses and alternatives separated with |\n\n\n출처 : 생활코딩\n\n","dateCreated":"2020-02-23T15:46:25+09:00","dateModified":"2020-02-23T15:18:30+09:00","datePublished":"2020-02-23T15:46:25+09:00","description":"regular expression","headline":"Regular Expression","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/02/23/RegularExpression/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/02/23/RegularExpression/","keywords":"language"}</script>
+    <meta name="description" content="regular expression">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="How to write ReadMe?">
-<meta property="og:url" content="http://jbj828.github.io/2020/02/22/WritingReadMe/index.html">
+<meta property="og:title" content="Regular Expression">
+<meta property="og:url" content="http://jbj828.github.io/2020/02/23/RegularExpression/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Information about writing ReadME documentation.">
+<meta property="og:description" content="regular expression">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-02-22T04:30:25.000Z">
-<meta property="article:modified_time" content="2020-02-22T03:43:18.193Z">
+<meta property="article:published_time" content="2020-02-23T06:46:25.000Z">
+<meta property="article:modified_time" content="2020-02-23T06:18:30.544Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="github">
+<meta property="article:tag" content="language">
 <meta name="twitter:card" content="summary">
     
     
@@ -215,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            How to write ReadMe?
+            Regular Expression
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-02-22T13:30:25+09:00">
+    <time datetime="2020-02-23T15:46:25+09:00">
 	
-		    Feb 22, 2020
+		    Feb 23, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Github/">Github</a>
+    <a class="category-link" href="/categories/Language/">Language</a>
 
 
     
@@ -240,34 +240,40 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Information about writing ReadME documentation.</p>
+            <p>regular expression</p>
 <a id="more"></a>
 
-
-<h3 id="Anatomy-of-a-README"><a href="#Anatomy-of-a-README" class="headerlink" title="Anatomy of a README"></a>Anatomy of a README</h3><ol>
-<li>What <strong>steps</strong> need to be taken?</li>
-<li>What should the user already have <strong>installed</strong> or <strong>configured</strong>?</li>
-<li>What might they have a hard time understading <strong>right away</strong>?</li>
-</ol>
+<h3 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h3><ul>
+<li>정규표현식(正規表現式, Regular Expression)은 문자열을 처리하는 방법 중의 하나로 특정한 조건의 문자를 ‘검색’하거나 ‘치환’하는 과정을 매우 간편하게 처리 할 수 있도록 하는 수단이다.</li>
+</ul>
 <br>
 
-<h3 id="Basic-Structure"><a href="#Basic-Structure" class="headerlink" title="Basic Structure"></a>Basic Structure</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 프로젝트 제목</span><br><span class="line">프로젝트 설명 (with 프로젝트 Logo)</span><br><span class="line"></span><br><span class="line">## 설치 방법 (Installation)</span><br><span class="line">설치 방법 설명 (with 예시코드)</span><br><span class="line"></span><br><span class="line">## 사용 방법 (Usage)</span><br><span class="line">사용 방법 설명 (with 예시코드)</span><br></pre></td></tr></table></figure>
-
+<p><strong>정규표현식의 특징</strong></p>
 <ul>
-<li>If it is Open Source Project<br>
+<li>Case sensitive(대소문자 구분)<br>  <code>options : &quot;i&quot;</code> 하면 대소문자 구분 없이 검색 가능</li>
+</ul>
+<br>
 
+<p><strong>정규표현식의 패턴</strong></p>
+<ul>
+<li>^ : Character ^ matches the beginning of the line.</li>
+<li>$ : Dollar sign matches the end of the line</li>
+<li>\ : Escaping the pattern to the normal text.<ul>
+<li><code>\$</code> : this means normal text of “$”</li>
+</ul>
 </li>
+<li>. : Point . mathces any character   </li>
+<li>[] : Insid square brackets “[]” a list of characters can be provided. The expression matches if any of these characters is found. The order of character is insignificant.</li>
+<li>[x-y] : A range of characters can be specified with [-] syntax. ex) [c-k] : c부터 k까지 모두 선택</li>
+<li>[^ ] : If a character class starts with ^, then specified characters will not be selected.</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## 기여 방법 (Contributing)</span><br><span class="line">기여 방법 설명</span><br><span class="line"></span><br><span class="line">## 라이센스 (License)</span><br><span class="line">해당하는 License (choosealicense.com 참고)</span><br></pre></td></tr></table></figure>
-
+<p><strong>서브 패턴</strong></p>
 <ul>
-<li>Big project</li>
+<li>(on|ues|rida) : Alternating text can be enclosed in parentheses and alternatives separated with |</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 버그들 (Known Bugs)</span><br><span class="line">## FAQ (Frequently Asked Qustions)</span><br><span class="line">## ToC (Table of Contents)</span><br></pre></td></tr></table></figure>
+<br>
+출처 : 생활코딩
 
-
-<p><Br><Br></p>
-<p>ref : “Udacity - Writing READMEs”</p>
 
             
 
@@ -279,7 +285,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/github/" rel="tag">github</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/language/" rel="tag">language</a>
 
             </div>
         
@@ -289,14 +295,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/23/RegularExpression/"
-                    data-tooltip="Regular Expression"
-                    aria-label="PREVIOUS: Regular Expression"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -306,9 +309,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/19/Al-HashingDirectChaining/"
-                    data-tooltip="Hashing - Direct Chaining Coding"
-                    aria-label="NEXT: Hashing - Direct Chaining Coding"
+                    href="/2020/02/22/WritingReadMe/"
+                    data-tooltip="How to write ReadMe?"
+                    aria-label="NEXT: How to write ReadMe?"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -333,7 +336,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/23/RegularExpression/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -346,7 +349,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/23/RegularExpression/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -359,7 +362,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/23/RegularExpression/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -404,14 +407,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/23/RegularExpression/"
-                    data-tooltip="Regular Expression"
-                    aria-label="PREVIOUS: Regular Expression"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -421,9 +421,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/19/Al-HashingDirectChaining/"
-                    data-tooltip="Hashing - Direct Chaining Coding"
-                    aria-label="NEXT: Hashing - Direct Chaining Coding"
+                    href="/2020/02/22/WritingReadMe/"
+                    data-tooltip="How to write ReadMe?"
+                    aria-label="NEXT: How to write ReadMe?"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -448,7 +448,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/23/RegularExpression/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -461,7 +461,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/23/RegularExpression/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -474,7 +474,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/23/RegularExpression/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -508,7 +508,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/02/23/RegularExpression/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -521,7 +521,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/02/23/RegularExpression/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -534,7 +534,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/22/WritingReadMe/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/02/23/RegularExpression/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
