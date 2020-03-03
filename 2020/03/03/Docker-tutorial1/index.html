@@ -6,29 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>What is Docker? - Developer Javit</title>
+    <title>Docker Tutorial - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Primary theory of Docker\n\n\n출처 : 공부목적으로 Subicura’s Blog를 참조했습니다.\n\n\nDocker\n컨테이너를 관리하는 플랫폼\n컨테이너 기반의 오픈소스 가상화 플랫폼\n다양한 프로그램, 실행환경을 컨테이너로 추상화하고 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다. 백엔드 프로그램, 데이터베이스 서버, 메시지 큐등 어떤 프로그램도 컨테이너로 추상화할 수 있고 조립PC, AWS, Azure, Google cloud등 어디에서든 실행할 수 있습니다.\n즉, 컨테이너는 격리된 공간에서 프로세스가 동작하는 기술입니다.\n\n\n\nDifference between VM and Docker\n\n\n\n\n\n\n\nImage  ‘컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것’\n\n이미지는 컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것으로 상태값을 가지지 않고 변하지 않습니다(Immutable). 컨테이너는 이미지를 실행한 상태라고 볼 수 있고 추가되거나 변하는 값은 컨테이너에 저장됩니다. 같은 이미지에서 여러개의 컨테이너를 생성할 수 있고 컨테이너의 상태가 바뀌거나 컨테이너가 삭제되더라도 이미지는 변하지 않고 그대로 남아있습니다.\n말그대로 이미지는 컨테이너를 실행하기 위한 모든 정보를 가지고 있기 때문에 더 이상 의존성 파일을 컴파일하고 이것저것 설치할 필요가 없습니다. 이제 새로운 서버가 추가되면 미리 만들어 놓은 이미지를 다운받고 컨테이너를 생성만 하면 됩니다. 한 서버에 여러개의 컨테이너를 실행할 수 있고, 수십, 수백, 수천대의 서버도 문제없습니다.\n도커 이미지는 Docker hub에 등록하거나 Docker Registry 저장소를 직접 만들어 관리할 수 있습니다. 현재 공개된 도커 이미지는 50만개가 넘고 Docker hub의 이미지 다운로드 수는 80억회에 이릅니다. 누구나 쉽게 이미지를 만들고 배포할 수 있습니다.\n\n\n\n\n\n\n\n","dateCreated":"2020-03-03T10:46:25+09:00","dateModified":"2020-03-03T01:47:18+09:00","datePublished":"2020-03-03T10:46:25+09:00","description":"Primary theory of Docker","headline":"What is Docker?","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/03/Docker-theory/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/03/Docker-theory/","keywords":"Docker"}</script>
-    <meta name="description" content="Primary theory of Docker">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Docker Tutorial 1\n\n\nAWS EC2 인스턴스 생성 및 접속\n\n\nAWS에서 ubuntu 18버전으로 먼저 인스턴스 생성\nkey pair는 관리자만 실행가능하도록 환경설정\n오른쪽마우스 -&gt; 속성 -&gt; 보안 -&gt; 고급 -&gt; 상속사용\nkey pair는 무조건 C드라이브 안에 넣기\n\n\n명령프롬프트 관리자 권한으로 실행\ncd 키페어 위치\naws 홈페이지 가서 연결버튼 누름\nssh 링크 복사해서 cmd에 복사\n연결완료 되면 pwd 입력 -&gt; 현재 서버위치\n\n\n\n\n\nJupyter Notebook 설치, HTTPS 적용, 시스템 서비스 설정하기\n\n\nJypyter Notebook : 콘솔창이 아닌 웹브라우저 환경에서 해당 서버에 바로 접근해서 해당 서버를 관리할 수 있도록 해주는 유틸\n\nsudo apt-get update  :  apt-get명령의 업데이트\nsudo apt-get install python3-pip\nubuntu 18.04버전엔 pyhton3가 디폴트로 깔려있다. 그래서 python3는 깔 필요없고 파이썬 관련 패키지를 설치할 수 있도록 도와주는 python3-pip를 설치\n\n\nsudo pip3 install notebook  : jupyter notebook 설치\n\n\n\n만들어진 주피터를 통해서 서버의 외부에서 해당 서버에 웹브라우저를 이용해서 접속할 수 있도록 된 것. 이제 주피터 접속을 위한 비밀번호 설정을 해줘야 함.\n  \n\n\npython3\nfrom notebook.auth import passwd\npasswd()   :  패스워드 함수 호출(비밀번호를 설정하겠다는 의미)\n나온 hash값 복사해서 메모장 붙여넣기\nexit()\n\n\n\n서버에서 주피터 노트북을 실행해서 외부에서 접속 했을 때 비밀번호를 입력해야 서버에 접속할 수 있도록 하기 위해 주피터 환경설정 진행\n\n\n\njupyter notebook –generate-config    : 환경설정 파일 만듦\nsudo vi 바로 윗줄 환경설정 위치값 붙여넣기\nex)  sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py         \n\n\n제일 밑으로 내려가서 ‘a’눌러서 수정모드로 변환\nc = get_config()\nc.NotebookApp.password = u’sha1 : 복사해둔 해시값’\nc.NotebookApp.ip = ‘172.31.14.123’    이거는 화면 제목 창에 나온 주소 그대로 적으면 됨\nc.NotebookApp.notebook_dir = ‘/‘\nesc버튼 누르고\n:wq!\n\n\n\n\nsudo jupyter-notebook –allow-root   : 주피터 노트북을 루트권한을 가진 상태로 실행\n8888포트로 주피터 노트북이 열린 것 확인가능\n\n\n\n\n\n\nAWS 웹사이트 다시 돌아가서 \n‘설명’란 안에 있는\n‘보안그룹’ 의 ‘launch-wizard-1’ 클릭\n‘인바운드’\n‘편집’\n‘규칙추가’\n포트범위 : 8888\n소스 : 0.0.0.0/0  (두 개 다)\n\n\n\n\n인스턴스 화면으로 돌아옴\n‘설명’란에 ‘IPv4 퍼블릭 IP’에 있는 주소 복사\n주소창에 붙이고 ‘:8888’ 붙여서 엔터\n\n\n\n\n더 이상 ssh가 필요하지 않고 바로 웹 브라우저에서 해당 서버에 접속할 수 있어서 매우 편리해졌다. 하지만 우린 주피터를 항상 실행할 수 있는 상태로 만들고 싶다\n\n\n\n\n\n\n다시 cmd로 돌아와서 ‘ctrl+z’로 해당 서버 종료 \nbg   : background상태에서 돌아가게 함\ndisown -h   : 소유권 포기\n이제 주피터 노트북이 항상 실행 중인 상태가 됨\n\n\n\n\n\n언제 어디서나 웹브라우저로 서버를 관리할 수 있게 됨하지만 지금의 주피터 노트북은 ssl인증서가 적용되지 않은 상태라서 통신과정에서 상당히 위험.\n그러므로 https를 적용해야됨\n\n\n\nsudo netstat -nap | grep 8888  : 현재 8888포트가 실행 중인 피아이디를 알 수 있다\nsudo kill -9 ‘파이썬 옆 숫자’\n해당 주피터 노트북을 종료시킬 수 있음\n웹브라우저에서 새로고침하면 적용 안 됨\n\n\n\n\n\nHTTPS 적용\n\n환경설정에 개인키와 공개키를 넣는 작업\n\n\n\ncd /home/ubuntu\npwd\nmkdir ssl\ncd ssl\nsudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout “cert.key” -out “cert.pem” -batch     개인키 공개키 생성\nls\nsudo vi 바로 윗줄 환경설정 다시 열기* ex)  sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py \n  *  *방향키 위쪽 버튼 눌러서 찾기*\n‘a’눌러서 시작\nc.NotebookApp.certfile = u’/home/ubuntu/ssl/cert.pem’\nc.NotebookApp.keyfile = u’/home/ubuntu/ssl/cert.key’\nesc버튼\n:wq!\n\n\n\n\nsudo jupyter-notebook –allow-root   주피터 노트북 실행\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n\n\n\n","dateCreated":"2020-03-03T14:46:25+09:00","dateModified":"2020-03-03T13:21:33+09:00","datePublished":"2020-03-03T14:46:25+09:00","description":"Docker Tutorial 1","headline":"Docker Tutorial","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/03/Docker-tutorial1/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/03/Docker-tutorial1/","keywords":"Docker"}</script>
+    <meta name="description" content="Docker Tutorial 1">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="What is Docker?">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/03/Docker-theory/index.html">
+<meta property="og:title" content="Docker Tutorial">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/03/Docker-tutorial1/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Primary theory of Docker">
+<meta property="og:description" content="Docker Tutorial 1">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://jbj828.github.io/2020/03/03/Docker-theory/docker1.png">
-<meta property="og:image" content="http://jbj828.github.io/2020/03/03/Docker-theory/docker2.png">
-<meta property="article:published_time" content="2020-03-03T01:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-02T16:47:18.314Z">
+<meta property="article:published_time" content="2020-03-03T05:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-03T04:21:33.613Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jbj828.github.io/2020/03/03/Docker-theory/docker1.png">
     
     
         
@@ -218,12 +215,12 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            What is Docker?
+            Docker Tutorial
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-03T10:46:25+09:00">
+    <time datetime="2020-03-03T14:46:25+09:00">
 	
 		    Mar 03, 2020
     	
@@ -243,37 +240,158 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Primary theory of Docker</p>
+            <p>Docker Tutorial 1</p>
 <a id="more"></a>
 
-<p>출처 : 공부목적으로 <a href="https://subicura.com/" target="_blank" rel="noopener">Subicura’s Blog</a>를 참조했습니다.</p>
+<h3 id="AWS-EC2-인스턴스-생성-및-접속"><a href="#AWS-EC2-인스턴스-생성-및-접속" class="headerlink" title="AWS EC2 인스턴스 생성 및 접속"></a>AWS EC2 인스턴스 생성 및 접속</h3><Br>
+
+<ol>
+<li>AWS에서 ubuntu 18버전으로 먼저 인스턴스 생성</li>
+<li>key pair는 관리자만 실행가능하도록 환경설정<ul>
+<li>오른쪽마우스 -&gt; 속성 -&gt; 보안 -&gt; 고급 -&gt; 상속사용</li>
+<li>key pair는 무조건 C드라이브 안에 넣기</li>
+</ul>
+</li>
+<li>명령프롬프트 관리자 권한으로 실행<ul>
+<li>cd 키페어 위치</li>
+<li>aws 홈페이지 가서 연결버튼 누름</li>
+<li>ssh 링크 복사해서 cmd에 복사</li>
+<li>연결완료 되면 pwd 입력 -&gt; <code>현재 서버위치</code></li>
+</ul>
+</li>
+</ol>
 <br>
 
-<h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul>
-<li>컨테이너를 관리하는 플랫폼</li>
-<li>컨테이너 기반의 오픈소스 가상화 플랫폼<ul>
-<li>다양한 프로그램, 실행환경을 컨테이너로 추상화하고 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다. 백엔드 프로그램, 데이터베이스 서버, 메시지 큐등 어떤 프로그램도 컨테이너로 추상화할 수 있고 조립PC, AWS, Azure, Google cloud등 어디에서든 실행할 수 있습니다.</li>
-<li>즉, 컨테이너는 격리된 공간에서 프로세스가 동작하는 기술입니다.</li>
+<h3 id="Jupyter-Notebook-설치-HTTPS-적용-시스템-서비스-설정하기"><a href="#Jupyter-Notebook-설치-HTTPS-적용-시스템-서비스-설정하기" class="headerlink" title="Jupyter Notebook 설치, HTTPS 적용, 시스템 서비스 설정하기"></a>Jupyter Notebook 설치, HTTPS 적용, 시스템 서비스 설정하기</h3><br>
+
+<ul>
+<li><p><strong>Jypyter Notebook</strong> : 콘솔창이 아닌 웹브라우저 환경에서 해당 서버에 바로 접근해서 해당 서버를 관리할 수 있도록 해주는 유틸</p>
+<ol>
+<li>sudo apt-get update  :  apt-get명령의 업데이트</li>
+<li>sudo apt-get install python3-pip<ul>
+<li>ubuntu 18.04버전엔 pyhton3가 디폴트로 깔려있다. 그래서 python3는 깔 필요없고 파이썬 관련 패키지를 설치할 수 있도록 도와주는 python3-pip를 설치</li>
+</ul>
+</li>
+<li>sudo pip3 install notebook  : jupyter notebook 설치</li>
+</ol>
+<br>
+
+<p>만들어진 주피터를 통해서 서버의 외부에서 해당 서버에 웹브라우저를 이용해서 접속할 수 있도록 된 것. 이제 주피터 접속을 위한 비밀번호 설정을 해줘야 함.</p>
+  <br>
+
+<ol>
+<li>python3</li>
+<li>from notebook.auth import passwd</li>
+<li>passwd()   :  패스워드 함수 호출(비밀번호를 설정하겠다는 의미)</li>
+<li>나온 hash값 복사해서 메모장 붙여넣기</li>
+<li>exit()</li>
+</ol>
+<br>
+
+<p>서버에서 주피터 노트북을 실행해서 외부에서 접속 했을 때 비밀번호를 입력해야 서버에 접속할 수 있도록 하기 위해 주피터 환경설정 진행</p>
+<br>
+
+<ol>
+<li>jupyter notebook –generate-config    : 환경설정 파일 만듦</li>
+<li>sudo vi 바로 윗줄 환경설정 위치값 붙여넣기<ul>
+<li>ex)  sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py         </li>
+</ul>
+</li>
+<li>제일 밑으로 내려가서 ‘a’눌러서 수정모드로 변환</li>
+<li>c = get_config()</li>
+<li>c.NotebookApp.password = u’sha1 : 복사해둔 해시값’</li>
+<li>c.NotebookApp.ip = ‘172.31.14.123’    이거는 화면 제목 창에 나온 주소 그대로 적으면 됨</li>
+<li>c.NotebookApp.notebook_dir = ‘/‘</li>
+<li>esc버튼 누르고</li>
+<li>:wq!</li>
+</ol>
+<br>
+
+<ol>
+<li>sudo jupyter-notebook –allow-root   : 주피터 노트북을 루트권한을 가진 상태로 실행<ul>
+<li>8888포트로 주피터 노트북이 열린 것 확인가능</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<ol>
+<li>AWS 웹사이트 다시 돌아가서 </li>
+<li>‘설명’란 안에 있는</li>
+<li>‘보안그룹’ 의 ‘launch-wizard-1’ 클릭</li>
+<li>‘인바운드’</li>
+<li>‘편집’</li>
+<li>‘규칙추가’</li>
+<li>포트범위 : 8888</li>
+<li>소스 : 0.0.0.0/0  (두 개 다)</li>
+</ol>
+<br>
+
+<ol>
+<li>인스턴스 화면으로 돌아옴</li>
+<li>‘설명’란에 ‘IPv4 퍼블릭 IP’에 있는 주소 복사</li>
+<li>주소창에 붙이고 ‘:8888’ 붙여서 엔터</li>
+</ol>
+<br>
+
+<ul>
+<li>더 이상 ssh가 필요하지 않고 바로 웹 브라우저에서 해당 서버에 접속할 수 있어서 매우 편리해졌다. 하지만 우린 주피터를 항상 실행할 수 있는 상태로 만들고 싶다</li>
 </ul>
 </li>
 </ul>
-<p><strong>Difference between VM and Docker</strong></p>
 <br>
 
-<img src="/2020/03/03/Docker-theory/docker1.png" class="" width="500" height="300" title="VM and Docker">
+<ol>
+<li>다시 cmd로 돌아와서 ‘ctrl+z’로 해당 서버 종료 </li>
+<li>bg   : background상태에서 돌아가게 함</li>
+<li>disown -h   : 소유권 포기<ul>
+<li>이제 주피터 노트북이 항상 실행 중인 상태가 됨<br>
 
-
-<br>
-
-<h4 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h4><p>  ‘컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것’</p>
-<ul>
-<li>이미지는 컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것으로 상태값을 가지지 않고 변하지 않습니다(Immutable). 컨테이너는 이미지를 실행한 상태라고 볼 수 있고 추가되거나 변하는 값은 컨테이너에 저장됩니다. 같은 이미지에서 여러개의 컨테이너를 생성할 수 있고 컨테이너의 상태가 바뀌거나 컨테이너가 삭제되더라도 이미지는 변하지 않고 그대로 남아있습니다.</li>
-<li>말그대로 이미지는 컨테이너를 실행하기 위한 모든 정보를 가지고 있기 때문에 더 이상 의존성 파일을 컴파일하고 이것저것 설치할 필요가 없습니다. 이제 새로운 서버가 추가되면 미리 만들어 놓은 이미지를 다운받고 컨테이너를 생성만 하면 됩니다. 한 서버에 여러개의 컨테이너를 실행할 수 있고, 수십, 수백, 수천대의 서버도 문제없습니다.</li>
-<li>도커 이미지는 Docker hub에 등록하거나 Docker Registry 저장소를 직접 만들어 관리할 수 있습니다. 현재 공개된 도커 이미지는 50만개가 넘고 Docker hub의 이미지 다운로드 수는 80억회에 이릅니다. 누구나 쉽게 이미지를 만들고 배포할 수 있습니다.</li>
+</li>
 </ul>
+</li>
+</ol>
+<p>언제 어디서나 웹브라우저로 서버를 관리할 수 있게 됨<br>하지만 지금의 주피터 노트북은 ssl인증서가 적용되지 않은 상태라서 통신과정에서 상당히 위험.<br><br></p>
+<p>그러므로 https를 적용해야됨</p>
 <br>
 
-<img src="/2020/03/03/Docker-theory/docker2.png" class="" width="500" height="300" title="Docker Image">
+<ol>
+<li>sudo netstat -nap | grep 8888  : 현재 8888포트가 실행 중인 피아이디를 알 수 있다</li>
+<li>sudo kill -9 ‘파이썬 옆 숫자’<ul>
+<li>해당 주피터 노트북을 종료시킬 수 있음</li>
+<li>웹브라우저에서 새로고침하면 적용 안 됨</li>
+</ul>
+</li>
+</ol>
+<br>
+
+<h3 id="HTTPS-적용"><a href="#HTTPS-적용" class="headerlink" title="HTTPS 적용"></a>HTTPS 적용</h3><br>
+
+<p><em>환경설정에 개인키와 공개키를 넣는 작업</em></p>
+<br>
+
+<ol>
+<li>cd /home/ubuntu</li>
+<li>pwd</li>
+<li>mkdir ssl</li>
+<li>cd ssl</li>
+<li>sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout “cert.key” -out “cert.pem” -batch     <em>개인키 공개키 생성</em></li>
+<li>ls</li>
+<li>sudo vi 바로 윗줄 환경설정 다시 열기<pre><code>* ex)  sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py 
+  *  *방향키 위쪽 버튼 눌러서 찾기*</code></pre></li>
+<li>‘a’눌러서 시작</li>
+<li>c.NotebookApp.certfile = u’/home/ubuntu/ssl/cert.pem’</li>
+<li>c.NotebookApp.keyfile = u’/home/ubuntu/ssl/cert.key’</li>
+<li>esc버튼</li>
+<li>:wq!</li>
+</ol>
+<Br>
+
+<ol>
+<li>sudo jupyter-notebook –allow-root   <em>주피터 노트북 실행</em></li>
+<li></li>
+</ol>
+<p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
 
 
 
@@ -298,14 +416,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/03/Docker-tutorial1/"
-                    data-tooltip="Docker Tutorial"
-                    aria-label="PREVIOUS: Docker Tutorial"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -315,9 +430,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/23/RegularExpression/"
-                    data-tooltip="Regular Expression"
-                    aria-label="NEXT: Regular Expression"
+                    href="/2020/03/03/Docker-theory/"
+                    data-tooltip="What is Docker?"
+                    aria-label="NEXT: What is Docker?"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -342,7 +457,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -355,7 +470,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -368,7 +483,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -413,14 +528,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/03/Docker-tutorial1/"
-                    data-tooltip="Docker Tutorial"
-                    aria-label="PREVIOUS: Docker Tutorial"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -430,9 +542,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/02/23/RegularExpression/"
-                    data-tooltip="Regular Expression"
-                    aria-label="NEXT: Regular Expression"
+                    href="/2020/03/03/Docker-theory/"
+                    data-tooltip="What is Docker?"
+                    aria-label="NEXT: What is Docker?"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -457,7 +569,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -470,7 +582,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -483,7 +595,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -517,7 +629,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -530,7 +642,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -543,7 +655,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/03/Docker-theory/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/03/Docker-tutorial1/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
