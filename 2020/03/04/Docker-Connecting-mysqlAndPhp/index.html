@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Making MySQL container with Docker - Developer Javit</title>
+    <title>Connecting MySQL Container and PHP Container - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"PHP 컨테이너와 MySQL 컨테이너 연동해보기\n\n\n\ncd /home/ubuntu/example\nls\nsudo vi Dockerfile\nRUN 밑에12# Connect PHP &amp; MYSQLRUN apt-get install -y php5.6-mysql\n:wq!\ndocker build -t example .\n\n\n\n도커 이미지가 만들어졌으니, 이미지를 이용해서 컨테이너로 띄운다\n\ndocker images\ndocker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example\n\n\n\n터미널을 하나 더 만들어서 php문서 작업\n\ncd /home/ubuntu/example/html\nls\ncat index.php\nsudo vi index.php\n\n\n\n문서작업이 많으면 Jupyter에서 직접 작업해도 된다.\n\nphp를 mysql에 연결하기 위한 php문법12345678910111213141516&lt;?php    $conn &#x3D; mysqli_connect(        &#39;[mysql IPAddress]&#39;,        &#39;test&#39;,        &#39;password&#39;,        &#39;TEST&#39;,        &#39;9876&#39;    );    if(mysqli_connect_errno())&#123;        echo &quot;Failed to connect to MySQL: &quot;.mysqli_connect_error();    &#125;    $sql &#x3D; &quot;SELECT VERSION()&quot;;    $result &#x3D; mysqli_query($conn, $sql);    $row &#x3D; mysqli_fetch_array($result);    print_r($row[&quot;VERSION()&quot;]));?&gt;\n\n\n\n\n\n출처 : 동빈나 youtube\n\n\n","dateCreated":"2020-03-04T13:46:25+09:00","dateModified":"2020-03-04T12:59:28+09:00","datePublished":"2020-03-04T13:46:25+09:00","description":"PHP 컨테이너와 MySQL 컨테이너 연동해보기","headline":"Making MySQL container with Docker","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/","keywords":"Docker"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"PHP 컨테이너와 MySQL 컨테이너 연동해보기\n\n\n\ncd /home/ubuntu/example\nls\nsudo vi Dockerfile\nRUN 밑에12# Connect PHP &amp; MYSQLRUN apt-get install -y php5.6-mysql\n:wq!\ndocker build -t example .\n\n\n\n도커 이미지가 만들어졌으니, 이미지를 이용해서 컨테이너로 띄운다\n\ndocker images\ndocker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example\n\n\n\n터미널을 하나 더 만들어서 php문서 작업\n\ncd /home/ubuntu/example/html\nls\ncat index.php\nsudo vi index.php\n\n\n\n문서작업이 많으면 Jupyter에서 직접 작업해도 된다.\n\nphp를 mysql에 연결하기 위한 php문법12345678910111213141516&lt;?php    $conn &#x3D; mysqli_connect(        &#39;[mysql IPAddress]&#39;,        &#39;test&#39;,        &#39;password&#39;,        &#39;TEST&#39;,        &#39;9876&#39;    );    if(mysqli_connect_errno())&#123;        echo &quot;Failed to connect to MySQL: &quot;.mysqli_connect_error();    &#125;    $sql &#x3D; &quot;SELECT VERSION()&quot;;    $result &#x3D; mysqli_query($conn, $sql);    $row &#x3D; mysqli_fetch_array($result);    print_r($row[&quot;VERSION()&quot;]));?&gt;\n\n\n\n\n\n출처 : 동빈나 youtube\n\n\n","dateCreated":"2020-03-04T13:46:25+09:00","dateModified":"2020-03-04T23:28:58+09:00","datePublished":"2020-03-04T13:46:25+09:00","description":"PHP 컨테이너와 MySQL 컨테이너 연동해보기","headline":"Connecting MySQL Container and PHP Container","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/","keywords":"Docker"}</script>
     <meta name="description" content="PHP 컨테이너와 MySQL 컨테이너 연동해보기">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Making MySQL container with Docker">
+<meta property="og:title" content="Connecting MySQL Container and PHP Container">
 <meta property="og:url" content="http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/index.html">
 <meta property="og:site_name" content="Developer Javit">
 <meta property="og:description" content="PHP 컨테이너와 MySQL 컨테이너 연동해보기">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-04T04:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-04T03:59:28.100Z">
+<meta property="article:modified_time" content="2020-03-04T14:28:58.978Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Making MySQL container with Docker
+            Connecting MySQL Container and PHP Container
         </h1>
     
     
