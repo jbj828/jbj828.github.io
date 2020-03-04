@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-03T15:03:56.127Z</updated>
+  <updated>2020-03-04T01:18:40.539Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Making Apache and PHP configuration with Docker Image</title>
+    <link href="http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"/>
+    <id>http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/</id>
+    <published>2020-03-04T06:46:25.000Z</published>
+    <updated>2020-03-04T01:18:40.539Z</updated>
+    
+    <content type="html"><![CDATA[<p>Docker 이미지로 Apache 및 PHP 개발환경 구축하기</p><a id="more"></a><p>아파치 웹서버만 포함되어있는 도커이미지를 더 수정해서 PHP까지 추가해본다. 볼륨을 공유할 수 있도록 해서 PHP 소스코드가 동작할 수 있도록 개발한다.</p><br><p><strong>컨테이너 제거</strong></p><ul><li><code>docker ps -a</code>  : 80번 포트의 컨테이너가 구동 중</li><li><code>docker rm -f `docker ps -a -q`</code>  : -f옵션은 컨테이너를 강제 삭제 시킴. docker ps에 -a -q를 붙여서 현재 존재하는 모든 컨테이너 명단을 가져온다.</li><li><code>docker ps -a</code>  : 컨테이너 확인해 본다</li></ul><br><p><strong>도커파일 수정</strong></p><ul><li><p><code>cd /home/ubuntu/example</code> : 저번에 만든 도커 파일 위치</p></li><li><p><code>ls</code> </p></li><li><p><code>sudo vi Dockerfile</code></p></li><li><p>도커파일에 php 설치 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;MAINTAINER 밑에</span><br><span class="line"># Avoiding user interaction with tzdata</span><br><span class="line">ENV DEBIAN_FRONTEND&#x3D;noninteractive</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 기존 RUN 밑에</span><br><span class="line">RUN apt-get install -y software-properties-common</span><br><span class="line">RUN add-apt-repository ppa:ondrej&#x2F;php # For Installing PHP 5.6</span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y php5.6</span><br></pre></td></tr></table></figure></li><li><p><code>docker build -t example .</code></p></li><li><p><code>docker images</code></p></li></ul><p>빌드가 완료되면 기존에 존재하던 이미지는 <code>none</code>으로 바뀜. 사용되지 않는 이미지는 삭제한다. 하지만 삭제하고자 할 때 특정한 컨테이너에서 구동 중인 것은 삭제가 진행 안됨. 먼저 컨테이너부터 삭제 진행</p><ul><li><code>docker rm -f 컨테이너아이디</code> : docker ps -a에서 확인가능</li><li><code>docker rmi -f d 이미지아이디</code>  </li></ul><p><strong>Example 레포지터리를 컨테이너에 띄우기</strong></p><ul><li><code>docker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example</code>  : 80번 포트를 열고, volume옵션을 열어주어서 마운팅을 진행한다. /home/ubuntu/example/html 과 /var/www/html을 서로 연결해준다. 후자는 php의 소스코드가 놓이는 기본 경로.<br>이렇게 마운팅 된 경로는 호스트에다 파일을 넣어주면 자동으로 컨테이너의 해당 경로에 실제로 파일이 놓인 것과 같은 효과를 낸다.</li><li>/html/ubuntu/example/html 의 경로를 복사해 주피터에서 새로운 터미널을 열어 복사한다</li><li><code>cd /html/ubuntu/example/html</code></li><li><code>ls</code><br>: 이제 이 새로운 터미널에서 html문서나 php문서를 작성하면 이 컨테이너 내부에 있는 php소스코드 경로와 연결이 되기 때문에 실제 웹 서버에 php코드가 놓이는 것과 동일한 효과를 낸다</li><li>80번 포트에서 새로고침하면 php가 적용 된 문서가 나타난다</li></ul><p><strong>PHP 소스코드 작성</strong></p><p>새로운 터미널에서.</p><ul><li><p><code>sudo vi index.php</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php phpinfo(); ?&gt;</span><br></pre></td></tr></table></figure><p>:wq!</p></li><li><p>다시 새로고침하면 컨테이너 안에 설치되어 있는 php환경설정 내용이 등장.</p></li></ul><br><ul><li>php와 apache가 설치된 하나의 image를 직접 만들었기 때문에 이제 docker run 을 통해 이 컨테이너를 띄울 수 있다</li><li><code>docker run -p 81:80 -v /home/ubuntu/example/html:/var/www/html example</code></li><li>AWS가서 81번도 방화벽을 열어준다</li></ul><p>출처 : 동빈나 youtube</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Docker 이미지로 Apache 및 PHP 개발환경 구축하기&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Docker" scheme="http://jbj828.github.io/categories/Docker/"/>
+    
+    
+      <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>Install Docker on AWS EC2 and run the web server through Dockerfile</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;Traverse Binary Tree&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
-    
-    
-      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Binary Tree</title>
-    <link href="http://jbj828.github.io/2020/02/06/Al-binary-tree/"/>
-    <id>http://jbj828.github.io/2020/02/06/Al-binary-tree/</id>
-    <published>2020-02-06T07:30:25.000Z</published>
-    <updated>2020-02-06T14:12:54.625Z</updated>
-    
-    <content type="html"><![CDATA[<p>Binary Tree</p><a id="more"></a><p><strong>What is Binary Tree</strong></p><ul><li>A tree is called as binary tree if each node has zero, one or two child.</li><li>It is a family of Data Structure(BST, Heap tree, AVL, Red-Black, Syntax tree, Huffman Coding tree, etc.)</li></ul><p><br><br></p><p><strong>Why should we learn Binary tree</strong></p><ul><li>Prerequisite for more advanced trees</li><li>Is used in solving specific problems like:<ul><li>Huffman Coding</li><li>Heap(Priority Queue)</li><li>Expression parsing</li></ul></li></ul><p><br><Br></p><p><strong>Types of Binary Tree</strong></p><ul><li>Strict Binary Tree : if each node has either 2 children or none.</li><li>Full Binary Tree : if each non leaf node has 2 children and all lead nodes are at same level</li><li>Complete Binary Tree : if all levels are completely filled except possibly the last level and the last level has all keys as left as possible</li></ul><p><br><Br></p><p><strong>Tree Representation</strong></p><ul><li>Using Linked List</li><li>Using Array</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Binary Tree&lt;/p&gt;
     
     </summary>
     
