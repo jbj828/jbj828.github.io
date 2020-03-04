@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Making Apache and PHP configuration with Docker Image - Developer Javit</title>
+    <title>Making MySQL container with Docker - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Docker 이미지로 Apache 및 PHP 개발환경 구축하기\n\n\n아파치 웹서버만 포함되어있는 도커이미지를 더 수정해서 PHP까지 추가해본다. 볼륨을 공유할 수 있도록 해서 PHP 소스코드가 동작할 수 있도록 개발한다.\n\n\n컨테이너 제거\n\ndocker ps -a  : 80번 포트의 컨테이너가 구동 중\ndocker rm -f `docker ps -a -q`  : -f옵션은 컨테이너를 강제 삭제 시킴. docker ps에 -a -q를 붙여서 현재 존재하는 모든 컨테이너 명단을 가져온다.\ndocker ps -a  : 컨테이너 확인해 본다\n\n\n\n도커파일 수정\n\ncd /home/ubuntu/example : 저번에 만든 도커 파일 위치\n\nls \n\nsudo vi Dockerfile\n\n도커파일에 php 설치 \n123456789&#x2F;&#x2F;MAINTAINER 밑에# Avoiding user interaction with tzdataENV DEBIAN_FRONTEND&#x3D;noninteractive&#x2F;&#x2F; 기존 RUN 밑에RUN apt-get install -y software-properties-commonRUN add-apt-repository ppa:ondrej&#x2F;php # For Installing PHP 5.6RUN apt-get updateRUN apt-get install -y php5.6\n\ndocker build -t example .\n\ndocker images\n\n\n빌드가 완료되면 기존에 존재하던 이미지는 none으로 바뀜. 사용되지 않는 이미지는 삭제한다. 하지만 삭제하고자 할 때 특정한 컨테이너에서 구동 중인 것은 삭제가 진행 안됨. 먼저 컨테이너부터 삭제 진행\n\ndocker rm -f 컨테이너아이디 : docker ps -a에서 확인가능\ndocker rmi -f d 이미지아이디  \n\nExample 레포지터리를 컨테이너에 띄우기\n\ndocker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example  : 80번 포트를 열고, volume옵션을 열어주어서 마운팅을 진행한다. /home/ubuntu/example/html 과 /var/www/html을 서로 연결해준다. 후자는 php의 소스코드가 놓이는 기본 경로.이렇게 마운팅 된 경로는 호스트에다 파일을 넣어주면 자동으로 컨테이너의 해당 경로에 실제로 파일이 놓인 것과 같은 효과를 낸다.\n/html/ubuntu/example/html 의 경로를 복사해 주피터에서 새로운 터미널을 열어 복사한다\ncd /html/ubuntu/example/html\nls: 이제 이 새로운 터미널에서 html문서나 php문서를 작성하면 이 컨테이너 내부에 있는 php소스코드 경로와 연결이 되기 때문에 실제 웹 서버에 php코드가 놓이는 것과 동일한 효과를 낸다\n80번 포트에서 새로고침하면 php가 적용 된 문서가 나타난다\n\nPHP 소스코드 작성\n새로운 터미널에서.\n\nsudo vi index.php\n1&lt;?php phpinfo(); ?&gt;\n:wq!\n\n다시 새로고침하면 컨테이너 안에 설치되어 있는 php환경설정 내용이 등장.\n\n\n\n\n\nphp와 apache가 설치된 하나의 image를 직접 만들었기 때문에 이제 docker run 을 통해 이 컨테이너를 띄울 수 있다\ndocker run -p 81:80 -v /home/ubuntu/example/html:/var/www/html example\nAWS가서 81번도 방화벽을 열어준다\n\n출처 : 동빈나 youtube\n","dateCreated":"2020-03-04T10:46:25+09:00","dateModified":"2020-03-04T11:39:04+09:00","datePublished":"2020-03-04T10:46:25+09:00","description":"Docker 이미지로 Apache 및 PHP 개발환경 구축하기","headline":"Making Apache and PHP configuration with Docker Image","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/","keywords":"Docker"}</script>
-    <meta name="description" content="Docker 이미지로 Apache 및 PHP 개발환경 구축하기">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"PHP 컨테이너와 MySQL 컨테이너 연동해보기\n\n\n\ncd /home/ubuntu/example\nls\nsudo vi Dockerfile\nRUN 밑에12# Connect PHP &amp; MYSQLRUN apt-get install -y php5.6-mysql\n:wq!\ndocker build -t example .\n\n\n\n도커 이미지가 만들어졌으니, 이미지를 이용해서 컨테이너로 띄운다\n\ndocker images\ndocker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example\n\n\n\n터미널을 하나 더 만들어서 php문서 작업\n\ncd /home/ubuntu/example/html\nls\ncat index.php\nsudo vi index.php\n\n\n\n문서작업이 많으면 Jupyter에서 직접 작업해도 된다.\n\nphp를 mysql에 연결하기 위한 php문법12345678910111213141516&lt;?php    $conn &#x3D; mysqli_connect(        &#39;[mysql IPAddress]&#39;,        &#39;test&#39;,        &#39;password&#39;,        &#39;TEST&#39;,        &#39;9876&#39;    );    if(mysqli_connect_errno())&#123;        echo &quot;Failed to connect to MySQL: &quot;.mysqli_connect_error();    &#125;    $sql &#x3D; &quot;SELECT VERSION()&quot;;    $result &#x3D; mysqli_query($conn, $sql);    $row &#x3D; mysqli_fetch_array($result);    print_r($row[&quot;VERSION()&quot;]));?&gt;\n\n\n\n\n\n출처 : 동빈나 youtube\n\n\n","dateCreated":"2020-03-04T13:46:25+09:00","dateModified":"2020-03-04T12:59:28+09:00","datePublished":"2020-03-04T13:46:25+09:00","description":"PHP 컨테이너와 MySQL 컨테이너 연동해보기","headline":"Making MySQL container with Docker","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/","keywords":"Docker"}</script>
+    <meta name="description" content="PHP 컨테이너와 MySQL 컨테이너 연동해보기">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Making Apache and PHP configuration with Docker Image">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/index.html">
+<meta property="og:title" content="Making MySQL container with Docker">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Docker 이미지로 Apache 및 PHP 개발환경 구축하기">
+<meta property="og:description" content="PHP 컨테이너와 MySQL 컨테이너 연동해보기">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-04T01:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-04T02:39:04.798Z">
+<meta property="article:published_time" content="2020-03-04T04:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-04T03:59:28.100Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -215,12 +215,12 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Making Apache and PHP configuration with Docker Image
+            Making MySQL container with Docker
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-04T10:46:25+09:00">
+    <time datetime="2020-03-04T13:46:25+09:00">
 	
 		    Mar 04, 2020
     	
@@ -240,67 +240,46 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Docker 이미지로 Apache 및 PHP 개발환경 구축하기</p>
+            <p>PHP 컨테이너와 MySQL 컨테이너 연동해보기</p>
 <a id="more"></a>
 
-<p>아파치 웹서버만 포함되어있는 도커이미지를 더 수정해서 PHP까지 추가해본다. 볼륨을 공유할 수 있도록 해서 PHP 소스코드가 동작할 수 있도록 개발한다.</p>
-<br>
-
-<p><strong>컨테이너 제거</strong></p>
 <ul>
-<li><code>docker ps -a</code>  : 80번 포트의 컨테이너가 구동 중</li>
-<li><code>docker rm -f `docker ps -a -q`</code>  : -f옵션은 컨테이너를 강제 삭제 시킴. docker ps에 -a -q를 붙여서 현재 존재하는 모든 컨테이너 명단을 가져온다.</li>
-<li><code>docker ps -a</code>  : 컨테이너 확인해 본다</li>
+<li><code>cd /home/ubuntu/example</code></li>
+<li><code>ls</code></li>
+<li><code>sudo vi Dockerfile</code></li>
+<li>RUN 밑에<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Connect PHP &amp; MYSQL</span><br><span class="line">RUN apt-get install -y php5.6-mysql</span><br></pre></td></tr></table></figure>
+:wq!</li>
+<li><code>docker build -t example .</code></li>
 </ul>
 <br>
 
-<p><strong>도커파일 수정</strong></p>
+<p>도커 이미지가 만들어졌으니, 이미지를 이용해서 컨테이너로 띄운다</p>
 <ul>
-<li><p><code>cd /home/ubuntu/example</code> : 저번에 만든 도커 파일 위치</p>
-</li>
-<li><p><code>ls</code> </p>
-</li>
-<li><p><code>sudo vi Dockerfile</code></p>
-</li>
-<li><p>도커파일에 php 설치 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;MAINTAINER 밑에</span><br><span class="line"># Avoiding user interaction with tzdata</span><br><span class="line">ENV DEBIAN_FRONTEND&#x3D;noninteractive</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 기존 RUN 밑에</span><br><span class="line">RUN apt-get install -y software-properties-common</span><br><span class="line">RUN add-apt-repository ppa:ondrej&#x2F;php # For Installing PHP 5.6</span><br><span class="line">RUN apt-get update</span><br><span class="line">RUN apt-get install -y php5.6</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>docker build -t example .</code></p>
-</li>
-<li><p><code>docker images</code></p>
-</li>
-</ul>
-<p>빌드가 완료되면 기존에 존재하던 이미지는 <code>none</code>으로 바뀜. 사용되지 않는 이미지는 삭제한다. 하지만 삭제하고자 할 때 특정한 컨테이너에서 구동 중인 것은 삭제가 진행 안됨. 먼저 컨테이너부터 삭제 진행</p>
-<ul>
-<li><code>docker rm -f 컨테이너아이디</code> : docker ps -a에서 확인가능</li>
-<li><code>docker rmi -f d 이미지아이디</code>  </li>
-</ul>
-<p><strong>Example 레포지터리를 컨테이너에 띄우기</strong></p>
-<ul>
-<li><code>docker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example</code>  : 80번 포트를 열고, volume옵션을 열어주어서 마운팅을 진행한다. /home/ubuntu/example/html 과 /var/www/html을 서로 연결해준다. 후자는 php의 소스코드가 놓이는 기본 경로.<br>이렇게 마운팅 된 경로는 호스트에다 파일을 넣어주면 자동으로 컨테이너의 해당 경로에 실제로 파일이 놓인 것과 같은 효과를 낸다.</li>
-<li>/html/ubuntu/example/html 의 경로를 복사해 주피터에서 새로운 터미널을 열어 복사한다</li>
-<li><code>cd /html/ubuntu/example/html</code></li>
-<li><code>ls</code><br>: 이제 이 새로운 터미널에서 html문서나 php문서를 작성하면 이 컨테이너 내부에 있는 php소스코드 경로와 연결이 되기 때문에 실제 웹 서버에 php코드가 놓이는 것과 동일한 효과를 낸다</li>
-<li>80번 포트에서 새로고침하면 php가 적용 된 문서가 나타난다</li>
-</ul>
-<p><strong>PHP 소스코드 작성</strong></p>
-<p>새로운 터미널에서.</p>
-<ul>
-<li><p><code>sudo vi index.php</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php phpinfo(); ?&gt;</span><br></pre></td></tr></table></figure>
-<p>:wq!</p>
-</li>
-<li><p>다시 새로고침하면 컨테이너 안에 설치되어 있는 php환경설정 내용이 등장.</p>
-</li>
+<li><code>docker images</code></li>
+<li><code>docker run -p 80:80 -v /home/ubuntu/example/html:/var/www/html example</code></li>
 </ul>
 <br>
 
+<p>터미널을 하나 더 만들어서 php문서 작업</p>
 <ul>
-<li>php와 apache가 설치된 하나의 image를 직접 만들었기 때문에 이제 docker run 을 통해 이 컨테이너를 띄울 수 있다</li>
-<li><code>docker run -p 81:80 -v /home/ubuntu/example/html:/var/www/html example</code></li>
-<li>AWS가서 81번도 방화벽을 열어준다</li>
+<li><code>cd /home/ubuntu/example/html</code></li>
+<li><code>ls</code></li>
+<li><code>cat index.php</code></li>
+<li><code>sudo vi index.php</code></li>
 </ul>
-<p>출처 : 동빈나 youtube</p>
+<br>
+
+<p>문서작업이 많으면 Jupyter에서 직접 작업해도 된다.</p>
+<ul>
+<li>php를 mysql에 연결하기 위한 php문법<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $conn &#x3D; mysqli_connect(</span><br><span class="line">        &#39;[mysql IPAddress]&#39;,</span><br><span class="line">        &#39;test&#39;,</span><br><span class="line">        &#39;password&#39;,</span><br><span class="line">        &#39;TEST&#39;,</span><br><span class="line">        &#39;9876&#39;</span><br><span class="line">    );</span><br><span class="line">    if(mysqli_connect_errno())&#123;</span><br><span class="line">        echo &quot;Failed to connect to MySQL: &quot;.mysqli_connect_error();</span><br><span class="line">    &#125;</span><br><span class="line">    $sql &#x3D; &quot;SELECT VERSION()&quot;;</span><br><span class="line">    $result &#x3D; mysqli_query($conn, $sql);</span><br><span class="line">    $row &#x3D; mysqli_fetch_array($result);</span><br><span class="line">    print_r($row[&quot;VERSION()&quot;]));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<br>
+출처 : 동빈나 youtube
+
+
 
             
 
@@ -325,9 +304,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/04/Docker-making-mySQL-container/"
-                    data-tooltip="Making MySQL container with Docker"
-                    aria-label="PREVIOUS: Making MySQL container with Docker"
+                    href="/2020/03/04/Docker-Making-DB-with-AWR-RDS/"
+                    data-tooltip="Making DB with AWS RDS"
+                    aria-label="PREVIOUS: Making DB with AWS RDS"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -339,9 +318,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/03/Docker-installDockerOnAWSec2/"
-                    data-tooltip="Install Docker on AWS EC2 and run the web server through Dockerfile"
-                    aria-label="NEXT: Install Docker on AWS EC2 and run the web server through Dockerfile"
+                    href="/2020/03/04/Docker-making-mySQL-container/"
+                    data-tooltip="Making MySQL container with Docker"
+                    aria-label="NEXT: Making MySQL container with Docker"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -366,7 +345,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -379,7 +358,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -392,7 +371,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -440,9 +419,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/04/Docker-making-mySQL-container/"
-                    data-tooltip="Making MySQL container with Docker"
-                    aria-label="PREVIOUS: Making MySQL container with Docker"
+                    href="/2020/03/04/Docker-Making-DB-with-AWR-RDS/"
+                    data-tooltip="Making DB with AWS RDS"
+                    aria-label="PREVIOUS: Making DB with AWS RDS"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -454,9 +433,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/03/Docker-installDockerOnAWSec2/"
-                    data-tooltip="Install Docker on AWS EC2 and run the web server through Dockerfile"
-                    aria-label="NEXT: Install Docker on AWS EC2 and run the web server through Dockerfile"
+                    href="/2020/03/04/Docker-making-mySQL-container/"
+                    data-tooltip="Making MySQL container with Docker"
+                    aria-label="NEXT: Making MySQL container with Docker"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -481,7 +460,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -494,7 +473,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -507,7 +486,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -541,7 +520,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -554,7 +533,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -567,7 +546,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-making-PHP-config/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-Connecting-mysqlAndPhp/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
