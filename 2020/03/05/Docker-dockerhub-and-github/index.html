@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Posting Docker project to Github - Developer Javit</title>
+    <title>Connecting Dockerhub and Github - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Github에 Docker 프로젝트 올리기\n\n\n\nGithub에 새로운 Repository 생성\n\n\n\nAWS EC2의 ubuntu 18.04버전에는 자동으로 깃 프로그램이 설치되어 있어 바로 사용가능\n만들어진 Repository와 우리의 서버와 연동시키기 위해 클론부터 함\ncd /home/ubuntu\ngit clone 깃허브 레포지터리 복사\nls\ncd 레포지터리 이름\n\n\n\n이제 깃프로젝트에 소스코드를 올리면 됨\n\nsudo vi 레포지터리이름\n\n:wq!  : 그냥 파일 저장할 수 있도록 해주고 주피터를 이용해서 소스코드 작성\n\n이전에 작성한 example폴더의 Docker 파일 그대로 복사 붙여넣기(이렇게 깃 프로젝트를 만들었다)\n\n주피터 홈에서 new -&gt; text file   하나의 php 코드도 만들어줌\n\n이름은 index.php\n\n내용은 이전에 작성했던 index.php내용 그대로 넣음\n\n\n\n\n이제 실제로 깃에 올려보자\n\nls\ncat Dockerfile : 내용확인\ncat index.php : 내용확인\ngit add .\ngit commit -m &quot;이름&quot;\ngit push\n\n\n출처 : 동빈나 youtube\n","dateCreated":"2020-03-04T16:46:25+09:00","dateModified":"2020-03-04T15:27:37+09:00","datePublished":"2020-03-04T16:46:25+09:00","description":"Github에 Docker 프로젝트 올리기","headline":"Posting Docker project to Github","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/04/Docker-withGithub/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/04/Docker-withGithub/","keywords":"Docker"}</script>
-    <meta name="description" content="Github에 Docker 프로젝트 올리기">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Dockerhub와 Github 연동하기\n\n\nDockerhub?\n도커의 이미지 용량은 메가에서 기가단위까지 거대하다. 이러한 큰 용량의 이미지를 Dockerhub를 통해 공개이미지로서 무료로 관리할 수 있게 만든 것.\n\nDockerhub와 Github 연동 이유?\n깃허브의 특정한 프로젝트에 있는 도커파일을 도커허브 측에서 자동으로 빌드를 수행해준다. 소스코드를 수정해서 깃허브에 업로드만 하면 자동으로 도커허브에서 그것을 감지해서 도커파일을 이용해 다시 빌드를 수행해주기 때문에 매우 쉽게 도커이미지를 컨테이너로 띄울 수 있게 된다.\n\n과정\nDockerhub에서 Create a Repository\nGithub과 연동하여 해당 github repository와 연동\ndockerhub에서 build 진행\n\n\n\n\n빌드가 완료되면 우리의 서버에서 현재 구동 중인 모든 도커이미지를 제거해도 됨.\ndocker rm -f `docker ps -a -q` : 컨테이너 삭제\ndocker rmi -f `docker images`  : 이미지 삭제\ndocker ps -a : 모든 이미지와 컨테이너 제거 확인\n\n\n\nReadMe 파일 만들기\n\nGithub에서 readme 파일 만들기1234567891011121314# Docker 실전 연습 예제입니다.### Installation&lt;pre&gt;cd &#x2F;homegit clone https:&#x2F;&#x2F;github.com&#x2F;jbj828&#x2F;Docker-Practicecd Docker-Practice&lt;&#x2F;pre&gt;### Run&lt;pre&gt;# Login For Private Docker Repositorydocker logindocker pull jbj828&#x2F;docker-practicedocker run -p 80:80 -v &#x2F;home&#x2F;Docker-Practice&#x2F;Project:&#x2F;var&#x2F;www&#x2F;html jbj828&#x2F;docker-practice&lt;&#x2F;pre&gt;\n\n\n\n\n\nReadme파일에서 프로젝트 경로안에 index.html 파일이 존재하도록 설정했기 때문에, 깃 프로젝트의 구성을 바꿔준다\n\nls\ncd /home/ubuntu\nls\ncd Docker-Practice/\nmkdir Project\nmv index.php ./Project/index.php\ncd Project\nls  : 이제 Project 폴더안에 index.php가 존재\n\n\n\n\ncd ..\ngit add .\ngit commit -m &quot;Change index.php path&quot;\ngit push\nReadme.md파일을 수정했기 때문에 소스코드 충돌 메세지가 뜬다. 이럴 때는 pull 먼저 진행하면 된다\ngit pull\nMerge관련 메세지 나오면 그냥 밖으로 나옴\ngit push\n\n\n출처 : 동빈나 youtube\n","dateCreated":"2020-03-05T10:46:25+09:00","dateModified":"2020-03-05T15:16:10+09:00","datePublished":"2020-03-05T10:46:25+09:00","description":"Dockerhub와 Github 연동하기","headline":"Connecting Dockerhub and Github","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/","keywords":"Docker"}</script>
+    <meta name="description" content="Dockerhub와 Github 연동하기">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Posting Docker project to Github">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/04/Docker-withGithub/index.html">
+<meta property="og:title" content="Connecting Dockerhub and Github">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Github에 Docker 프로젝트 올리기">
+<meta property="og:description" content="Dockerhub와 Github 연동하기">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-04T07:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-04T06:27:37.001Z">
+<meta property="article:published_time" content="2020-03-05T01:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-05T06:16:10.445Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Posting Docker project to Github
+            Connecting Dockerhub and Github
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-04T16:46:25+09:00">
+    <time datetime="2020-03-05T10:46:25+09:00">
 	
-		    Mar 04, 2020
+		    Mar 05, 2020
     	
     </time>
     
@@ -240,47 +240,59 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Github에 Docker 프로젝트 올리기</p>
+            <p>Dockerhub와 Github 연동하기</p>
 <a id="more"></a>
 
-<ul>
-<li>Github에 새로운 Repository 생성</li>
+<h3 id="Dockerhub"><a href="#Dockerhub" class="headerlink" title="Dockerhub?"></a>Dockerhub?</h3><ul>
+<li>도커의 이미지 용량은 메가에서 기가단위까지 거대하다. 이러한 큰 용량의 이미지를 Dockerhub를 통해 공개이미지로서 무료로 관리할 수 있게 만든 것.</li>
+</ul>
+<h3 id="Dockerhub와-Github-연동-이유"><a href="#Dockerhub와-Github-연동-이유" class="headerlink" title="Dockerhub와 Github 연동 이유?"></a>Dockerhub와 Github 연동 이유?</h3><ul>
+<li>깃허브의 특정한 프로젝트에 있는 도커파일을 도커허브 측에서 자동으로 빌드를 수행해준다. 소스코드를 수정해서 깃허브에 업로드만 하면 자동으로 도커허브에서 그것을 감지해서 도커파일을 이용해 다시 빌드를 수행해주기 때문에 매우 쉽게 도커이미지를 컨테이너로 띄울 수 있게 된다.</li>
+</ul>
+<h3 id="과정"><a href="#과정" class="headerlink" title="과정"></a>과정</h3><ul>
+<li>Dockerhub에서 Create a Repository</li>
+<li>Github과 연동하여 해당 github repository와 연동</li>
+<li>dockerhub에서 build 진행</li>
 </ul>
 <br>
 
-<p><em>AWS EC2의 ubuntu 18.04버전에는 자동으로 깃 프로그램이 설치되어 있어 바로 사용가능</em></p>
-<h4 id="만들어진-Repository와-우리의-서버와-연동시키기-위해-클론부터-함"><a href="#만들어진-Repository와-우리의-서버와-연동시키기-위해-클론부터-함" class="headerlink" title="만들어진 Repository와 우리의 서버와 연동시키기 위해 클론부터 함"></a>만들어진 Repository와 우리의 서버와 연동시키기 위해 클론부터 함</h4><ul>
+<ul>
+<li>빌드가 완료되면 우리의 서버에서 현재 구동 중인 모든 도커이미지를 제거해도 됨.</li>
+<li><code>docker rm -f `docker ps -a -q`</code> : 컨테이너 삭제</li>
+<li><code>docker rmi -f `docker images`</code>  : 이미지 삭제</li>
+<li><code>docker ps -a</code> : 모든 이미지와 컨테이너 제거 확인</li>
+</ul>
+<br>
+
+<p><strong>ReadMe 파일 만들기</strong></p>
+<ul>
+<li>Github에서 readme 파일 만들기<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># Docker 실전 연습 예제입니다.</span><br><span class="line">### Installation</span><br><span class="line">&lt;pre&gt;</span><br><span class="line">cd &#x2F;home</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;jbj828&#x2F;Docker-Practice</span><br><span class="line">cd Docker-Practice</span><br><span class="line">&lt;&#x2F;pre&gt;</span><br><span class="line">### Run</span><br><span class="line">&lt;pre&gt;</span><br><span class="line"># Login For Private Docker Repository</span><br><span class="line">docker login</span><br><span class="line">docker pull jbj828&#x2F;docker-practice</span><br><span class="line">docker run -p 80:80 -v &#x2F;home&#x2F;Docker-Practice&#x2F;Project:&#x2F;var&#x2F;www&#x2F;html jbj828&#x2F;docker-practice</span><br><span class="line">&lt;&#x2F;pre&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<br>
+
+<p><strong>Readme파일에서 프로젝트 경로안에 index.html 파일이 존재하도록 설정했기 때문에, 깃 프로젝트의 구성을 바꿔준다</strong></p>
+<ul>
+<li><code>ls</code></li>
 <li><code>cd /home/ubuntu</code></li>
-<li><code>git clone 깃허브 레포지터리 복사</code></li>
 <li><code>ls</code></li>
-<li><code>cd 레포지터리 이름</code></li>
+<li><code>cd Docker-Practice/</code></li>
+<li><code>mkdir Project</code></li>
+<li><code>mv index.php ./Project/index.php</code></li>
+<li><code>cd Project</code></li>
+<li><code>ls</code>  : 이제 Project 폴더안에 index.php가 존재</li>
 </ul>
 <br>
 
-<p>이제 깃프로젝트에 소스코드를 올리면 됨</p>
 <ul>
-<li><p><code>sudo vi 레포지터리이름</code></p>
-</li>
-<li><p><code>:wq!</code>  : 그냥 파일 저장할 수 있도록 해주고 주피터를 이용해서 소스코드 작성</p>
-</li>
-<li><p>이전에 작성한 example폴더의 Docker 파일 그대로 복사 붙여넣기(이렇게 깃 프로젝트를 만들었다)</p>
-</li>
-<li><p>주피터 홈에서 new -&gt; text file   하나의 php 코드도 만들어줌</p>
-</li>
-<li><p>이름은 index.php</p>
-</li>
-<li><p>내용은 이전에 작성했던 index.php내용 그대로 넣음</p>
-</li>
-</ul>
-<br>
-
-<p><strong>이제 실제로 깃에 올려보자</strong></p>
-<ul>
-<li><code>ls</code></li>
-<li><code>cat Dockerfile</code> : 내용확인</li>
-<li><code>cat index.php</code> : 내용확인</li>
+<li><code>cd ..</code></li>
 <li><code>git add .</code></li>
-<li><code>git commit -m &quot;이름&quot;</code></li>
+<li><code>git commit -m &quot;Change index.php path&quot;</code></li>
+<li><code>git push</code></li>
+<li>Readme.md파일을 수정했기 때문에 소스코드 충돌 메세지가 뜬다. 이럴 때는 pull 먼저 진행하면 된다</li>
+<li><code>git pull</code></li>
+<li>Merge관련 메세지 나오면 그냥 밖으로 나옴</li>
 <li><code>git push</code></li>
 </ul>
 <br>
@@ -306,14 +318,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/05/Docker-dockerhub-and-github/"
-                    data-tooltip="Connecting Dockerhub and Github"
-                    aria-label="PREVIOUS: Connecting Dockerhub and Github"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -323,9 +332,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/04/Docker-Making-DB-with-AWR-RDS/"
-                    data-tooltip="Making DB with AWS RDS"
-                    aria-label="NEXT: Making DB with AWS RDS"
+                    href="/2020/03/04/Docker-withGithub/"
+                    data-tooltip="Posting Docker project to Github"
+                    aria-label="NEXT: Posting Docker project to Github"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -350,7 +359,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -363,7 +372,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -376,7 +385,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -421,14 +430,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/05/Docker-dockerhub-and-github/"
-                    data-tooltip="Connecting Dockerhub and Github"
-                    aria-label="PREVIOUS: Connecting Dockerhub and Github"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -438,9 +444,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/04/Docker-Making-DB-with-AWR-RDS/"
-                    data-tooltip="Making DB with AWS RDS"
-                    aria-label="NEXT: Making DB with AWS RDS"
+                    href="/2020/03/04/Docker-withGithub/"
+                    data-tooltip="Posting Docker project to Github"
+                    aria-label="NEXT: Posting Docker project to Github"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -465,7 +471,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -478,7 +484,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -491,7 +497,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -525,7 +531,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -538,7 +544,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -551,7 +557,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/04/Docker-withGithub/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/05/Docker-dockerhub-and-github/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
