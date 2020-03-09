@@ -6,25 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>The Goal of 2020 - Developer Javit</title>
+    <title>JSON - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Goal of 2020\n\n\n\nBASE 프로그래밍은 노는 것이다. 스케쥴 짜서 공부할 필요 없다.\n2020 Goal\n프로젝트 한 달 한 개 만들기(대단한거 만들 필요없다. 목표한 기능만 있는 것 만들기)\n한 달 책 한 권(인터넷 강의여도 됨, 즉 지식을 쌓는 데 한 달에 한 개)\n\n프로젝트\n프로젝트에 필요한 지식들은 공부하면서 천천히 쌓기!\nex) Docker, AWS, Linux 등등\n\n달 별 공부 목표\n3월 : NodeJS, HTTP 책 읽기\n4월 : 데이터 구조 및 알고리즘(강의), IT인프라 책\n5월 : 운영체제\n6월 : 네트워크\n7월 : 테스트 주도 개발 - 켄트벡 (저) 김창준 (역)\n8월 : 리팩토링 - 파틴 파울러(저) 김지원 (역)\n9월 : 디자인패턴\n10월: \n11월:\n12월:\n\n","dateCreated":"2020-03-08T15:46:25+09:00","dateModified":"2020-03-08T22:27:18+09:00","datePublished":"2020-03-08T15:46:25+09:00","description":"Goal of 2020","headline":"The Goal of 2020","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/08/self-Goal/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/08/self-Goal/","keywords":"Goal"}</script>
-    <meta name="description" content="Goal of 2020">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"study JSON\n\n\nJSON :  Javascript 객체 문법을 따르는 문자 기반의 데이터 포맷\nJavaScript Object Notation (JSON)은 Javascript 객체 문법으로 구조화된 데이터를 표현하기 위한 문자 기반의 표준 포맷이다. 웹 어플리케이션에서 데이터를 전송할 때 일반적으로 사용한다(서버에서 클라이언트로 데이터를 전송하여 표현하려거나 반대의 경우).\n12345678910111213141516171819202122232425const fs &#x3D; require(&#39;fs&#39;);&#x2F;&#x2F; const book &#x3D; &#123;&#x2F;&#x2F;     title: &#39;Ego is the enemy&#39;,&#x2F;&#x2F;     author: &#39;Ryan Holiday&#39;&#x2F;&#x2F; &#125;&#x2F;&#x2F; const bookJSON &#x3D; JSON.stringify(book)&#x2F;&#x2F; fs.writeFileSync(&#39;1-json.json&#39;, bookJSON);&#x2F;&#x2F; const parsedData &#x3D; JSON.parse(bookJSON);&#x2F;&#x2F; console.log(parsedData.author);&#x2F;&#x2F; const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);&#x2F;&#x2F; const dataJSON &#x3D; dataBuffer.toString();&#x2F;&#x2F; const data &#x3D; JSON.parse(dataJSON);&#x2F;&#x2F; console.log(data.title);const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);const data &#x3D; JSON.parse(dataBuffer);data.name &#x3D; &#39;Jay&#39;data.age &#x3D; &#39;26&#39;const newData &#x3D; JSON.stringify(data);fs.writeFileSync(&#39;1-json.json&#39;, newData);\n\n","dateCreated":"2020-03-09T13:46:25+09:00","dateModified":"2020-03-09T13:03:58+09:00","datePublished":"2020-03-09T13:46:25+09:00","description":"study JSON","headline":"JSON","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/","keywords":"NodeJS"}</script>
+    <meta name="description" content="study JSON">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="The Goal of 2020">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/08/self-Goal/index.html">
+<meta property="og:title" content="JSON">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Goal of 2020">
+<meta property="og:description" content="study JSON">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-08T06:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-08T13:27:18.045Z">
+<meta property="article:published_time" content="2020-03-09T04:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-09T04:03:58.309Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="Goal">
+<meta property="article:tag" content="NodeJS">
 <meta name="twitter:card" content="summary">
     
     
@@ -215,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            The Goal of 2020
+            JSON
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-08T15:46:25+09:00">
+    <time datetime="2020-03-09T13:46:25+09:00">
 	
-		    Mar 08, 2020
+		    Mar 09, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Goal/">Goal</a>
+    <a class="category-link" href="/categories/NodeJS/">NodeJS</a>
 
 
     
@@ -240,31 +240,13 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Goal of 2020</p>
+            <p>study JSON</p>
 <a id="more"></a>
 
+<p><strong>JSON</strong> :  Javascript 객체 문법을 따르는 문자 기반의 데이터 포맷</p>
+<p>JavaScript Object Notation (JSON)은 Javascript 객체 문법으로 구조화된 데이터를 표현하기 위한 문자 기반의 표준 포맷이다. 웹 어플리케이션에서 데이터를 전송할 때 일반적으로 사용한다(서버에서 클라이언트로 데이터를 전송하여 표현하려거나 반대의 경우).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const book &#x3D; &#123;</span><br><span class="line">&#x2F;&#x2F;     title: &#39;Ego is the enemy&#39;,</span><br><span class="line">&#x2F;&#x2F;     author: &#39;Ryan Holiday&#39;</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const bookJSON &#x3D; JSON.stringify(book)</span><br><span class="line">&#x2F;&#x2F; fs.writeFileSync(&#39;1-json.json&#39;, bookJSON);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const parsedData &#x3D; JSON.parse(bookJSON);</span><br><span class="line">&#x2F;&#x2F; console.log(parsedData.author);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);</span><br><span class="line">&#x2F;&#x2F; const dataJSON &#x3D; dataBuffer.toString();</span><br><span class="line">&#x2F;&#x2F; const data &#x3D; JSON.parse(dataJSON);</span><br><span class="line">&#x2F;&#x2F; console.log(data.title);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);</span><br><span class="line">const data &#x3D; JSON.parse(dataBuffer);</span><br><span class="line">data.name &#x3D; &#39;Jay&#39;</span><br><span class="line">data.age &#x3D; &#39;26&#39;</span><br><span class="line">const newData &#x3D; JSON.stringify(data);</span><br><span class="line">fs.writeFileSync(&#39;1-json.json&#39;, newData);</span><br></pre></td></tr></table></figure>
 
-<h3 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h3><p> <em><strong>프로그래밍은 노는 것이다. 스케쥴 짜서 공부할 필요 없다.</strong></em></p>
-<h3 id="2020-Goal"><a href="#2020-Goal" class="headerlink" title="2020 Goal"></a>2020 Goal</h3><ol>
-<li><strong>프로젝트 한 달 한 개 만들기</strong>(대단한거 만들 필요없다. 목표한 기능만 있는 것 만들기)</li>
-<li><strong>한 달 책 한 권</strong>(인터넷 강의여도 됨, 즉 지식을 쌓는 데 한 달에 한 개)</li>
-</ol>
-<h4 id="프로젝트"><a href="#프로젝트" class="headerlink" title="프로젝트"></a>프로젝트</h4><ul>
-<li>프로젝트에 필요한 지식들은 공부하면서 천천히 쌓기!</li>
-<li>ex) Docker, AWS, Linux 등등</li>
-</ul>
-<h3 id="달-별-공부-목표"><a href="#달-별-공부-목표" class="headerlink" title="달 별 공부 목표"></a>달 별 공부 목표</h3><ul>
-<li>3월 : NodeJS, HTTP 책 읽기</li>
-<li>4월 : 데이터 구조 및 알고리즘(강의), IT인프라 책</li>
-<li>5월 : 운영체제</li>
-<li>6월 : 네트워크</li>
-<li>7월 : 테스트 주도 개발 - 켄트벡 (저) 김창준 (역)</li>
-<li>8월 : 리팩토링 - 파틴 파울러(저) 김지원 (역)</li>
-<li>9월 : 디자인패턴</li>
-<li>10월: </li>
-<li>11월:</li>
-<li>12월:</li>
-</ul>
 
             
 
@@ -276,7 +258,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Goal/" rel="tag">Goal</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/NodeJS/" rel="tag">NodeJS</a>
 
             </div>
         
@@ -286,14 +268,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/09/NodeJS-JSON-1/"
-                    data-tooltip="JSON"
-                    aria-label="PREVIOUS: JSON"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -303,9 +282,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/06/AWS-Install-NodeJS/"
-                    data-tooltip="Install NodeJS on Ubuntu Server"
-                    aria-label="NEXT: Install NodeJS on Ubuntu Server"
+                    href="/2020/03/08/self-Goal/"
+                    data-tooltip="The Goal of 2020"
+                    aria-label="NEXT: The Goal of 2020"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -330,7 +309,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/08/self-Goal/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -343,7 +322,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/08/self-Goal/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -356,7 +335,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/08/self-Goal/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -401,14 +380,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/09/NodeJS-JSON-1/"
-                    data-tooltip="JSON"
-                    aria-label="PREVIOUS: JSON"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -418,9 +394,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/06/AWS-Install-NodeJS/"
-                    data-tooltip="Install NodeJS on Ubuntu Server"
-                    aria-label="NEXT: Install NodeJS on Ubuntu Server"
+                    href="/2020/03/08/self-Goal/"
+                    data-tooltip="The Goal of 2020"
+                    aria-label="NEXT: The Goal of 2020"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -445,7 +421,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/08/self-Goal/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -458,7 +434,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/08/self-Goal/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -471,7 +447,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/08/self-Goal/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -505,7 +481,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/08/self-Goal/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -518,7 +494,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/08/self-Goal/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -531,7 +507,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/08/self-Goal/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
