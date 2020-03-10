@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>JSON - Developer Javit</title>
+    <title>Debugging Node.js - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"study JSON\n\n\nJSON :  Javascript 객체 문법을 따르는 문자 기반의 데이터 포맷\nJavaScript Object Notation (JSON)은 Javascript 객체 문법으로 구조화된 데이터를 표현하기 위한 문자 기반의 표준 포맷이다. 웹 어플리케이션에서 데이터를 전송할 때 일반적으로 사용한다(서버에서 클라이언트로 데이터를 전송하여 표현하려거나 반대의 경우).\n12345678910111213141516171819202122232425const fs &#x3D; require(&#39;fs&#39;);&#x2F;&#x2F; const book &#x3D; &#123;&#x2F;&#x2F;     title: &#39;Ego is the enemy&#39;,&#x2F;&#x2F;     author: &#39;Ryan Holiday&#39;&#x2F;&#x2F; &#125;&#x2F;&#x2F; const bookJSON &#x3D; JSON.stringify(book)&#x2F;&#x2F; fs.writeFileSync(&#39;1-json.json&#39;, bookJSON);&#x2F;&#x2F; const parsedData &#x3D; JSON.parse(bookJSON);&#x2F;&#x2F; console.log(parsedData.author);&#x2F;&#x2F; const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);&#x2F;&#x2F; const dataJSON &#x3D; dataBuffer.toString();&#x2F;&#x2F; const data &#x3D; JSON.parse(dataJSON);&#x2F;&#x2F; console.log(data.title);const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);const data &#x3D; JSON.parse(dataBuffer);data.name &#x3D; &#39;Jay&#39;data.age &#x3D; &#39;26&#39;const newData &#x3D; JSON.stringify(data);fs.writeFileSync(&#39;1-json.json&#39;, newData);\n\n","dateCreated":"2020-03-09T13:46:25+09:00","dateModified":"2020-03-09T13:03:58+09:00","datePublished":"2020-03-09T13:46:25+09:00","description":"study JSON","headline":"JSON","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/","keywords":"NodeJS"}</script>
-    <meta name="description" content="study JSON">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Debugging\n\n\nConsole.log\n\nNode Debugger\nNodeJS’ built-in Debugger\n\nconsole창에 node --inspect-brk app.js : window용 // Mac은 node inspect app.js\n\nvisit chrome://inspect in the Chrome Browser\n\nClick inspect to open up the developer tools.\n\nClick play icon on the right side of the monitor.\n\nYou can add breakpoints into your application to stop it at a specific point in the code. \n\ndebugger를 입력\n\n\nchrome창에서 아무 것도 안뜨면 configure 에서 IP주소랑 포트 입력\n\n\n","dateCreated":"2020-03-10T13:46:25+09:00","dateModified":"2020-03-10T15:54:41+09:00","datePublished":"2020-03-10T13:46:25+09:00","description":"Debugging","headline":"Debugging Node.js","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/10/NodeJS-Debugging/","keywords":"NodeJS"}</script>
+    <meta name="description" content="Debugging">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="JSON">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/index.html">
+<meta property="og:title" content="Debugging Node.js">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/10/NodeJS-Debugging/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="study JSON">
+<meta property="og:description" content="Debugging">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-09T04:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-09T04:03:58.309Z">
+<meta property="article:published_time" content="2020-03-10T04:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-10T06:54:41.897Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="NodeJS">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            JSON
+            Debugging Node.js
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-09T13:46:25+09:00">
+    <time datetime="2020-03-10T13:46:25+09:00">
 	
-		    Mar 09, 2020
+		    Mar 10, 2020
     	
     </time>
     
@@ -240,13 +240,30 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>study JSON</p>
+            <p>Debugging</p>
 <a id="more"></a>
 
-<p><strong>JSON</strong> :  Javascript 객체 문법을 따르는 문자 기반의 데이터 포맷</p>
-<p>JavaScript Object Notation (JSON)은 Javascript 객체 문법으로 구조화된 데이터를 표현하기 위한 문자 기반의 표준 포맷이다. 웹 어플리케이션에서 데이터를 전송할 때 일반적으로 사용한다(서버에서 클라이언트로 데이터를 전송하여 표현하려거나 반대의 경우).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&#39;fs&#39;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const book &#x3D; &#123;</span><br><span class="line">&#x2F;&#x2F;     title: &#39;Ego is the enemy&#39;,</span><br><span class="line">&#x2F;&#x2F;     author: &#39;Ryan Holiday&#39;</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const bookJSON &#x3D; JSON.stringify(book)</span><br><span class="line">&#x2F;&#x2F; fs.writeFileSync(&#39;1-json.json&#39;, bookJSON);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const parsedData &#x3D; JSON.parse(bookJSON);</span><br><span class="line">&#x2F;&#x2F; console.log(parsedData.author);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);</span><br><span class="line">&#x2F;&#x2F; const dataJSON &#x3D; dataBuffer.toString();</span><br><span class="line">&#x2F;&#x2F; const data &#x3D; JSON.parse(dataJSON);</span><br><span class="line">&#x2F;&#x2F; console.log(data.title);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const dataBuffer &#x3D; fs.readFileSync(&#39;1-json.json&#39;);</span><br><span class="line">const data &#x3D; JSON.parse(dataBuffer);</span><br><span class="line">data.name &#x3D; &#39;Jay&#39;</span><br><span class="line">data.age &#x3D; &#39;26&#39;</span><br><span class="line">const newData &#x3D; JSON.stringify(data);</span><br><span class="line">fs.writeFileSync(&#39;1-json.json&#39;, newData);</span><br></pre></td></tr></table></figure>
+<h3 id="Console-log"><a href="#Console-log" class="headerlink" title="Console.log"></a>Console.log</h3><br>
 
+<h3 id="Node-Debugger"><a href="#Node-Debugger" class="headerlink" title="Node Debugger"></a>Node Debugger</h3><ul>
+<li><p>NodeJS’ built-in Debugger</p>
+</li>
+<li><p>console창에 <code>node --inspect-brk app.js</code> : window용 // Mac은 <code>node inspect app.js</code></p>
+</li>
+<li><p>visit <strong><em>chrome://inspect</em></strong> in the Chrome Browser</p>
+</li>
+<li><p>Click <code>inspect</code> to open up the developer tools.</p>
+</li>
+<li><p>Click <code>play</code> icon on the right side of the monitor.</p>
+</li>
+<li><p>You can add breakpoints into your application to stop it at a specific point in the code. </p>
+<ul>
+<li><code>debugger</code>를 입력</li>
+</ul>
+</li>
+<li><p>chrome창에서 아무 것도 안뜨면 <code>configure</code> 에서 IP주소랑 포트 입력</p>
+</li>
+</ul>
 
             
 
@@ -268,14 +285,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/10/NodeJS-Debugging/"
-                    data-tooltip="Debugging Node.js"
-                    aria-label="PREVIOUS: Debugging Node.js"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -285,9 +299,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/08/self-Goal/"
-                    data-tooltip="The Goal of 2020"
-                    aria-label="NEXT: The Goal of 2020"
+                    href="/2020/03/09/NodeJS-JSON-1/"
+                    data-tooltip="JSON"
+                    aria-label="NEXT: JSON"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -312,7 +326,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -325,7 +339,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -338,7 +352,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -383,14 +397,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/10/NodeJS-Debugging/"
-                    data-tooltip="Debugging Node.js"
-                    aria-label="PREVIOUS: Debugging Node.js"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -400,9 +411,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/08/self-Goal/"
-                    data-tooltip="The Goal of 2020"
-                    aria-label="NEXT: The Goal of 2020"
+                    href="/2020/03/09/NodeJS-JSON-1/"
+                    data-tooltip="JSON"
+                    aria-label="NEXT: JSON"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -427,7 +438,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -440,7 +451,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -453,7 +464,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -487,7 +498,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -500,7 +511,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -513,7 +524,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/09/NodeJS-JSON-1/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
