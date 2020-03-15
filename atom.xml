@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-12T14:18:07.511Z</updated>
+  <updated>2020-03-15T10:21:22.387Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -17,17 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Promise</title>
+    <link href="http://jbj828.github.io/2020/03/15/NodeJS-Promise/"/>
+    <id>http://jbj828.github.io/2020/03/15/NodeJS-Promise/</id>
+    <published>2020-03-15T11:46:25.000Z</published>
+    <updated>2020-03-15T10:21:22.387Z</updated>
+    
+    <content type="html"><![CDATA[<p>promise</p><a id="more"></a><p>출처 : <a href="https://joshua1988.github.io/web-development/javascript/promise-for-beginners/" target="_blank" rel="noopener">Captain Pangyo</a><br>공부목적을 위해 이용했습니다.</p><h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><ul><li><p>“A promise is an object that may produce a single value some time in the future”</p></li><li><p>프로미스는 자바스크립트 비동기 처리에 사용되는 객체입니다. </p></li></ul><h3 id="Why-we-need-it"><a href="#Why-we-need-it" class="headerlink" title="Why we need it?"></a>Why we need it?</h3><ul><li>프로미스는 주로 서버에서 받아온 데이터를 화면에 표시할 때 사용한다. 일반적으로 웹 애플리케이션을 구현할 때 서버에서 데이터를 요청하고 받아오기 위해 사용한다.</li></ul><p>비동기 처리를 위해 콜백 함수를 사용한 경우</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const doWorkCallback &#x3D; (callback) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; callback(&#39;Error&#39;, undefined);</span><br><span class="line">        callback(undefined, [1, 3, 4])</span><br><span class="line">    &#125;, 2000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doWorkCallback((error, result) &#x3D;&gt; &#123;</span><br><span class="line">    if (error) &#123;</span><br><span class="line">        return console.log(error);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>비동기 처리를 위해 Promise API를 사용한 경우</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const doWorkPromise &#x3D; new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">        resolve([2, 3, 4]);</span><br><span class="line">        reject(&#39;Thing went wrong!&#39;)</span><br><span class="line">    &#125;, 2000)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">doWorkPromise.then((result) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;Success&#39;, result)</span><br><span class="line">&#125;).catch((error) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;Error&#39;, error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h3 id="Promise의-3가지-상태-states"><a href="#Promise의-3가지-상태-states" class="headerlink" title="Promise의 3가지 상태(states)"></a>Promise의 3가지 상태(states)</h3><p>여기서 말하는 상태란 프로미스의 처리 과정을 의미한다. <code>new Promise()</code>로 프로미스를 생성하고 종료될 때까지 3가지 상태를 갖는다.</p><ul><li>Pending(대기) : 비동기 처리 로직이 아직 완료되지 않은 상태</li><li>Fulfilled(이행) : 비동기 처리가 완료되어 프로미스가 결과 값을 반환해준 상태</li><li>Rejected(실패) : 비동기 처리가 실패하거나 오류가 발생한 상태</li></ul><h4 id="Pending"><a href="#Pending" class="headerlink" title="Pending"></a>Pending</h4><p>먼저 <code>new Promise()</code> 메서드를 호출하면 대기(Pending) 상태가 된다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Promise();</span><br></pre></td></tr></table></figure><p><code>new Promise()</code> 메서드를 호출할 때 콜백 함수를 선언할 수 있고, 콜백 함수의 인자는 <code>resolve</code>, <code>reject</code>입니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function(resolve, reject)&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h4 id="Fulfilled-이행"><a href="#Fulfilled-이행" class="headerlink" title="Fulfilled(이행)"></a>Fulfilled(이행)</h4><p>여기서 콜백 함수의 인자 <code>resolve</code>를 아래와 같이 실행하면 이행(Fulfilled) 상태가 됩니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function(resolve, reject)&#123;</span><br><span class="line">  resolve();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>그리고 이행 상태가 되면 아래와 같이 <code>then()</code>을 이용하여 처리 결과 값을 받을 수 있습니다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function getData()&#123;</span><br><span class="line">  return new Promise(function(resolve, reject)&#123;</span><br><span class="line">    var data &#x3D; 100;</span><br><span class="line">    resolve(data);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; resolve()의 결과 값 data를 resolveData로 받음</span><br><span class="line">getData().then(function(resolveData)&#123;</span><br><span class="line">  console.log(resolveData); &#x2F;&#x2F; 100</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h4 id="Rejected-실패"><a href="#Rejected-실패" class="headerlink" title="Rejected(실패)"></a>Rejected(실패)</h4><p><code>new Promise()</code>로 프로미스 객체를 생성하면 콜백 함수 인자로 <code>resolve</code>와 <code>reject</code>를 사용할 수 있다. 여기서 <code>reject</code>를 아래와 같이 호출하면 실패(Rejected) 상태가 된다</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function(resolve, reject)&#123;</span><br><span class="line">  reject();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>그리고 실패 상태가 되면 실패한 이유(실패 처리의 결과 값)를 <code>catch()</code>로 받을 수 있다.ss</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function getData()&#123;</span><br><span class="line">  return new Promise(function(resolve, reject)&#123;</span><br><span class="line">    reject(new Error(&quot;Request is failed&quot;))</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; reject()의 결과 값 Error를 err에 받음</span><br><span class="line">getData().then().catch(function(err)&#123;</span><br><span class="line">  console.log(err); &#x2F;&#x2F; Error: Request is failed</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><img src="/2020/03/15/NodeJS-Promise/promise.PNG" class="" width="500" height="300" title="promise"><p>프로미스 처리 흐름(출처 : MDN)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123;</span><br><span class="line">  return new Promise(function(resolve, reject) &#123;</span><br><span class="line">    $.get(&#39;url 주소&#x2F;products&#x2F;1&#39;, function(response) &#123;</span><br><span class="line">      if (response) &#123;</span><br><span class="line">        resolve(response);</span><br><span class="line">      &#125;</span><br><span class="line">      reject(new Error(&quot;Request is failed&quot;));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 위 $.get() 호출 결과에 따라 &#39;response&#39; 또는 &#39;Error&#39; 출력</span><br><span class="line">getData().then(function(data) &#123;</span><br><span class="line">  console.log(data); &#x2F;&#x2F; response 값 출력</span><br><span class="line">&#125;).catch(function(err) &#123;</span><br><span class="line">  console.error(err); &#x2F;&#x2F; Error 출력</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>위 코드는 서버에서 제대로 응답을 받아오면 resolve() 메서드를 호출하고, 응답이 없으면 reject() 메서드를 호출하는 예제입니다. 호출된 메서드에 따라 then()이나 catch()로 분기하여 응답 결과 또는 오류를 출력합니다.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;promise&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Default Function Parameters</title>
     <link href="http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/"/>
     <id>http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/</id>
     <published>2020-03-12T14:46:25.000Z</published>
-    <updated>2020-03-12T14:18:07.511Z</updated>
+    <updated>2020-03-12T15:00:38.686Z</updated>
     
-    <content type="html"><![CDATA[<p>es6</p><a id="more"></a><h3 id="Default-Function-Parameters"><a href="#Default-Function-Parameters" class="headerlink" title="Default Function Parameters"></a>Default Function Parameters</h3><p>ES6 provides a new syntax to set default values for function arguments.</p><p>Function parameters are <code>undefined</code> unless an argument value is provided when the function is called. ES6 now allows function parameters to be configured with a custom default value.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const greeter &#x3D; (name &#x3D; &#39;user&#39;, age) &#x3D;&gt; &#123;</span><br><span class="line"> console.log(&#39;Hello &#39; + name)</span><br><span class="line">&#125;</span><br><span class="line">greeter(&#39;Andrew&#39;) &#x2F;&#x2F; Will print: Hello Andrew</span><br><span class="line">greeter() &#x2F;&#x2F; Will print: Hello user</span><br></pre></td></tr></table></figure><p>This syntax can also be used to provide default values when using ES6 destructuring. The <code>transaction</code> function below shows this off by providing a default value for <code>stock</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const transaction &#x3D; (type, &#123; label, stock &#x3D; 0 &#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123;</span><br><span class="line"> console.log(type, label, stock)</span><br><span class="line">&#125;</span><br><span class="line">transaction(&#39;order&#39;)</span><br></pre></td></tr></table></figure><p>*reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</p>]]></content>
+    <content type="html"><![CDATA[<p>default function parameters</p><a id="more"></a><h3 id="Default-Function-Parameters"><a href="#Default-Function-Parameters" class="headerlink" title="Default Function Parameters"></a>Default Function Parameters</h3><p>ES6 provides a new syntax to set default values for function arguments.</p><p>Function parameters are <code>undefined</code> unless an argument value is provided when the function is called. ES6 now allows function parameters to be configured with a custom default value.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const greeter &#x3D; (name &#x3D; &#39;user&#39;, age) &#x3D;&gt; &#123;</span><br><span class="line"> console.log(&#39;Hello &#39; + name)</span><br><span class="line">&#125;</span><br><span class="line">greeter(&#39;Andrew&#39;) &#x2F;&#x2F; Will print: Hello Andrew</span><br><span class="line">greeter() &#x2F;&#x2F; Will print: Hello user</span><br></pre></td></tr></table></figure><p>This syntax can also be used to provide default values when using ES6 destructuring. The <code>transaction</code> function below shows this off by providing a default value for <code>stock</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const transaction &#x3D; (type, &#123; label, stock &#x3D; 0 &#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123;</span><br><span class="line"> console.log(type, label, stock)</span><br><span class="line">&#125;</span><br><span class="line">transaction(&#39;order&#39;)</span><br></pre></td></tr></table></figure><br><p><em>reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</em></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;es6&lt;/p&gt;
+      &lt;p&gt;default function parameters&lt;/p&gt;
     
     </summary>
     
@@ -40,19 +63,40 @@
   </entry>
   
   <entry>
+    <title>Browser HTTP Requests with Fetch</title>
+    <link href="http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"/>
+    <id>http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/</id>
+    <published>2020-03-12T14:46:25.000Z</published>
+    <updated>2020-03-12T15:00:44.237Z</updated>
+    
+    <content type="html"><![CDATA[<p>fetch API</p><a id="more"></a><p>This chapter shows you how to make HTTP AJAX requests from the browser.<br><br></p><h3 id="The-Fetch-API"><a href="#The-Fetch-API" class="headerlink" title="The Fetch API"></a>The Fetch API</h3><p>Web APIs provide you with a way to make HTTP requests from JavaScript in the browser. This is done using the <code>fetch</code> function. <code>fetch</code> expects to be called with the URL as the first argument. It sends off the HTTP request and gives you back the response.</p><p>The <code>fetch</code> call below is used to fetch the weather for Boston. An if statement is then used to either print the forecast or the error message.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;http:&#x2F;&#x2F;localhost:3000&#x2F;weather?address&#x3D;Boston&#39;).then((response) &#x3D;&gt; &#123;</span><br><span class="line"> response.json().then((data) &#x3D;&gt; &#123;</span><br><span class="line"> if (data.error) &#123;</span><br><span class="line"> console.log(data.error)</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> console.log(data.location)</span><br><span class="line"> console.log(data.forecast)</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br><p><em>reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</em></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;fetch API&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The Query String</title>
     <link href="http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"/>
     <id>http://jbj828.github.io/2020/03/12/NodeJS-Query-String/</id>
     <published>2020-03-12T05:46:25.000Z</published>
-    <updated>2020-03-12T14:10:10.307Z</updated>
+    <updated>2020-03-12T14:49:11.956Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>Query String</li></ul><a id="more"></a><h4 id="The-Query-String"><a href="#The-Query-String" class="headerlink" title="The Query String"></a>The Query String</h4><p>The query string is a portion of the URL that allows you to provide additional information to the server. </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#39;&#x2F;weather&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(req.query)</span><br><span class="line">    if (!req.query.address) &#123;</span><br><span class="line">        return res.send(&#123;</span><br><span class="line">            error: &quot;You must provide an address.&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    res.send(&#123;</span><br><span class="line">        forcast: &#39;forcast&#39;,</span><br><span class="line">        location: &#39;location&#39;,</span><br><span class="line">        address: req.query.address</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>Query String</p><a id="more"></a><h4 id="The-Query-String"><a href="#The-Query-String" class="headerlink" title="The Query String"></a>The Query String</h4><p>The query string is a portion of the URL that allows you to provide additional information to the server. </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#39;&#x2F;weather&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(req.query)</span><br><span class="line">    if (!req.query.address) &#123;</span><br><span class="line">        return res.send(&#123;</span><br><span class="line">            error: &quot;You must provide an address.&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    res.send(&#123;</span><br><span class="line">        forcast: &#39;forcast&#39;,</span><br><span class="line">        location: &#39;location&#39;,</span><br><span class="line">        address: req.query.address</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;Query String&lt;/li&gt;
-&lt;/ul&gt;
+      &lt;p&gt;Query String&lt;/p&gt;
     
     </summary>
     
@@ -441,52 +485,6 @@
     
     
       <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Regular Expression</title>
-    <link href="http://jbj828.github.io/2020/02/23/RegularExpression/"/>
-    <id>http://jbj828.github.io/2020/02/23/RegularExpression/</id>
-    <published>2020-02-23T06:46:25.000Z</published>
-    <updated>2020-02-23T06:18:30.544Z</updated>
-    
-    <content type="html"><![CDATA[<p>regular expression</p><a id="more"></a><h3 id="Regular-Expression"><a href="#Regular-Expression" class="headerlink" title="Regular Expression"></a>Regular Expression</h3><ul><li>정규표현식(正規表現式, Regular Expression)은 문자열을 처리하는 방법 중의 하나로 특정한 조건의 문자를 ‘검색’하거나 ‘치환’하는 과정을 매우 간편하게 처리 할 수 있도록 하는 수단이다.</li></ul><br><p><strong>정규표현식의 특징</strong></p><ul><li>Case sensitive(대소문자 구분)<br>  <code>options : &quot;i&quot;</code> 하면 대소문자 구분 없이 검색 가능</li></ul><br><p><strong>정규표현식의 패턴</strong></p><ul><li>^ : Character ^ matches the beginning of the line.</li><li>$ : Dollar sign matches the end of the line</li><li>\ : Escaping the pattern to the normal text.<ul><li><code>\$</code> : this means normal text of “$”</li></ul></li><li>. : Point . mathces any character   </li><li>[] : Insid square brackets “[]” a list of characters can be provided. The expression matches if any of these characters is found. The order of character is insignificant.</li><li>[x-y] : A range of characters can be specified with [-] syntax. ex) [c-k] : c부터 k까지 모두 선택</li><li>[^ ] : If a character class starts with ^, then specified characters will not be selected.</li></ul><p><strong>서브 패턴</strong></p><ul><li>(on|ues|rida) : Alternating text can be enclosed in parentheses and alternatives separated with |</li></ul><br>출처 : 생활코딩]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;regular expression&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Language" scheme="http://jbj828.github.io/categories/Language/"/>
-    
-    
-      <category term="language" scheme="http://jbj828.github.io/tags/language/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>How to write ReadMe?</title>
-    <link href="http://jbj828.github.io/2020/02/22/WritingReadMe/"/>
-    <id>http://jbj828.github.io/2020/02/22/WritingReadMe/</id>
-    <published>2020-02-22T04:30:25.000Z</published>
-    <updated>2020-02-22T03:43:18.193Z</updated>
-    
-    <content type="html"><![CDATA[<p>Information about writing ReadME documentation.</p><a id="more"></a><h3 id="Anatomy-of-a-README"><a href="#Anatomy-of-a-README" class="headerlink" title="Anatomy of a README"></a>Anatomy of a README</h3><ol><li>What <strong>steps</strong> need to be taken?</li><li>What should the user already have <strong>installed</strong> or <strong>configured</strong>?</li><li>What might they have a hard time understading <strong>right away</strong>?</li></ol><br><h3 id="Basic-Structure"><a href="#Basic-Structure" class="headerlink" title="Basic Structure"></a>Basic Structure</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 프로젝트 제목</span><br><span class="line">프로젝트 설명 (with 프로젝트 Logo)</span><br><span class="line"></span><br><span class="line">## 설치 방법 (Installation)</span><br><span class="line">설치 방법 설명 (with 예시코드)</span><br><span class="line"></span><br><span class="line">## 사용 방법 (Usage)</span><br><span class="line">사용 방법 설명 (with 예시코드)</span><br></pre></td></tr></table></figure><ul><li>If it is Open Source Project<br></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## 기여 방법 (Contributing)</span><br><span class="line">기여 방법 설명</span><br><span class="line"></span><br><span class="line">## 라이센스 (License)</span><br><span class="line">해당하는 License (choosealicense.com 참고)</span><br></pre></td></tr></table></figure><ul><li>Big project</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 버그들 (Known Bugs)</span><br><span class="line">## FAQ (Frequently Asked Qustions)</span><br><span class="line">## ToC (Table of Contents)</span><br></pre></td></tr></table></figure><p><Br><Br></p><p>ref : “Udacity - Writing READMEs”</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Information about writing ReadME documentation.&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Github" scheme="http://jbj828.github.io/categories/Github/"/>
-    
-    
-      <category term="github" scheme="http://jbj828.github.io/tags/github/"/>
     
   </entry>
   

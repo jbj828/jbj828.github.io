@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>The Query String - Developer Javit</title>
+    <title>Browser HTTP Requests with Fetch - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Query String\n\n\nThe Query StringThe query string is a portion of the URL that allows you to provide additional information to the server. \n12345678910111213app.get(&#39;&#x2F;weather&#39;, (req, res) &#x3D;&gt; &#123;    console.log(req.query)    if (!req.query.address) &#123;        return res.send(&#123;            error: &quot;You must provide an address.&quot;        &#125;)    &#125;    res.send(&#123;        forcast: &#39;forcast&#39;,        location: &#39;location&#39;,        address: req.query.address    &#125;)&#125;)\n\n","dateCreated":"2020-03-12T14:46:25+09:00","dateModified":"2020-03-12T23:49:11+09:00","datePublished":"2020-03-12T14:46:25+09:00","description":"Query String","headline":"The Query String","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/12/NodeJS-Query-String/","keywords":"NodeJS"}</script>
-    <meta name="description" content="Query String">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"fetch API\n\n\nThis chapter shows you how to make HTTP AJAX requests from the browser.\nThe Fetch APIWeb APIs provide you with a way to make HTTP requests from JavaScript in the browser. This is done using the fetch function. fetch expects to be called with the URL as the first argument. It sends off the HTTP request and gives you back the response.\nThe fetch call below is used to fetch the weather for Boston. An if statement is then used to either print the forecast or the error message.\n12345678910fetch(&#39;http:&#x2F;&#x2F;localhost:3000&#x2F;weather?address&#x3D;Boston&#39;).then((response) &#x3D;&gt; &#123; response.json().then((data) &#x3D;&gt; &#123; if (data.error) &#123; console.log(data.error) &#125; else &#123; console.log(data.location) console.log(data.forecast) &#125; &#125;)&#125;)\n\n\n\nreference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead\n","dateCreated":"2020-03-12T23:46:25+09:00","dateModified":"2020-03-13T00:00:44+09:00","datePublished":"2020-03-12T23:46:25+09:00","description":"fetch API","headline":"Browser HTTP Requests with Fetch","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/","keywords":"NodeJS"}</script>
+    <meta name="description" content="fetch API">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="The Query String">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/12/NodeJS-Query-String/index.html">
+<meta property="og:title" content="Browser HTTP Requests with Fetch">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Query String">
+<meta property="og:description" content="fetch API">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-12T05:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-12T14:49:11.956Z">
+<meta property="article:published_time" content="2020-03-12T14:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-12T15:00:44.237Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="NodeJS">
 <meta name="twitter:card" content="summary">
@@ -215,12 +215,12 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            The Query String
+            Browser HTTP Requests with Fetch
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-12T14:46:25+09:00">
+    <time datetime="2020-03-12T23:46:25+09:00">
 	
 		    Mar 12, 2020
     	
@@ -240,12 +240,17 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Query String</p>
+            <p>fetch API</p>
 <a id="more"></a>
 
-<h4 id="The-Query-String"><a href="#The-Query-String" class="headerlink" title="The Query String"></a>The Query String</h4><p>The query string is a portion of the URL that allows you to provide additional information to the server. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#39;&#x2F;weather&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(req.query)</span><br><span class="line">    if (!req.query.address) &#123;</span><br><span class="line">        return res.send(&#123;</span><br><span class="line">            error: &quot;You must provide an address.&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    res.send(&#123;</span><br><span class="line">        forcast: &#39;forcast&#39;,</span><br><span class="line">        location: &#39;location&#39;,</span><br><span class="line">        address: req.query.address</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>This chapter shows you how to make HTTP AJAX requests from the browser.<br><br></p>
+<h3 id="The-Fetch-API"><a href="#The-Fetch-API" class="headerlink" title="The Fetch API"></a>The Fetch API</h3><p>Web APIs provide you with a way to make HTTP requests from JavaScript in the browser. This is done using the <code>fetch</code> function. <code>fetch</code> expects to be called with the URL as the first argument. It sends off the HTTP request and gives you back the response.</p>
+<p>The <code>fetch</code> call below is used to fetch the weather for Boston. An if statement is then used to either print the forecast or the error message.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;http:&#x2F;&#x2F;localhost:3000&#x2F;weather?address&#x3D;Boston&#39;).then((response) &#x3D;&gt; &#123;</span><br><span class="line"> response.json().then((data) &#x3D;&gt; &#123;</span><br><span class="line"> if (data.error) &#123;</span><br><span class="line"> console.log(data.error)</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> console.log(data.location)</span><br><span class="line"> console.log(data.forecast)</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+<br>
+
+<p><em>reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</em></p>
 
             
 
@@ -270,9 +275,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/12/NodeJS-fetch-API/"
-                    data-tooltip="Browser HTTP Requests with Fetch"
-                    aria-label="PREVIOUS: Browser HTTP Requests with Fetch"
+                    href="/2020/03/12/ES6-default-function-parameters/"
+                    data-tooltip="Default Function Parameters"
+                    aria-label="PREVIOUS: Default Function Parameters"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -284,9 +289,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/11/NodeJS-Http-request/"
-                    data-tooltip="HTTP/HTTPS Request without library"
-                    aria-label="NEXT: HTTP/HTTPS Request without library"
+                    href="/2020/03/12/NodeJS-Query-String/"
+                    data-tooltip="The Query String"
+                    aria-label="NEXT: The Query String"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -311,7 +316,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -324,7 +329,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -337,7 +342,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -385,9 +390,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/12/NodeJS-fetch-API/"
-                    data-tooltip="Browser HTTP Requests with Fetch"
-                    aria-label="PREVIOUS: Browser HTTP Requests with Fetch"
+                    href="/2020/03/12/ES6-default-function-parameters/"
+                    data-tooltip="Default Function Parameters"
+                    aria-label="PREVIOUS: Default Function Parameters"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -399,9 +404,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/11/NodeJS-Http-request/"
-                    data-tooltip="HTTP/HTTPS Request without library"
-                    aria-label="NEXT: HTTP/HTTPS Request without library"
+                    href="/2020/03/12/NodeJS-Query-String/"
+                    data-tooltip="The Query String"
+                    aria-label="NEXT: The Query String"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -426,7 +431,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -439,7 +444,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -452,7 +457,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -486,7 +491,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -499,7 +504,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -512,7 +517,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>

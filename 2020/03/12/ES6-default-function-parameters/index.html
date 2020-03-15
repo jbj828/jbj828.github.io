@@ -13,16 +13,16 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"es6\n\n\nDefault Function ParametersES6 provides a new syntax to set default values for function arguments.\nFunction parameters are undefined unless an argument value is provided when the function is called. ES6 now allows function parameters to be configured with a custom default value.\n12345const greeter &#x3D; (name &#x3D; &#39;user&#39;, age) &#x3D;&gt; &#123; console.log(&#39;Hello &#39; + name)&#125;greeter(&#39;Andrew&#39;) &#x2F;&#x2F; Will print: Hello Andrewgreeter() &#x2F;&#x2F; Will print: Hello user\n\nThis syntax can also be used to provide default values when using ES6 destructuring. The transaction function below shows this off by providing a default value for stock\n1234const transaction &#x3D; (type, &#123; label, stock &#x3D; 0 &#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123; console.log(type, label, stock)&#125;transaction(&#39;order&#39;)\n\n\n*reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead\n","dateCreated":"2020-03-12T23:46:25+09:00","dateModified":"2020-03-12T23:18:07+09:00","datePublished":"2020-03-12T23:46:25+09:00","description":"es6","headline":"Default Function Parameters","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/","keywords":"ES6"}</script>
-    <meta name="description" content="es6">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"default function parameters\n\n\nDefault Function ParametersES6 provides a new syntax to set default values for function arguments.\nFunction parameters are undefined unless an argument value is provided when the function is called. ES6 now allows function parameters to be configured with a custom default value.\n12345const greeter &#x3D; (name &#x3D; &#39;user&#39;, age) &#x3D;&gt; &#123; console.log(&#39;Hello &#39; + name)&#125;greeter(&#39;Andrew&#39;) &#x2F;&#x2F; Will print: Hello Andrewgreeter() &#x2F;&#x2F; Will print: Hello user\n\nThis syntax can also be used to provide default values when using ES6 destructuring. The transaction function below shows this off by providing a default value for stock\n1234const transaction &#x3D; (type, &#123; label, stock &#x3D; 0 &#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123; console.log(type, label, stock)&#125;transaction(&#39;order&#39;)\n\n\nreference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead\n","dateCreated":"2020-03-12T23:46:25+09:00","dateModified":"2020-03-13T00:00:38+09:00","datePublished":"2020-03-12T23:46:25+09:00","description":"default function parameters","headline":"Default Function Parameters","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/","keywords":"ES6"}</script>
+    <meta name="description" content="default function parameters">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Default Function Parameters">
 <meta property="og:url" content="http://jbj828.github.io/2020/03/12/ES6-default-function-parameters/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="es6">
+<meta property="og:description" content="default function parameters">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-12T14:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-12T14:18:07.511Z">
+<meta property="article:modified_time" content="2020-03-12T15:00:38.686Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="ES6">
 <meta name="twitter:card" content="summary">
@@ -240,7 +240,7 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>es6</p>
+            <p>default function parameters</p>
 <a id="more"></a>
 
 <h3 id="Default-Function-Parameters"><a href="#Default-Function-Parameters" class="headerlink" title="Default Function Parameters"></a>Default Function Parameters</h3><p>ES6 provides a new syntax to set default values for function arguments.</p>
@@ -249,9 +249,9 @@
 
 <p>This syntax can also be used to provide default values when using ES6 destructuring. The <code>transaction</code> function below shows this off by providing a default value for <code>stock</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const transaction &#x3D; (type, &#123; label, stock &#x3D; 0 &#125; &#x3D; &#123;&#125;) &#x3D;&gt; &#123;</span><br><span class="line"> console.log(type, label, stock)</span><br><span class="line">&#125;</span><br><span class="line">transaction(&#39;order&#39;)</span><br></pre></td></tr></table></figure>
+<br>
 
-
-<p>*reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</p>
+<p><em>reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</em></p>
 
             
 
@@ -273,11 +273,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/03/15/NodeJS-Promise/"
+                    data-tooltip="Promise"
+                    aria-label="PREVIOUS: Promise"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -287,9 +290,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/12/NodeJS-Query-String/"
-                    data-tooltip="The Query String"
-                    aria-label="NEXT: The Query String"
+                    href="/2020/03/12/NodeJS-fetch-API/"
+                    data-tooltip="Browser HTTP Requests with Fetch"
+                    aria-label="NEXT: Browser HTTP Requests with Fetch"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -385,11 +388,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/03/15/NodeJS-Promise/"
+                    data-tooltip="Promise"
+                    aria-label="PREVIOUS: Promise"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -399,9 +405,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/12/NodeJS-Query-String/"
-                    data-tooltip="The Query String"
-                    aria-label="NEXT: The Query String"
+                    href="/2020/03/12/NodeJS-fetch-API/"
+                    data-tooltip="Browser HTTP Requests with Fetch"
+                    aria-label="NEXT: Browser HTTP Requests with Fetch"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
