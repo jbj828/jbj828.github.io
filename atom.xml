@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-17T08:27:45.096Z</updated>
+  <updated>2020-03-17T13:29:58.883Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Async/Await</title>
+    <link href="http://jbj828.github.io/2020/03/17/NodeJS-async-await/"/>
+    <id>http://jbj828.github.io/2020/03/17/NodeJS-async-await/</id>
+    <published>2020-03-17T11:46:25.000Z</published>
+    <updated>2020-03-17T13:29:58.883Z</updated>
+    
+    <content type="html"><![CDATA[<p>async/await</p><a id="more"></a><p>These provide an improved syntax for working with promises. You’ll be able to write complex asynchronous code that looks like normal synchronous code. This makes it much easier to write and maintain asynchronous code.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const add &#x3D; (a, b) &#x3D;&gt; &#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            if (a &lt; 0 || b &lt; 0) &#123;</span><br><span class="line">                return reject(&#39;Numbers must be non-negative&#39;)</span><br><span class="line">            &#125;</span><br><span class="line">            resolve(a + b);</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const doWork &#x3D; async () &#x3D;&gt; &#123;</span><br><span class="line">    const sum &#x3D; await add(1, 99)</span><br><span class="line">    const sum2 &#x3D; await add(sum, 50)</span><br><span class="line">    const sum3 &#x3D; await add(sum2, -10)</span><br><span class="line">    return sum3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doWork().then((result) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;result&#39;, result)</span><br><span class="line">&#125;).catch((e) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(&#39;e&#39;, e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;async/await&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Promise</title>
@@ -462,29 +485,6 @@
       <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
     
       <category term="AWS" scheme="http://jbj828.github.io/tags/AWS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>What is Docker?</title>
-    <link href="http://jbj828.github.io/2020/03/03/Docker-theory/"/>
-    <id>http://jbj828.github.io/2020/03/03/Docker-theory/</id>
-    <published>2020-03-03T01:46:25.000Z</published>
-    <updated>2020-03-02T16:47:18.314Z</updated>
-    
-    <content type="html"><![CDATA[<p>Primary theory of Docker</p><a id="more"></a><p>출처 : 공부목적으로 <a href="https://subicura.com/" target="_blank" rel="noopener">Subicura’s Blog</a>를 참조했습니다.</p><br><h3 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h3><ul><li>컨테이너를 관리하는 플랫폼</li><li>컨테이너 기반의 오픈소스 가상화 플랫폼<ul><li>다양한 프로그램, 실행환경을 컨테이너로 추상화하고 동일한 인터페이스를 제공하여 프로그램의 배포 및 관리를 단순하게 해줍니다. 백엔드 프로그램, 데이터베이스 서버, 메시지 큐등 어떤 프로그램도 컨테이너로 추상화할 수 있고 조립PC, AWS, Azure, Google cloud등 어디에서든 실행할 수 있습니다.</li><li>즉, 컨테이너는 격리된 공간에서 프로세스가 동작하는 기술입니다.</li></ul></li></ul><p><strong>Difference between VM and Docker</strong></p><br><img src="/2020/03/03/Docker-theory/docker1.png" class="" width="500" height="300" title="VM and Docker"><br><h4 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h4><p>  ‘컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것’</p><ul><li>이미지는 컨테이너 실행에 필요한 파일과 설정값등을 포함하고 있는 것으로 상태값을 가지지 않고 변하지 않습니다(Immutable). 컨테이너는 이미지를 실행한 상태라고 볼 수 있고 추가되거나 변하는 값은 컨테이너에 저장됩니다. 같은 이미지에서 여러개의 컨테이너를 생성할 수 있고 컨테이너의 상태가 바뀌거나 컨테이너가 삭제되더라도 이미지는 변하지 않고 그대로 남아있습니다.</li><li>말그대로 이미지는 컨테이너를 실행하기 위한 모든 정보를 가지고 있기 때문에 더 이상 의존성 파일을 컴파일하고 이것저것 설치할 필요가 없습니다. 이제 새로운 서버가 추가되면 미리 만들어 놓은 이미지를 다운받고 컨테이너를 생성만 하면 됩니다. 한 서버에 여러개의 컨테이너를 실행할 수 있고, 수십, 수백, 수천대의 서버도 문제없습니다.</li><li>도커 이미지는 Docker hub에 등록하거나 Docker Registry 저장소를 직접 만들어 관리할 수 있습니다. 현재 공개된 도커 이미지는 50만개가 넘고 Docker hub의 이미지 다운로드 수는 80억회에 이릅니다. 누구나 쉽게 이미지를 만들고 배포할 수 있습니다.</li></ul><br><img src="/2020/03/03/Docker-theory/docker2.png" class="" width="500" height="300" title="Docker Image">]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Primary theory of Docker&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
     
   </entry>
   
