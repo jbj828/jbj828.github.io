@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-17T13:29:58.883Z</updated>
+  <updated>2020-03-20T01:38:02.200Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JSON Web Token</title>
+    <link href="http://jbj828.github.io/2020/03/20/NodeJS-json-web-token/"/>
+    <id>http://jbj828.github.io/2020/03/20/NodeJS-json-web-token/</id>
+    <published>2020-03-20T04:46:25.000Z</published>
+    <updated>2020-03-20T01:38:02.200Z</updated>
+    
+    <content type="html"><![CDATA[<p>token</p><a id="more"></a><h3 id="Token-기반-인증에-대한-소개"><a href="#Token-기반-인증에-대한-소개" class="headerlink" title="Token 기반 인증에 대한 소개"></a>Token 기반 인증에 대한 소개</h3><ol><li><p><strong>Stateless</strong> Server<br>상태를 유지하지 않음. 상태 정보를 저장하지 않으면 서버는 클라이언트 측에서 들어오는 요청만으로만 작업을 처리한다.이렇게 상태가 없는 경우 클라이언트와 서버의 연결고리가 없기 때문에 서버의 확장성(Scalability)가 높아진다.</p></li><li><p>Best for Mobile Application<br> Android/iOS 모바일 어플리케이션을 개발한다면, 안전한 API를 만들기 위해서 쿠키 같은 인증 시스템은 이상적이지 않다(쿠키 컨테이너를 사용해야 함). 토큰 기반 인증 도입하면, 간단하게 이 번거로움을 해결 할 수 있다</p></li><li><p>인증정보를 다른 어플리케이션으로 전달<br> 대표적 예로 OAuth가 있다. 페이스북/구글 같은 소셜 계정들을 이용하여 다른 웹 서비스에서도 로그인 할 수 있게 할 수 있다.</p></li><li><p>보안<br> 토큰 기반 인증 시스템을 사용하여 어플리케이션 보안 높일 수 있다.</p></li></ol><h3 id="토큰-기반-시스템의-작동-원리"><a href="#토큰-기반-시스템의-작동-원리" class="headerlink" title="토큰 기반 시스템의 작동 원리"></a>토큰 기반 시스템의 작동 원리</h3><ol><li>유저가 아이디와 비밀번호로 <code>로그인</code></li><li>서버측에서 해당 <code>계정정보를 검증</code></li><li>계정정보가 정확하다면, 서버측에서 유저에게 <code>signed토큰을 발급</code>(signed의 의미는 해당 토큰이 서버에서 정상적으로 발급된 토큰임을 증명하는 signature를 지니고 있다는 것)</li><li>클라이언트 측에서 전달받은 <code>토큰을 저장</code>해두고, 서버에 요청을 할 때마다, 해당 <code>토큰을 함께 서버에 전달</code></li><li>서버는 <code>토큰 검증</code>하고, <code>요청에 응답</code></li></ol><h2 id="JSON-Web-Token"><a href="#JSON-Web-Token" class="headerlink" title="JSON Web Token"></a>JSON Web Token</h2><p>JWT은 웹표준으로서 두 개체에서 JSON 객체를 사용하여 가볍고 자가수용적인(self-contained)방식으로 정보를 안전성 있게 전달해줍니다.</p><p><strong>자가 수용적(self contained)</strong><br>  JWT는 필요한 모든 정보를 자체적으로 지니고 있다. JWT 시스템에서 발급된 토큰은, 토큰에 대한 기본 정보, 전달 할 정보(로그인 시스템에서는 유저 정보) 그리고 토큰이 검증 됐다는 것을 증명해주는 signature를 포함하고 있다.</p><h4 id="JWT의-생김새"><a href="#JWT의-생김새" class="headerlink" title="JWT의 생김새"></a>JWT의 생김새</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">aaaaaaaaaaaaaa.bbbbbbbbbbbbbbb.cccccccccccccccc</span><br><span class="line"> header(헤더)      payload(내용)   signature(서명)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;token&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Async/Await</title>
@@ -446,33 +469,6 @@
     <summary type="html">
     
       &lt;p&gt;Docker Tutorial 2&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/categories/Docker/"/>
-    
-      <category term="AWS" scheme="http://jbj828.github.io/categories/Docker/AWS/"/>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
-    
-      <category term="AWS" scheme="http://jbj828.github.io/tags/AWS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Install AWS EC2 Instance and Jupyter Notebook(환경설정)</title>
-    <link href="http://jbj828.github.io/2020/03/03/Docker-tutorial1/"/>
-    <id>http://jbj828.github.io/2020/03/03/Docker-tutorial1/</id>
-    <published>2020-03-03T05:46:25.000Z</published>
-    <updated>2020-03-06T01:39:26.840Z</updated>
-    
-    <content type="html"><![CDATA[<p>Docker Tutorial 1</p><a id="more"></a><h3 id="AWS-EC2-인스턴스-생성-및-접속"><a href="#AWS-EC2-인스턴스-생성-및-접속" class="headerlink" title="AWS EC2 인스턴스 생성 및 접속"></a>AWS EC2 인스턴스 생성 및 접속</h3><Br><ol><li>AWS에서 ubuntu 18버전으로 먼저 인스턴스 생성</li><li>key pair는 관리자만 실행가능하도록 환경설정<ul><li>오른쪽마우스 -&gt; 속성 -&gt; 보안 -&gt; 고급 -&gt; 상속사용</li><li>key pair는 무조건 C드라이브 안에 넣기</li></ul></li><li>명령프롬프트 관리자 권한으로 실행<ul><li>cd 키페어 위치</li><li>aws 홈페이지 가서 연결버튼 누름</li><li>ssh 링크 복사해서 cmd에 복사</li><li>연결완료 되면 pwd 입력 -&gt; <code>현재 서버위치</code></li></ul></li></ol><br><h3 id="Jupyter-Notebook-설치-HTTPS-적용-시스템-서비스-설정하기"><a href="#Jupyter-Notebook-설치-HTTPS-적용-시스템-서비스-설정하기" class="headerlink" title="Jupyter Notebook 설치, HTTPS 적용, 시스템 서비스 설정하기"></a>Jupyter Notebook 설치, HTTPS 적용, 시스템 서비스 설정하기</h3><br><ul><li><p><strong>Jypyter Notebook</strong> : 콘솔창이 아닌 웹브라우저 환경에서 해당 서버에 바로 접근해서 해당 서버를 관리할 수 있도록 해주는 유틸</p><ol><li>sudo apt-get update  :  apt-get명령의 업데이트</li><li>sudo apt-get install python3-pip<ul><li>ubuntu 18.04버전엔 pyhton3가 디폴트로 깔려있다. 그래서 python3는 깔 필요없고 파이썬 관련 패키지를 설치할 수 있도록 도와주는 python3-pip를 설치</li></ul></li><li>sudo pip3 install notebook  : jupyter notebook 설치</li></ol><br><p>만들어진 주피터를 통해서 서버의 외부에서 해당 서버에 웹브라우저를 이용해서 접속할 수 있도록 된 것. 이제 주피터 접속을 위한 비밀번호 설정을 해줘야 함.</p>  <br><ol><li>python3</li><li>from notebook.auth import passwd</li><li>passwd()   :  패스워드 함수 호출(비밀번호를 설정하겠다는 의미)</li><li>나온 hash값 복사해서 메모장 붙여넣기</li><li>exit()</li></ol><br><p>서버에서 주피터 노트북을 실행해서 외부에서 접속 했을 때 비밀번호를 입력해야 서버에 접속할 수 있도록 하기 위해 주피터 환경설정 진행</p><br><ol><li>jupyter notebook –generate-config    : 환경설정 파일 만듦</li><li>sudo vi 바로 윗줄 환경설정 위치값 붙여넣기<ul><li>ex)  sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py         </li></ul></li><li>제일 밑으로 내려가서 ‘a’눌러서 수정모드로 변환</li><li>c = get_config()</li><li>c.NotebookApp.password = u’sha1 : 복사해둔 해시값’</li><li>c.NotebookApp.ip = ‘172.31.14.123’    이거는 화면 제목 창에 나온 주소 그대로 적으면 됨</li><li>c.NotebookApp.notebook_dir = ‘/‘</li><li>esc버튼 누르고</li><li>:wq!</li></ol><br><ol><li>sudo jupyter-notebook –allow-root   : 주피터 노트북을 루트권한을 가진 상태로 실행<ul><li>8888포트로 주피터 노트북이 열린 것 확인가능</li></ul></li></ol><br><ol><li>AWS 웹사이트 다시 돌아가서 </li><li>‘설명’란 안에 있는</li><li>‘보안그룹’ 의 ‘launch-wizard-1’ 클릭</li><li>‘인바운드’</li><li>‘편집’</li><li>‘규칙추가’</li><li>포트범위 : 8888</li><li>소스 : 0.0.0.0/0  (두 개 다)</li></ol><br><ol><li>인스턴스 화면으로 돌아옴</li><li>‘설명’란에 ‘IPv4 퍼블릭 IP’에 있는 주소 복사</li><li>주소창에 붙이고 ‘:8888’ 붙여서 엔터</li></ol><br><ul><li>더 이상 ssh가 필요하지 않고 바로 웹 브라우저에서 해당 서버에 접속할 수 있어서 매우 편리해졌다. 하지만 우린 주피터를 항상 실행할 수 있는 상태로 만들고 싶다</li></ul></li></ul><br><ol><li>다시 cmd로 돌아와서 ‘ctrl+z’로 해당 서버 종료 </li><li>bg   : background상태에서 돌아가게 함</li><li>disown -h   : 소유권 포기<ul><li>이제 주피터 노트북이 항상 실행 중인 상태가 됨<br></li></ul></li></ol><p>언제 어디서나 웹브라우저로 서버를 관리할 수 있게 됨<br>하지만 지금의 주피터 노트북은 ssl인증서가 적용되지 않은 상태라서 통신과정에서 상당히 위험.<br><br></p><p>그러므로 https를 적용해야됨</p><br><ol><li>sudo netstat -nap | grep 8888  : 현재 8888포트가 실행 중인 피아이디를 알 수 있다</li><li>sudo kill -9 ‘파이썬 옆 숫자’<ul><li>해당 주피터 노트북을 종료시킬 수 있음</li><li>웹브라우저에서 새로고침하면 적용 안 됨</li></ul></li></ol><br><h3 id="HTTPS-적용"><a href="#HTTPS-적용" class="headerlink" title="HTTPS 적용"></a>HTTPS 적용</h3><br><p><em>환경설정에 개인키와 공개키를 넣는 작업</em></p><br><ol><li>cd /home/ubuntu</li><li>pwd</li><li>mkdir ssl</li><li>cd ssl</li><li>sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout “cert.key” -out “cert.pem” -batch     <em>개인키 공개키 생성</em></li><li>ls</li><li>sudo vi 바로 윗줄 환경설정 다시 열기<br>ex)  sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py<br><em>방향키 위쪽 버튼 눌러서 찾기</em></li><li>‘a’눌러서 시작</li><li>c.NotebookApp.certfile = u’/home/ubuntu/ssl/cert.pem’</li><li>c.Notebop.keyfile = u’/home/ubuntu/ssl/cert.key’</li><li>esc버튼</li><li>:wq!</li></ol><Br><ol><li><p>sudo jupyter-notebook –allow-root   <em>주피터 노트북 실행</em></p><ul><li>https://주소:8888 넣으면 ssl이 적용이 된 상태로 서버에 접속가능</li><li>여기까지가 우리 주피터 노트북에 ssl(인증서)까지 적용한 것</li></ul></li></ol><br><h3 id="시스템-서비스-설정하기"><a href="#시스템-서비스-설정하기" class="headerlink" title="시스템 서비스 설정하기"></a>시스템 서비스 설정하기</h3><ul><li>서버가 재부팅되면 자동으로 주피터 노트북이 실행이 안됨. 그래서 주피터 노트북을 시스템 서비스로서 등록시켜서 재부팅해도 자동실행 가능하도록 함.</li></ul><br><ol><li><p>먼저 ctrl+c 눌러서 서버 구동 종료</p></li><li><p>which jupyter-notebook    <em>주피터 노트북 실행파일의 경로를 찾기 위한 명령</em></p></li><li><p>sudo vi /etc/systemd/system/jupyter.service    <em>시스템 서비스로 등록하기 위해 서비스 파일 작성</em></p></li><li><p><em>서비스 파일 작성</em></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;Jupyter Notebook Server</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;simple</span><br><span class="line">User&#x3D;ubuntu  &#x2F;&#x2F;기본적으로 AWS ec2에 ssh명령을 이용해서 접속할 땐 ubuntu계정으로 접속하기 때문</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;bin&#x2F;sudo &#x2F;usr&#x2F;local&#x2F;bin&#x2F;jupyter-notebook --allow-root --config&#x3D;&#x2F;home&#x2F;ubuntu&#x2F;.jupyter&#x2F;jupyter_notebook_config.py</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure><p>:wq!입력</p><br></li></ol><p>  <em>주피터 노트북을 구동시키도록 함</em></p><ol><li>sudo systemctl daemon-reload <em>데몬을 다시 로드할수 있도록</em></li><li>sudo systemctl enable jupyter <em>주피터서비스를 사용가능하도록 만듦</em> </li><li>sudo systemctl start jupyter  <em>항상 실행상태가 되도록 만듦</em></li></ol><br><ul><li><p>실행 중인 주피터 서비스를 확인</p><ol><li>sudo systemctl status jupyter</li><li>확인 후 ‘q’눌러서 상태확인 마침</li></ol><br></li><li><p>주피터 서비스를 다시 시작하고자 할 때</p><ol><li>sudo systemctl restart jupyter</li></ol></li></ul><br><p>이제 aws ec2를 재부팅하더라도 주피터 노트북 서비스가 자동으로 실행되어서 구동중인 상태가 될 수 있도록 처리한 것. 항상 주피터를 이용해서 해당 서버에 접속해 관리할 수 있도록 된 것.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Docker Tutorial 1&lt;/p&gt;
     
     </summary>
     
