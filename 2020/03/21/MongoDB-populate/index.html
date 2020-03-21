@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Making Model Method(mongoose) - Developer Javit</title>
+    <title>Populate, Virtual - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Making model method\n\n\n보통 API 컨트롤러 파일에서 데이터 모델의 내장함수들에 직접 접근하여 데이터를 생성하고 조회를 한다.\n이번엔 데이터 모델에 임의 메소드, 쿼리 헬퍼를 만들어서 데이터 작업을 좀 더 용이하게 하는 방법을 알아본다.\n모델 메소드는 두 종류로 만들 수 있다. .statics 와 .methods 이다. 각 종류는 서로 가리키는 this 값이 다르다. 전자의 경우 모델 자체를 가리키고, 후자의 경우 데이터 인스턴스를 가리킨다. \nstatic 메소드123456789101112131415&#x2F;&#x2F; Check the user&#39;s email and passworduserSchema.statics.findByCredentials &#x3D; async function (email, password) &#123;    const user &#x3D; await User.findOne(&#123; email &#125;)    if (!user) &#123;        throw new Error(&#39;Unable to login&#39;)    &#125;    const isMatch &#x3D; await bcrypt.compare(password, user.password)    if (!isMatch) &#123;        throw new Error(&#39;Unable to login&#39;)    &#125;    return user;&#125;\n\n인스턴스 메소드12345678910&#x2F;&#x2F; Generate the token and save on the databaseuserSchema.methods.generateAuthToken &#x3D; async function () &#123;    const user &#x3D; this    const token &#x3D; jwt.sign(&#123; _id: user._id.toString &#125;, &#39;studyNodeJs&#39;)    user.tokens &#x3D; user.tokens.concat(&#123; token &#125;)    await user.save();    return token;&#125;\n\n메소드를 만들 땐, 스키마를 모델화 하기 전에, .statics 혹은 .methods를 사용하여 정의를 해주어야 한다.\n이렇게 메소드를 만들면, 우리가 원하는 작업마다 이름을 붙여줄 수 있게 되고 코드를 분리시킬 수 있어 가독성도 높아진다. 쿼리를 작성할 때 데이터 구조를 확인하기 위하여 컨트롤러 파일과 모델 파일을 동시에 볼 필요도 없어서 편해진다. \n출처 : backend \n","dateCreated":"2020-03-20T15:46:25+09:00","dateModified":"2020-03-20T13:48:21+09:00","datePublished":"2020-03-20T15:46:25+09:00","description":"Making model method","headline":"Making Model Method(mongoose)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/","keywords":"MongoDB"}</script>
-    <meta name="description" content="Making model method">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"populate\n\n\nPopulate\n몽구스의 편리한 기능 중 하나인 populate\n몽고DB를 사용하다보면 하나의 다큐먼트가 다른 다큐먼트의 ObjectId를 쓰는 경우가 있다. 그럴 때 그 ObjectId를 실제 객체로 치환하는 작업이 필요하다.\n즉 populate는 ObjectId에 해당하는 값과 객체를 치환해주는 역할을 해준다.\n\n1234567const Task &#x3D; mongoose.model(&#39;Task&#39;, &#123; owner: &#123; type: mongoose.Schema.Types.ObjectId, required: true, ref: &#39;User&#39; &#125;&#125;)\n\nref에 해당 ObjectId가 속해있는 모델을 넣어준다. 자기자신을 가리켜도 되고 다른 컬렉션 모델이어도 상관없다.\nYou can fetch the owner of a given task.\n123const task &#x3D; await Task.findById(&#39;5c2e505a3253e18a43e612e6&#39;)await task.populate(&#39;owner&#39;).execPopulate()console.log(task.owner)\n\n결과적으로 ObjectId가 실제 객체로 치환된다.\n populate는 자바스크립트 단에서 합쳐주는 것이지 JOIN처럼 DB 자체에서 합쳐주는 것이 아니다. 따라서 성능이 그렇게 좋지는 않습니다. 특히 populate가 중첩되면 성능 문제가 생길 확률이 커집니다.\n\n\nVirtual다큐먼트에는 없지만 객체에는 있는 가상의 필드를 만들어준다.\n123userSchema.virtual(&#39;detail&#39;).get(function()&#123;  return &#96;I am $&#123;this.nickname&#125; and birthday is $&#123;this.birth.toLocaleString()&#125;.&#96;&#125;)\n\n스키마에 virtual를 붙이면 users 컬렉션을 조회할 때 {email: ..., password: ...., detail: ...} 처럼 detail 필드가 생긴다. 그리고 get 메소드 안에 넣어준 함수의 return 값이 들어있다. 기존 필드들을 활용해서 새로운 가상 필드를 만드는 것이다.\n 출처 : zeroCho TV\n","dateCreated":"2020-03-21T15:46:25+09:00","dateModified":"2020-03-21T20:25:37+09:00","datePublished":"2020-03-21T15:46:25+09:00","description":"populate","headline":"Populate, Virtual","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/21/MongoDB-populate/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/21/MongoDB-populate/","keywords":"MongoDB"}</script>
+    <meta name="description" content="populate">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Making Model Method(mongoose)">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/index.html">
+<meta property="og:title" content="Populate, Virtual">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/21/MongoDB-populate/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Making model method">
+<meta property="og:description" content="populate">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-20T06:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-20T04:48:21.771Z">
+<meta property="article:published_time" content="2020-03-21T06:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-21T11:25:37.079Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="MongoDB">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Making Model Method(mongoose)
+            Populate, Virtual
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-20T15:46:25+09:00">
+    <time datetime="2020-03-21T15:46:25+09:00">
 	
-		    Mar 20, 2020
+		    Mar 21, 2020
     	
     </time>
     
@@ -240,19 +240,29 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Making model method</p>
+            <p>populate</p>
 <a id="more"></a>
 
-<p>보통 API 컨트롤러 파일에서 데이터 모델의 내장함수들에 직접 접근하여 데이터를 생성하고 조회를 한다.</p>
-<p>이번엔 데이터 모델에 임의 메소드, 쿼리 헬퍼를 만들어서 데이터 작업을 좀 더 용이하게 하는 방법을 알아본다.</p>
-<p>모델 메소드는 두 종류로 만들 수 있다. <code>.statics</code> 와 <code>.methods</code> 이다. 각 종류는 서로 가리키는 <code>this</code> 값이 다르다. 전자의 경우 모델 자체를 가리키고, 후자의 경우 데이터 인스턴스를 가리킨다. </p>
-<h3 id="static-메소드"><a href="#static-메소드" class="headerlink" title="static 메소드"></a>static 메소드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Check the user&#39;s email and password</span><br><span class="line">userSchema.statics.findByCredentials &#x3D; async function (email, password) &#123;</span><br><span class="line">    const user &#x3D; await User.findOne(&#123; email &#125;)</span><br><span class="line"></span><br><span class="line">    if (!user) &#123;</span><br><span class="line">        throw new Error(&#39;Unable to login&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const isMatch &#x3D; await bcrypt.compare(password, user.password)</span><br><span class="line"></span><br><span class="line">    if (!isMatch) &#123;</span><br><span class="line">        throw new Error(&#39;Unable to login&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    return user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Populate"><a href="#Populate" class="headerlink" title="Populate"></a>Populate</h3><ul>
+<li>몽구스의 편리한 기능 중 하나인 populate</li>
+<li>몽고DB를 사용하다보면 하나의 다큐먼트가 다른 다큐먼트의 ObjectId를 쓰는 경우가 있다. 그럴 때 그 ObjectId를 실제 객체로 치환하는 작업이 필요하다.</li>
+<li>즉 populate는 ObjectId에 해당하는 값과 객체를 치환해주는 역할을 해준다.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const Task &#x3D; mongoose.model(&#39;Task&#39;, &#123;</span><br><span class="line"> owner: &#123;</span><br><span class="line"> type: mongoose.Schema.Types.ObjectId,</span><br><span class="line"> required: true,</span><br><span class="line"> ref: &#39;User&#39;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h3 id="인스턴스-메소드"><a href="#인스턴스-메소드" class="headerlink" title="인스턴스 메소드"></a>인스턴스 메소드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Generate the token and save on the database</span><br><span class="line">userSchema.methods.generateAuthToken &#x3D; async function () &#123;</span><br><span class="line">    const user &#x3D; this</span><br><span class="line">    const token &#x3D; jwt.sign(&#123; _id: user._id.toString &#125;, &#39;studyNodeJs&#39;)</span><br><span class="line"></span><br><span class="line">    user.tokens &#x3D; user.tokens.concat(&#123; token &#125;)</span><br><span class="line">    await user.save();</span><br><span class="line"></span><br><span class="line">    return token;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>ref</code>에 해당 ObjectId가 속해있는 모델을 넣어준다. 자기자신을 가리켜도 되고 다른 컬렉션 모델이어도 상관없다.</p>
+<p>You can fetch the owner of a given task.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const task &#x3D; await Task.findById(&#39;5c2e505a3253e18a43e612e6&#39;)</span><br><span class="line">await task.populate(&#39;owner&#39;).execPopulate()</span><br><span class="line">console.log(task.owner)</span><br></pre></td></tr></table></figure>
 
-<p>메소드를 만들 땐, 스키마를 모델화 하기 전에, <code>.statics</code> 혹은 <code>.methods</code>를 사용하여 정의를 해주어야 한다.</p>
-<p>이렇게 메소드를 만들면, 우리가 원하는 작업마다 이름을 붙여줄 수 있게 되고 코드를 분리시킬 수 있어 가독성도 높아진다. 쿼리를 작성할 때 데이터 구조를 확인하기 위하여 컨트롤러 파일과 모델 파일을 동시에 볼 필요도 없어서 편해진다. </p>
-<p>출처 : <a href="https://backend-intro.vlpt.us/" target="_blank" rel="noopener">backend</a> </p>
+<p>결과적으로 <strong>ObjectId가 실제 객체로 치환</strong>된다.</p>
+<p> populate는 자바스크립트 단에서 합쳐주는 것이지 JOIN처럼 DB 자체에서 합쳐주는 것이 아니다. 따라서 성능이 그렇게 좋지는 않습니다. 특히 populate가 중첩되면 성능 문제가 생길 확률이 커집니다.</p>
+<br>
+
+<h3 id="Virtual"><a href="#Virtual" class="headerlink" title="Virtual"></a>Virtual</h3><p>다큐먼트에는 없지만 객체에는 있는 가상의 필드를 만들어준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">userSchema.virtual(&#39;detail&#39;).get(function()&#123;</span><br><span class="line">  return &#96;I am $&#123;this.nickname&#125; and birthday is $&#123;this.birth.toLocaleString()&#125;.&#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>스키마에 virtual를 붙이면 users 컬렉션을 조회할 때 <code>{email: ..., password: ...., detail: ...}</code> 처럼 detail 필드가 생긴다. 그리고 get 메소드 안에 넣어준 함수의 return 값이 들어있다. 기존 필드들을 활용해서 새로운 가상 필드를 만드는 것이다.</p>
+<p> 출처 : <a href="https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363" target="_blank" rel="noopener">zeroCho TV</a></p>
 
             
 
@@ -274,14 +284,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/21/MongoDB-populate/"
-                    data-tooltip="Populate, Virtual"
-                    aria-label="PREVIOUS: Populate, Virtual"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -291,9 +298,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/20/NodeJS-json-web-token/"
-                    data-tooltip="JSON Web Token"
-                    aria-label="NEXT: JSON Web Token"
+                    href="/2020/03/20/MongoDB-Making-model-method/"
+                    data-tooltip="Making Model Method(mongoose)"
+                    aria-label="NEXT: Making Model Method(mongoose)"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -318,7 +325,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -331,7 +338,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -344,7 +351,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -389,14 +396,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/21/MongoDB-populate/"
-                    data-tooltip="Populate, Virtual"
-                    aria-label="PREVIOUS: Populate, Virtual"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -406,9 +410,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/20/NodeJS-json-web-token/"
-                    data-tooltip="JSON Web Token"
-                    aria-label="NEXT: JSON Web Token"
+                    href="/2020/03/20/MongoDB-Making-model-method/"
+                    data-tooltip="Making Model Method(mongoose)"
+                    aria-label="NEXT: Making Model Method(mongoose)"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -433,7 +437,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -446,7 +450,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -459,7 +463,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -493,7 +497,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -506,7 +510,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -519,7 +523,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
