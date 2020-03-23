@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-21T11:25:37.079Z</updated>
+  <updated>2020-03-23T01:56:14.783Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Filtering Data</title>
+    <link href="http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"/>
+    <id>http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/</id>
+    <published>2020-03-23T01:46:25.000Z</published>
+    <updated>2020-03-23T01:56:14.783Z</updated>
+    
+    <content type="html"><![CDATA[<p>filtering data </p><a id="more"></a><p>For data filtering, we’ll use query parameters. This will allow clients to fetch all tasks, just the complete tasks, or just the incomplete tasks.</p><h3 id="Filtering-Data"><a href="#Filtering-Data" class="headerlink" title="Filtering Data"></a>Filtering Data</h3><p>The <code>completed</code> query parameter is on the task documents of MongoDB. This query parameter can be set to <code>true</code> or <code>false</code>. This will prevent clients from fetching unnecessary data tha they don’t plan on using.</p><p>First up, create an object to store the search criteria.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const match &#x3D; &#123;&#125;</span><br></pre></td></tr></table></figure><p>From there, check if the query parameter was provided. The provided value should be parsed into a boolean and stored on <code>match.completed</code>.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (req.query.completed) &#123;</span><br><span class="line">  match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Last up, <code>match</code> can be added onto <code>populate</code> to fetch just the users that match the search criteria.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">await req.user.populate(&#123;</span><br><span class="line">  path: &#39;tasks&#39;,</span><br><span class="line">  match</span><br><span class="line">&#125;).exexPopulate()</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; READ USER&#39;S TASKS</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?completed&#x3D;true</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?limit&#x3D;10&amp;skip&#x3D;10</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?sortBy&#x3D;createdAt:desc</span><br><span class="line">router.get(&#39;&#x2F;tasks&#39;, auth, async (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    const match &#x3D; &#123;&#125;</span><br><span class="line">    const sort &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">    if (req.query.completed) &#123;</span><br><span class="line">        match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (req.query.sortBy) &#123;</span><br><span class="line">        const parts &#x3D; req.query.sortBy.split(&#39;:&#39;)</span><br><span class="line">        sort[parts[0]] &#x3D; parts[1] &#x3D;&#x3D;&#x3D; &#39;desc&#39; ? -1 : 1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        await req.user.populate(&#123;</span><br><span class="line">            path: &#39;tasks&#39;,</span><br><span class="line">            match,</span><br><span class="line">            options: &#123;</span><br><span class="line">                limit: parseInt(req.query.limit),</span><br><span class="line">                skip: parseInt(req.query.skip),</span><br><span class="line">                sort</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).execPopulate();</span><br><span class="line">        res.send(req.user.tasks);</span><br><span class="line"></span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        res.status(500).send();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>출처 : NodeJS course on Udemy by Andrew Mead</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;filtering data &lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Populate, Virtual</title>
@@ -446,29 +469,6 @@
     <summary type="html">
     
       &lt;p&gt;PHP 컨테이너와 MySQL 컨테이너 연동해보기&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/categories/Docker/"/>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Making MySQL container with Docker</title>
-    <link href="http://jbj828.github.io/2020/03/04/Docker-making-mySQL-container/"/>
-    <id>http://jbj828.github.io/2020/03/04/Docker-making-mySQL-container/</id>
-    <published>2020-03-04T03:46:25.000Z</published>
-    <updated>2020-03-04T02:37:44.299Z</updated>
-    
-    <content type="html"><![CDATA[<p>Docker로 MySQL 컨테이너 만들어 보기</p><a id="more"></a><p><strong>MySQL은 도커허브에 존재하는 이미지이기 때문에 즉시 MySQL이미지를 다운로드 받아 사용할 수 있다</strong></p><br><ul><li><p><code>sudo apt install mysql-client-core-5.7</code> : mysql 설치</p></li><li><p><code>docker run -d -p 9876:3306 -e MYSQL_ROOT_PASSWORD=password mysql:5.6</code>  :  9876포트와 mysql의 기본포트인 3306포트 연결. 환경변수로 mysql의 루트 패스워드를 패스워드로 설정. mysql 5.6 이미지를 다운로드 받아서 실행까지 시행. </p></li><li><p><code>docker ps -a</code> </p></li><li><p><code>docker exec -it 컨테이너아이디 /bin/bash</code>  : 컨테이너 접속 위해 exec명령 이용. bash명령을 시행해 해당 컨테이너에 접속한 것과 같은 효과</p></li><li><p><code>mysql -u root -p</code>  : mysql 실행 및 접속</p></li><li><p>패스워드는 <code>password</code> 그대로 복사 붙여넣기</p></li></ul><br><h5 id="Database-생성"><a href="#Database-생성" class="headerlink" title="Database 생성"></a>Database 생성</h5><ul><li><code>CREATE DATABASE TEST;</code></li><li><code>SHOW DATABASES;</code></li><li><code>exit</code></li><li><code>exit</code></li></ul><br><h5 id="Docker-컨테이너의-세부정보-확인-및-컨테이너에-포함되어-있는-mysql-접속"><a href="#Docker-컨테이너의-세부정보-확인-및-컨테이너에-포함되어-있는-mysql-접속" class="headerlink" title="Docker 컨테이너의 세부정보 확인 및 컨테이너에 포함되어 있는 mysql 접속"></a>Docker 컨테이너의 세부정보 확인 및 컨테이너에 포함되어 있는 mysql 접속</h5><ul><li><code>docker inspect 컨테이너아이디</code></li><li>“IPAddress” 찾기</li><li><code>mysql -u root -p --host 아이피어드레스 --port 3306</code></li></ul><br><ul><li><code>SHOW DATABASES;</code>  : 이전에 만든 test 있는지 확인</li></ul><br><ul><li><code>mysql -u root -p --host 127.0.0.1 --port 9876</code> : 이 방법으로도 mysql에 접속 가능</li></ul><br><p>도커 컨테이너는 언제든지 제거될 수 있기 때문에 일반적으로 도커컨테이너를 mysql 서버로 사용 안함. 컨테이너와 같이 일시적인 서버로서 mysql을 사용하지 않음. 그래서 일반적으로 AWS RDS 같은 데이터베이스 기능을 많이 이용.</p><br><p><strong>Mysql 접속 이후 관리자 역할로 하나으 user 만들기</strong></p><ul><li><code>CREATE USER &#39;test&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39;;</code></li><li><code>GRANT ALL PRIVILEGES ON *.* TO &#39;test&#39;@&#39;%&#39;;</code> : 해당 유저에게 권한을 준다. test계정에 권한을 주고 외부에서 접속할 수 있도록 설정</li><li><code>FLUSH PRIVILEGES;</code></li><li><code>exit</code></li></ul><br><ul><li><code>docker restart 컨테이너아이디</code></li></ul><br><ul><li>AWS에서 포트 9876으로 열어준다.</li><li>‘IPv4 퍼블릭 IP’ 주소 복사해서 데이터베이스 접속 앱(HeidiSQL 등) 이용</li></ul><br>출처 : 동빈나 youtube]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Docker로 MySQL 컨테이너 만들어 보기&lt;/p&gt;
     
     </summary>
     

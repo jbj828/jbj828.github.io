@@ -6,25 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Populate, Virtual - Developer Javit</title>
+    <title>Filtering Data - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"populate\n\n\nPopulate\n몽구스의 편리한 기능 중 하나인 populate\n몽고DB를 사용하다보면 하나의 다큐먼트가 다른 다큐먼트의 ObjectId를 쓰는 경우가 있다. 그럴 때 그 ObjectId를 실제 객체로 치환하는 작업이 필요하다.\n즉 populate는 ObjectId에 해당하는 값과 객체를 치환해주는 역할을 해준다.\n\n1234567const Task &#x3D; mongoose.model(&#39;Task&#39;, &#123; owner: &#123; type: mongoose.Schema.Types.ObjectId, required: true, ref: &#39;User&#39; &#125;&#125;)\n\nref에 해당 ObjectId가 속해있는 모델을 넣어준다. 자기자신을 가리켜도 되고 다른 컬렉션 모델이어도 상관없다.\nYou can fetch the owner of a given task.\n123const task &#x3D; await Task.findById(&#39;5c2e505a3253e18a43e612e6&#39;)await task.populate(&#39;owner&#39;).execPopulate()console.log(task.owner)\n\n결과적으로 ObjectId가 실제 객체로 치환된다.\n populate는 자바스크립트 단에서 합쳐주는 것이지 JOIN처럼 DB 자체에서 합쳐주는 것이 아니다. 따라서 성능이 그렇게 좋지는 않습니다. 특히 populate가 중첩되면 성능 문제가 생길 확률이 커집니다.\n\n\nVirtual다큐먼트에는 없지만 객체에는 있는 가상의 필드를 만들어준다.\n123userSchema.virtual(&#39;detail&#39;).get(function()&#123;  return &#96;I am $&#123;this.nickname&#125; and birthday is $&#123;this.birth.toLocaleString()&#125;.&#96;&#125;)\n\n스키마에 virtual를 붙이면 users 컬렉션을 조회할 때 {email: ..., password: ...., detail: ...} 처럼 detail 필드가 생긴다. 그리고 get 메소드 안에 넣어준 함수의 return 값이 들어있다. 기존 필드들을 활용해서 새로운 가상 필드를 만드는 것이다.\n 출처 : zeroCho TV\n","dateCreated":"2020-03-21T15:46:25+09:00","dateModified":"2020-03-21T20:25:37+09:00","datePublished":"2020-03-21T15:46:25+09:00","description":"populate","headline":"Populate, Virtual","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/21/MongoDB-populate/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/21/MongoDB-populate/","keywords":"MongoDB"}</script>
-    <meta name="description" content="populate">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"filtering data \n\n\nFor data filtering, we’ll use query parameters. This will allow clients to fetch all tasks, just the complete tasks, or just the incomplete tasks.\nFiltering DataThe completed query parameter is on the task documents of MongoDB. This query parameter can be set to true or false. This will prevent clients from fetching unnecessary data tha they don’t plan on using.\nFirst up, create an object to store the search criteria.\n1const match &#x3D; &#123;&#125;\n\nFrom there, check if the query parameter was provided. The provided value should be parsed into a boolean and stored on match.completed.\n123if (req.query.completed) &#123;  match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;&#125;\n\nLast up, match can be added onto populate to fetch just the users that match the search criteria.\n1234await req.user.populate(&#123;  path: &#39;tasks&#39;,  match&#125;).exexPopulate()\n\n\n123456789101112131415161718192021222324252627282930313233&#x2F;&#x2F; READ USER&#39;S TASKS&#x2F;&#x2F; GET &#x2F;tasks?completed&#x3D;true&#x2F;&#x2F; GET &#x2F;tasks?limit&#x3D;10&amp;skip&#x3D;10&#x2F;&#x2F; GET &#x2F;tasks?sortBy&#x3D;createdAt:descrouter.get(&#39;&#x2F;tasks&#39;, auth, async (req, res) &#x3D;&gt; &#123;    const match &#x3D; &#123;&#125;    const sort &#x3D; &#123;&#125;    if (req.query.completed) &#123;        match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;    &#125;    if (req.query.sortBy) &#123;        const parts &#x3D; req.query.sortBy.split(&#39;:&#39;)        sort[parts[0]] &#x3D; parts[1] &#x3D;&#x3D;&#x3D; &#39;desc&#39; ? -1 : 1    &#125;    try &#123;        await req.user.populate(&#123;            path: &#39;tasks&#39;,            match,            options: &#123;                limit: parseInt(req.query.limit),                skip: parseInt(req.query.skip),                sort            &#125;        &#125;).execPopulate();        res.send(req.user.tasks);    &#125; catch (e) &#123;        res.status(500).send();    &#125;&#125;)\n\n\n출처 : NodeJS course on Udemy by Andrew Mead\n","dateCreated":"2020-03-23T10:46:25+09:00","dateModified":"2020-03-23T10:56:14+09:00","datePublished":"2020-03-23T10:46:25+09:00","description":"filtering data ","headline":"Filtering Data","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/","keywords":"NodeJS"}</script>
+    <meta name="description" content="filtering data">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Populate, Virtual">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/21/MongoDB-populate/index.html">
+<meta property="og:title" content="Filtering Data">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="populate">
+<meta property="og:description" content="filtering data">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-21T06:46:25.000Z">
-<meta property="article:modified_time" content="2020-03-21T11:25:37.079Z">
+<meta property="article:published_time" content="2020-03-23T01:46:25.000Z">
+<meta property="article:modified_time" content="2020-03-23T01:56:14.783Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="MongoDB">
+<meta property="article:tag" content="NodeJS">
 <meta name="twitter:card" content="summary">
     
     
@@ -215,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Populate, Virtual
+            Filtering Data
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-21T15:46:25+09:00">
+    <time datetime="2020-03-23T10:46:25+09:00">
 	
-		    Mar 21, 2020
+		    Mar 23, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/MongoDB/">MongoDB</a>
+    <a class="category-link" href="/categories/NodeJS/">NodeJS</a>
 
 
     
@@ -240,29 +240,25 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>populate</p>
+            <p>filtering data </p>
 <a id="more"></a>
 
-<h3 id="Populate"><a href="#Populate" class="headerlink" title="Populate"></a>Populate</h3><ul>
-<li>몽구스의 편리한 기능 중 하나인 populate</li>
-<li>몽고DB를 사용하다보면 하나의 다큐먼트가 다른 다큐먼트의 ObjectId를 쓰는 경우가 있다. 그럴 때 그 ObjectId를 실제 객체로 치환하는 작업이 필요하다.</li>
-<li>즉 populate는 ObjectId에 해당하는 값과 객체를 치환해주는 역할을 해준다.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const Task &#x3D; mongoose.model(&#39;Task&#39;, &#123;</span><br><span class="line"> owner: &#123;</span><br><span class="line"> type: mongoose.Schema.Types.ObjectId,</span><br><span class="line"> required: true,</span><br><span class="line"> ref: &#39;User&#39;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>For data filtering, we’ll use query parameters. This will allow clients to fetch all tasks, just the complete tasks, or just the incomplete tasks.</p>
+<h3 id="Filtering-Data"><a href="#Filtering-Data" class="headerlink" title="Filtering Data"></a>Filtering Data</h3><p>The <code>completed</code> query parameter is on the task documents of MongoDB. This query parameter can be set to <code>true</code> or <code>false</code>. This will prevent clients from fetching unnecessary data tha they don’t plan on using.</p>
+<p>First up, create an object to store the search criteria.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const match &#x3D; &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>ref</code>에 해당 ObjectId가 속해있는 모델을 넣어준다. 자기자신을 가리켜도 되고 다른 컬렉션 모델이어도 상관없다.</p>
-<p>You can fetch the owner of a given task.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const task &#x3D; await Task.findById(&#39;5c2e505a3253e18a43e612e6&#39;)</span><br><span class="line">await task.populate(&#39;owner&#39;).execPopulate()</span><br><span class="line">console.log(task.owner)</span><br></pre></td></tr></table></figure>
+<p>From there, check if the query parameter was provided. The provided value should be parsed into a boolean and stored on <code>match.completed</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (req.query.completed) &#123;</span><br><span class="line">  match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>결과적으로 <strong>ObjectId가 실제 객체로 치환</strong>된다.</p>
-<p> populate는 자바스크립트 단에서 합쳐주는 것이지 JOIN처럼 DB 자체에서 합쳐주는 것이 아니다. 따라서 성능이 그렇게 좋지는 않습니다. 특히 populate가 중첩되면 성능 문제가 생길 확률이 커집니다.</p>
+<p>Last up, <code>match</code> can be added onto <code>populate</code> to fetch just the users that match the search criteria.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">await req.user.populate(&#123;</span><br><span class="line">  path: &#39;tasks&#39;,</span><br><span class="line">  match</span><br><span class="line">&#125;).exexPopulate()</span><br></pre></td></tr></table></figure>
 <br>
 
-<h3 id="Virtual"><a href="#Virtual" class="headerlink" title="Virtual"></a>Virtual</h3><p>다큐먼트에는 없지만 객체에는 있는 가상의 필드를 만들어준다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">userSchema.virtual(&#39;detail&#39;).get(function()&#123;</span><br><span class="line">  return &#96;I am $&#123;this.nickname&#125; and birthday is $&#123;this.birth.toLocaleString()&#125;.&#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; READ USER&#39;S TASKS</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?completed&#x3D;true</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?limit&#x3D;10&amp;skip&#x3D;10</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?sortBy&#x3D;createdAt:desc</span><br><span class="line">router.get(&#39;&#x2F;tasks&#39;, auth, async (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    const match &#x3D; &#123;&#125;</span><br><span class="line">    const sort &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">    if (req.query.completed) &#123;</span><br><span class="line">        match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (req.query.sortBy) &#123;</span><br><span class="line">        const parts &#x3D; req.query.sortBy.split(&#39;:&#39;)</span><br><span class="line">        sort[parts[0]] &#x3D; parts[1] &#x3D;&#x3D;&#x3D; &#39;desc&#39; ? -1 : 1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        await req.user.populate(&#123;</span><br><span class="line">            path: &#39;tasks&#39;,</span><br><span class="line">            match,</span><br><span class="line">            options: &#123;</span><br><span class="line">                limit: parseInt(req.query.limit),</span><br><span class="line">                skip: parseInt(req.query.skip),</span><br><span class="line">                sort</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).execPopulate();</span><br><span class="line">        res.send(req.user.tasks);</span><br><span class="line"></span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        res.status(500).send();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>스키마에 virtual를 붙이면 users 컬렉션을 조회할 때 <code>{email: ..., password: ...., detail: ...}</code> 처럼 detail 필드가 생긴다. 그리고 get 메소드 안에 넣어준 함수의 return 값이 들어있다. 기존 필드들을 활용해서 새로운 가상 필드를 만드는 것이다.</p>
-<p> 출처 : <a href="https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363" target="_blank" rel="noopener">zeroCho TV</a></p>
+
+<p>출처 : NodeJS course on Udemy by Andrew Mead</p>
 
             
 
@@ -274,7 +270,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/MongoDB/" rel="tag">MongoDB</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/NodeJS/" rel="tag">NodeJS</a>
 
             </div>
         
@@ -284,14 +280,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/23/NodeJS-filtering-data/"
-                    data-tooltip="Filtering Data"
-                    aria-label="PREVIOUS: Filtering Data"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -301,9 +294,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/20/MongoDB-Making-model-method/"
-                    data-tooltip="Making Model Method(mongoose)"
-                    aria-label="NEXT: Making Model Method(mongoose)"
+                    href="/2020/03/21/MongoDB-populate/"
+                    data-tooltip="Populate, Virtual"
+                    aria-label="NEXT: Populate, Virtual"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -328,7 +321,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -341,7 +334,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -354,7 +347,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -399,14 +392,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/23/NodeJS-filtering-data/"
-                    data-tooltip="Filtering Data"
-                    aria-label="PREVIOUS: Filtering Data"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -416,9 +406,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/20/MongoDB-Making-model-method/"
-                    data-tooltip="Making Model Method(mongoose)"
-                    aria-label="NEXT: Making Model Method(mongoose)"
+                    href="/2020/03/21/MongoDB-populate/"
+                    data-tooltip="Populate, Virtual"
+                    aria-label="NEXT: Populate, Virtual"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -443,7 +433,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -456,7 +446,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -469,7 +459,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -503,7 +493,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -516,7 +506,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -529,7 +519,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/21/MongoDB-populate/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
