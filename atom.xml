@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-25T13:40:14.936Z</updated>
+  <updated>2020-03-26T07:47:15.993Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -17,13 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>What is the Vuex?</title>
+    <link href="http://jbj828.github.io/2020/03/26/VueJS-vuex/"/>
+    <id>http://jbj828.github.io/2020/03/26/VueJS-vuex/</id>
+    <published>2020-03-26T06:46:25.000Z</published>
+    <updated>2020-03-26T07:47:15.993Z</updated>
+    
+    <content type="html"><![CDATA[<p>vuex</p><a id="more"></a><h3 id="원칙-1-Single-Source-of-Truth-단일-데이터-소스"><a href="#원칙-1-Single-Source-of-Truth-단일-데이터-소스" class="headerlink" title="원칙 1 : Single Source of Truth(단일 데이터 소스)"></a>원칙 1 : Single Source of Truth(단일 데이터 소스)</h3><p>컴포넌트들 간에 공유해야 하는 데이터(예: 애플리케이션 데이터)는 이를 사용하는 컴포넌트와는 별도로 단일 위치에 보관해야 한다.</p><p>이 단일 위치를 <code>store(저장소)</code>라고 한다. 컴포넌트는 이 위치에서 애플리케이션 데이터를 읽어야 하며 충돌이나 불일치를 방지하기 위해 복사본을 자체적으로 보관해서는 안된다.</p><h3 id="원칙-2-Data-is-Read-Only"><a href="#원칙-2-Data-is-Read-Only" class="headerlink" title="원칙 2 : Data is Read-Only"></a>원칙 2 : Data is Read-Only</h3><p>컴포넌트들은 저장소에서 데이터를 자유롭게 읽을 수 있다. 그러나 직접 변경은 불가능.</p><p>대신 데이터를 변경할 것이라는 것을 store에 알려야 하며, store은 “mutations”라고 하는 정의된 함수들을 통해 변경을 완수해야할 책임이 있다.</p><p>이렇게 데이터 변경 로직을 중앙 집중화하면 데이터에 불일치가 일어나거나 데이터에 다른 문제들이 생겼을 때 여러 곳을 일일이 뒤져볼 필요가 없다. 이것은 어떤 익명의 컴포넌트가 예상치 못한 방식으로 데이터를 변경할 가능성을 최소화 해준다.</p><h3 id="원칙-3-Mutations-are-Synchronous-Mutation은-동기적이다"><a href="#원칙-3-Mutations-are-Synchronous-Mutation은-동기적이다" class="headerlink" title="원칙 3 : Mutations are Synchronous(Mutation은 동기적이다)"></a>원칙 3 : Mutations are Synchronous(Mutation은 동기적이다)</h3><p>위에 두 가지 원칙을 지키는 애플리케이션에서 데이터를 디버그 하는 것이 훨씬 쉽다. mutation의 commit을 기록하고 응답 상태가 어떻게 변경되는지 관찰할 수 있다.(Vue Devtools에서 Vuex를 사용할 때 실제로 그렇게 디버그 할 수 있다.)</p><p>그러나 만약 우리의 “mutation”이 비동기적으로 일어난다면 그런 방식의 디버그는 불가능 할 것이다. commit이 언제 발생했는지는 알 수 있어도, commit 안에 콜백이나 Promise 같은 것들이 들어간다면 추적이 불가능해진다.</p><p>mutation이 동기적으로 일어나는 것, 데이터가 예측할 수 없는 이벤트의 순서와 시간에 종속되지 않도로 보장한다.</p><h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex?"></a>Vuex?</h3><p>Vuex는 Vue 애플리케이션에서 Flux 아키텍처를 구현하는 데 도움이 되는 라이브러리이다. 위 원칙 덕분에 Vuex는 여러 컴포넌트에서 데이터를 공유해도 애플리케이션 데이터를 투명하고 예측 가능한 상태로 유지한다.</p><p>Vuex를 구현하기 위해서는 store, mutators 가 포함되며 store에서 데이터를 읽는 모든 컴포넌트를 자동으로 업데이트한다. </p><p>또한 핫 모듈 리로딩(실행 중인 애플리케이션에서 모듈 업데이트) 및 시간 이동 디버깅(버그 추적을 위한 mutation 이벤트 역추적)과 같은 멋진 개발 기능을 제공한다.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;vuex&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="VueJS" scheme="http://jbj828.github.io/categories/VueJS/"/>
+    
+    
+      <category term="VueJS" scheme="http://jbj828.github.io/tags/VueJS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The basic of VueJS</title>
     <link href="http://jbj828.github.io/2020/03/25/VueJS-Basic/"/>
     <id>http://jbj828.github.io/2020/03/25/VueJS-Basic/</id>
     <published>2020-03-25T13:46:25.000Z</published>
-    <updated>2020-03-25T13:40:14.936Z</updated>
+    <updated>2020-03-25T14:51:37.317Z</updated>
     
-    <content type="html"><![CDATA[<p>basic of vueJS</p><a id="more"></a><h3 id="What-is-VueJS"><a href="#What-is-VueJS" class="headerlink" title="What is VueJS?"></a>What is VueJS?</h3><p>MVVM 패턴의 ViewModel 레이어에 해당하는 화면단 라이브러리</p><ul><li>데이터 바인딩과 화면 단위를 컴포넌트 형태로 제공하며, 관련 API를 지원한는 데 궁극적 목적이 있다.</li><li>양방향 데이터 바인딩 제공</li><li>컴포넌트 간 통신은 단방향 데이터 흐름(부모 -&gt; 자식)</li></ul><img src="/2020/03/25/VueJS-Basic/vue.png" class="" width="500" height="300" title="Vue"><h3 id="MVVM-Pattern"><a href="#MVVM-Pattern" class="headerlink" title="MVVM Pattern?"></a>MVVM Pattern?</h3><p>Backend 로직과 Client의 마크업 &amp; 데이터 표현단을 분리하기 위한 구조로 전통적인 MVC 패턴의 방식에서 기인하였다. 간단하게 생각해서 화면 앞단의 화면 동작 관련 로직과 뒷단의 DB 데이터 처리 및 서버 로직을 분리하고, 뒷단에서 넘어온 데이터를 Model에 담아 View로 넘겨주는 중간 지점이라고 보면 된다.</p><p>출처 : <a href="https://joshua1988.github.io/" target="_blank" rel="noopener">Captain Pangyo</a></p>]]></content>
+    <content type="html"><![CDATA[<p>basic of vueJS</p><a id="more"></a><h3 id="What-is-VueJS"><a href="#What-is-VueJS" class="headerlink" title="What is VueJS?"></a>What is VueJS?</h3><p>MVVM 패턴의 ViewModel 레이어에 해당하는 화면단 라이브러리</p><ul><li>데이터 바인딩과 화면 단위를 컴포넌트 형태로 제공하며, 관련 API를 지원한는 데 궁극적 목적이 있다.</li><li>양방향 데이터 바인딩 제공</li><li>컴포넌트 간 통신은 단방향 데이터 흐름(부모 -&gt; 자식)</li></ul><img src="/2020/03/25/VueJS-Basic/vue.png" class="" width="500" height="300" title="Vue"><h3 id="MVVM-Pattern"><a href="#MVVM-Pattern" class="headerlink" title="MVVM Pattern?"></a>MVVM Pattern?</h3><p>Backend 로직과 Client의 마크업 &amp; 데이터 표현단을 분리하기 위한 구조로 전통적인 MVC 패턴의 방식에서 기인하였다. 간단하게 생각해서 화면 앞단의 화면 동작 관련 로직과 뒷단의 DB 데이터 처리 및 서버 로직을 분리하고, 뒷단에서 넘어온 데이터를 Model에 담아 View로 넘겨주는 중간 지점이라고 보면 된다.</p><h4 id="Steps-for-Passing-Props"><a href="#Steps-for-Passing-Props" class="headerlink" title="Steps for Passing Props"></a>Steps for Passing Props</h4><ol><li>Add the prop to the parent component’s template with a v-bind expression</li><li>Tell the child component about the props it should expect to get</li></ol><p>출처 : <a href="https://joshua1988.github.io/" target="_blank" rel="noopener">Captain Pangyo</a></p>]]></content>
     
     <summary type="html">
     
@@ -450,33 +473,6 @@
     
     
       <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Making DB with AWS RDS</title>
-    <link href="http://jbj828.github.io/2020/03/04/Docker-Making-DB-with-AWR-RDS/"/>
-    <id>http://jbj828.github.io/2020/03/04/Docker-Making-DB-with-AWR-RDS/</id>
-    <published>2020-03-04T06:46:25.000Z</published>
-    <updated>2020-03-06T01:39:07.467Z</updated>
-    
-    <content type="html"><![CDATA[<p>AWS RDS를 이용한 데이터베이스 구축</p><a id="more"></a><p><strong>AWS RDS를 이용해 한 번 기록 된 데이터를 컨테이너가 꺼지더라도 남아있도록 하기 위해 이용</strong></p><br><p><strong>한글 데이터 삽입이 가능한 데이터베이스를 위해 한글 설정 관련 파라미터 그룹 생성</strong></p><ul><li>RDS에서 파라미터 생성</li><li><code>char</code> 검색해서 전부 utf8로 바꿈</li><li><code>collation</code> 검색 -&gt; 전부 utf8_general_ci</li></ul><br><ul><li>데이터베이스 -&gt; 연결 &amp; 보안 -&gt;　vpc 보안그룹 링크 들어감 -&gt; 인바운드 -&gt; 편집</li><li>실습이기 때문에 언제 어디서나 접속가능하게 만든다<ul><li>0.0.0.0/0</li></ul></li><li>이렇게 하면 접속주소만 알면 누구나 접속가능하게 됨</li></ul><br><ul><li>연결&amp;보안 -&gt; 엔드포인트(해당 mysql에 접속하기 위한 접속주소) 복사</li><li>php file에서 호스트 주소로 엔드포인트 붙여넣기</li><li>사용자 이름도 mysql 내용대로 수정</li><li>포트번호도 3306으로(mysql 포트번호)</li></ul><br><ul><li>aws ec2안에 설치된 mysql컨테이너는 지워도 됨</li><li><code>docker rm -f 컨테이너아이디</code></li></ul><br>출처 : 동빈나 youtube]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;AWS RDS를 이용한 데이터베이스 구축&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/categories/Docker/"/>
-    
-      <category term="AWS" scheme="http://jbj828.github.io/categories/Docker/AWS/"/>
-    
-    
-      <category term="Docker" scheme="http://jbj828.github.io/tags/Docker/"/>
-    
-      <category term="AWS" scheme="http://jbj828.github.io/tags/AWS/"/>
     
   </entry>
   
