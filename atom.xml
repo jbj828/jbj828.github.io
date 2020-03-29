@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-29T14:06:14.413Z</updated>
+  <updated>2020-03-29T14:33:44.709Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sorting</title>
+    <link href="http://jbj828.github.io/2020/03/29/Al-sorting/"/>
+    <id>http://jbj828.github.io/2020/03/29/Al-sorting/</id>
+    <published>2020-03-29T14:30:25.000Z</published>
+    <updated>2020-03-29T14:33:44.709Z</updated>
+    
+    <content type="html"><![CDATA[<p>sorting</p><a id="more"></a><h3 id="What-is-Sorting"><a href="#What-is-Sorting" class="headerlink" title="What is Sorting?"></a>What is Sorting?</h3><p>Sorting refers to arranging data in a particular format : either ascending or descending</p><h3 id="Types-of-Sorting"><a href="#Types-of-Sorting" class="headerlink" title="Types of Sorting"></a>Types of Sorting</h3><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;sorting&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Hashing - Double Probing</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;callback function on nodejs&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Debugging Node.js</title>
-    <link href="http://jbj828.github.io/2020/03/10/NodeJS-Debugging/"/>
-    <id>http://jbj828.github.io/2020/03/10/NodeJS-Debugging/</id>
-    <published>2020-03-10T04:46:25.000Z</published>
-    <updated>2020-03-10T06:54:41.897Z</updated>
-    
-    <content type="html"><![CDATA[<p>Debugging</p><a id="more"></a><h3 id="Console-log"><a href="#Console-log" class="headerlink" title="Console.log"></a>Console.log</h3><br><h3 id="Node-Debugger"><a href="#Node-Debugger" class="headerlink" title="Node Debugger"></a>Node Debugger</h3><ul><li><p>NodeJS’ built-in Debugger</p></li><li><p>console창에 <code>node --inspect-brk app.js</code> : window용 // Mac은 <code>node inspect app.js</code></p></li><li><p>visit <strong><em>chrome://inspect</em></strong> in the Chrome Browser</p></li><li><p>Click <code>inspect</code> to open up the developer tools.</p></li><li><p>Click <code>play</code> icon on the right side of the monitor.</p></li><li><p>You can add breakpoints into your application to stop it at a specific point in the code. </p><ul><li><code>debugger</code>를 입력</li></ul></li><li><p>chrome창에서 아무 것도 안뜨면 <code>configure</code> 에서 IP주소랑 포트 입력</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Debugging&lt;/p&gt;
     
     </summary>
     
