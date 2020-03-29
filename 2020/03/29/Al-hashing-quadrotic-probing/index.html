@@ -13,16 +13,16 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Hashing - Quadratic Probing\n\n\nQuadraticProbing.java\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118package com.chung;import java.util.ArrayList;public class QuadraticProbing &#123;     String[] hashTable;     int noOfCellUsedInHashTable;     QuadraticProbing()&#123;         hashTable &#x3D; new String[13];         noOfCellUsedInHashTable &#x3D; 0;     &#125;     &#x2F;&#x2F; Hash Function to be used on keys    public int simpleASCIIHashFunction(String x, int M)&#123;         char ch[];         ch &#x3D; x.toCharArray();         int sum, i;         for(i &#x3D; 0, sum &#x3D; 0; i &lt; ch.length; i++)&#123;             sum +&#x3D; ch[i];         &#125;         return sum % M;    &#125;    &#x2F;&#x2F; Returns load factor of Hash Table    public double getLoadFactor()&#123;         double loadFactor &#x3D; noOfCellUsedInHashTable * 1.0 &#x2F; hashTable.length;         return loadFactor;    &#125;    &#x2F;&#x2F; Insert Key in Hash Table    public void insertKeyInHashTable(String value)&#123;         double loadFactor &#x3D; getLoadFactor();         if(loadFactor &gt;&#x3D; 0.75)&#123;             System.out.println(&quot;The hash table is full. Rehash the table&quot;);             rehashing(value);         &#125; else &#123;             System.out.println(&quot;Inserting key in Hash Table&quot;);             int index &#x3D; simpleASCIIHashFunction(value, hashTable.length);             int counter &#x3D; 0;             for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;                 int newIndex &#x3D; (index + (counter*counter)) % hashTable.length;                 if(hashTable[newIndex] &#x3D;&#x3D; null)&#123;                     hashTable[newIndex] &#x3D; value;                     break;                 &#125; else &#123;                     System.out.println(&quot;Index is not blank&quot;);                 &#125;                 counter++;             &#125;         &#125;         noOfCellUsedInHashTable++;    &#125;    &#x2F;&#x2F; Create a new Hash Table and Rehashing    public void rehashing(String newString)&#123;        noOfCellUsedInHashTable &#x3D; 0;        ArrayList&lt;String&gt; data &#x3D; new ArrayList&lt;String&gt;();        for(String s : hashTable)&#123;            if(s !&#x3D; null)                data.add(s);        &#125;        data.add(newString);        hashTable &#x3D; new String[hashTable.length *2];        for(String s : data)&#123;            insertKeyInHashTable(s);        &#125;    &#125;    &#x2F;&#x2F; Search for a given key in Hash Table    public boolean searchKeyOnHashTable(String key)&#123;         int index &#x3D; simpleASCIIHashFunction(key, hashTable.length);         for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;             int newIndex &#x3D; i % hashTable.length;             if(hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].equals(key))&#123;                 System.out.println(&quot;Found the key!!&quot;);                 return true;             &#125;         &#125;         System.out.println(&quot;Cannot find the key&quot;);         return false;    &#125;    &#x2F;&#x2F; Delete Key From Hash Table    public void deleteKeyFromHashTable(String key)&#123;         int index &#x3D; simpleASCIIHashFunction(key, hashTable.length);         for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;             int newIndex &#x3D; i % hashTable.length;             if(hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].equals(key))&#123;                 hashTable[newIndex] &#x3D; null;                 System.out.println(&quot;Delete the key&quot;);                 return;             &#125;         &#125;         System.out.println(&quot;Cannot find the key&quot;);    &#125;    &#x2F;&#x2F; Display the hash table    public void displayTheHashTable()&#123;         if(hashTable &#x3D;&#x3D; null)&#123;             System.out.println(&quot;HashTable is not exist&quot;);         &#125; else&#123;             for(int i &#x3D; 0; i &lt; hashTable.length; i++)&#123;                 System.out.println(hashTable[i]);             &#125;         &#125;    &#125;    &#x2F;&#x2F; Delete Entire hash table    public void deleteEntireHashTable()&#123;         hashTable &#x3D; null;        System.out.println(&quot;Hash Table is deleted&quot;);    &#125;&#125;","dateCreated":"2020-03-28T23:30:25+09:00","dateModified":"2020-03-29T15:00:14+09:00","datePublished":"2020-03-28T23:30:25+09:00","description":"Hashing - Quadratic Probing","headline":"Hashing - Quadratic Probing","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/","keywords":"algorithm"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Hashing - Quadratic Probing\n\n\nQuadraticProbing.java\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118package com.chung;import java.util.ArrayList;public class QuadraticProbing &#123;     String[] hashTable;     int noOfCellUsedInHashTable;     QuadraticProbing()&#123;         hashTable &#x3D; new String[13];         noOfCellUsedInHashTable &#x3D; 0;     &#125;     &#x2F;&#x2F; Hash Function to be used on keys    public int simpleASCIIHashFunction(String x, int M)&#123;         char ch[];         ch &#x3D; x.toCharArray();         int sum, i;         for(i &#x3D; 0, sum &#x3D; 0; i &lt; ch.length; i++)&#123;             sum +&#x3D; ch[i];         &#125;         return sum % M;    &#125;    &#x2F;&#x2F; Returns load factor of Hash Table    public double getLoadFactor()&#123;         double loadFactor &#x3D; noOfCellUsedInHashTable * 1.0 &#x2F; hashTable.length;         return loadFactor;    &#125;    &#x2F;&#x2F; Insert Key in Hash Table    public void insertKeyInHashTable(String value)&#123;         double loadFactor &#x3D; getLoadFactor();         if(loadFactor &gt;&#x3D; 0.75)&#123;             System.out.println(&quot;The hash table is full. Rehash the table&quot;);             rehashing(value);         &#125; else &#123;             System.out.println(&quot;Inserting key in Hash Table&quot;);             int index &#x3D; simpleASCIIHashFunction(value, hashTable.length);             int counter &#x3D; 0;             for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;                 int newIndex &#x3D; (index + (counter*counter)) % hashTable.length;                 if(hashTable[newIndex] &#x3D;&#x3D; null)&#123;                     hashTable[newIndex] &#x3D; value;                     break;                 &#125; else &#123;                     System.out.println(&quot;Index is not blank&quot;);                 &#125;                 counter++;             &#125;         &#125;         noOfCellUsedInHashTable++;    &#125;    &#x2F;&#x2F; Create a new Hash Table and Rehashing    public void rehashing(String newString)&#123;        noOfCellUsedInHashTable &#x3D; 0;        ArrayList&lt;String&gt; data &#x3D; new ArrayList&lt;String&gt;();        for(String s : hashTable)&#123;            if(s !&#x3D; null)                data.add(s);        &#125;        data.add(newString);        hashTable &#x3D; new String[hashTable.length *2];        for(String s : data)&#123;            insertKeyInHashTable(s);        &#125;    &#125;    &#x2F;&#x2F; Search for a given key in Hash Table    public boolean searchKeyOnHashTable(String key)&#123;         int index &#x3D; simpleASCIIHashFunction(key, hashTable.length);         for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;             int newIndex &#x3D; i % hashTable.length;             if(hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].equals(key))&#123;                 System.out.println(&quot;Found the key!!&quot;);                 return true;             &#125;         &#125;         System.out.println(&quot;Cannot find the key&quot;);         return false;    &#125;    &#x2F;&#x2F; Delete Key From Hash Table    public void deleteKeyFromHashTable(String key)&#123;         int index &#x3D; simpleASCIIHashFunction(key, hashTable.length);         for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;             int newIndex &#x3D; i % hashTable.length;             if(hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].equals(key))&#123;                 hashTable[newIndex] &#x3D; null;                 System.out.println(&quot;Delete the key&quot;);                 return;             &#125;         &#125;         System.out.println(&quot;Cannot find the key&quot;);    &#125;    &#x2F;&#x2F; Display the hash table    public void displayTheHashTable()&#123;         if(hashTable &#x3D;&#x3D; null)&#123;             System.out.println(&quot;HashTable is not exist&quot;);         &#125; else&#123;             for(int i &#x3D; 0; i &lt; hashTable.length; i++)&#123;                 System.out.println(hashTable[i]);             &#125;         &#125;    &#125;    &#x2F;&#x2F; Delete Entire hash table    public void deleteEntireHashTable()&#123;         hashTable &#x3D; null;        System.out.println(&quot;Hash Table is deleted&quot;);    &#125;&#125;","dateCreated":"2020-03-29T17:30:25+09:00","dateModified":"2020-03-29T23:06:39+09:00","datePublished":"2020-03-29T17:30:25+09:00","description":"Hashing - Quadratic Probing","headline":"Hashing - Quadratic Probing","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/","keywords":"algorithm"}</script>
     <meta name="description" content="Hashing - Quadratic Probing">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Hashing - Quadratic Probing">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/index.html">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/index.html">
 <meta property="og:site_name" content="Developer Javit">
 <meta property="og:description" content="Hashing - Quadratic Probing">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-28T14:30:25.000Z">
-<meta property="article:modified_time" content="2020-03-29T06:00:14.695Z">
+<meta property="article:published_time" content="2020-03-29T08:30:25.000Z">
+<meta property="article:modified_time" content="2020-03-29T14:06:39.430Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
@@ -220,9 +220,9 @@
     
     
         <div class="post-meta">
-    <time datetime="2020-03-28T23:30:25+09:00">
+    <time datetime="2020-03-29T17:30:25+09:00">
 	
-		    Mar 28, 2020
+		    Mar 29, 2020
     	
     </time>
     
@@ -268,9 +268,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/28/Al-hash-linear-probing/"
-                    data-tooltip="Hashing - Linear Probing"
-                    aria-label="PREVIOUS: Hashing - Linear Probing"
+                    href="/2020/03/29/Al-hashing-double-hashing/"
+                    data-tooltip="Hashing - Double Probing"
+                    aria-label="PREVIOUS: Hashing - Double Probing"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -282,9 +282,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/28/VueJS-actions/"
-                    data-tooltip="Vuex - Actions"
-                    aria-label="NEXT: Vuex - Actions"
+                    href="/2020/03/28/Al-hash-linear-probing/"
+                    data-tooltip="Hashing - Linear Probing"
+                    aria-label="NEXT: Hashing - Linear Probing"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -309,7 +309,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -322,7 +322,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -335,7 +335,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -383,9 +383,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/28/Al-hash-linear-probing/"
-                    data-tooltip="Hashing - Linear Probing"
-                    aria-label="PREVIOUS: Hashing - Linear Probing"
+                    href="/2020/03/29/Al-hashing-double-hashing/"
+                    data-tooltip="Hashing - Double Probing"
+                    aria-label="PREVIOUS: Hashing - Double Probing"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -397,9 +397,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/28/VueJS-actions/"
-                    data-tooltip="Vuex - Actions"
-                    aria-label="NEXT: Vuex - Actions"
+                    href="/2020/03/28/Al-hash-linear-probing/"
+                    data-tooltip="Hashing - Linear Probing"
+                    aria-label="NEXT: Hashing - Linear Probing"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -424,7 +424,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -437,7 +437,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -450,7 +450,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -484,7 +484,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -497,7 +497,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -510,7 +510,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/28/Al-hashing-quadrotic-probing/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/29/Al-hashing-quadrotic-probing/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>

@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Hashing - Double Probing - Developer Javit</title>
+    <meta name="author" content="Jay Chung">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"hashing - double probing\n\n\nDoubleProbing.java\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140package com.chung;import java.util.ArrayList;public class DoubleHashing &#123;    String[] hashTable;    int noOfCellsUsedInHashTable;    DoubleHashing()&#123;        hashTable &#x3D; new String[13];        noOfCellsUsedInHashTable &#x3D; 0;    &#125;    &#x2F;&#x2F; hash function to be used on keys    public int simpleASCIIHashFunction(String x, int M)&#123;        char[] ch;        ch &#x3D; x.toCharArray();        int i, sum;        for(i &#x3D; 0, sum &#x3D; 0; i &lt; x.length(); i++)&#123;            sum +&#x3D; ch[i];        &#125;        System.out.println(&quot;Index from Hash Function : &quot; + sum%M);        return sum % M;    &#125;    &#x2F;&#x2F; 2nd Hash Function    int secondHashFunction(String x, int M)&#123;        char[] ch;        ch &#x3D; x.toCharArray();        int i, sum;        for(i &#x3D; 0, sum &#x3D; 0; i &lt; x.length(); i++)&#123;            sum +&#x3D; ch[i];        &#125;        while(sum &gt; 13)&#123;            sum &#x3D; addAllTheDigitsTogether(sum);        &#125;        return sum % M;    &#125;    private int addAllTheDigitsTogether(int sum)&#123;        int value &#x3D; 0;        while(sum &gt; 0)&#123;            value &#x3D; sum % 10;            sum &#x3D; sum &#x2F; 10;        &#125;        return value;    &#125;    &#x2F;&#x2F; get Load Factor    public double getLoadFactor()&#123;        double loadFactor &#x3D; noOfCellsUsedInHashTable * 1.0 &#x2F; hashTable.length;        return loadFactor;    &#125;    &#x2F;&#x2F; Insert key in Hash Table    public void insertKeyInHashTable(String value)&#123;        double loadFactor &#x3D; getLoadFactor();        if(loadFactor &gt;&#x3D; 0.75)&#123;            System.out.println(&quot;Load Factor of this hash table is over 0.75. We need to rehash!! &quot;);            rehashKeys(value);        &#125; else &#123;            int firstHashResult &#x3D; simpleASCIIHashFunction(value, hashTable.length);            int secondHashResult &#x3D; secondHashFunction(value, hashTable.length);            for(int i &#x3D; 0; i &lt; hashTable.length; i++)&#123;                int index &#x3D; (firstHashResult + (i * secondHashResult)) % hashTable.length;                if(hashTable[index] &#x3D;&#x3D; null)&#123;                    hashTable[index] &#x3D; value;                    System.out.println(&quot;Succeed in inserting value on the hash table&quot;);                    break;                &#125;                System.out.println(&quot;Cannot insert the value on the index of &quot; + index);            &#125;        &#125;        noOfCellsUsedInHashTable++;    &#125;    &#x2F;&#x2F; Creates a new hash table and rehashing    public void rehashKeys(String newString)&#123;        noOfCellsUsedInHashTable &#x3D; 0;        ArrayList&lt;String&gt; data &#x3D; new ArrayList&lt;String&gt;();        for(String s : hashTable)&#123;            if(s !&#x3D; null)&#123;                data.add(s);            &#125;        &#125;        data.add(newString);        hashTable &#x3D; new String[hashTable.length * 2];        for(String s : data)&#123;            insertKeyInHashTable(s);        &#125;    &#125;    &#x2F;&#x2F; Search for a given key in hash table    public boolean searchKeyInHashTable(String value)&#123;        int index &#x3D; simpleASCIIHashFunction(value, hashTable.length);            for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;                int newIndex &#x3D; i % hashTable.length;                if(hashTable[newIndex] &#x3D;&#x3D; value)&#123;                    System.out.println(&quot;Found the value!!&quot;);                    return true;                &#125;            &#125;        System.out.println(&quot;Cannot find the value&quot;);        return false;    &#125;    &#x2F;&#x2F; Delete Key from Hash Table    public void deleteKeyFromHashTable(String value)&#123;        int index &#x3D; simpleASCIIHashFunction(value, hashTable.length);        for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;            int newIndex &#x3D; i % hashTable.length;            if(hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].equals(value))&#123;                hashTable[newIndex] &#x3D; null;                System.out.println(&quot;Delete the value on the hash table&quot;);                return;            &#125;        &#125;        System.out.println(&quot;No value on the hash Table&quot;);    &#125;    &#x2F;&#x2F; Display the hash table    public void displayTheHashTable()&#123;        if(hashTable &#x3D;&#x3D; null)&#123;            System.out.println(&quot;Hash Table is not exist&quot;);            return;        &#125;        for(int i &#x3D; 0; i &lt; hashTable.length; i++)&#123;            System.out.println(hashTable[i]);        &#125;    &#125;    &#x2F;&#x2F; Delete entire hash table    public void deleteEntireHashTable()&#123;        hashTable &#x3D; null;        System.out.println(&quot;Delete the hash table&quot;);    &#125;&#125;","dateCreated":"2020-03-29T21:30:25+09:00","dateModified":"2020-03-29T23:06:14+09:00","datePublished":"2020-03-29T21:30:25+09:00","description":"hashing - double probing","headline":"Hashing - Double Probing","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/","keywords":"algorithm"}</script>
+    <meta name="description" content="hashing - double probing">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Hashing - Double Probing">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="hashing - double probing">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-29T12:30:25.000Z">
+<meta property="article:modified_time" content="2020-03-29T14:06:14.413Z">
+<meta property="article:author" content="Jay Chung">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/index.html"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Hashing - Double Probing
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-03-29T21:30:25+09:00">
+	
+		    Mar 29, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>hashing - double probing</p>
+<a id="more"></a>
+
+<p>DoubleProbing.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line"></span><br><span class="line">public class DoubleHashing &#123;</span><br><span class="line">    String[] hashTable;</span><br><span class="line">    int noOfCellsUsedInHashTable;</span><br><span class="line"></span><br><span class="line">    DoubleHashing()&#123;</span><br><span class="line">        hashTable &#x3D; new String[13];</span><br><span class="line">        noOfCellsUsedInHashTable &#x3D; 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; hash function to be used on keys</span><br><span class="line">    public int simpleASCIIHashFunction(String x, int M)&#123;</span><br><span class="line">        char[] ch;</span><br><span class="line">        ch &#x3D; x.toCharArray();</span><br><span class="line">        int i, sum;</span><br><span class="line">        for(i &#x3D; 0, sum &#x3D; 0; i &lt; x.length(); i++)&#123;</span><br><span class="line">            sum +&#x3D; ch[i];</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;Index from Hash Function : &quot; + sum%M);</span><br><span class="line">        return sum % M;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 2nd Hash Function</span><br><span class="line">    int secondHashFunction(String x, int M)&#123;</span><br><span class="line">        char[] ch;</span><br><span class="line">        ch &#x3D; x.toCharArray();</span><br><span class="line">        int i, sum;</span><br><span class="line">        for(i &#x3D; 0, sum &#x3D; 0; i &lt; x.length(); i++)&#123;</span><br><span class="line">            sum +&#x3D; ch[i];</span><br><span class="line">        &#125;</span><br><span class="line">        while(sum &gt; 13)&#123;</span><br><span class="line">            sum &#x3D; addAllTheDigitsTogether(sum);</span><br><span class="line">        &#125;</span><br><span class="line">        return sum % M;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int addAllTheDigitsTogether(int sum)&#123;</span><br><span class="line">        int value &#x3D; 0;</span><br><span class="line">        while(sum &gt; 0)&#123;</span><br><span class="line">            value &#x3D; sum % 10;</span><br><span class="line">            sum &#x3D; sum &#x2F; 10;</span><br><span class="line">        &#125;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; get Load Factor</span><br><span class="line">    public double getLoadFactor()&#123;</span><br><span class="line">        double loadFactor &#x3D; noOfCellsUsedInHashTable * 1.0 &#x2F; hashTable.length;</span><br><span class="line">        return loadFactor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Insert key in Hash Table</span><br><span class="line">    public void insertKeyInHashTable(String value)&#123;</span><br><span class="line">        double loadFactor &#x3D; getLoadFactor();</span><br><span class="line">        if(loadFactor &gt;&#x3D; 0.75)&#123;</span><br><span class="line">            System.out.println(&quot;Load Factor of this hash table is over 0.75. We need to rehash!! &quot;);</span><br><span class="line">            rehashKeys(value);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            int firstHashResult &#x3D; simpleASCIIHashFunction(value, hashTable.length);</span><br><span class="line">            int secondHashResult &#x3D; secondHashFunction(value, hashTable.length);</span><br><span class="line"></span><br><span class="line">            for(int i &#x3D; 0; i &lt; hashTable.length; i++)&#123;</span><br><span class="line">                int index &#x3D; (firstHashResult + (i * secondHashResult)) % hashTable.length;</span><br><span class="line">                if(hashTable[index] &#x3D;&#x3D; null)&#123;</span><br><span class="line">                    hashTable[index] &#x3D; value;</span><br><span class="line">                    System.out.println(&quot;Succeed in inserting value on the hash table&quot;);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(&quot;Cannot insert the value on the index of &quot; + index);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        noOfCellsUsedInHashTable++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Creates a new hash table and rehashing</span><br><span class="line">    public void rehashKeys(String newString)&#123;</span><br><span class="line">        noOfCellsUsedInHashTable &#x3D; 0;</span><br><span class="line">        ArrayList&lt;String&gt; data &#x3D; new ArrayList&lt;String&gt;();</span><br><span class="line">        for(String s : hashTable)&#123;</span><br><span class="line">            if(s !&#x3D; null)&#123;</span><br><span class="line">                data.add(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        data.add(newString);</span><br><span class="line">        hashTable &#x3D; new String[hashTable.length * 2];</span><br><span class="line">        for(String s : data)&#123;</span><br><span class="line">            insertKeyInHashTable(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Search for a given key in hash table</span><br><span class="line">    public boolean searchKeyInHashTable(String value)&#123;</span><br><span class="line">        int index &#x3D; simpleASCIIHashFunction(value, hashTable.length);</span><br><span class="line">            for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;</span><br><span class="line">                int newIndex &#x3D; i % hashTable.length;</span><br><span class="line">                if(hashTable[newIndex] &#x3D;&#x3D; value)&#123;</span><br><span class="line">                    System.out.println(&quot;Found the value!!&quot;);</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        System.out.println(&quot;Cannot find the value&quot;);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Delete Key from Hash Table</span><br><span class="line">    public void deleteKeyFromHashTable(String value)&#123;</span><br><span class="line">        int index &#x3D; simpleASCIIHashFunction(value, hashTable.length);</span><br><span class="line"></span><br><span class="line">        for(int i &#x3D; index; i &lt; index + hashTable.length; i++)&#123;</span><br><span class="line">            int newIndex &#x3D; i % hashTable.length;</span><br><span class="line">            if(hashTable[newIndex] !&#x3D; null &amp;&amp; hashTable[newIndex].equals(value))&#123;</span><br><span class="line">                hashTable[newIndex] &#x3D; null;</span><br><span class="line">                System.out.println(&quot;Delete the value on the hash table&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;No value on the hash Table&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Display the hash table</span><br><span class="line">    public void displayTheHashTable()&#123;</span><br><span class="line">        if(hashTable &#x3D;&#x3D; null)&#123;</span><br><span class="line">            System.out.println(&quot;Hash Table is not exist&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i &#x3D; 0; i &lt; hashTable.length; i++)&#123;</span><br><span class="line">            System.out.println(hashTable[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Delete entire hash table</span><br><span class="line">    public void deleteEntireHashTable()&#123;</span><br><span class="line">        hashTable &#x3D; null;</span><br><span class="line">        System.out.println(&quot;Delete the hash table&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/03/29/Al-hashing-quadrotic-probing/"
+                    data-tooltip="Hashing - Quadratic Probing"
+                    aria-label="NEXT: Hashing - Quadratic Probing"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/03/29/Al-hashing-quadrotic-probing/"
+                    data-tooltip="Hashing - Quadratic Probing"
+                    aria-label="NEXT: Hashing - Quadratic Probing"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/29/Al-hashing-double-hashing/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Jay Chung</h4>
+        
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Web BackEnd Developer</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
