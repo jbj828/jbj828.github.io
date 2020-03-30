@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Sorting - Bubble Sort / Selection Sort - Developer Javit</title>
+    <title>Sorting - Insertion Sort - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"bubble sort / selection sort\n\n\n\n\nWhat is Bubble Sort?\nBubble sort, sometimes is also referred as Sinking sort.\nRepeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order.\n주어진 배열의 마지막 위치에 있는 요소를, 정렬되지 않은 직전 요소부터 첫 요소에 이르기까지 비교해 정렬 순서가 맞지 않은 모든 case에 대해 요소 위치를 바꿔줌. 이를 요소 수만큼 반복. 가장 간단하지만 비효율적인 알고리즘.\n\nTime &amp; Space Complexity\nTime Complexity - O(n2)\nSpace Complexity - O(1)\n\nWhen to use/avoid\nWhen to use:\n\nWhen input is already sorted\nSpace is a concern\nEasy to implement\n\n\nWhen to avoid:\n\nAverage case time complexity is poor\n\n\n\nCoding Bubble Sort12345678910111213141516171819202122232425package sorting;public class BubbleSort &#123;\tvoid bubbleSort(int arr[]) &#123;\t\tint n &#x3D; arr.length;\t\tfor (int i &#x3D; 0; i &lt; n - 1; i++) &#x2F;&#x2F;run from first cell to last cell\t\t\tfor (int j &#x3D; 0; j &lt; n - i - 1; j++) &#x2F;&#x2F;run from first cell to &quot;last cell - iteration&quot;\t\t\t\tif (arr[j] &gt; arr[j + 1]) &#123;\t\t\t\t\tint temp &#x3D; arr[j];\t\t\t\t\tarr[j] &#x3D; arr[j + 1];\t\t\t\t\tarr[j + 1] &#x3D; temp;\t\t\t\t&#125;\t&#125;&#x2F;&#x2F;end of method\t\t&#x2F;* Prints the array *&#x2F;\tvoid printArray(int arr[]) &#123;\t\tint n &#x3D; arr.length;\t\tfor (int i &#x3D; 0; i &lt; n; ++i)\t\t\tSystem.out.print(arr[i] + &quot; &quot;);\t\tSystem.out.println();\t&#125;&#125;&#x2F;&#x2F; end of class\n\n\n\nSelection Sort\nThe Selection sort algorithm is based on the idea of finding the minimum or maximum element in an unsorted array and then putting it in its correct position in a sorted array.\n요소 위치 변경 횟수를 줄여 버블정렬을 일부 개선한 알고리즘. 정렬 순서가 맞지 않으면 무조건 자리를 바꿔줬던 버블정렬과 달리, 1회 iteration마다 최소값(혹은 최대값)을 찾고 단 한번만 해당 요소 위치를 바꿔줌.\n\nTime &amp; Space Complexity\nTime Complexity - O(n2)\nSpace Complexity - O(1)\n\nWhen to use/avoid\nWhen to use:\n\nWhen we don’t have additional memory\nEasy to implement\n\n\nWhen to avoid:\n\nAverage case time complexity is poor\n\n\n\nCoding Selection Sort123456789101112131415161718192021222324252627package com.chung;public class SelectionSort &#123;    void selectionSort(int arr[])&#123;        for(int i &#x3D; 0; i &lt; arr.length; i++)&#123;            int minimumIndex &#x3D; i;            for(int j &#x3D; i+1; j &lt; arr.length; j++)&#123;                if(arr[j] &lt; arr[minimumIndex])&#123;                    minimumIndex &#x3D; j;                &#125;            &#125;            if(minimumIndex !&#x3D; i)&#123;                int temp &#x3D; arr[i];                arr[i] &#x3D; arr[minimumIndex];                arr[minimumIndex] &#x3D; temp;            &#125;        &#125;    &#125;    public static void printArray(int arr[])&#123;        for(int i &#x3D;0; i &lt; arr.length; i++)&#123;            System.out.println(arr[i] + &quot; &quot;);        &#125;    &#125;&#125;\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n\n","dateCreated":"2020-03-30T11:30:25+09:00","dateModified":"2020-03-30T11:49:08+09:00","datePublished":"2020-03-30T11:30:25+09:00","description":"bubble sort / selection sort","headline":"Sorting - Bubble Sort / Selection Sort","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/","keywords":"algorithm"}</script>
-    <meta name="description" content="bubble sort &#x2F; selection sort">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"insertion sort\n\n\nInsertion Sort\nIn Insertion sort algorithm we divide the given array into 2 parts. Sorted &amp; Unsorted.\n\nThen from Unsorted, we pick the first element and find its correct position in sorted array.\n\nRepeat till Unsorted array is empty.\n\n모든 요소에 대해 앞에서부터 차례대로 이미 정렬된 배열(sorted list)과 비교하여 sorted list내 자신의 위치를 찾아 삽입함으로써 정렬을 완성, 입력데이터가 이미 정렬된 상태라면 O(n)의 빠른 속도를 보이지만 그렇지 않은 경우 다른 기법을 적용하는 것이 나음.\n\n\nTime &amp; Space Complexity\nTime Complexity - O(n2)\nSpace Complexity - O(1)\n\nWhen to Use/Avoid Insertion Sort\nWhen to use:\n\nNo extra space\nSimple implementation\nBest when we have continuous inflow of numbers and we want to keep the list shorted\n\n\nWhen to avoid:\n\nAverage case is bad\n\n\n\nCoding Insertion Sort1234567891011121314151617181920212223package sorting;public class InsertionSort &#123;\t\tstatic void insertionSort(int [] A) &#123;\t\t for(int  i &#x3D; 1 ; i&lt;A.length;i++) &#123;  \t\t\t int  tmp&#x3D;A[i], j&#x3D;i;\t\t     while ( j&gt;0 &amp;&amp; A[j-1]&gt;tmp ) &#123;\t\t\t        A[j]&#x3D;A[j-1];\t\t        j--;\t\t     &#125;\t\t     A[j] &#x3D; tmp;\t\t &#125;&#x2F;&#x2F;end of for loop\t&#125;&#x2F;&#x2F;end of method\t\t\tpublic static void printArray(int []array) &#123;\t\tfor (int i &#x3D; 0; i &lt; array.length; i++) &#123;\t\t\tSystem.out.print(array[i]+&quot;  &quot;);\t\t&#125;\t&#125;&#x2F;&#x2F;end of method&#125;&#x2F;&#x2F;end of class\n\n\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n\n\n","dateCreated":"2020-03-31T00:30:25+09:00","dateModified":"2020-03-31T00:56:27+09:00","datePublished":"2020-03-31T00:30:25+09:00","description":"insertion sort","headline":"Sorting - Insertion Sort","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/","keywords":"algorithm"}</script>
+    <meta name="description" content="insertion sort">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Sorting - Bubble Sort &#x2F; Selection Sort">
-<meta property="og:url" content="http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/index.html">
+<meta property="og:title" content="Sorting - Insertion Sort">
+<meta property="og:url" content="http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="bubble sort &#x2F; selection sort">
+<meta property="og:description" content="insertion sort">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-30T02:30:25.000Z">
-<meta property="article:modified_time" content="2020-03-30T02:49:08.640Z">
+<meta property="article:published_time" content="2020-03-30T15:30:25.000Z">
+<meta property="article:modified_time" content="2020-03-30T15:56:27.258Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Sorting - Bubble Sort / Selection Sort
+            Sorting - Insertion Sort
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-03-30T11:30:25+09:00">
+    <time datetime="2020-03-31T00:30:25+09:00">
 	
-		    Mar 30, 2020
+		    Mar 31, 2020
     	
     </time>
     
@@ -240,63 +240,44 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>bubble sort / selection sort</p>
+            <p>insertion sort</p>
 <a id="more"></a>
 
-
-
-<h3 id="What-is-Bubble-Sort"><a href="#What-is-Bubble-Sort" class="headerlink" title="What is Bubble Sort?"></a>What is Bubble Sort?</h3><ul>
-<li>Bubble sort, sometimes is also referred as Sinking sort.</li>
-<li>Repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order.</li>
-<li>주어진 배열의 마지막 위치에 있는 요소를, 정렬되지 않은 직전 요소부터 첫 요소에 이르기까지 비교해 정렬 순서가 맞지 않은 모든 case에 대해 요소 위치를 바꿔줌. 이를 요소 수만큼 반복. 가장 간단하지만 비효율적인 알고리즘.</li>
+<h3 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h3><ul>
+<li><p>In Insertion sort algorithm we divide the given array into 2 parts. Sorted &amp; Unsorted.</p>
+</li>
+<li><p>Then from Unsorted, we pick the first element and find its correct position in sorted array.</p>
+</li>
+<li><p>Repeat till Unsorted array is empty.</p>
+</li>
+<li><p>모든 요소에 대해 앞에서부터 차례대로 이미 정렬된 배열(sorted list)과 비교하여 sorted list내 자신의 위치를 찾아 삽입함으로써 정렬을 완성, 입력데이터가 이미 정렬된 상태라면 O(n)의 빠른 속도를 보이지만 그렇지 않은 경우 다른 기법을 적용하는 것이 나음.</p>
+</li>
 </ul>
 <h3 id="Time-amp-Space-Complexity"><a href="#Time-amp-Space-Complexity" class="headerlink" title="Time &amp; Space Complexity"></a>Time &amp; Space Complexity</h3><ul>
 <li>Time Complexity - O(n2)</li>
 <li>Space Complexity - O(1)</li>
 </ul>
-<h3 id="When-to-use-avoid"><a href="#When-to-use-avoid" class="headerlink" title="When to use/avoid"></a>When to use/avoid</h3><ul>
+<h3 id="When-to-Use-Avoid-Insertion-Sort"><a href="#When-to-Use-Avoid-Insertion-Sort" class="headerlink" title="When to Use/Avoid Insertion Sort"></a>When to Use/Avoid Insertion Sort</h3><ul>
 <li><p>When to use:</p>
 <ul>
-<li>When input is already sorted</li>
-<li>Space is a concern</li>
-<li>Easy to implement</li>
+<li>No extra space</li>
+<li>Simple implementation</li>
+<li>Best when we have continuous inflow of numbers and we want to keep the list shorted</li>
 </ul>
 </li>
 <li><p>When to avoid:</p>
 <ul>
-<li>Average case time complexity is poor</li>
+<li>Average case is bad</li>
 </ul>
 </li>
 </ul>
-<h3 id="Coding-Bubble-Sort"><a href="#Coding-Bubble-Sort" class="headerlink" title="Coding Bubble Sort"></a>Coding Bubble Sort</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package sorting;</span><br><span class="line"></span><br><span class="line">public class BubbleSort &#123;</span><br><span class="line"></span><br><span class="line">	void bubbleSort(int arr[]) &#123;</span><br><span class="line">		int n &#x3D; arr.length;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n - 1; i++) &#x2F;&#x2F;run from first cell to last cell</span><br><span class="line">			for (int j &#x3D; 0; j &lt; n - i - 1; j++) &#x2F;&#x2F;run from first cell to &quot;last cell - iteration&quot;</span><br><span class="line">				if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">					int temp &#x3D; arr[j];</span><br><span class="line">					arr[j] &#x3D; arr[j + 1];</span><br><span class="line">					arr[j + 1] &#x3D; temp;</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	&#x2F;* Prints the array *&#x2F;</span><br><span class="line">	void printArray(int arr[]) &#123;</span><br><span class="line">		int n &#x3D; arr.length;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; n; ++i)</span><br><span class="line">			System.out.print(arr[i] + &quot; &quot;);</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;&#x2F;&#x2F; end of class</span><br></pre></td></tr></table></figure>
+<h3 id="Coding-Insertion-Sort"><a href="#Coding-Insertion-Sort" class="headerlink" title="Coding Insertion Sort"></a>Coding Insertion Sort</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package sorting;</span><br><span class="line"></span><br><span class="line">public class InsertionSort &#123;</span><br><span class="line">	</span><br><span class="line">	static void insertionSort(int [] A) &#123;</span><br><span class="line">		 for(int  i &#x3D; 1 ; i&lt;A.length;i++) &#123;  </span><br><span class="line">			 int  tmp&#x3D;A[i], j&#x3D;i;</span><br><span class="line">		     while ( j&gt;0 &amp;&amp; A[j-1]&gt;tmp ) &#123;	</span><br><span class="line">		        A[j]&#x3D;A[j-1];</span><br><span class="line">		        j--;</span><br><span class="line">		     &#125;</span><br><span class="line">		     A[j] &#x3D; tmp;</span><br><span class="line">		 &#125;&#x2F;&#x2F;end of for loop</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public static void printArray(int []array) &#123;</span><br><span class="line">		for (int i &#x3D; 0; i &lt; array.length; i++) &#123;</span><br><span class="line">			System.out.print(array[i]+&quot;  &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;&#x2F;&#x2F;end of method</span><br><span class="line"></span><br><span class="line">&#125;&#x2F;&#x2F;end of class</span><br></pre></td></tr></table></figure>
 
-<br>
 
-<h3 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h3><ul>
-<li>The Selection sort algorithm is based on the idea of finding the minimum or maximum element in an unsorted array and then putting it in its correct position in a sorted array.</li>
-<li>요소 위치 변경 횟수를 줄여 버블정렬을 일부 개선한 알고리즘. 정렬 순서가 맞지 않으면 무조건 자리를 바꿔줬던 버블정렬과 달리, 1회 iteration마다 최소값(혹은 최대값)을 찾고 단 한번만 해당 요소 위치를 바꿔줌.</li>
-</ul>
-<h3 id="Time-amp-Space-Complexity-1"><a href="#Time-amp-Space-Complexity-1" class="headerlink" title="Time &amp; Space Complexity"></a>Time &amp; Space Complexity</h3><ul>
-<li>Time Complexity - O(n2)</li>
-<li>Space Complexity - O(1)</li>
-</ul>
-<h3 id="When-to-use-avoid-1"><a href="#When-to-use-avoid-1" class="headerlink" title="When to use/avoid"></a>When to use/avoid</h3><ul>
-<li><p>When to use:</p>
-<ul>
-<li>When we don’t have additional memory</li>
-<li>Easy to implement</li>
-</ul>
-</li>
-<li><p>When to avoid:</p>
-<ul>
-<li>Average case time complexity is poor</li>
-</ul>
-</li>
-</ul>
-<h3 id="Coding-Selection-Sort"><a href="#Coding-Selection-Sort" class="headerlink" title="Coding Selection Sort"></a>Coding Selection Sort</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.chung;</span><br><span class="line"></span><br><span class="line">public class SelectionSort &#123;</span><br><span class="line"></span><br><span class="line">    void selectionSort(int arr[])&#123;</span><br><span class="line"></span><br><span class="line">        for(int i &#x3D; 0; i &lt; arr.length; i++)&#123;</span><br><span class="line">            int minimumIndex &#x3D; i;</span><br><span class="line">            for(int j &#x3D; i+1; j &lt; arr.length; j++)&#123;</span><br><span class="line">                if(arr[j] &lt; arr[minimumIndex])&#123;</span><br><span class="line">                    minimumIndex &#x3D; j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(minimumIndex !&#x3D; i)&#123;</span><br><span class="line">                int temp &#x3D; arr[i];</span><br><span class="line">                arr[i] &#x3D; arr[minimumIndex];</span><br><span class="line">                arr[minimumIndex] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void printArray(int arr[])&#123;</span><br><span class="line">        for(int i &#x3D;0; i &lt; arr.length; i++)&#123;</span><br><span class="line">            System.out.println(arr[i] + &quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
+
 
 
             
@@ -319,14 +300,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/31/Al-hashing-Insertion-sort/"
-                    data-tooltip="Sorting - Insertion Sort"
-                    aria-label="PREVIOUS: Sorting - Insertion Sort"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -336,9 +314,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/30/Al-sorting2/"
-                    data-tooltip="Sorting"
-                    aria-label="NEXT: Sorting"
+                    href="/2020/03/30/Al-Sorting-bubbleSort/"
+                    data-tooltip="Sorting - Bubble Sort / Selection Sort"
+                    aria-label="NEXT: Sorting - Bubble Sort / Selection Sort"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -363,7 +341,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -376,7 +354,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -389,7 +367,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -434,14 +412,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/31/Al-hashing-Insertion-sort/"
-                    data-tooltip="Sorting - Insertion Sort"
-                    aria-label="PREVIOUS: Sorting - Insertion Sort"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -451,9 +426,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/03/30/Al-sorting2/"
-                    data-tooltip="Sorting"
-                    aria-label="NEXT: Sorting"
+                    href="/2020/03/30/Al-Sorting-bubbleSort/"
+                    data-tooltip="Sorting - Bubble Sort / Selection Sort"
+                    aria-label="NEXT: Sorting - Bubble Sort / Selection Sort"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -478,7 +453,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -491,7 +466,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -504,7 +479,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -538,7 +513,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -551,7 +526,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -564,7 +539,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/30/Al-Sorting-bubbleSort/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/03/31/Al-hashing-Insertion-sort/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
