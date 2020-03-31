@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-03-31T03:49:41.268Z</updated>
+  <updated>2020-03-31T13:45:00.782Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sorting - Quick Sort</title>
+    <link href="http://jbj828.github.io/2020/03/31/Al-sort-quick-sort/"/>
+    <id>http://jbj828.github.io/2020/03/31/Al-sort-quick-sort/</id>
+    <published>2020-03-31T13:30:25.000Z</published>
+    <updated>2020-03-31T13:45:00.782Z</updated>
+    
+    <content type="html"><![CDATA[<p>quick sort</p><a id="more"></a><h2 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h2><ul><li>Quick Sort is Divide and Conquer algorithm.</li><li>At each step it finds ‘Pivot’ and then makes sure that all the smaller elements are on the left of ‘Pivot’ and all the bigger elements are on the right side of ‘Pivot’.</li><li>It does this recursively until the entire array is sorted.</li><li>Unlike Merge Sort, it does not requires any external space.</li><li>피봇값을 기준으로 피봇 앞에는 피봇보다 작은 값, 뒤에는 큰 값이 오도록 하여 리스트를 분할하고, 분할된 두 개 리스트 각각에 재귀적으로 이 과정을 반복해 정렬을 완성. 합병정렬과 달리 주어진 배열을 임의로 나누지 않기 때문에 대개는 효율적이지만, 피봇값이 잘못 선택되면 O(n2)이 될 수도 있음.</li></ul><h3 id="Time-amp-Space-Complexity"><a href="#Time-amp-Space-Complexity" class="headerlink" title="Time &amp; Space Complexity"></a>Time &amp; Space Complexity</h3><ul><li>Time Complexity - O(n log n)</li><li>Space Complexity - O(n) : system이 모든 요소를 stack에 넣고 pop 할 경우</li></ul><h3 id="When-to-Use-Avoid-Merge-Sort"><a href="#When-to-Use-Avoid-Merge-Sort" class="headerlink" title="When to Use/Avoid Merge Sort"></a>When to Use/Avoid Merge Sort</h3><ul><li><p>When to use:</p><ul><li>When average expected time is O(n log n)</li></ul></li><li><p>When not to use:</p><ul><li>When space is a concern like embedded systems</li><li>When stable sort is required</li></ul></li></ul><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;quick sort&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sorting - Merge Sort</title>
+    <link href="http://jbj828.github.io/2020/03/31/Al-sort-merge-sort/"/>
+    <id>http://jbj828.github.io/2020/03/31/Al-sort-merge-sort/</id>
+    <published>2020-03-31T05:30:25.000Z</published>
+    <updated>2020-03-31T13:08:09.066Z</updated>
+    
+    <content type="html"><![CDATA[<p>merge sort</p><a id="more"></a><h2 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h2><ul><li>Merge Sort is a Divide and Conquer algorithm.</li><li>It divides input array in two halves, keeps breaking those 2 halves recursively until they become too small to be broken further.</li><li>Then each of the broken pieces are merged together to inch towards final answer.</li><li>리스트를 잘게 쪼갠 뒤 둘씩 크기를 비교해 정렬하고 분리된 리스트를 재귀적으로 합쳐서 정렬을 완성, 분할된 리스트를 저장해둘 공간이 필요해 메모리 소모량이 큰 편</li></ul><h3 id="Time-amp-Space-Complexity"><a href="#Time-amp-Space-Complexity" class="headerlink" title="Time &amp; Space Complexity"></a>Time &amp; Space Complexity</h3><ul><li>Time Complexity - O(n log n)</li><li>Space Complexity - O(n)</li></ul><h3 id="When-to-Use-Avoid-Merge-Sort"><a href="#When-to-Use-Avoid-Merge-Sort" class="headerlink" title="When to Use/Avoid Merge Sort"></a>When to Use/Avoid Merge Sort</h3><ul><li><p>When to use:</p><ul><li>When you need a <code>stable sort</code></li><li>When average expected time is O(n log n)</li></ul></li><li><p>When not to use:</p><ul><li>When space is a concern like embedded systems</li></ul></li></ul><h3 id="Coding-Merge-Sort-on-Javascript"><a href="#Coding-Merge-Sort-on-Javascript" class="headerlink" title="Coding Merge Sort on Javascript"></a>Coding Merge Sort on Javascript</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function merge(arr1, arr2)&#123;</span><br><span class="line">    let result &#x3D; [];</span><br><span class="line">    let i &#x3D; 0;</span><br><span class="line">    let j &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    while( i &lt; arr1.length &amp;&amp; j &lt; arr2.length)&#123;</span><br><span class="line">        if(arr1[i] &lt; arr2[j])&#123;</span><br><span class="line">            result.push(arr1[i]);</span><br><span class="line">            i++;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.push(arr2[j]);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    while( i &lt; arr1.length)&#123;</span><br><span class="line">        result.push(arr1[i]);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    while( j &lt; arr2.length)&#123;</span><br><span class="line">        result.push(arr2[j]);</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function mergeSort(arr)&#123;</span><br><span class="line">    if(arr.length &lt;&#x3D; 1) return arr;</span><br><span class="line">    let mid &#x3D; Math.floor(arr.length &#x2F;2);</span><br><span class="line">    let left &#x3D; mergeSort(arr.slice(0, mid));</span><br><span class="line">    let right &#x3D; mergeSort(arr.slice(mid));</span><br><span class="line">    return merge(left, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;merge sort&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Sorting - Insertion Sort / Bucket Sort</title>
@@ -427,52 +473,6 @@
     
     
       <category term="ES6" scheme="http://jbj828.github.io/tags/ES6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Browser HTTP Requests with Fetch</title>
-    <link href="http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/"/>
-    <id>http://jbj828.github.io/2020/03/12/NodeJS-fetch-API/</id>
-    <published>2020-03-12T14:46:25.000Z</published>
-    <updated>2020-03-12T15:00:44.237Z</updated>
-    
-    <content type="html"><![CDATA[<p>fetch API</p><a id="more"></a><p>This chapter shows you how to make HTTP AJAX requests from the browser.<br><br></p><h3 id="The-Fetch-API"><a href="#The-Fetch-API" class="headerlink" title="The Fetch API"></a>The Fetch API</h3><p>Web APIs provide you with a way to make HTTP requests from JavaScript in the browser. This is done using the <code>fetch</code> function. <code>fetch</code> expects to be called with the URL as the first argument. It sends off the HTTP request and gives you back the response.</p><p>The <code>fetch</code> call below is used to fetch the weather for Boston. An if statement is then used to either print the forecast or the error message.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;http:&#x2F;&#x2F;localhost:3000&#x2F;weather?address&#x3D;Boston&#39;).then((response) &#x3D;&gt; &#123;</span><br><span class="line"> response.json().then((data) &#x3D;&gt; &#123;</span><br><span class="line"> if (data.error) &#123;</span><br><span class="line"> console.log(data.error)</span><br><span class="line"> &#125; else &#123;</span><br><span class="line"> console.log(data.location)</span><br><span class="line"> console.log(data.forecast)</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br><p><em>reference : Udemy ‘The Complete Node.js Developer course’ by Andrew Mead</em></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;fetch API&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The Query String</title>
-    <link href="http://jbj828.github.io/2020/03/12/NodeJS-Query-String/"/>
-    <id>http://jbj828.github.io/2020/03/12/NodeJS-Query-String/</id>
-    <published>2020-03-12T05:46:25.000Z</published>
-    <updated>2020-03-12T14:49:11.956Z</updated>
-    
-    <content type="html"><![CDATA[<p>Query String</p><a id="more"></a><h4 id="The-Query-String"><a href="#The-Query-String" class="headerlink" title="The Query String"></a>The Query String</h4><p>The query string is a portion of the URL that allows you to provide additional information to the server. </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#39;&#x2F;weather&#39;, (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(req.query)</span><br><span class="line">    if (!req.query.address) &#123;</span><br><span class="line">        return res.send(&#123;</span><br><span class="line">            error: &quot;You must provide an address.&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    res.send(&#123;</span><br><span class="line">        forcast: &#39;forcast&#39;,</span><br><span class="line">        location: &#39;location&#39;,</span><br><span class="line">        address: req.query.address</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Query String&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
     
   </entry>
   
