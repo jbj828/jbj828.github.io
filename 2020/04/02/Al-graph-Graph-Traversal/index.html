@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Developer Javit">
+    <title>Graph Traversal(BFS, DFS) - Developer Javit</title>
+    <meta name="author" content="Jay Chung">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"graph traversal\n\n\nWhat is Graph Traversal?Graph traversal refers to the process of visiting each vertex in a graph.\nTypes of Graph Traversal\nBreadth First Search(BFS)\nDepth First Search(DFS)\n\nBreadth First Search(BFS)BFS is an algorithm for traversing Graph data structures. It starts at some arbitrary node of a graph and explores the neighbor nodes(which are at current level) first, before moving to the next level neighbors.\nHandling one Special Scenario of BFS\nDisconnected Graph\nCannot traverse the graph with BFS. Because the vertecis are disconneted with each other.\n\n\n\nTime Complexity - BFS\nTime Complexity - O(V+E)\nSpace Complexity - O(V+E)\n\n\n\nDepth First Search(DFS)DFS is an algorithm for traversing Graph data structures. It starts selecting some arbitrary node and explores as far as possible along each edge before backtracking.\n123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105class Graph &#123;    constructor()&#123;        this.adjacencyList &#x3D; &#123;&#125;;    &#125;    addVertex(vertex)&#123;        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] &#x3D; [];    &#125;    addEdge(vertex1, vertex2)&#123;        if(this.adjacencyList[vertex1])&#123;            this.adjacencyList[vertex1].push(vertex2);        &#125;        if(this.adjacencyList[vertex2])&#123;            this.adjacencyList[vertex2].push(vertex1);        &#125;    &#125;    removeEdge(v1, v2)&#123;        if(this.adjacencyList[v1].includes(v2))&#123;            this.adjacencyList[v1] &#x3D; this.adjacencyList[v1].filter( v &#x3D;&gt; v !&#x3D;&#x3D; v2);        &#125;        if(this.adjacencyList[v2].includes(v1))&#123;            this.adjacencyList[v2] &#x3D; this.adjacencyList[v2].filter( v &#x3D;&gt; v !&#x3D;&#x3D; v1);        &#125;    &#125;    removeVertex(vertex)&#123;        while(this.adjacencyList[vertex].length)&#123;            const adjacentVertex &#x3D; this.adjacencyList[vertex].pop();            this.removeEdge(vertex, adjacentVertex);        &#125;        delete this.adjacencyList[vertex];    &#125;    depthFirstRecursive(start)&#123;        const result &#x3D; [];        const visited &#x3D; &#123;&#125;;        const adjacencyList &#x3D; this.adjacencyList;        (function dfs(vertex)&#123;            if(!vertex) return null;            visited[vertex] &#x3D; true;            result.push(vertex);            adjacencyList[vertex].forEach(neighbor &#x3D;&gt; &#123;                if(!visited[neighbor])&#123;                    return dfs(neighbor);                &#125;            &#125;)        &#125;)(start);        return result;    &#125;    depthFirstIterative(start)&#123;        const stack &#x3D; [start];        const result &#x3D; [];        const visited &#x3D; &#123;&#125;;        let currentVertex;        visited[start] &#x3D; true;        while(stack.length)&#123;            currentVertex &#x3D; stack.pop();            result.push(currentVertex);            this.adjacencyList[currentVertex].forEach(neighbor &#x3D;&gt; &#123;                if(!visited[neighbor])&#123;                    visited[neighbor] &#x3D; true;                    stack.push(neighbor);                &#125;            &#125;)        &#125;        return result;    &#125;   &#125;let g &#x3D; new Graph();g.addVertex(&quot;A&quot;)g.addVertex(&quot;B&quot;)g.addVertex(&quot;C&quot;)g.addVertex(&quot;D&quot;)g.addVertex(&quot;E&quot;)g.addVertex(&quot;F&quot;)g.addEdge(&quot;A&quot;, &quot;B&quot;)g.addEdge(&quot;A&quot;, &quot;C&quot;)g.addEdge(&quot;B&quot;,&quot;D&quot;)g.addEdge(&quot;C&quot;,&quot;E&quot;)g.addEdge(&quot;D&quot;,&quot;E&quot;)g.addEdge(&quot;D&quot;,&quot;F&quot;)g.addEdge(&quot;E&quot;,&quot;F&quot;)g.depthFirstRecursive(&quot;A&quot;)&#x2F;&#x2F;          A&#x2F;&#x2F;        &#x2F;   \\&#x2F;&#x2F;       B     C&#x2F;&#x2F;       |     |&#x2F;&#x2F;       D --- E&#x2F;&#x2F;        \\   &#x2F;&#x2F;&#x2F;          F\n\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-04-02T16:30:25+09:00","dateModified":"2020-04-02T13:37:23+09:00","datePublished":"2020-04-02T16:30:25+09:00","description":"graph traversal","headline":"Graph Traversal(BFS, DFS)","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/","keywords":"algorithm"}</script>
+    <meta name="description" content="graph traversal">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Graph Traversal(BFS, DFS)">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/index.html">
+<meta property="og:site_name" content="Developer Javit">
+<meta property="og:description" content="graph traversal">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-02T07:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-02T04:37:23.934Z">
+<meta property="article:author" content="Jay Chung">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+<header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/" aria-label="">
+      Developer Javit
+    </a>
+  </div>
+  
+  
+    <a class="header-right-picture "
+      href="#about"
+      aria-label="Open the link: /#about">
+      
+      
+    </a>
+    
+</header>
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/index.html"
+                            
+                            title="Home"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-categories"
+                            
+                            title="Categories"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-tags"
+                            
+                            title="Tags"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/all-archives"
+                            
+                            title="Archives"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+                            
+                            title="Search"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="#about"
+                            
+                            title="About"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link " href="https://github.com/jbj828" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a  class="sidebar-button-link "
+                             href="/atom.xml"
+                            
+                            title="RSS"
+                        >
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Graph Traversal(BFS, DFS)
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-04-02T16:30:25+09:00">
+	
+		    Apr 02, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>graph traversal</p>
+<a id="more"></a>
+
+<h3 id="What-is-Graph-Traversal"><a href="#What-is-Graph-Traversal" class="headerlink" title="What is Graph Traversal?"></a>What is Graph Traversal?</h3><p>Graph traversal refers to the process of visiting each vertex in a graph.</p>
+<h3 id="Types-of-Graph-Traversal"><a href="#Types-of-Graph-Traversal" class="headerlink" title="Types of Graph Traversal"></a>Types of Graph Traversal</h3><ul>
+<li>Breadth First Search(BFS)</li>
+<li>Depth First Search(DFS)</li>
+</ul>
+<h1 id="Breadth-First-Search-BFS"><a href="#Breadth-First-Search-BFS" class="headerlink" title="Breadth First Search(BFS)"></a>Breadth First Search(BFS)</h1><p>BFS is an algorithm for traversing Graph data structures. It starts at some arbitrary node of a graph and explores the neighbor nodes(which are at current level) first, before moving to the next level neighbors.</p>
+<h3 id="Handling-one-Special-Scenario-of-BFS"><a href="#Handling-one-Special-Scenario-of-BFS" class="headerlink" title="Handling one Special Scenario of BFS"></a>Handling one Special Scenario of BFS</h3><ul>
+<li>Disconnected Graph<ul>
+<li>Cannot traverse the graph with BFS. Because the vertecis are disconneted with each other.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Time-Complexity-BFS"><a href="#Time-Complexity-BFS" class="headerlink" title="Time Complexity - BFS"></a>Time Complexity - BFS</h3><ul>
+<li>Time Complexity - O(V+E)</li>
+<li>Space Complexity - O(V+E)</li>
+</ul>
+<br>
+
+<h1 id="Depth-First-Search-DFS"><a href="#Depth-First-Search-DFS" class="headerlink" title="Depth First Search(DFS)"></a>Depth First Search(DFS)</h1><p>DFS is an algorithm for traversing Graph data structures. It starts selecting some arbitrary node and explores as far as possible along each edge before backtracking.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">class Graph &#123;</span><br><span class="line">    constructor()&#123;</span><br><span class="line">        this.adjacencyList &#x3D; &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    addVertex(vertex)&#123;</span><br><span class="line">        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] &#x3D; [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    addEdge(vertex1, vertex2)&#123;</span><br><span class="line">        if(this.adjacencyList[vertex1])&#123;</span><br><span class="line">            this.adjacencyList[vertex1].push(vertex2);</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.adjacencyList[vertex2])&#123;</span><br><span class="line">            this.adjacencyList[vertex2].push(vertex1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    removeEdge(v1, v2)&#123;</span><br><span class="line">        if(this.adjacencyList[v1].includes(v2))&#123;</span><br><span class="line">            this.adjacencyList[v1] &#x3D; this.adjacencyList[v1].filter( v &#x3D;&gt; v !&#x3D;&#x3D; v2);</span><br><span class="line">        &#125;</span><br><span class="line">        if(this.adjacencyList[v2].includes(v1))&#123;</span><br><span class="line">            this.adjacencyList[v2] &#x3D; this.adjacencyList[v2].filter( v &#x3D;&gt; v !&#x3D;&#x3D; v1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    removeVertex(vertex)&#123;</span><br><span class="line">        while(this.adjacencyList[vertex].length)&#123;</span><br><span class="line">            const adjacentVertex &#x3D; this.adjacencyList[vertex].pop();</span><br><span class="line">            this.removeEdge(vertex, adjacentVertex);</span><br><span class="line">        &#125;</span><br><span class="line">        delete this.adjacencyList[vertex];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    depthFirstRecursive(start)&#123;</span><br><span class="line">        const result &#x3D; [];</span><br><span class="line">        const visited &#x3D; &#123;&#125;;</span><br><span class="line">        const adjacencyList &#x3D; this.adjacencyList;</span><br><span class="line"></span><br><span class="line">        (function dfs(vertex)&#123;</span><br><span class="line">            if(!vertex) return null;</span><br><span class="line">            visited[vertex] &#x3D; true;</span><br><span class="line">            result.push(vertex);</span><br><span class="line">            adjacencyList[vertex].forEach(neighbor &#x3D;&gt; &#123;</span><br><span class="line">                if(!visited[neighbor])&#123;</span><br><span class="line">                    return dfs(neighbor);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)(start);</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    depthFirstIterative(start)&#123;</span><br><span class="line">        const stack &#x3D; [start];</span><br><span class="line">        const result &#x3D; [];</span><br><span class="line">        const visited &#x3D; &#123;&#125;;</span><br><span class="line">        let currentVertex;</span><br><span class="line"></span><br><span class="line">        visited[start] &#x3D; true;</span><br><span class="line">        while(stack.length)&#123;</span><br><span class="line">            currentVertex &#x3D; stack.pop();</span><br><span class="line">            result.push(currentVertex);</span><br><span class="line"></span><br><span class="line">            this.adjacencyList[currentVertex].forEach(neighbor &#x3D;&gt; &#123;</span><br><span class="line">                if(!visited[neighbor])&#123;</span><br><span class="line">                    visited[neighbor] &#x3D; true;</span><br><span class="line">                    stack.push(neighbor);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">let g &#x3D; new Graph();</span><br><span class="line"></span><br><span class="line">g.addVertex(&quot;A&quot;)</span><br><span class="line">g.addVertex(&quot;B&quot;)</span><br><span class="line">g.addVertex(&quot;C&quot;)</span><br><span class="line">g.addVertex(&quot;D&quot;)</span><br><span class="line">g.addVertex(&quot;E&quot;)</span><br><span class="line">g.addVertex(&quot;F&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g.addEdge(&quot;A&quot;, &quot;B&quot;)</span><br><span class="line">g.addEdge(&quot;A&quot;, &quot;C&quot;)</span><br><span class="line">g.addEdge(&quot;B&quot;,&quot;D&quot;)</span><br><span class="line">g.addEdge(&quot;C&quot;,&quot;E&quot;)</span><br><span class="line">g.addEdge(&quot;D&quot;,&quot;E&quot;)</span><br><span class="line">g.addEdge(&quot;D&quot;,&quot;F&quot;)</span><br><span class="line">g.addEdge(&quot;E&quot;,&quot;F&quot;)</span><br><span class="line">g.depthFirstRecursive(&quot;A&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;          A</span><br><span class="line">&#x2F;&#x2F;        &#x2F;   \</span><br><span class="line">&#x2F;&#x2F;       B     C</span><br><span class="line">&#x2F;&#x2F;       |     |</span><br><span class="line">&#x2F;&#x2F;       D --- E</span><br><span class="line">&#x2F;&#x2F;        \   &#x2F;</span><br><span class="line">&#x2F;&#x2F;          F</span><br></pre></td></tr></table></figure>
+
+
+<p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/04/01/Al-graph/"
+                    data-tooltip="Graph"
+                    aria-label="NEXT: Graph"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2020 Jay Chung. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2020/04/01/Al-graph/"
+                    data-tooltip="Graph"
+                    aria-label="NEXT: Graph"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/02/Al-graph-Graph-Traversal/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">Jay Chung</h4>
+        
+            <div id="about-card-bio"><p>Slowly and Steadily</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Web BackEnd Developer</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
