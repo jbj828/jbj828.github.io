@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-03T09:01:18.827Z</updated>
+  <updated>2020-04-04T03:32:28.772Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dynamic Programming</title>
+    <link href="http://jbj828.github.io/2020/04/04/Al-dynamic-programming/"/>
+    <id>http://jbj828.github.io/2020/04/04/Al-dynamic-programming/</id>
+    <published>2020-04-04T03:30:25.000Z</published>
+    <updated>2020-04-04T03:32:28.772Z</updated>
+    
+    <content type="html"><![CDATA[<p>dynamic programming</p><a id="more"></a><h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><p>A method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions.</p><p>It only works on problems with <strong>Optimal Substructure</strong> &amp; <strong>Overlapping Subproblems</strong></p><h3 id="Overlapping-Subproblems"><a href="#Overlapping-Subproblems" class="headerlink" title="Overlapping Subproblems"></a>Overlapping Subproblems</h3><p>A problme is said to have <code>overlapping subproblems</code> if it can be broken down into subproblems which are reused several times.</p><p>Ex) Finbonnaci Numbers</p><h3 id="Optimal-Substructure"><a href="#Optimal-Substructure" class="headerlink" title="Optimal Substructure"></a>Optimal Substructure</h3><p>A problem is said to have <code>optimal substructure</code> if an optimal solution can be constructed from optimal solutions of its subproblems.</p><h3 id="Meomoization"><a href="#Meomoization" class="headerlink" title="Meomoization"></a>Meomoization</h3><p>Storing the results of expensive function calls and returning the cached result when the same inputs occur again.</p><h4 id="The-Fibonacci-with-Recursive"><a href="#The-Fibonacci-with-Recursive" class="headerlink" title="The Fibonacci with Recursive"></a>The Fibonacci with Recursive</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fib(num)&#123;</span><br><span class="line">   if(num &lt;&#x3D; 2) return 1;</span><br><span class="line">   return fib(num -1) + fib(num -2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Time Complexity - O(2^n)</p><h4 id="Meomoization-The-Fibonacci-with-Memoized-solution-Top-Down"><a href="#Meomoization-The-Fibonacci-with-Memoized-solution-Top-Down" class="headerlink" title="Meomoization : The Fibonacci with Memoized solution(Top-Down)"></a>Meomoization : The Fibonacci with Memoized solution(Top-Down)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function fib(n, memo&#x3D;[])&#123;</span><br><span class="line">  if(memo[n] !&#x3D;&#x3D; undefined) return memo[n];</span><br><span class="line">  if(n &lt;&#x3D; 2) return 1;</span><br><span class="line">  var res &#x3D; fib(n-1, memo) + fib(n-2, memo);</span><br><span class="line">  memo[n] &#x3D; res;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Time Complexity - O(n)</p><h3 id="Tabulation"><a href="#Tabulation" class="headerlink" title="Tabulation"></a>Tabulation</h3><p>Storing the result of a previous result in a “table”(usually an array).<br>Usually done using iteration.<br>Better space complexity can be achieved using tabulation.</p><h3 id="Tabulation-The-Fibonacci-with-tabulated-solution-Bottom-up-Approach"><a href="#Tabulation-The-Fibonacci-with-tabulated-solution-Bottom-up-Approach" class="headerlink" title="Tabulation : The Fibonacci with tabulated solution(Bottom-up Approach)"></a>Tabulation : The Fibonacci with tabulated solution(Bottom-up Approach)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fib(n)&#123;</span><br><span class="line">  if(n &lt;&#x3D; 2) return 1;</span><br><span class="line">  var fibNums &#x3D; [0, 1, 1];</span><br><span class="line">  for(var i &#x3D; 3; i &lt;&#x3D; n; i++)&#123;</span><br><span class="line">    fibNums[i] &#x3D; fibNums[i-1] + fibNums[i-2];</span><br><span class="line">  &#125;</span><br><span class="line">  return fibNums[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Time Complexity - O(n)<br>Space Complexity is better than Memoized Version.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;dynamic programming&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Dijkstra&#39;s Algorithm with Binary Heap(Complete Priority Queue)</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;populate&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="MongoDB" scheme="http://jbj828.github.io/categories/MongoDB/"/>
-    
-    
-      <category term="MongoDB" scheme="http://jbj828.github.io/tags/MongoDB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Making Model Method(mongoose)</title>
-    <link href="http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/"/>
-    <id>http://jbj828.github.io/2020/03/20/MongoDB-Making-model-method/</id>
-    <published>2020-03-20T06:46:25.000Z</published>
-    <updated>2020-03-20T04:48:21.771Z</updated>
-    
-    <content type="html"><![CDATA[<p>Making model method</p><a id="more"></a><p>보통 API 컨트롤러 파일에서 데이터 모델의 내장함수들에 직접 접근하여 데이터를 생성하고 조회를 한다.</p><p>이번엔 데이터 모델에 임의 메소드, 쿼리 헬퍼를 만들어서 데이터 작업을 좀 더 용이하게 하는 방법을 알아본다.</p><p>모델 메소드는 두 종류로 만들 수 있다. <code>.statics</code> 와 <code>.methods</code> 이다. 각 종류는 서로 가리키는 <code>this</code> 값이 다르다. 전자의 경우 모델 자체를 가리키고, 후자의 경우 데이터 인스턴스를 가리킨다. </p><h3 id="static-메소드"><a href="#static-메소드" class="headerlink" title="static 메소드"></a>static 메소드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Check the user&#39;s email and password</span><br><span class="line">userSchema.statics.findByCredentials &#x3D; async function (email, password) &#123;</span><br><span class="line">    const user &#x3D; await User.findOne(&#123; email &#125;)</span><br><span class="line"></span><br><span class="line">    if (!user) &#123;</span><br><span class="line">        throw new Error(&#39;Unable to login&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const isMatch &#x3D; await bcrypt.compare(password, user.password)</span><br><span class="line"></span><br><span class="line">    if (!isMatch) &#123;</span><br><span class="line">        throw new Error(&#39;Unable to login&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">    return user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="인스턴스-메소드"><a href="#인스턴스-메소드" class="headerlink" title="인스턴스 메소드"></a>인스턴스 메소드</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Generate the token and save on the database</span><br><span class="line">userSchema.methods.generateAuthToken &#x3D; async function () &#123;</span><br><span class="line">    const user &#x3D; this</span><br><span class="line">    const token &#x3D; jwt.sign(&#123; _id: user._id.toString &#125;, &#39;studyNodeJs&#39;)</span><br><span class="line"></span><br><span class="line">    user.tokens &#x3D; user.tokens.concat(&#123; token &#125;)</span><br><span class="line">    await user.save();</span><br><span class="line"></span><br><span class="line">    return token;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>메소드를 만들 땐, 스키마를 모델화 하기 전에, <code>.statics</code> 혹은 <code>.methods</code>를 사용하여 정의를 해주어야 한다.</p><p>이렇게 메소드를 만들면, 우리가 원하는 작업마다 이름을 붙여줄 수 있게 되고 코드를 분리시킬 수 있어 가독성도 높아진다. 쿼리를 작성할 때 데이터 구조를 확인하기 위하여 컨트롤러 파일과 모델 파일을 동시에 볼 필요도 없어서 편해진다. </p><p>출처 : <a href="https://backend-intro.vlpt.us/" target="_blank" rel="noopener">backend</a> </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Making model method&lt;/p&gt;
     
     </summary>
     
