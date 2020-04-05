@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-04T03:32:28.772Z</updated>
+  <updated>2020-04-05T12:15:23.872Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>File Uploads with Multer</title>
+    <link href="http://jbj828.github.io/2020/04/05/NodeJS-multer/"/>
+    <id>http://jbj828.github.io/2020/04/05/NodeJS-multer/</id>
+    <published>2020-04-05T11:46:25.000Z</published>
+    <updated>2020-04-05T12:15:23.872Z</updated>
+    
+    <content type="html"><![CDATA[<p>multer</p><a id="more"></a><h3 id="Multer"><a href="#Multer" class="headerlink" title="Multer"></a>Multer</h3><p>Multer is a library in the Express ecosystem that allows your Express application to easily support file uploads. It couldn’t be easier.</p><p>After install the multer library, multer can then be configured to fit your specific needs. The example below shows off a basic configuration where <code>dest</code> ids set to <code>avatars</code>. This will store all uploaded files in a directory called <code>avatars</code>.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const multer &#x3D; require(&#39;multer&#39;)</span><br><span class="line"></span><br><span class="line">const upload &#x3D; multer(&#123;</span><br><span class="line">  dest : &#39;avatars&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>Multer is then added as middleware for the specific endpoint that should allow for file uploads. The route below is expecting a single <code>avatar</code> field on the submitted form.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, upload.single(&#39;avatar&#39;), (req,res)&#x3D;&gt;&#123;</span><br><span class="line">  res.send()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;multer&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Dynamic Programming</title>
@@ -450,29 +473,6 @@
     
     
       <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Populate, Virtual</title>
-    <link href="http://jbj828.github.io/2020/03/21/MongoDB-populate/"/>
-    <id>http://jbj828.github.io/2020/03/21/MongoDB-populate/</id>
-    <published>2020-03-21T06:46:25.000Z</published>
-    <updated>2020-03-21T11:25:37.079Z</updated>
-    
-    <content type="html"><![CDATA[<p>populate</p><a id="more"></a><h3 id="Populate"><a href="#Populate" class="headerlink" title="Populate"></a>Populate</h3><ul><li>몽구스의 편리한 기능 중 하나인 populate</li><li>몽고DB를 사용하다보면 하나의 다큐먼트가 다른 다큐먼트의 ObjectId를 쓰는 경우가 있다. 그럴 때 그 ObjectId를 실제 객체로 치환하는 작업이 필요하다.</li><li>즉 populate는 ObjectId에 해당하는 값과 객체를 치환해주는 역할을 해준다.</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const Task &#x3D; mongoose.model(&#39;Task&#39;, &#123;</span><br><span class="line"> owner: &#123;</span><br><span class="line"> type: mongoose.Schema.Types.ObjectId,</span><br><span class="line"> required: true,</span><br><span class="line"> ref: &#39;User&#39;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p><code>ref</code>에 해당 ObjectId가 속해있는 모델을 넣어준다. 자기자신을 가리켜도 되고 다른 컬렉션 모델이어도 상관없다.</p><p>You can fetch the owner of a given task.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const task &#x3D; await Task.findById(&#39;5c2e505a3253e18a43e612e6&#39;)</span><br><span class="line">await task.populate(&#39;owner&#39;).execPopulate()</span><br><span class="line">console.log(task.owner)</span><br></pre></td></tr></table></figure><p>결과적으로 <strong>ObjectId가 실제 객체로 치환</strong>된다.</p><p> populate는 자바스크립트 단에서 합쳐주는 것이지 JOIN처럼 DB 자체에서 합쳐주는 것이 아니다. 따라서 성능이 그렇게 좋지는 않습니다. 특히 populate가 중첩되면 성능 문제가 생길 확률이 커집니다.</p><br><h3 id="Virtual"><a href="#Virtual" class="headerlink" title="Virtual"></a>Virtual</h3><p>다큐먼트에는 없지만 객체에는 있는 가상의 필드를 만들어준다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">userSchema.virtual(&#39;detail&#39;).get(function()&#123;</span><br><span class="line">  return &#96;I am $&#123;this.nickname&#125; and birthday is $&#123;this.birth.toLocaleString()&#125;.&#96;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>스키마에 virtual를 붙이면 users 컬렉션을 조회할 때 <code>{email: ..., password: ...., detail: ...}</code> 처럼 detail 필드가 생긴다. 그리고 get 메소드 안에 넣어준 함수의 return 값이 들어있다. 기존 필드들을 활용해서 새로운 가상 필드를 만드는 것이다.</p><p> 출처 : <a href="https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363" target="_blank" rel="noopener">zeroCho TV</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;populate&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="MongoDB" scheme="http://jbj828.github.io/categories/MongoDB/"/>
-    
-    
-      <category term="MongoDB" scheme="http://jbj828.github.io/tags/MongoDB/"/>
     
   </entry>
   
