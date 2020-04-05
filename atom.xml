@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-05T12:15:23.872Z</updated>
+  <updated>2020-04-05T14:07:10.553Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Handling Express Errors</title>
+    <link href="http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"/>
+    <id>http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/</id>
+    <published>2020-04-05T13:46:25.000Z</published>
+    <updated>2020-04-05T14:07:10.553Z</updated>
+    
+    <content type="html"><![CDATA[<p>Handling Express Errors</p><a id="more"></a><p>We’ll customize the errors that multer provides. This will give you complete control of what sort of response the client gets when their upload is rejected.</p><h3 id="Handling-Express-Errors"><a href="#Handling-Express-Errors" class="headerlink" title="Handling Express Errors"></a>Handling Express Errors</h3><p>You can handle errors from middleware function by providing a function to Express. As shown below, a new function is passed as the final argument to <code>router.post</code>. This function accepts <code>error, req, res, next</code>. This call signature lets Express know the function is designed to handle errors.</p><p>The function itself sends back a JSON response with the error message from multer.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, upload.single(&#39;avatar&#39;), (req,res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send()</span><br><span class="line">&#125;, (error, req, res, next) &#x3D;&gt; &#123;</span><br><span class="line">  res.status(400).send(&#123; error : error.message &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Handling Express Errors&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>File Uploads with Multer</title>
@@ -450,29 +473,6 @@
     
     
       <category term="VueJS" scheme="http://jbj828.github.io/tags/VueJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Filtering Data</title>
-    <link href="http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/"/>
-    <id>http://jbj828.github.io/2020/03/23/NodeJS-filtering-data/</id>
-    <published>2020-03-23T01:46:25.000Z</published>
-    <updated>2020-03-23T01:56:14.783Z</updated>
-    
-    <content type="html"><![CDATA[<p>filtering data </p><a id="more"></a><p>For data filtering, we’ll use query parameters. This will allow clients to fetch all tasks, just the complete tasks, or just the incomplete tasks.</p><h3 id="Filtering-Data"><a href="#Filtering-Data" class="headerlink" title="Filtering Data"></a>Filtering Data</h3><p>The <code>completed</code> query parameter is on the task documents of MongoDB. This query parameter can be set to <code>true</code> or <code>false</code>. This will prevent clients from fetching unnecessary data tha they don’t plan on using.</p><p>First up, create an object to store the search criteria.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const match &#x3D; &#123;&#125;</span><br></pre></td></tr></table></figure><p>From there, check if the query parameter was provided. The provided value should be parsed into a boolean and stored on <code>match.completed</code>.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (req.query.completed) &#123;</span><br><span class="line">  match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Last up, <code>match</code> can be added onto <code>populate</code> to fetch just the users that match the search criteria.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">await req.user.populate(&#123;</span><br><span class="line">  path: &#39;tasks&#39;,</span><br><span class="line">  match</span><br><span class="line">&#125;).exexPopulate()</span><br></pre></td></tr></table></figure><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; READ USER&#39;S TASKS</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?completed&#x3D;true</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?limit&#x3D;10&amp;skip&#x3D;10</span><br><span class="line">&#x2F;&#x2F; GET &#x2F;tasks?sortBy&#x3D;createdAt:desc</span><br><span class="line">router.get(&#39;&#x2F;tasks&#39;, auth, async (req, res) &#x3D;&gt; &#123;</span><br><span class="line">    const match &#x3D; &#123;&#125;</span><br><span class="line">    const sort &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">    if (req.query.completed) &#123;</span><br><span class="line">        match.completed &#x3D; req.query.completed &#x3D;&#x3D;&#x3D; &#39;true&#39;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (req.query.sortBy) &#123;</span><br><span class="line">        const parts &#x3D; req.query.sortBy.split(&#39;:&#39;)</span><br><span class="line">        sort[parts[0]] &#x3D; parts[1] &#x3D;&#x3D;&#x3D; &#39;desc&#39; ? -1 : 1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        await req.user.populate(&#123;</span><br><span class="line">            path: &#39;tasks&#39;,</span><br><span class="line">            match,</span><br><span class="line">            options: &#123;</span><br><span class="line">                limit: parseInt(req.query.limit),</span><br><span class="line">                skip: parseInt(req.query.skip),</span><br><span class="line">                sort</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).execPopulate();</span><br><span class="line">        res.send(req.user.tasks);</span><br><span class="line"></span><br><span class="line">    &#125; catch (e) &#123;</span><br><span class="line">        res.status(500).send();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>출처 : NodeJS course on Udemy by Andrew Mead</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;filtering data &lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
-    
-    
-      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
     
   </entry>
   
