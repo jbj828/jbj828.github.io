@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-06T02:55:51.533Z</updated>
+  <updated>2020-04-06T13:43:15.886Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Greedy Algorithm &amp; Divide and Conquer</title>
+    <link href="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"/>
+    <id>http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/</id>
+    <published>2020-04-06T09:30:25.000Z</published>
+    <updated>2020-04-06T13:43:15.886Z</updated>
+    
+    <content type="html"><![CDATA[<p>Greedy Algorithm &amp; Divide and Conquer</p><a id="more"></a><h2 id="Magic-Framework"><a href="#Magic-Framework" class="headerlink" title="Magic Framework"></a>Magic Framework</h2><img src="/2020/04/06/Al-greedy-algorithm/magicFramework.PNG" class="" width="500" height="400" title="magicFramework"><h2 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h2><ul><li>Greedy Algorithm is an algorithmic paradigm that builds up a solution piece by piece.</li><li>It always chooses the next piece that offers <code>the most obvious and immediate benefit</code>.</li><li>Greedy fits perfectly for those solutions in which choosing a locally optimal solution also leads to global optimal solution(aka ‘Greedy Choice’).</li></ul><h2 id="Divide-amp-Conquer"><a href="#Divide-amp-Conquer" class="headerlink" title="Divide &amp; Conquer"></a>Divide &amp; Conquer</h2><ul><li>Divide &amp; Conquer is an algorithm design paradigm which works by recursively breaking down a problem into sub-problems of similar type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.</li></ul><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Greedy Algorithm &amp;amp; Divide and Conquer&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Adding Images to the User Profile &amp; Serving up Files</title>
@@ -182,9 +205,9 @@
     <link href="http://jbj828.github.io/2020/04/01/Al-graph/"/>
     <id>http://jbj828.github.io/2020/04/01/Al-graph/</id>
     <published>2020-04-01T06:30:25.000Z</published>
-    <updated>2020-04-02T04:37:45.234Z</updated>
+    <updated>2020-04-06T09:47:25.059Z</updated>
     
-    <content type="html"><![CDATA[<p>graph</p><a id="more"></a><h3 id="What-is-Graph"><a href="#What-is-Graph" class="headerlink" title="What is Graph?"></a>What is Graph?</h3><ul><li>Graph is a pair of sets(V,E), where V is the set of vertices and E is the set of edges, connecting the pairs of vertices.</li></ul><h3 id="Some-Terminologies"><a href="#Some-Terminologies" class="headerlink" title="Some Terminologies"></a>Some Terminologies</h3><ul><li>Vertex : Vertex is the node of the graph</li><li>Edges : Edges are the arcs that connect pairs of vertices</li><li>Unweighted Graph : A graph not having a weight associated with any edge</li><li>Weighted Graph : A graph having a weight associated with each edge</li><li>Undirected Graph : It is a graph that is a set of vertices connected by edges, where the edges don’t have a direction associated with them.</li><li>Directed Graph : It is a graph that is a set of vertices connected by edges, where the edges have a direction associated with them.</li><li>Cyclic Graph : A cyclic graph is a graph having at least on loop.</li><li>Acyclic Graph : An Acyclic graph is a graph having no loop.</li><li>Tree : Tree is a special case of Directed Acyclic Graph(DAG).</li></ul><h3 id="Types-of-Graph"><a href="#Types-of-Graph" class="headerlink" title="Types of Graph"></a>Types of Graph</h3><Br><h3 id="How-is-Graph-represented"><a href="#How-is-Graph-represented" class="headerlink" title="How is Graph represented?"></a>How is Graph represented?</h3><ol><li><p><strong>Adjacency Matrix</strong> : In graph theory, an adjacency matrix is a square matrix used to represent a finite graph. The elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph.</p></li><li><p><strong>Adjacency List</strong> : In graph theory, an adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a vertex in the graph.</p></li></ol><h5 id="When-to-use-which-representation"><a href="#When-to-use-which-representation" class="headerlink" title="When to use which representation?"></a>When to use which representation?</h5><ul><li>If the graph is a ‘Complete’ or ‘near to complete’ Graph, then we should use <strong>Adjacency Matrix</strong>.</li><li>If the number of ‘Edges’ are few, then we should use <strong>Adjacency List</strong>.</li></ul><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
+    <content type="html"><![CDATA[<p>graph</p><a id="more"></a><h3 id="What-is-Graph"><a href="#What-is-Graph" class="headerlink" title="What is Graph?"></a>What is Graph?</h3><ul><li>Graph is a pair of sets(V,E), where V is the set of vertices and E is the set of edges, connecting the pairs of vertices.</li></ul><h3 id="Some-Terminologies"><a href="#Some-Terminologies" class="headerlink" title="Some Terminologies"></a>Some Terminologies</h3><ul><li>Vertex : Vertex is the node of the graph</li><li>Edges : Edges are the arcs that connect pairs of vertices</li><li>Unweighted Graph : A graph not having a weight associated with any edge</li><li>Weighted Graph : A graph having a weight associated with each edge</li><li>Undirected Graph : It is a graph that is a set of vertices connected by edges, where the edges don’t have a direction associated with them.</li><li>Directed Graph : It is a graph that is a set of vertices connected by edges, where the edges have a direction associated with them.</li><li>Cyclic Graph : A cyclic graph is a graph having at least on loop.</li><li>Acyclic Graph : An Acyclic graph is a graph having no loop.</li><li>Tree : Tree is a special case of Directed Acyclic Graph(DAG).</li></ul><h3 id="Types-of-Graph"><a href="#Types-of-Graph" class="headerlink" title="Types of Graph"></a>Types of Graph</h3><Br><img src="/2020/04/01/Al-graph/graph.PNG" class="" width="500" height="500" title="Types of Graph"><h3 id="How-is-Graph-represented"><a href="#How-is-Graph-represented" class="headerlink" title="How is Graph represented?"></a>How is Graph represented?</h3><ol><li><p><strong>Adjacency Matrix</strong> : In graph theory, an adjacency matrix is a square matrix used to represent a finite graph. The elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph.</p><img src="/2020/04/01/Al-graph/adjacencyMatrix.PNG" class="" width="400" height="400" title="adjacency matrix"></li><li><p><strong>Adjacency List</strong> : In graph theory, an adjacency list is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a vertex in the graph.</p></li></ol><img src="/2020/04/01/Al-graph/adjacencyList.PNG" class="" width="400" height="400" title="adjacency list"><h5 id="When-to-use-which-representation"><a href="#When-to-use-which-representation" class="headerlink" title="When to use which representation?"></a>When to use which representation?</h5><ul><li>If the graph is a ‘Complete’ or ‘near to complete’ Graph, then we should use <strong>Adjacency Matrix</strong>.</li><li>If the number of ‘Edges’ are few, then we should use <strong>Adjacency List</strong>.</li></ul><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
     
     <summary type="html">
     
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;structure of vuex&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="VueJS" scheme="http://jbj828.github.io/categories/VueJS/"/>
-    
-    
-      <category term="VueJS" scheme="http://jbj828.github.io/tags/VueJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>What is the Vuex?</title>
-    <link href="http://jbj828.github.io/2020/03/26/VueJS-vuex/"/>
-    <id>http://jbj828.github.io/2020/03/26/VueJS-vuex/</id>
-    <published>2020-03-26T06:46:25.000Z</published>
-    <updated>2020-03-26T08:01:33.249Z</updated>
-    
-    <content type="html"><![CDATA[<p>vuex</p><a id="more"></a><h3 id="원칙-1-Single-Source-of-Truth-단일-데이터-소스"><a href="#원칙-1-Single-Source-of-Truth-단일-데이터-소스" class="headerlink" title="원칙 1 : Single Source of Truth(단일 데이터 소스)"></a>원칙 1 : Single Source of Truth(단일 데이터 소스)</h3><p>컴포넌트들 간에 공유해야 하는 데이터(예: 애플리케이션 데이터)는 이를 사용하는 컴포넌트와는 별도로 단일 위치에 보관해야 한다.</p><p>이 단일 위치를 <code>store(저장소)</code>라고 한다. 컴포넌트는 이 위치에서 애플리케이션 데이터를 읽어야 하며 충돌이나 불일치를 방지하기 위해 복사본을 자체적으로 보관해서는 안된다.</p><h3 id="원칙-2-Data-is-Read-Only"><a href="#원칙-2-Data-is-Read-Only" class="headerlink" title="원칙 2 : Data is Read-Only"></a>원칙 2 : Data is Read-Only</h3><p>컴포넌트들은 저장소에서 데이터를 자유롭게 읽을 수 있다. 그러나 직접 변경은 불가능.</p><p>대신 데이터를 변경할 것이라는 것을 store에 알려야 하며, store은 “mutations”라고 하는 정의된 함수들을 통해 변경을 완수해야할 책임이 있다.</p><p>이렇게 데이터 변경 로직을 중앙 집중화하면 데이터에 불일치가 일어나거나 데이터에 다른 문제들이 생겼을 때 여러 곳을 일일이 뒤져볼 필요가 없다. 이것은 어떤 익명의 컴포넌트가 예상치 못한 방식으로 데이터를 변경할 가능성을 최소화 해준다.</p><h3 id="원칙-3-Mutations-are-Synchronous-Mutation은-동기적이다"><a href="#원칙-3-Mutations-are-Synchronous-Mutation은-동기적이다" class="headerlink" title="원칙 3 : Mutations are Synchronous(Mutation은 동기적이다)"></a>원칙 3 : Mutations are Synchronous(Mutation은 동기적이다)</h3><p>위에 두 가지 원칙을 지키는 애플리케이션에서 데이터를 디버그 하는 것이 훨씬 쉽다. mutation의 commit을 기록하고 응답 상태가 어떻게 변경되는지 관찰할 수 있다.(Vue Devtools에서 Vuex를 사용할 때 실제로 그렇게 디버그 할 수 있다.)</p><p>그러나 만약 우리의 “mutation”이 비동기적으로 일어난다면 그런 방식의 디버그는 불가능 할 것이다. commit이 언제 발생했는지는 알 수 있어도, commit 안에 콜백이나 Promise 같은 것들이 들어간다면 추적이 불가능해진다.</p><p>mutation이 동기적으로 일어나는 것, 데이터가 예측할 수 없는 이벤트의 순서와 시간에 종속되지 않도로 보장한다.</p><h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex?"></a>Vuex?</h3><p>Vuex는 Vue 애플리케이션에서 Flux 아키텍처를 구현하는 데 도움이 되는 라이브러리이다. 위 원칙 덕분에 Vuex는 여러 컴포넌트에서 데이터를 공유해도 애플리케이션 데이터를 투명하고 예측 가능한 상태로 유지한다.</p><p>Vuex를 구현하기 위해서는 store, mutators 가 포함되며 store에서 데이터를 읽는 모든 컴포넌트를 자동으로 업데이트한다. </p><p>또한 핫 모듈 리로딩(실행 중인 애플리케이션에서 모듈 업데이트) 및 시간 이동 디버깅(버그 추적을 위한 mutation 이벤트 역추적)과 같은 멋진 개발 기능을 제공한다.</p><p><em>출처 : <a href="https://medium.com/@itsnothingg/%EB%8F%84%EB%8C%80%EC%B2%B4-vuex%EA%B0%80-%EB%AD%90%EA%B8%B8%EB%9E%98-ad5bc15f2371" target="_blank" rel="noopener">도대체 Vuex가 뭐길래?</a></em></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;vuex&lt;/p&gt;
     
     </summary>
     

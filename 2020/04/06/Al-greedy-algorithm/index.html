@@ -6,26 +6,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Adding Images to the User Profile &amp; Serving up Files - Developer Javit</title>
+    <title>Greedy Algorithm &amp; Divide and Conquer - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Adding Images to the User Profile &amp; Serving up Files\n\n\nAdding Images to the User ProfileA new field needs to be added to the user model to store the avatar image data. The snippet below adds avatar on the user with the type of Buffer. The Buffer type should be used when storing binary data, which is exactly the type of data that multer provides.\n12345const userSchema &#x3D; new mongoose.Schema(&#123;  avatar : &#123;    type : Buffer  &#125;&#125;)\n\nThe avatar upload route will be able to change the user profile data, so the route should be put behind authentication. The handler function grabs the binary data and stores it on the avatar field. Finally, the changes are saved.\n1234567router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, auth, uploda.single(&#39;upload&#39;), async (req, res) &#x3D;&gt; &#123;  req.user.avatar &#x3D; req.file.buffer  await req.user.save()  res.send()&#125;, (error, req, res, next) &#x3D;&gt; &#123;  res.status(400).send(&#123; error : error.message&#125;)&#125;)\n\n\n\nServing up FilesThis is how we serve up user profile images. These images will be served as if they were static assets for the application.\nServing up the user avatars will require two pieces of data from the server. The first is the image data, and the second is the Content-Type header. The image data is stored on the user profile. The header should be set equal to image/png which lets the client know they’re getting a PNG image back.\nThe route below fetches the image data and sets the Content-Type header for the response. The URL could be visited to view the profile picture.\n1234567891011121314router.get(&#39;&#x2F;users&#x2F;:id&#x2F;avatar&#39;, async (req, res) &#x3D;&gt;&#123;  try &#123;      const user &#x3D; await User.findById(req.params.id)      if(!user || !user.avatar)&#123;        throw new Error()      &#125;      res.set(&#39;Content-Type&#39;, &#39;image&#x2F;jpg&#39;)      res.send(user.avatar)  &#125; catch(e)&#123;      res.status(404).send()  &#125;&#125;)\n\n\n출처 : NodeJS course on Udemy by Andrew Mead\n","dateCreated":"2020-04-06T12:46:25+09:00","dateModified":"2020-04-06T11:55:51+09:00","datePublished":"2020-04-06T12:46:25+09:00","description":"Adding Images to the User Profile &amp; Serving up Files","headline":"Adding Images to the User Profile & Serving up Files","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/06/NodeJS-add-image/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/06/NodeJS-add-image/","keywords":"NodeJS"}</script>
-    <meta name="description" content="Adding Images to the User Profile &amp; Serving up Files">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Greedy Algorithm &amp; Divide and Conquer\n\n\nMagic Framework\n\nGreedy Algorithm\nGreedy Algorithm is an algorithmic paradigm that builds up a solution piece by piece.\nIt always chooses the next piece that offers the most obvious and immediate benefit.\nGreedy fits perfectly for those solutions in which choosing a locally optimal solution also leads to global optimal solution(aka ‘Greedy Choice’).\n\nDivide &amp; Conquer\nDivide &amp; Conquer is an algorithm design paradigm which works by recursively breaking down a problem into sub-problems of similar type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-04-06T18:30:25+09:00","dateModified":"2020-04-06T22:43:15+09:00","datePublished":"2020-04-06T18:30:25+09:00","description":"Greedy Algorithm &amp; Divide and Conquer","headline":"Greedy Algorithm & Divide and Conquer","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/","keywords":"algorithm"}</script>
+    <meta name="description" content="Greedy Algorithm &amp; Divide and Conquer">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Adding Images to the User Profile &amp; Serving up Files">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/06/NodeJS-add-image/index.html">
+<meta property="og:title" content="Greedy Algorithm &amp; Divide and Conquer">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Adding Images to the User Profile &amp; Serving up Files">
+<meta property="og:description" content="Greedy Algorithm &amp; Divide and Conquer">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-06T03:46:25.000Z">
-<meta property="article:modified_time" content="2020-04-06T02:55:51.533Z">
+<meta property="og:image" content="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/magicFramework.PNG">
+<meta property="article:published_time" content="2020-04-06T09:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-06T13:43:15.886Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="NodeJS">
+<meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/magicFramework.PNG">
     
     
         
@@ -215,12 +217,12 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Adding Images to the User Profile &amp; Serving up Files
+            Greedy Algorithm &amp; Divide and Conquer
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-06T12:46:25+09:00">
+    <time datetime="2020-04-06T18:30:25+09:00">
 	
 		    Apr 06, 2020
     	
@@ -228,7 +230,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/NodeJS/">NodeJS</a>
+    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
 
 
     
@@ -240,24 +242,20 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Adding Images to the User Profile &amp; Serving up Files</p>
+            <p>Greedy Algorithm &amp; Divide and Conquer</p>
 <a id="more"></a>
 
-<h2 id="Adding-Images-to-the-User-Profile"><a href="#Adding-Images-to-the-User-Profile" class="headerlink" title="Adding Images to the User Profile"></a>Adding Images to the User Profile</h2><p>A new field needs to be added to the user model to store the avatar image data. The snippet below adds <code>avatar</code> on the user with the type of <code>Buffer</code>. The <code>Buffer</code> type should be used when storing binary data, which is exactly the type of data that multer provides.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const userSchema &#x3D; new mongoose.Schema(&#123;</span><br><span class="line">  avatar : &#123;</span><br><span class="line">    type : Buffer</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Magic-Framework"><a href="#Magic-Framework" class="headerlink" title="Magic Framework"></a>Magic Framework</h2><img src="/2020/04/06/Al-greedy-algorithm/magicFramework.PNG" class="" width="500" height="400" title="magicFramework">
 
-<p>The avatar upload route will be able to change the user profile data, so the route should be put behind authentication. The handler function grabs the binary data and stores it on the <code>avatar</code> field. Finally, the changes are saved.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, auth, uploda.single(&#39;upload&#39;), async (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  req.user.avatar &#x3D; req.file.buffer</span><br><span class="line">  await req.user.save()</span><br><span class="line">  res.send()</span><br><span class="line">&#125;, (error, req, res, next) &#x3D;&gt; &#123;</span><br><span class="line">  res.status(400).send(&#123; error : error.message&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<h2 id="Serving-up-Files"><a href="#Serving-up-Files" class="headerlink" title="Serving up Files"></a>Serving up Files</h2><p>This is how we serve up user profile images. These images will be served as if they were static assets for the application.</p>
-<p>Serving up the user avatars will require two pieces of data from the server. The first is the image data, and the second is the <code>Content-Type</code> header. The image data is stored on the user profile. The header should be set equal to <code>image/png</code> which lets the client know they’re getting a PNG image back.</p>
-<p>The route below fetches the image data and sets the <code>Content-Type</code> header for the response. The URL could be visited to view the profile picture.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.get(&#39;&#x2F;users&#x2F;:id&#x2F;avatar&#39;, async (req, res) &#x3D;&gt;&#123;</span><br><span class="line">  try &#123;</span><br><span class="line">      const user &#x3D; await User.findById(req.params.id)</span><br><span class="line"></span><br><span class="line">      if(!user || !user.avatar)&#123;</span><br><span class="line">        throw new Error()</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      res.set(&#39;Content-Type&#39;, &#39;image&#x2F;jpg&#39;)</span><br><span class="line">      res.send(user.avatar)</span><br><span class="line">  &#125; catch(e)&#123;</span><br><span class="line">      res.status(404).send()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-<p>출처 : NodeJS course on Udemy by Andrew Mead</p>
+<h2 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h2><ul>
+<li>Greedy Algorithm is an algorithmic paradigm that builds up a solution piece by piece.</li>
+<li>It always chooses the next piece that offers <code>the most obvious and immediate benefit</code>.</li>
+<li>Greedy fits perfectly for those solutions in which choosing a locally optimal solution also leads to global optimal solution(aka ‘Greedy Choice’).</li>
+</ul>
+<h2 id="Divide-amp-Conquer"><a href="#Divide-amp-Conquer" class="headerlink" title="Divide &amp; Conquer"></a>Divide &amp; Conquer</h2><ul>
+<li>Divide &amp; Conquer is an algorithm design paradigm which works by recursively breaking down a problem into sub-problems of similar type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.</li>
+</ul>
+<p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
 
             
 
@@ -269,7 +267,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/NodeJS/" rel="tag">NodeJS</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
 
             </div>
         
@@ -279,14 +277,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/Al-greedy-algorithm/"
-                    data-tooltip="Greedy Algorithm &amp; Divide and Conquer"
-                    aria-label="PREVIOUS: Greedy Algorithm &amp; Divide and Conquer"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -296,9 +291,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/05/NodeJS-Express-Errors/"
-                    data-tooltip="Handling Express Errors"
-                    aria-label="NEXT: Handling Express Errors"
+                    href="/2020/04/06/NodeJS-add-image/"
+                    data-tooltip="Adding Images to the User Profile &amp; Serving up Files"
+                    aria-label="NEXT: Adding Images to the User Profile &amp; Serving up Files"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -323,7 +318,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -336,7 +331,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -349,7 +344,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -394,14 +389,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/Al-greedy-algorithm/"
-                    data-tooltip="Greedy Algorithm &amp; Divide and Conquer"
-                    aria-label="PREVIOUS: Greedy Algorithm &amp; Divide and Conquer"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -411,9 +403,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/05/NodeJS-Express-Errors/"
-                    data-tooltip="Handling Express Errors"
-                    aria-label="NEXT: Handling Express Errors"
+                    href="/2020/04/06/NodeJS-add-image/"
+                    data-tooltip="Adding Images to the User Profile &amp; Serving up Files"
+                    aria-label="NEXT: Adding Images to the User Profile &amp; Serving up Files"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -438,7 +430,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -451,7 +443,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -464,7 +456,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -498,7 +490,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -511,7 +503,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -524,7 +516,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
