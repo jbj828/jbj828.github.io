@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Handling Express Errors - Developer Javit</title>
+    <title>Adding Images to the User Profile &amp; Serving up Files - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Handling Express Errors\n\n\nWe’ll customize the errors that multer provides. This will give you complete control of what sort of response the client gets when their upload is rejected.\nHandling Express ErrorsYou can handle errors from middleware function by providing a function to Express. As shown below, a new function is passed as the final argument to router.post. This function accepts error, req, res, next. This call signature lets Express know the function is designed to handle errors.\nThe function itself sends back a JSON response with the error message from multer.\n12345router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, upload.single(&#39;avatar&#39;), (req,res) &#x3D;&gt; &#123;  res.send()&#125;, (error, req, res, next) &#x3D;&gt; &#123;  res.status(400).send(&#123; error : error.message &#125;)&#125;)\n","dateCreated":"2020-04-05T22:46:25+09:00","dateModified":"2020-04-05T23:07:10+09:00","datePublished":"2020-04-05T22:46:25+09:00","description":"Handling Express Errors","headline":"Handling Express Errors","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/","keywords":"NodeJS"}</script>
-    <meta name="description" content="Handling Express Errors">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Adding Images to the User Profile &amp; Serving up Files\n\n\nAdding Images to the User ProfileA new field needs to be added to the user model to store the avatar image data. The snippet below adds avatar on the user with the type of Buffer. The Buffer type should be used when storing binary data, which is exactly the type of data that multer provides.\n12345const userSchema &#x3D; new mongoose.Schema(&#123;  avatar : &#123;    type : Buffer  &#125;&#125;)\n\nThe avatar upload route will be able to change the user profile data, so the route should be put behind authentication. The handler function grabs the binary data and stores it on the avatar field. Finally, the changes are saved.\n1234567router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, auth, uploda.single(&#39;upload&#39;), async (req, res) &#x3D;&gt; &#123;  req.user.avatar &#x3D; req.file.buffer  await req.user.save()  res.send()&#125;, (error, req, res, next) &#x3D;&gt; &#123;  res.status(400).send(&#123; error : error.message&#125;)&#125;)\n\n\n\nServing up FilesThis is how we serve up user profile images. These images will be served as if they were static assets for the application.\nServing up the user avatars will require two pieces of data from the server. The first is the image data, and the second is the Content-Type header. The image data is stored on the user profile. The header should be set equal to image/png which lets the client know they’re getting a PNG image back.\nThe route below fetches the image data and sets the Content-Type header for the response. The URL could be visited to view the profile picture.\n1234567891011121314router.get(&#39;&#x2F;users&#x2F;:id&#x2F;avatar&#39;, async (req, res) &#x3D;&gt;&#123;  try &#123;      const user &#x3D; await User.findById(req.params.id)      if(!user || !user.avatar)&#123;        throw new Error()      &#125;      res.set(&#39;Content-Type&#39;, &#39;image&#x2F;jpg&#39;)      res.send(user.avatar)  &#125; catch(e)&#123;      res.status(404).send()  &#125;&#125;)\n\n\n출처 : NodeJS course on Udemy by Andrew Mead\n","dateCreated":"2020-04-06T12:46:25+09:00","dateModified":"2020-04-06T11:55:51+09:00","datePublished":"2020-04-06T12:46:25+09:00","description":"Adding Images to the User Profile &amp; Serving up Files","headline":"Adding Images to the User Profile & Serving up Files","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/06/NodeJS-add-image/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/06/NodeJS-add-image/","keywords":"NodeJS"}</script>
+    <meta name="description" content="Adding Images to the User Profile &amp; Serving up Files">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Handling Express Errors">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/index.html">
+<meta property="og:title" content="Adding Images to the User Profile &amp; Serving up Files">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/06/NodeJS-add-image/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Handling Express Errors">
+<meta property="og:description" content="Adding Images to the User Profile &amp; Serving up Files">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-05T13:46:25.000Z">
-<meta property="article:modified_time" content="2020-04-05T14:07:10.553Z">
+<meta property="article:published_time" content="2020-04-06T03:46:25.000Z">
+<meta property="article:modified_time" content="2020-04-06T02:55:51.533Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="NodeJS">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Handling Express Errors
+            Adding Images to the User Profile &amp; Serving up Files
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-05T22:46:25+09:00">
+    <time datetime="2020-04-06T12:46:25+09:00">
 	
-		    Apr 05, 2020
+		    Apr 06, 2020
     	
     </time>
     
@@ -240,13 +240,24 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Handling Express Errors</p>
+            <p>Adding Images to the User Profile &amp; Serving up Files</p>
 <a id="more"></a>
 
-<p>We’ll customize the errors that multer provides. This will give you complete control of what sort of response the client gets when their upload is rejected.</p>
-<h3 id="Handling-Express-Errors"><a href="#Handling-Express-Errors" class="headerlink" title="Handling Express Errors"></a>Handling Express Errors</h3><p>You can handle errors from middleware function by providing a function to Express. As shown below, a new function is passed as the final argument to <code>router.post</code>. This function accepts <code>error, req, res, next</code>. This call signature lets Express know the function is designed to handle errors.</p>
-<p>The function itself sends back a JSON response with the error message from multer.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, upload.single(&#39;avatar&#39;), (req,res) &#x3D;&gt; &#123;</span><br><span class="line">  res.send()</span><br><span class="line">&#125;, (error, req, res, next) &#x3D;&gt; &#123;</span><br><span class="line">  res.status(400).send(&#123; error : error.message &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Adding-Images-to-the-User-Profile"><a href="#Adding-Images-to-the-User-Profile" class="headerlink" title="Adding Images to the User Profile"></a>Adding Images to the User Profile</h2><p>A new field needs to be added to the user model to store the avatar image data. The snippet below adds <code>avatar</code> on the user with the type of <code>Buffer</code>. The <code>Buffer</code> type should be used when storing binary data, which is exactly the type of data that multer provides.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const userSchema &#x3D; new mongoose.Schema(&#123;</span><br><span class="line">  avatar : &#123;</span><br><span class="line">    type : Buffer</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>The avatar upload route will be able to change the user profile data, so the route should be put behind authentication. The handler function grabs the binary data and stores it on the <code>avatar</code> field. Finally, the changes are saved.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, auth, uploda.single(&#39;upload&#39;), async (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  req.user.avatar &#x3D; req.file.buffer</span><br><span class="line">  await req.user.save()</span><br><span class="line">  res.send()</span><br><span class="line">&#125;, (error, req, res, next) &#x3D;&gt; &#123;</span><br><span class="line">  res.status(400).send(&#123; error : error.message&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h2 id="Serving-up-Files"><a href="#Serving-up-Files" class="headerlink" title="Serving up Files"></a>Serving up Files</h2><p>This is how we serve up user profile images. These images will be served as if they were static assets for the application.</p>
+<p>Serving up the user avatars will require two pieces of data from the server. The first is the image data, and the second is the <code>Content-Type</code> header. The image data is stored on the user profile. The header should be set equal to <code>image/png</code> which lets the client know they’re getting a PNG image back.</p>
+<p>The route below fetches the image data and sets the <code>Content-Type</code> header for the response. The URL could be visited to view the profile picture.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.get(&#39;&#x2F;users&#x2F;:id&#x2F;avatar&#39;, async (req, res) &#x3D;&gt;&#123;</span><br><span class="line">  try &#123;</span><br><span class="line">      const user &#x3D; await User.findById(req.params.id)</span><br><span class="line"></span><br><span class="line">      if(!user || !user.avatar)&#123;</span><br><span class="line">        throw new Error()</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      res.set(&#39;Content-Type&#39;, &#39;image&#x2F;jpg&#39;)</span><br><span class="line">      res.send(user.avatar)</span><br><span class="line">  &#125; catch(e)&#123;</span><br><span class="line">      res.status(404).send()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p>출처 : NodeJS course on Udemy by Andrew Mead</p>
 
             
 
@@ -268,14 +279,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/NodeJS-add-image/"
-                    data-tooltip="Adding Images to the User Profile &amp; Serving up Files"
-                    aria-label="PREVIOUS: Adding Images to the User Profile &amp; Serving up Files"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -285,9 +293,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/05/NodeJS-multer/"
-                    data-tooltip="File Uploads with Multer"
-                    aria-label="NEXT: File Uploads with Multer"
+                    href="/2020/04/05/NodeJS-Express-Errors/"
+                    data-tooltip="Handling Express Errors"
+                    aria-label="NEXT: Handling Express Errors"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -312,7 +320,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -325,7 +333,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -338,7 +346,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -383,14 +391,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/NodeJS-add-image/"
-                    data-tooltip="Adding Images to the User Profile &amp; Serving up Files"
-                    aria-label="PREVIOUS: Adding Images to the User Profile &amp; Serving up Files"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -400,9 +405,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/05/NodeJS-multer/"
-                    data-tooltip="File Uploads with Multer"
-                    aria-label="NEXT: File Uploads with Multer"
+                    href="/2020/04/05/NodeJS-Express-Errors/"
+                    data-tooltip="Handling Express Errors"
+                    aria-label="NEXT: Handling Express Errors"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -427,7 +432,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -440,7 +445,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -453,7 +458,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -487,7 +492,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -500,7 +505,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -513,7 +518,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/05/NodeJS-Express-Errors/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/NodeJS-add-image/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>

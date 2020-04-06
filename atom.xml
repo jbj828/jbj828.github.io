@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-05T14:07:10.553Z</updated>
+  <updated>2020-04-06T02:55:51.533Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Adding Images to the User Profile &amp; Serving up Files</title>
+    <link href="http://jbj828.github.io/2020/04/06/NodeJS-add-image/"/>
+    <id>http://jbj828.github.io/2020/04/06/NodeJS-add-image/</id>
+    <published>2020-04-06T03:46:25.000Z</published>
+    <updated>2020-04-06T02:55:51.533Z</updated>
+    
+    <content type="html"><![CDATA[<p>Adding Images to the User Profile &amp; Serving up Files</p><a id="more"></a><h2 id="Adding-Images-to-the-User-Profile"><a href="#Adding-Images-to-the-User-Profile" class="headerlink" title="Adding Images to the User Profile"></a>Adding Images to the User Profile</h2><p>A new field needs to be added to the user model to store the avatar image data. The snippet below adds <code>avatar</code> on the user with the type of <code>Buffer</code>. The <code>Buffer</code> type should be used when storing binary data, which is exactly the type of data that multer provides.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const userSchema &#x3D; new mongoose.Schema(&#123;</span><br><span class="line">  avatar : &#123;</span><br><span class="line">    type : Buffer</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>The avatar upload route will be able to change the user profile data, so the route should be put behind authentication. The handler function grabs the binary data and stores it on the <code>avatar</code> field. Finally, the changes are saved.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.post(&#39;&#x2F;users&#x2F;me&#x2F;avatar&#39;, auth, uploda.single(&#39;upload&#39;), async (req, res) &#x3D;&gt; &#123;</span><br><span class="line">  req.user.avatar &#x3D; req.file.buffer</span><br><span class="line">  await req.user.save()</span><br><span class="line">  res.send()</span><br><span class="line">&#125;, (error, req, res, next) &#x3D;&gt; &#123;</span><br><span class="line">  res.status(400).send(&#123; error : error.message&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br><h2 id="Serving-up-Files"><a href="#Serving-up-Files" class="headerlink" title="Serving up Files"></a>Serving up Files</h2><p>This is how we serve up user profile images. These images will be served as if they were static assets for the application.</p><p>Serving up the user avatars will require two pieces of data from the server. The first is the image data, and the second is the <code>Content-Type</code> header. The image data is stored on the user profile. The header should be set equal to <code>image/png</code> which lets the client know they’re getting a PNG image back.</p><p>The route below fetches the image data and sets the <code>Content-Type</code> header for the response. The URL could be visited to view the profile picture.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.get(&#39;&#x2F;users&#x2F;:id&#x2F;avatar&#39;, async (req, res) &#x3D;&gt;&#123;</span><br><span class="line">  try &#123;</span><br><span class="line">      const user &#x3D; await User.findById(req.params.id)</span><br><span class="line"></span><br><span class="line">      if(!user || !user.avatar)&#123;</span><br><span class="line">        throw new Error()</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      res.set(&#39;Content-Type&#39;, &#39;image&#x2F;jpg&#39;)</span><br><span class="line">      res.send(user.avatar)</span><br><span class="line">  &#125; catch(e)&#123;</span><br><span class="line">      res.status(404).send()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>출처 : NodeJS course on Udemy by Andrew Mead</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Adding Images to the User Profile &amp;amp; Serving up Files&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/categories/NodeJS/"/>
+    
+    
+      <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Handling Express Errors</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;vuex&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="VueJS" scheme="http://jbj828.github.io/categories/VueJS/"/>
-    
-    
-      <category term="VueJS" scheme="http://jbj828.github.io/tags/VueJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The basic of VueJS</title>
-    <link href="http://jbj828.github.io/2020/03/25/VueJS-Basic/"/>
-    <id>http://jbj828.github.io/2020/03/25/VueJS-Basic/</id>
-    <published>2020-03-25T13:46:25.000Z</published>
-    <updated>2020-03-25T14:51:37.317Z</updated>
-    
-    <content type="html"><![CDATA[<p>basic of vueJS</p><a id="more"></a><h3 id="What-is-VueJS"><a href="#What-is-VueJS" class="headerlink" title="What is VueJS?"></a>What is VueJS?</h3><p>MVVM 패턴의 ViewModel 레이어에 해당하는 화면단 라이브러리</p><ul><li>데이터 바인딩과 화면 단위를 컴포넌트 형태로 제공하며, 관련 API를 지원한는 데 궁극적 목적이 있다.</li><li>양방향 데이터 바인딩 제공</li><li>컴포넌트 간 통신은 단방향 데이터 흐름(부모 -&gt; 자식)</li></ul><img src="/2020/03/25/VueJS-Basic/vue.png" class="" width="500" height="300" title="Vue"><h3 id="MVVM-Pattern"><a href="#MVVM-Pattern" class="headerlink" title="MVVM Pattern?"></a>MVVM Pattern?</h3><p>Backend 로직과 Client의 마크업 &amp; 데이터 표현단을 분리하기 위한 구조로 전통적인 MVC 패턴의 방식에서 기인하였다. 간단하게 생각해서 화면 앞단의 화면 동작 관련 로직과 뒷단의 DB 데이터 처리 및 서버 로직을 분리하고, 뒷단에서 넘어온 데이터를 Model에 담아 View로 넘겨주는 중간 지점이라고 보면 된다.</p><h4 id="Steps-for-Passing-Props"><a href="#Steps-for-Passing-Props" class="headerlink" title="Steps for Passing Props"></a>Steps for Passing Props</h4><ol><li>Add the prop to the parent component’s template with a v-bind expression</li><li>Tell the child component about the props it should expect to get</li></ol><p>출처 : <a href="https://joshua1988.github.io/" target="_blank" rel="noopener">Captain Pangyo</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;basic of vueJS&lt;/p&gt;
     
     </summary>
     
