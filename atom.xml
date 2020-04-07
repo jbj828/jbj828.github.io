@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-06T13:43:15.886Z</updated>
+  <updated>2020-04-07T08:21:16.354Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Coding Test Level1 - Day1</title>
+    <link href="http://jbj828.github.io/2020/04/07/Al-PS1/"/>
+    <id>http://jbj828.github.io/2020/04/07/Al-PS1/</id>
+    <published>2020-04-07T03:30:25.000Z</published>
+    <updated>2020-04-07T08:21:16.354Z</updated>
+    
+    <content type="html"><![CDATA[<p>coding test level1</p><a id="more"></a><h4 id="2016년-a월-b일의-요일을-구하시오"><a href="#2016년-a월-b일의-요일을-구하시오" class="headerlink" title="2016년 a월 b일의 요일을 구하시오"></a>2016년 a월 b일의 요일을 구하시오</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function getDayName(a, b)&#123;</span><br><span class="line">  let dayName &#x3D; new Date(2016, a-1, b).toString().slice(0,3).toUpperCase()</span><br><span class="line"></span><br><span class="line">  return dayName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="단어-s의-가운데-글자를-반환하는-함수-구하기-단어의-길이가-짝수라면-가운데-두글자를-반환"><a href="#단어-s의-가운데-글자를-반환하는-함수-구하기-단어의-길이가-짝수라면-가운데-두글자를-반환" class="headerlink" title="단어 s의 가운데 글자를 반환하는 함수 구하기. 단어의 길이가 짝수라면 가운데 두글자를 반환."></a>단어 s의 가운데 글자를 반환하는 함수 구하기. 단어의 길이가 짝수라면 가운데 두글자를 반환.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function solution(s)&#123;</span><br><span class="line">    const wordLength &#x3D; s.length;</span><br><span class="line">    const middlePoint &#x3D; Math.floor(wordLength &#x2F; 2 );</span><br><span class="line"></span><br><span class="line">    if(wordLength % 2 &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">        return s[middlePoint-1].concat(s[middlePoint]);</span><br><span class="line">    &#125; else if(wordLength % 2 &#x3D;&#x3D;&#x3D; 1)&#123;</span><br><span class="line">        return s[middlePoint];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="같은-숫자는-싫어"><a href="#같은-숫자는-싫어" class="headerlink" title="같은 숫자는 싫어"></a>같은 숫자는 싫어</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function solution(arr)&#123;</span><br><span class="line">  return arr.filter((val, index) &#x3D;&gt; val !&#x3D;&#x3D; arr[index +1])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="나누어-떨어지는-숫자-배열"><a href="#나누어-떨어지는-숫자-배열" class="headerlink" title="나누어 떨어지는 숫자 배열"></a>나누어 떨어지는 숫자 배열</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function solution(arr, divisor)&#123;</span><br><span class="line">  var answer &#x3D; [];</span><br><span class="line"></span><br><span class="line">  arr.map((o) &#x3D;&gt; &#123;</span><br><span class="line">    o % divisor &#x3D;&#x3D;&#x3D; 0 &amp;&amp; answer.push(o)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return answer.length ? answer.sort((a,b) &#x3D;&gt; a-b) : [-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="두-정수의-합"><a href="#두-정수의-합" class="headerlink" title="두 정수의 합"></a>두 정수의 합</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function adder(a, b)&#123;</span><br><span class="line">  let result &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  return (a+b)*(Math.abs(b-a)+1)&#x2F;2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="문자열-내-마음대로-정렬하기"><a href="#문자열-내-마음대로-정렬하기" class="headerlink" title="문자열 내 마음대로 정렬하기"></a>문자열 내 마음대로 정렬하기</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function solution(strings, n) &#123;</span><br><span class="line"></span><br><span class="line">    return strings.sort((s1, s2) &#x3D;&gt; s1[n] &#x3D;&#x3D;&#x3D; s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;coding test level1&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm, Coding Test" scheme="http://jbj828.github.io/categories/Algorithm-Coding-Test/"/>
+    
+    
+      <category term="algorithm, Coding Test" scheme="http://jbj828.github.io/tags/algorithm-Coding-Test/"/>
+    
+  </entry>
   
   <entry>
     <title>Greedy Algorithm &amp; Divide and Conquer</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;getters and mutations&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="VueJS" scheme="http://jbj828.github.io/categories/VueJS/"/>
-    
-    
-      <category term="VueJS" scheme="http://jbj828.github.io/tags/VueJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Structure of Vuex</title>
-    <link href="http://jbj828.github.io/2020/03/27/VueJS-basic-structure-of-Vuex/"/>
-    <id>http://jbj828.github.io/2020/03/27/VueJS-basic-structure-of-Vuex/</id>
-    <published>2020-03-27T06:46:25.000Z</published>
-    <updated>2020-03-27T10:33:31.854Z</updated>
-    
-    <content type="html"><![CDATA[<p>structure of vuex</p><a id="more"></a><p>모든 Vuex 애플리케이션의 중심에는 <code>store</code>가 있다. <code>store</code>는 기본적으로 애플리케이션 상태를 보유하고 있는 컨테이너이다. Vuex 저장소가 일반 전역 개체와 두 가지 다른 점이 있다.</p><ol><li>Vuex store는 반응형이다. Vue 컴포넌트는 상태를 검색할 때 저장소의 상태가 변경되면 효율적으로 대응하고 업데이트 한다.</li><li>저장소의 상태를 직접 변경할 수 없다. <strong>커밋을 이용한 변이</strong>만 가능하다. 이렇게 하면 모든 상태에 대한 추적이 가능해져 앱을 사용해 툴을 더 잘 이해할 수 있다.</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;모듈 시스템 사용할 경우 Vue.use(Vuex)를 먼저 호출해야 한다</span><br><span class="line"></span><br><span class="line">const store &#x3D; new Vuex.store(&#123;</span><br><span class="line">  state : &#123;</span><br><span class="line">    count : 0</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations : &#123;</span><br><span class="line">    increment(state)&#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>이제 state 객체에 <code>store.state</code>로 접근하여 <code>store.commit</code> 메소드로 상태 변경을 트리거 할 수 있다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">store.commit(&#39;increment&#39;)</span><br><span class="line"></span><br><span class="line">console.log(store.state.count) &#x2F;&#x2F; -&gt; 1</span><br></pre></td></tr></table></figure><p>다시 말해, <code>store.state.count</code>를 직접 변경하는 대신 변이를 수행하는 이유는 명시적으로 추적을 하기 때문이다. </p><p>컴포넌트 안에서 저장소 상태를 사용하는 것은 단순히 계산된 속성 내에서 상태를 반환하는 것이다. 변경을 트리거하는 것은 컴포넌트 메소드에서 변경을 커밋하는 것을 의미한다.</p><p><strong>가장 기본적인 Vuex 카운터 앱</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; count &#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;increment&quot;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;decrement&quot;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;&#x2F;p&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; make sure to call Vue.use(Vuex) if using a module system</span><br><span class="line"></span><br><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">  increment: state &#x3D;&gt; state.count++,</span><br><span class="line">    decrement: state &#x3D;&gt; state.count--</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#39;#app&#39;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">    return store.state.count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    increment () &#123;</span><br><span class="line">      store.commit(&#39;increment&#39;)</span><br><span class="line">    &#125;,</span><br><span class="line">    decrement () &#123;</span><br><span class="line">    store.commit(&#39;decrement&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>출처 : <a href="https://vuex.vuejs.org/kr/guide/" target="_blank" rel="noopener">Vuex</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;structure of vuex&lt;/p&gt;
     
     </summary>
     

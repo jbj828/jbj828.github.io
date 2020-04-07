@@ -6,28 +6,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Greedy Algorithm &amp; Divide and Conquer - Developer Javit</title>
+    <title>Coding Test Level1 - Day1 - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Greedy Algorithm &amp; Divide and Conquer\n\n\nMagic Framework\n\nGreedy Algorithm\nGreedy Algorithm is an algorithmic paradigm that builds up a solution piece by piece.\nIt always chooses the next piece that offers the most obvious and immediate benefit.\nGreedy fits perfectly for those solutions in which choosing a locally optimal solution also leads to global optimal solution(aka ‘Greedy Choice’).\n\nDivide &amp; Conquer\nDivide &amp; Conquer is an algorithm design paradigm which works by recursively breaking down a problem into sub-problems of similar type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.\n\n출처 : “Data Structures &amp; Algorithms” by DS GUY\n","dateCreated":"2020-04-06T18:30:25+09:00","dateModified":"2020-04-06T22:43:15+09:00","datePublished":"2020-04-06T18:30:25+09:00","description":"Greedy Algorithm &amp; Divide and Conquer","headline":"Greedy Algorithm & Divide and Conquer","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/","keywords":"algorithm"}</script>
-    <meta name="description" content="Greedy Algorithm &amp; Divide and Conquer">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"coding test level1\n\n\n\n2016년 a월 b일의 요일을 구하시오12345function getDayName(a, b)&#123;  let dayName &#x3D; new Date(2016, a-1, b).toString().slice(0,3).toUpperCase()  return dayName&#125;\n\n단어 s의 가운데 글자를 반환하는 함수 구하기. 단어의 길이가 짝수라면 가운데 두글자를 반환.12345678910function solution(s)&#123;    const wordLength &#x3D; s.length;    const middlePoint &#x3D; Math.floor(wordLength &#x2F; 2 );    if(wordLength % 2 &#x3D;&#x3D;&#x3D; 0)&#123;        return s[middlePoint-1].concat(s[middlePoint]);    &#125; else if(wordLength % 2 &#x3D;&#x3D;&#x3D; 1)&#123;        return s[middlePoint];    &#125;&#125;\n\n같은 숫자는 싫어123function solution(arr)&#123;  return arr.filter((val, index) &#x3D;&gt; val !&#x3D;&#x3D; arr[index +1])&#125;\n\n나누어 떨어지는 숫자 배열123456789function solution(arr, divisor)&#123;  var answer &#x3D; [];  arr.map((o) &#x3D;&gt; &#123;    o % divisor &#x3D;&#x3D;&#x3D; 0 &amp;&amp; answer.push(o)  &#125;)  return answer.length ? answer.sort((a,b) &#x3D;&gt; a-b) : [-1];&#125;\n\n두 정수의 합12345function adder(a, b)&#123;  let result &#x3D; 0;  return (a+b)*(Math.abs(b-a)+1)&#x2F;2;&#125;\n\n문자열 내 마음대로 정렬하기1234function solution(strings, n) &#123;    return strings.sort((s1, s2) &#x3D;&gt; s1[n] &#x3D;&#x3D;&#x3D; s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]))&#125;","dateCreated":"2020-04-07T12:30:25+09:00","dateModified":"2020-04-07T17:21:16+09:00","datePublished":"2020-04-07T12:30:25+09:00","description":"coding test level1","headline":"Coding Test Level1 - Day1","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/07/Al-PS1/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/07/Al-PS1/","keywords":"algorithm, Coding Test"}</script>
+    <meta name="description" content="coding test level1">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Greedy Algorithm &amp; Divide and Conquer">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/index.html">
+<meta property="og:title" content="Coding Test Level1 - Day1">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/07/Al-PS1/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Greedy Algorithm &amp; Divide and Conquer">
+<meta property="og:description" content="coding test level1">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/magicFramework.PNG">
-<meta property="article:published_time" content="2020-04-06T09:30:25.000Z">
-<meta property="article:modified_time" content="2020-04-06T13:43:15.886Z">
+<meta property="article:published_time" content="2020-04-07T03:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-07T08:21:16.354Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="algorithm, Coding Test">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/magicFramework.PNG">
     
     
         
@@ -217,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Greedy Algorithm &amp; Divide and Conquer
+            Coding Test Level1 - Day1
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-06T18:30:25+09:00">
+    <time datetime="2020-04-07T12:30:25+09:00">
 	
-		    Apr 06, 2020
+		    Apr 07, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="category-link" href="/categories/Algorithm-Coding-Test/">Algorithm, Coding Test</a>
 
 
     
@@ -242,21 +240,21 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Greedy Algorithm &amp; Divide and Conquer</p>
+            <p>coding test level1</p>
 <a id="more"></a>
 
-<h2 id="Magic-Framework"><a href="#Magic-Framework" class="headerlink" title="Magic Framework"></a>Magic Framework</h2><img src="/2020/04/06/Al-greedy-algorithm/magicFramework.PNG" class="" width="500" height="400" title="magicFramework">
 
-<h2 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h2><ul>
-<li>Greedy Algorithm is an algorithmic paradigm that builds up a solution piece by piece.</li>
-<li>It always chooses the next piece that offers <code>the most obvious and immediate benefit</code>.</li>
-<li>Greedy fits perfectly for those solutions in which choosing a locally optimal solution also leads to global optimal solution(aka ‘Greedy Choice’).</li>
-</ul>
-<h2 id="Divide-amp-Conquer"><a href="#Divide-amp-Conquer" class="headerlink" title="Divide &amp; Conquer"></a>Divide &amp; Conquer</h2><ul>
-<li>Divide &amp; Conquer is an algorithm design paradigm which works by recursively breaking down a problem into sub-problems of similar type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.</li>
-</ul>
-<p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>
+<h4 id="2016년-a월-b일의-요일을-구하시오"><a href="#2016년-a월-b일의-요일을-구하시오" class="headerlink" title="2016년 a월 b일의 요일을 구하시오"></a>2016년 a월 b일의 요일을 구하시오</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function getDayName(a, b)&#123;</span><br><span class="line">  let dayName &#x3D; new Date(2016, a-1, b).toString().slice(0,3).toUpperCase()</span><br><span class="line"></span><br><span class="line">  return dayName</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="단어-s의-가운데-글자를-반환하는-함수-구하기-단어의-길이가-짝수라면-가운데-두글자를-반환"><a href="#단어-s의-가운데-글자를-반환하는-함수-구하기-단어의-길이가-짝수라면-가운데-두글자를-반환" class="headerlink" title="단어 s의 가운데 글자를 반환하는 함수 구하기. 단어의 길이가 짝수라면 가운데 두글자를 반환."></a>단어 s의 가운데 글자를 반환하는 함수 구하기. 단어의 길이가 짝수라면 가운데 두글자를 반환.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function solution(s)&#123;</span><br><span class="line">    const wordLength &#x3D; s.length;</span><br><span class="line">    const middlePoint &#x3D; Math.floor(wordLength &#x2F; 2 );</span><br><span class="line"></span><br><span class="line">    if(wordLength % 2 &#x3D;&#x3D;&#x3D; 0)&#123;</span><br><span class="line">        return s[middlePoint-1].concat(s[middlePoint]);</span><br><span class="line">    &#125; else if(wordLength % 2 &#x3D;&#x3D;&#x3D; 1)&#123;</span><br><span class="line">        return s[middlePoint];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="같은-숫자는-싫어"><a href="#같은-숫자는-싫어" class="headerlink" title="같은 숫자는 싫어"></a>같은 숫자는 싫어</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function solution(arr)&#123;</span><br><span class="line">  return arr.filter((val, index) &#x3D;&gt; val !&#x3D;&#x3D; arr[index +1])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="나누어-떨어지는-숫자-배열"><a href="#나누어-떨어지는-숫자-배열" class="headerlink" title="나누어 떨어지는 숫자 배열"></a>나누어 떨어지는 숫자 배열</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function solution(arr, divisor)&#123;</span><br><span class="line">  var answer &#x3D; [];</span><br><span class="line"></span><br><span class="line">  arr.map((o) &#x3D;&gt; &#123;</span><br><span class="line">    o % divisor &#x3D;&#x3D;&#x3D; 0 &amp;&amp; answer.push(o)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return answer.length ? answer.sort((a,b) &#x3D;&gt; a-b) : [-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="두-정수의-합"><a href="#두-정수의-합" class="headerlink" title="두 정수의 합"></a>두 정수의 합</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function adder(a, b)&#123;</span><br><span class="line">  let result &#x3D; 0;</span><br><span class="line"></span><br><span class="line">  return (a+b)*(Math.abs(b-a)+1)&#x2F;2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="문자열-내-마음대로-정렬하기"><a href="#문자열-내-마음대로-정렬하기" class="headerlink" title="문자열 내 마음대로 정렬하기"></a>문자열 내 마음대로 정렬하기</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function solution(strings, n) &#123;</span><br><span class="line"></span><br><span class="line">    return strings.sort((s1, s2) &#x3D;&gt; s1[n] &#x3D;&#x3D;&#x3D; s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             
 
 
@@ -267,7 +265,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/algorithm-Coding-Test/" rel="tag">algorithm, Coding Test</a>
 
             </div>
         
@@ -277,14 +275,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/07/Al-PS1/"
-                    data-tooltip="Coding Test Level1 - Day1"
-                    aria-label="PREVIOUS: Coding Test Level1 - Day1"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -294,9 +289,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/NodeJS-add-image/"
-                    data-tooltip="Adding Images to the User Profile &amp; Serving up Files"
-                    aria-label="NEXT: Adding Images to the User Profile &amp; Serving up Files"
+                    href="/2020/04/06/Al-greedy-algorithm/"
+                    data-tooltip="Greedy Algorithm &amp; Divide and Conquer"
+                    aria-label="NEXT: Greedy Algorithm &amp; Divide and Conquer"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -321,7 +316,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/07/Al-PS1/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -334,7 +329,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/07/Al-PS1/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -347,7 +342,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/07/Al-PS1/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -392,14 +387,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/07/Al-PS1/"
-                    data-tooltip="Coding Test Level1 - Day1"
-                    aria-label="PREVIOUS: Coding Test Level1 - Day1"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -409,9 +401,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/06/NodeJS-add-image/"
-                    data-tooltip="Adding Images to the User Profile &amp; Serving up Files"
-                    aria-label="NEXT: Adding Images to the User Profile &amp; Serving up Files"
+                    href="/2020/04/06/Al-greedy-algorithm/"
+                    data-tooltip="Greedy Algorithm &amp; Divide and Conquer"
+                    aria-label="NEXT: Greedy Algorithm &amp; Divide and Conquer"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -436,7 +428,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/07/Al-PS1/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -449,7 +441,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/07/Al-PS1/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -462,7 +454,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/07/Al-PS1/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -496,7 +488,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/07/Al-PS1/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -509,7 +501,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/07/Al-PS1/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -522,7 +514,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/06/Al-greedy-algorithm/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/07/Al-PS1/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
