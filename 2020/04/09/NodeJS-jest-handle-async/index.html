@@ -6,25 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>ES6 - Set - Developer Javit</title>
+    <title>Jest - Testing Asychronous Code - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"es6 -set\n\n\nSet은 데이터 타입 중 하나이며 중복되는 값을 가지지 않는 값들의 리스트이다. 이 때 값에는 순서가 존재하지 않다. \n구성자(Constructor)새로운 set을 만들 때 new Set()을 활용한다. 이 때 구성자에 반복자(iterator)를 작성할 수 있다.\n12345const foo &#x3D; new Set();console.log(foo) &#x2F;&#x2F; Set &#123;&#125;const bar &#x3D; new Set([1,2,3]);console.log(bar) &#x2F;&#x2F; Set &#123;1,2,3&#125;\n\nset을 만들 때 중복되는 값을 가진 반복자를 넘기면, Set이 알아서 중복되는 값들 중 맨 앞의 값만 남기고 무시한다.\n12const foo &#x3D; new Set([1,2,2,3,4,5,5,6])console.log(foo) &#x2F;&#x2F; Set &#123;1,2,3,4,5,6&#125;\n\n객체 Set을 진짜 Set으로Set이 존재하기 이전에는 일반 객체를 활용해서 set을 구현해야 했다. 하지만 문자열(string)만이 객체의 속성으로 쓰일 수 있기 때문에 몇 가지 문제점이 나타났다. 예를 들면, 5는 &quot;5&quot;로 형 강제 변환(coercion)이 일어나고, {}는 [object Object]가 되었다. 하지만 Set은 값의 타입을 강제로 변환하지 않는다. 5와 &quot;5&quot;는 두 개의 다른 값이 된다.\n12345678910111213const foo &#x3D; new Set();foo.add(&#123;&#125;)  &#x2F;&#x2F; 빈 객체 추가foo.add(&#123;&#125;)console.log(foo.size) &#x2F;&#x2F; 2console.log(foo) &#x2F;&#x2F; Set &#123; &#123;&#125;, &#123;&#125; &#125;foo.add(10);foo.add(&quot;10&quot;);foo.add(10); &#x2F;&#x2F; 이미 10이 있기 때문에 무시된다console.log(foo); &#x2F;&#x2F; Set &#123; &#123;&#125;, &#123;&#125;, 10, &quot;10&quot; &#125;\n\n이와 같이 여러 개의 서로 다른 객체들을 set에 추가할 수 있다. 이 때 Set은 값을 추가할 때, Object.is()메소드를 이용해서 두 값을 비교한다.\n123Object.is(10,10) &#x2F;&#x2F; trueObject.is(10, &#39;10&#39;) &#x2F;&#x2F; falseObject.is(&#123;&#125;, &#123;&#125;) &#x2F;&#x2F; false\n\nSet을 배열로 바꾸기123const foo &#x3D; new Set([&#39;Iphone&#39;, &#39;Galaxy&#39;])const fooInArray &#x3D; [ ...foo ];console.log(fooInArray) &#x2F;&#x2F; [&#39;Iphone&#39;, &#39;Galaxy&#39;]\n\nMethod\nadd\nsize\nhas : set에 값이 존재하는지 확인. true / false 반환\ndelete(값) : set에서 값 제거\nclear() : set에서 모든 값을 제거\n\n만약 add를 통해 값을 추가할 때, 이미 그 값이 존재한다면 무시된다.\n출처 : HyeoKoo Alex Kwon\n","dateCreated":"2020-04-08T20:30:25+09:00","dateModified":"2020-04-08T18:20:00+09:00","datePublished":"2020-04-08T20:30:25+09:00","description":"es6 -set","headline":"ES6 - Set","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/08/JS-set/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/08/JS-set/","keywords":"Javascript"}</script>
-    <meta name="description" content="es6 -set">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Jest - Testing Asychronous Code\n\n\n\nTesting Asychronous Code12345678910const add &#x3D; (a, b) &#x3D;&gt; &#123;    return new Promise((resolve, reject) &#x3D;&gt; &#123;        setTimeout(() &#x3D;&gt; &#123;            if (a &lt; 0 || b &lt; 0) &#123;                return reject(&#39;Numbers must be non-negative&#39;)            &#125;            resolve(a + b);        &#125;, 2000)    &#125;)&#125;\n\nThe callback function for the first test case accepts a done parameter. This lets Jest know that the test function contains asynchronous code. Jest won’t determine if the test passed or failed until done is called. In the example below, then is called to run some code after the numbers are added. This is where the assertion is added and it’s where done is called.\n123456test(&#39;Should add two numbers&#39;, (done)&#x3D;&gt;&#123;  add(2,3).then((sum)&#x3D;&gt;&#123;    expect(sum).toBe(5)    done()  &#125;)&#125;)\n\nUsing async/await is also possible.\n1234test(&#39;Should add two numbers async&#x2F;await&#39;, async()&#x3D;&gt;&#123;  const sum &#x3D; await add(2,3)  expect(sum).toBe(5)&#125;)","dateCreated":"2020-04-09T12:30:25+09:00","dateModified":"2020-04-09T10:37:08+09:00","datePublished":"2020-04-09T12:30:25+09:00","description":"Jest - Testing Asychronous Code","headline":"Jest - Testing Asychronous Code","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/","keywords":"Test"}</script>
+    <meta name="description" content="Jest - Testing Asychronous Code">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="ES6 - Set">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/08/JS-set/index.html">
+<meta property="og:title" content="Jest - Testing Asychronous Code">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="es6 -set">
+<meta property="og:description" content="Jest - Testing Asychronous Code">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-08T11:30:25.000Z">
-<meta property="article:modified_time" content="2020-04-08T09:20:00.630Z">
+<meta property="article:published_time" content="2020-04-09T03:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-09T01:37:08.254Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Test">
 <meta name="twitter:card" content="summary">
     
     
@@ -215,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            ES6 - Set
+            Jest - Testing Asychronous Code
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-08T20:30:25+09:00">
+    <time datetime="2020-04-09T12:30:25+09:00">
 	
-		    Apr 08, 2020
+		    Apr 09, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Javascript/">Javascript</a>
+    <a class="category-link" href="/categories/Test/">Test</a>
 
 
     
@@ -240,34 +240,17 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>es6 -set</p>
+            <p>Jest - Testing Asychronous Code</p>
 <a id="more"></a>
 
-<p>Set은 데이터 타입 중 하나이며 <strong>중복되는 값을 가지지 않는 값들의 리스트</strong>이다. 이 때 값에는 순서가 존재하지 않다. </p>
-<h3 id="구성자-Constructor"><a href="#구성자-Constructor" class="headerlink" title="구성자(Constructor)"></a>구성자(Constructor)</h3><p>새로운 set을 만들 때 <code>new Set()</code>을 활용한다. 이 때 구성자에 반복자(iterator)를 작성할 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const foo &#x3D; new Set();</span><br><span class="line">console.log(foo) &#x2F;&#x2F; Set &#123;&#125;</span><br><span class="line"></span><br><span class="line">const bar &#x3D; new Set([1,2,3]);</span><br><span class="line">console.log(bar) &#x2F;&#x2F; Set &#123;1,2,3&#125;</span><br></pre></td></tr></table></figure>
 
-<p>set을 만들 때 중복되는 값을 가진 반복자를 넘기면, <code>Set</code>이 알아서 중복되는 값들 중 맨 앞의 값만 남기고 무시한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const foo &#x3D; new Set([1,2,2,3,4,5,5,6])</span><br><span class="line">console.log(foo) &#x2F;&#x2F; Set &#123;1,2,3,4,5,6&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Testing-Asychronous-Code"><a href="#Testing-Asychronous-Code" class="headerlink" title="Testing Asychronous Code"></a>Testing Asychronous Code</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const add &#x3D; (a, b) &#x3D;&gt; &#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            if (a &lt; 0 || b &lt; 0) &#123;</span><br><span class="line">                return reject(&#39;Numbers must be non-negative&#39;)</span><br><span class="line">            &#125;</span><br><span class="line">            resolve(a + b);</span><br><span class="line">        &#125;, 2000)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="객체-Set을-진짜-Set으로"><a href="#객체-Set을-진짜-Set으로" class="headerlink" title="객체 Set을 진짜 Set으로"></a>객체 Set을 진짜 Set으로</h3><p><code>Set</code>이 존재하기 이전에는 일반 객체를 활용해서 set을 구현해야 했다. 하지만 문자열(string)만이 객체의 속성으로 쓰일 수 있기 때문에 몇 가지 문제점이 나타났다. 예를 들면, <code>5</code>는 <code>&quot;5&quot;</code>로 형 강제 변환(coercion)이 일어나고, <code>{}</code>는 <code>[object Object]</code>가 되었다. 하지만 <code>Set</code>은 값의 타입을 강제로 변환하지 않는다. <code>5</code>와 <code>&quot;5&quot;</code>는 두 개의 다른 값이 된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const foo &#x3D; new Set();</span><br><span class="line"></span><br><span class="line">foo.add(&#123;&#125;)  &#x2F;&#x2F; 빈 객체 추가</span><br><span class="line">foo.add(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">console.log(foo.size) &#x2F;&#x2F; 2</span><br><span class="line">console.log(foo) &#x2F;&#x2F; Set &#123; &#123;&#125;, &#123;&#125; &#125;</span><br><span class="line"></span><br><span class="line">foo.add(10);</span><br><span class="line">foo.add(&quot;10&quot;);</span><br><span class="line">foo.add(10); &#x2F;&#x2F; 이미 10이 있기 때문에 무시된다</span><br><span class="line"></span><br><span class="line">console.log(foo); &#x2F;&#x2F; Set &#123; &#123;&#125;, &#123;&#125;, 10, &quot;10&quot; &#125;</span><br></pre></td></tr></table></figure>
+<p>The callback function for the first test case accepts a <code>done</code> parameter. This lets Jest know that the test function contains asynchronous code. Jest won’t determine if the test passed or failed until <code>done</code> is called. In the example below, <code>then</code> is called to run some code after the numbers are added. This is where the assertion is added and it’s where <code>done</code> is called.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test(&#39;Should add two numbers&#39;, (done)&#x3D;&gt;&#123;</span><br><span class="line">  add(2,3).then((sum)&#x3D;&gt;&#123;</span><br><span class="line">    expect(sum).toBe(5)</span><br><span class="line">    done()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>이와 같이 여러 개의 서로 다른 객체들을 set에 추가할 수 있다. 이 때 <code>Set</code>은 값을 추가할 때, <code>Object.is()</code>메소드를 이용해서 두 값을 비교한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Object.is(10,10) &#x2F;&#x2F; true</span><br><span class="line">Object.is(10, &#39;10&#39;) &#x2F;&#x2F; false</span><br><span class="line">Object.is(&#123;&#125;, &#123;&#125;) &#x2F;&#x2F; false</span><br></pre></td></tr></table></figure>
-
-<h3 id="Set을-배열로-바꾸기"><a href="#Set을-배열로-바꾸기" class="headerlink" title="Set을 배열로 바꾸기"></a>Set을 배열로 바꾸기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const foo &#x3D; new Set([&#39;Iphone&#39;, &#39;Galaxy&#39;])</span><br><span class="line">const fooInArray &#x3D; [ ...foo ];</span><br><span class="line">console.log(fooInArray) &#x2F;&#x2F; [&#39;Iphone&#39;, &#39;Galaxy&#39;]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><ul>
-<li>add</li>
-<li>size</li>
-<li>has : set에 값이 존재하는지 확인. true / false 반환</li>
-<li>delete(값) : set에서 값 제거</li>
-<li>clear() : set에서 모든 값을 제거</li>
-</ul>
-<p>만약 add를 통해 값을 추가할 때, 이미 그 값이 존재한다면 무시된다.</p>
-<p>출처 : <a href="https://medium.com/@khwsc1/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-es6-set%EC%97%90-%EB%8C%80%ED%95%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90-9b7294dfba99" target="_blank" rel="noopener">HyeoKoo Alex Kwon</a></p>
-
+<p>Using <code>async/await</code> is also possible.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test(&#39;Should add two numbers async&#x2F;await&#39;, async()&#x3D;&gt;&#123;</span><br><span class="line">  const sum &#x3D; await add(2,3)</span><br><span class="line">  expect(sum).toBe(5)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
             
 
 
@@ -278,7 +261,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Javascript/" rel="tag">Javascript</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Test/" rel="tag">Test</a>
 
             </div>
         
@@ -288,14 +271,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/09/NodeJS-jest-handle-async/"
-                    data-tooltip="Jest - Testing Asychronous Code"
-                    aria-label="PREVIOUS: Jest - Testing Asychronous Code"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -305,9 +285,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/08/CT-level1-day2/"
-                    data-tooltip="Coding Test Level1 - Day2"
-                    aria-label="NEXT: Coding Test Level1 - Day2"
+                    href="/2020/04/08/JS-set/"
+                    data-tooltip="ES6 - Set"
+                    aria-label="NEXT: ES6 - Set"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -332,7 +312,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/08/JS-set/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -345,7 +325,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/08/JS-set/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -358,7 +338,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/08/JS-set/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -403,14 +383,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/09/NodeJS-jest-handle-async/"
-                    data-tooltip="Jest - Testing Asychronous Code"
-                    aria-label="PREVIOUS: Jest - Testing Asychronous Code"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -420,9 +397,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/08/CT-level1-day2/"
-                    data-tooltip="Coding Test Level1 - Day2"
-                    aria-label="NEXT: Coding Test Level1 - Day2"
+                    href="/2020/04/08/JS-set/"
+                    data-tooltip="ES6 - Set"
+                    aria-label="NEXT: ES6 - Set"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -447,7 +424,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/08/JS-set/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -460,7 +437,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/08/JS-set/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -473,7 +450,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/08/JS-set/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -507,7 +484,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/08/JS-set/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -520,7 +497,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/08/JS-set/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -533,7 +510,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/08/JS-set/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/09/NodeJS-jest-handle-async/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
