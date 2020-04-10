@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Jest Testing Framework - Developer Javit</title>
+    <title>Jest - Testing an Express Application - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Jest Testing Framework\n\n\nSetting up Jestnpm i jest --save-dev\nNext, create a test script in package.json. The script itself is jest. This allows you to use npm test to run the Jest test suite.\n12345&quot;scripts&quot;: &#123;    &quot;start&quot;: &quot;node src&#x2F;index.js&quot;,    &quot;dev&quot;: &quot;env-cmd -f .&#x2F;config&#x2F;dev.env nodemon src&#x2F;index.js&quot;,    &quot;test&quot;: &quot;jest&quot;  &#125;,\n\nNow, you’ll need to create a test suite. This is a file in your project that ends with .test.js. The file extension allows Jest to find and run the test suites for your project.\nCreating a Test CaseYou can add a test case to a test suite using the test function. Jest provides various functions as global variables in your test suite files. test is one of them. The first argument to test is the name of your test case. The second argument to test is the test function itself.\nIf the test function throws an error, the test cast will fail. If the test function doesn’t throw an error, the test case will pass.\n1234567test(&#39;Hello World&#39;, ()&#x3D;&gt;&#123;&#125;)test(&#39;This should fail&#39;, ()&#x3D;&gt;&#123;  throw new Error(&quot;Failure!&quot;)&#125;)\n\nRef : The Complete Node.js Dev Course by Andrew Mead\n","dateCreated":"2020-04-08T12:30:25+09:00","dateModified":"2020-04-09T17:13:59+09:00","datePublished":"2020-04-08T12:30:25+09:00","description":"Jest Testing Framework","headline":"Jest Testing Framework","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/08/Test-jest/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/08/Test-jest/","keywords":"Test"}</script>
-    <meta name="description" content="Jest Testing Framework">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Jest - Testing an Express Application\n\n\nWe will set up the Express API to be easily testable. This involves settings up a test environment as well as configuring Jest to work with Node.\nCreating a Test EnvironmentCreating the test environment requires test.env to be added to the config directory. The contents will be identical to dev.env, with the exception of the MongoDB connection string. The test environment should use a separate database such as task-manager-api-test. This will prevent the test cases from messing with development data.\nWith the environment in place, update the test script to load the enviroment file in. That would be env-cmd ./config/test.env jest --watch.\nConfiguring JestBy default, Jest is expecting to run in the browser. You can use Jest with Node, but you’ll need to configure Jest to enable support. Jest can be configured by adding a jest property in pacakage.json. The configuration below sets testEnvironment to node to ensure that Jest runs correctly in Node.js.\n12345&#123;  &quot;jest&quot;: &#123;      &quot;testEnvironment&quot;: &quot;node&quot;  &#125;&#125;\n\nNext, we’ll add tests for the Express API. Each test case will focus on testing a specific endpoint, making assertions about the response from the server.\nTesting with SupertestSupertest allows you to easily test Express apps.\n1npm i supertest --save-dev\n\nNow, supertest can be used to test an endpoint. The test case below tests that new users can sign up for accounts. All the account data provided is valid, so a new account should be created.\nStep one is to pass the express app to request. Next, supertest methods can be chained together to fit the needs of your tests. post is used to make an HTTP POST request to /users. send is used to send the correct JSON data to the server. expect is used to assert that the response status code is correct. In this case, a successful signup should result in a 201 status code.\n12345678910const request &#x3D; require(&#39;supertest&#39;)const app &#x3D; require(&#39;..&#x2F;src&#x2F;app&#39;)test(&#39;Should signup a new user&#39;, async () &#x3D;&gt; &#123;    await request(app).post(&#39;&#x2F;users&#39;).send(&#123;        name: &quot;Jay&quot;,        email: &quot;jay@exaple.com&quot;,        password: &#39;MyPass777!&#39;    &#125;).expect(201)&#125;)\n\n\n\n\n\n\n\n\nRef : The Complete Node.js Dev Course by Andrew Mead\n","dateCreated":"2020-04-09T18:30:25+09:00","dateModified":"2020-04-09T17:40:47+09:00","datePublished":"2020-04-09T18:30:25+09:00","description":"Jest - Testing an Express Application","headline":"Jest - Testing an Express Application","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/","keywords":"Test"}</script>
+    <meta name="description" content="Jest - Testing an Express Application">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Jest Testing Framework">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/08/Test-jest/index.html">
+<meta property="og:title" content="Jest - Testing an Express Application">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Jest Testing Framework">
+<meta property="og:description" content="Jest - Testing an Express Application">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-08T03:30:25.000Z">
-<meta property="article:modified_time" content="2020-04-09T08:13:59.474Z">
+<meta property="article:published_time" content="2020-04-09T09:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-09T08:40:47.118Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Test">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Jest Testing Framework
+            Jest - Testing an Express Application
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-08T12:30:25+09:00">
+    <time datetime="2020-04-09T18:30:25+09:00">
 	
-		    Apr 08, 2020
+		    Apr 09, 2020
     	
     </time>
     
@@ -240,17 +240,29 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Jest Testing Framework</p>
+            <p>Jest - Testing an Express Application</p>
 <a id="more"></a>
 
-<h4 id="Setting-up-Jest"><a href="#Setting-up-Jest" class="headerlink" title="Setting up Jest"></a>Setting up Jest</h4><p><code>npm i jest --save-dev</code></p>
-<p>Next, create a <code>test</code> script in <code>package.json</code>. The script itself is <code>jest</code>. This allows you to use <code>npm test</code> to run the Jest test suite.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;node src&#x2F;index.js&quot;,</span><br><span class="line">    &quot;dev&quot;: &quot;env-cmd -f .&#x2F;config&#x2F;dev.env nodemon src&#x2F;index.js&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;jest&quot;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>We will set up the Express API to be easily testable. This involves settings up a test environment as well as configuring Jest to work with Node.</p>
+<h3 id="Creating-a-Test-Environment"><a href="#Creating-a-Test-Environment" class="headerlink" title="Creating a Test Environment"></a>Creating a Test Environment</h3><p>Creating the test environment requires <code>test.env</code> to be added to the <code>config</code> directory. The contents will be identical to <code>dev.env</code>, with the exception of the MongoDB connection string. The test environment should use a separate database such as <code>task-manager-api-test</code>. This will prevent the test cases from messing with development data.</p>
+<p>With the environment in place, update the <code>test</code> script to load the enviroment file in. That would be <code>env-cmd ./config/test.env jest --watch</code>.</p>
+<h3 id="Configuring-Jest"><a href="#Configuring-Jest" class="headerlink" title="Configuring Jest"></a>Configuring Jest</h3><p>By default, Jest is expecting to run in the browser. You can use Jest with Node, but you’ll need to configure Jest to enable support. Jest can be configured by adding a <code>jest</code> property in <code>pacakage.json</code>. The configuration below sets <code>testEnvironment</code> to <code>node</code> to ensure that Jest runs correctly in Node.js.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;jest&quot;: &#123;</span><br><span class="line">      &quot;testEnvironment&quot;: &quot;node&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Now, you’ll need to create a test suite. This is a file in your project that ends with <code>.test.js</code>. The file extension allows Jest to find and run the test suites for your project.</p>
-<h4 id="Creating-a-Test-Case"><a href="#Creating-a-Test-Case" class="headerlink" title="Creating a Test Case"></a>Creating a Test Case</h4><p>You can add a test case to a test suite using the <code>test</code> function. Jest provides various functions as global variables in your test suite files. <code>test</code> is one of them. The first argument to <code>test</code> is the name of your test case. The second argument to <code>test</code> is the test function itself.</p>
-<p>If the test function throws an error, the test cast will fail. If the test function doesn’t throw an error, the test case will pass.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test(&#39;Hello World&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">test(&#39;This should fail&#39;, ()&#x3D;&gt;&#123;</span><br><span class="line">  throw new Error(&quot;Failure!&quot;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Next, we’ll add tests for the Express API. Each test case will focus on testing a specific endpoint, making assertions about the response from the server.</p>
+<h3 id="Testing-with-Supertest"><a href="#Testing-with-Supertest" class="headerlink" title="Testing with Supertest"></a>Testing with Supertest</h3><p>Supertest allows you to easily test Express apps.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i supertest --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>Now, supertest can be used to test an endpoint. The test case below tests that new users can sign up for accounts. All the account data provided is valid, so a new account should be created.</p>
+<p>Step one is to pass the express <code>app</code> to <code>request</code>. Next, supertest methods can be chained together to fit the needs of your tests. <code>post</code> is used to make an HTTP POST request to <code>/users</code>. <code>send</code> is used to send the correct JSON data to the server. <code>expect</code> is used to assert that the response status code is correct. In this case, a successful signup should result in a 201 status code.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const request &#x3D; require(&#39;supertest&#39;)</span><br><span class="line">const app &#x3D; require(&#39;..&#x2F;src&#x2F;app&#39;)</span><br><span class="line"></span><br><span class="line">test(&#39;Should signup a new user&#39;, async () &#x3D;&gt; &#123;</span><br><span class="line">    await request(app).post(&#39;&#x2F;users&#39;).send(&#123;</span><br><span class="line">        name: &quot;Jay&quot;,</span><br><span class="line">        email: &quot;jay@exaple.com&quot;,</span><br><span class="line">        password: &#39;MyPass777!&#39;</span><br><span class="line">    &#125;).expect(201)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 
 <p>Ref : The Complete Node.js Dev Course by Andrew Mead</p>
 
@@ -277,9 +289,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/08/CT-level1-day2/"
-                    data-tooltip="Coding Test Level1 - Day2"
-                    aria-label="PREVIOUS: Coding Test Level1 - Day2"
+                    href="/2020/04/09/CT-level1-day3/"
+                    data-tooltip="Coding Test Level1 - Day3"
+                    aria-label="PREVIOUS: Coding Test Level1 - Day3"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -291,9 +303,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/07/Al-PS1/"
-                    data-tooltip="Coding Test Level1 - Day1"
-                    aria-label="NEXT: Coding Test Level1 - Day1"
+                    href="/2020/04/09/NodeJS-jest-handle-async/"
+                    data-tooltip="Jest - Testing Asychronous Code"
+                    aria-label="NEXT: Jest - Testing Asychronous Code"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -318,7 +330,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/08/Test-jest/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -331,7 +343,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/08/Test-jest/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -344,7 +356,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/08/Test-jest/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -392,9 +404,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/08/CT-level1-day2/"
-                    data-tooltip="Coding Test Level1 - Day2"
-                    aria-label="PREVIOUS: Coding Test Level1 - Day2"
+                    href="/2020/04/09/CT-level1-day3/"
+                    data-tooltip="Coding Test Level1 - Day3"
+                    aria-label="PREVIOUS: Coding Test Level1 - Day3"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -406,9 +418,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/07/Al-PS1/"
-                    data-tooltip="Coding Test Level1 - Day1"
-                    aria-label="NEXT: Coding Test Level1 - Day1"
+                    href="/2020/04/09/NodeJS-jest-handle-async/"
+                    data-tooltip="Jest - Testing Asychronous Code"
+                    aria-label="NEXT: Jest - Testing Asychronous Code"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -433,7 +445,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/08/Test-jest/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -446,7 +458,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/08/Test-jest/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -459,7 +471,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/08/Test-jest/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -493,7 +505,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/08/Test-jest/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -506,7 +518,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/08/Test-jest/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -519,7 +531,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/08/Test-jest/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/09/NodeJS-testing-an-express-app/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
