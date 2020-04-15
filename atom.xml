@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-14T14:35:53.050Z</updated>
+  <updated>2020-04-15T14:29:56.437Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Coding Test - Level2 / Day1</title>
+    <link href="http://jbj828.github.io/2020/04/15/CT-greedy/"/>
+    <id>http://jbj828.github.io/2020/04/15/CT-greedy/</id>
+    <published>2020-04-15T09:30:25.000Z</published>
+    <updated>2020-04-15T14:29:56.437Z</updated>
+    
+    <content type="html"><![CDATA[<p>Coding Test - Level 2</p><a id="more"></a><h3 id="백준-그리디-알고리즘-1번-문제-Greedy"><a href="#백준-그리디-알고리즘-1번-문제-Greedy" class="headerlink" title="백준 그리디 알고리즘 1번 문제(Greedy)"></a>백준 그리디 알고리즘 1번 문제(Greedy)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function atm(n, time) &#123;</span><br><span class="line">    time.sort((a, b) &#x3D;&gt; a - b)</span><br><span class="line">    let totalTime &#x3D; []</span><br><span class="line"></span><br><span class="line">    let sum &#x3D; 0;</span><br><span class="line">    for (let i &#x3D; 0; i &lt; time.length; i++) &#123;</span><br><span class="line">        sum +&#x3D; time[i];</span><br><span class="line">        totalTime.push(sum)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return totalTime.reduce((a, b) &#x3D;&gt; a + b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="탑-Queue"><a href="#탑-Queue" class="headerlink" title="탑(Queue)"></a>탑(Queue)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function solution(heights)&#123;</span><br><span class="line">  return heights.map((v, i)&#x3D;&gt;&#123;</span><br><span class="line">    while(i)&#123;</span><br><span class="line">      i--</span><br><span class="line">      if(heights[i] &gt; v)&#123;</span><br><span class="line">          return i+1</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="프린터-Queue"><a href="#프린터-Queue" class="headerlink" title="프린터(Queue)"></a>프린터(Queue)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function solution(priorities, location) &#123;</span><br><span class="line">    var arr &#x3D; priorities.map((priority, index) &#x3D;&gt; &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            index: index,</span><br><span class="line">            priority: priority</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    var queue &#x3D; []</span><br><span class="line"></span><br><span class="line">    while (arr.length &gt; 0) &#123;</span><br><span class="line">        var firstEle &#x3D; arr.shift()</span><br><span class="line">        var hasHigherElement &#x3D; arr.some(ele &#x3D;&gt; ele.priority &gt; firstEle.priority)</span><br><span class="line"></span><br><span class="line">        if (hasHigherElement) &#123;</span><br><span class="line">            arr.push(firstEle)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            queue.push(firstEle)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return queue.findIndex(queueEle &#x3D;&gt; queueEle.index &#x3D;&#x3D;&#x3D; location) + 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Coding Test - Level 2&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Coding Test" scheme="http://jbj828.github.io/categories/Coding-Test/"/>
+    
+    
+      <category term="Coding Test" scheme="http://jbj828.github.io/tags/Coding-Test/"/>
+    
+  </entry>
   
   <entry>
     <title>Coding Test Level1 - Day5, 6</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;quick sort&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
-    
-    
-      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sorting - Merge Sort</title>
-    <link href="http://jbj828.github.io/2020/03/31/Al-sort-merge-sort/"/>
-    <id>http://jbj828.github.io/2020/03/31/Al-sort-merge-sort/</id>
-    <published>2020-03-31T05:30:25.000Z</published>
-    <updated>2020-03-31T13:08:09.066Z</updated>
-    
-    <content type="html"><![CDATA[<p>merge sort</p><a id="more"></a><h2 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h2><ul><li>Merge Sort is a Divide and Conquer algorithm.</li><li>It divides input array in two halves, keeps breaking those 2 halves recursively until they become too small to be broken further.</li><li>Then each of the broken pieces are merged together to inch towards final answer.</li><li>리스트를 잘게 쪼갠 뒤 둘씩 크기를 비교해 정렬하고 분리된 리스트를 재귀적으로 합쳐서 정렬을 완성, 분할된 리스트를 저장해둘 공간이 필요해 메모리 소모량이 큰 편</li></ul><h3 id="Time-amp-Space-Complexity"><a href="#Time-amp-Space-Complexity" class="headerlink" title="Time &amp; Space Complexity"></a>Time &amp; Space Complexity</h3><ul><li>Time Complexity - O(n log n)</li><li>Space Complexity - O(n)</li></ul><h3 id="When-to-Use-Avoid-Merge-Sort"><a href="#When-to-Use-Avoid-Merge-Sort" class="headerlink" title="When to Use/Avoid Merge Sort"></a>When to Use/Avoid Merge Sort</h3><ul><li><p>When to use:</p><ul><li>When you need a <code>stable sort</code></li><li>When average expected time is O(n log n)</li></ul></li><li><p>When not to use:</p><ul><li>When space is a concern like embedded systems</li></ul></li></ul><h3 id="Coding-Merge-Sort-on-Javascript"><a href="#Coding-Merge-Sort-on-Javascript" class="headerlink" title="Coding Merge Sort on Javascript"></a>Coding Merge Sort on Javascript</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function merge(arr1, arr2)&#123;</span><br><span class="line">    let result &#x3D; [];</span><br><span class="line">    let i &#x3D; 0;</span><br><span class="line">    let j &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    while( i &lt; arr1.length &amp;&amp; j &lt; arr2.length)&#123;</span><br><span class="line">        if(arr1[i] &lt; arr2[j])&#123;</span><br><span class="line">            result.push(arr1[i]);</span><br><span class="line">            i++;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            result.push(arr2[j]);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    while( i &lt; arr1.length)&#123;</span><br><span class="line">        result.push(arr1[i]);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    while( j &lt; arr2.length)&#123;</span><br><span class="line">        result.push(arr2[j]);</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function mergeSort(arr)&#123;</span><br><span class="line">    if(arr.length &lt;&#x3D; 1) return arr;</span><br><span class="line">    let mid &#x3D; Math.floor(arr.length &#x2F;2);</span><br><span class="line">    let left &#x3D; mergeSort(arr.slice(0, mid));</span><br><span class="line">    let right &#x3D; mergeSort(arr.slice(mid));</span><br><span class="line">    return merge(left, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;merge sort&lt;/p&gt;
     
     </summary>
     
