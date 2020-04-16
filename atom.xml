@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-15T14:29:56.437Z</updated>
+  <updated>2020-04-16T09:25:13.546Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Coding Test - Code Signal</title>
+    <link href="http://jbj828.github.io/2020/04/16/CT-level2-day2/"/>
+    <id>http://jbj828.github.io/2020/04/16/CT-level2-day2/</id>
+    <published>2020-04-16T09:30:25.000Z</published>
+    <updated>2020-04-16T09:25:13.546Z</updated>
+    
+    <content type="html"><![CDATA[<p>Coding Test </p><a id="more"></a><h3 id="쇠막대기"><a href="#쇠막대기" class="headerlink" title="쇠막대기"></a>쇠막대기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function solution(arrangement) &#123;</span><br><span class="line"></span><br><span class="line">    var answer &#x3D; 0;</span><br><span class="line">    var stack &#x3D; 0;</span><br><span class="line">    for (let i &#x3D; 0; i &lt; arrangement.length; i++) &#123;</span><br><span class="line">        if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39; &amp;&amp; arrangement[i + 1] &#x3D;&#x3D;&#x3D; &#39;)&#39;) &#123;</span><br><span class="line">            answer +&#x3D; stack;</span><br><span class="line">            i++</span><br><span class="line">        &#125; else if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39;) &#123;</span><br><span class="line">            stack++</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            stack--</span><br><span class="line">            answer +&#x3D; 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return answer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="centuryFromYear"><a href="#centuryFromYear" class="headerlink" title="centuryFromYear"></a>centuryFromYear</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function centuryFromYear(year) &#123;</span><br><span class="line">    return Math.ceil(year &#x2F; 100)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="checkPalindrome"><a href="#checkPalindrome" class="headerlink" title="checkPalindrome"></a>checkPalindrome</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function checkPalindrome(inputString) &#123;</span><br><span class="line">    return inputString &#x3D;&#x3D; inputString.split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="adjacentElementsProduct"><a href="#adjacentElementsProduct" class="headerlink" title="adjacentElementsProduct"></a>adjacentElementsProduct</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function adjacentElementsProduct(arr) &#123;</span><br><span class="line">    return Math.max(...arr.slice(1).map((x, i) &#x3D;&gt; [x * arr[i]]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="shapeArea"><a href="#shapeArea" class="headerlink" title="shapeArea"></a>shapeArea</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function shapeArea(n) &#123;</span><br><span class="line">    return n*n + (n-1)*(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Make-array-consecutive-2"><a href="#Make-array-consecutive-2" class="headerlink" title="Make array consecutive 2"></a>Make array consecutive 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function makeArrayConsecutive2(statues) &#123;</span><br><span class="line">    return Math.max(...statues) - Math.min(...statues) + 1 - statues.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Coding Test &lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Coding Test" scheme="http://jbj828.github.io/categories/Coding-Test/"/>
+    
+    
+      <category term="Coding Test" scheme="http://jbj828.github.io/tags/Coding-Test/"/>
+    
+  </entry>
   
   <entry>
     <title>Coding Test - Level2 / Day1</title>
@@ -442,29 +465,6 @@
     <summary type="html">
     
       &lt;p&gt;graph&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
-    
-    
-      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sorting - Quick Sort</title>
-    <link href="http://jbj828.github.io/2020/03/31/Al-sort-quick-sort/"/>
-    <id>http://jbj828.github.io/2020/03/31/Al-sort-quick-sort/</id>
-    <published>2020-03-31T13:30:25.000Z</published>
-    <updated>2020-04-01T03:43:28.654Z</updated>
-    
-    <content type="html"><![CDATA[<p>quick sort</p><a id="more"></a><h2 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h2><ul><li>Quick Sort is Divide and Conquer algorithm.</li><li>At each step it finds ‘Pivot’ and then makes sure that all the smaller elements are on the left of ‘Pivot’ and all the bigger elements are on the right side of ‘Pivot’.</li><li>It does this recursively until the entire array is sorted.</li><li>Unlike Merge Sort, it does not requires any external space.</li><li>피봇값을 기준으로 피봇 앞에는 피봇보다 작은 값, 뒤에는 큰 값이 오도록 하여 리스트를 분할하고, 분할된 두 개 리스트 각각에 재귀적으로 이 과정을 반복해 정렬을 완성. 합병정렬과 달리 주어진 배열을 임의로 나누지 않기 때문에 대개는 효율적이지만, 피봇값이 잘못 선택되면 O(n2)이 될 수도 있음.</li></ul><h3 id="Time-amp-Space-Complexity"><a href="#Time-amp-Space-Complexity" class="headerlink" title="Time &amp; Space Complexity"></a>Time &amp; Space Complexity</h3><ul><li>Time Complexity - O(n log n)</li><li>Space Complexity - O(n) : system이 모든 요소를 stack에 넣고 pop 할 경우</li></ul><h3 id="When-to-Use-Avoid-Quick-Sort"><a href="#When-to-Use-Avoid-Quick-Sort" class="headerlink" title="When to Use/Avoid Quick Sort"></a>When to Use/Avoid Quick Sort</h3><ul><li><p>When to use:</p><ul><li>When average expected time is O(n log n)</li></ul></li><li><p>When not to use:</p><ul><li>When space is a concern like embedded systems</li><li>When stable sort is required</li></ul></li></ul><h3 id="Coding-Quick-Sort-on-Javascript"><a href="#Coding-Quick-Sort-on-Javascript" class="headerlink" title="Coding Quick Sort on Javascript"></a>Coding Quick Sort on Javascript</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function pivot(arr, start&#x3D;0, end&#x3D;arr.length-1)&#123;</span><br><span class="line">  function swap(array, i, j) &#123;</span><br><span class="line">    var temp &#x3D; array[i];</span><br><span class="line">    array[i] &#x3D; array[j];</span><br><span class="line">    array[j] &#x3D; temp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  var pivot &#x3D; arr[start];</span><br><span class="line">  var swapIdx &#x3D; start;</span><br><span class="line"></span><br><span class="line">  for(var i &#x3D; start + 1; i &lt; arr.length; i++)&#123;</span><br><span class="line">    if(pivot &gt; arr[i])&#123;</span><br><span class="line">      swapIdx++;</span><br><span class="line">      swap(arr,swapIdx,i);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  swap(arr,start,swapIdx);</span><br><span class="line">  return swapIdx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function quickSort(arr, left&#x3D;0, right&#x3D;arr.length-1)&#123;</span><br><span class="line">  if(left &lt; right)&#123;</span><br><span class="line">    let pivotIndex &#x3D; pivot(arr, left, right);</span><br><span class="line">    &#x2F;&#x2F;left</span><br><span class="line">    quickSort(arr, left, pivotIndex-1);</span><br><span class="line">    &#x2F;&#x2F;right</span><br><span class="line">    quickSort(arr, pivotIndex+1, right);</span><br><span class="line">  &#125;</span><br><span class="line">  return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>출처 : “Data Structures &amp; Algorithms” by DS GUY</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;quick sort&lt;/p&gt;
     
     </summary>
     
