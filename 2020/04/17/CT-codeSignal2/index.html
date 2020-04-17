@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Coding Test - Code Signal - Developer Javit</title>
+    <title>Coding Test - Code Signal Intro2 - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Coding Test \n\n\n쇠막대기1234567891011121314151617function solution(arrangement) &#123;    var answer &#x3D; 0;    var stack &#x3D; 0;    for (let i &#x3D; 0; i &lt; arrangement.length; i++) &#123;        if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39; &amp;&amp; arrangement[i + 1] &#x3D;&#x3D;&#x3D; &#39;)&#39;) &#123;            answer +&#x3D; stack;            i++        &#125; else if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39;) &#123;            stack++        &#125; else &#123;            stack--            answer +&#x3D; 1        &#125;    &#125;    return answer&#125;\n\ncenturyFromYear123function centuryFromYear(year) &#123;    return Math.ceil(year &#x2F; 100)&#125;\n\ncheckPalindrome123function checkPalindrome(inputString) &#123;    return inputString &#x3D;&#x3D; inputString.split(&#39;&#39;).reverse().join(&#39;&#39;);&#125;\n\nadjacentElementsProduct123function adjacentElementsProduct(arr) &#123;    return Math.max(...arr.slice(1).map((x, i) &#x3D;&gt; [x * arr[i]]))&#125;\n\nshapeArea123function shapeArea(n) &#123;    return n*n + (n-1)*(n-1);&#125;\n\nMake array consecutive 2123function makeArrayConsecutive2(statues) &#123;    return Math.max(...statues) - Math.min(...statues) + 1 - statues.length&#125;\n\nalmostIncreasingSequence123456789function almostIncreasingSequence(seq) &#123;    var bad &#x3D; 0    for (var i &#x3D; 1; i &lt; seq.length; i++) if (seq[i] &lt;&#x3D; seq[i - 1]) &#123;        bad++        if (bad &gt; 1) return false        if (seq[i] &lt;&#x3D; seq[i - 2] &amp;&amp; seq[i + 1] &lt;&#x3D; seq[i - 1]) return false    &#125;    return true&#125;\n\nmatrixElementsSum1234567891011function matrixElementsSum(matrix) &#123;    var total &#x3D; 0;    for (j &#x3D; 0; j &lt; matrix[0].length; j++) &#123;        for (var i &#x3D; 0; i &lt; matrix.length; i++) &#123;            if (matrix[i][j] &#x3D;&#x3D;&#x3D; 0) break            else total +&#x3D; matrix[i][j]        &#125;    &#125;    return total&#125;\n\n","dateCreated":"2020-04-16T18:30:25+09:00","dateModified":"2020-04-17T00:13:35+09:00","datePublished":"2020-04-16T18:30:25+09:00","description":"Coding Test ","headline":"Coding Test - Code Signal","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/16/CT-level2-day2/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/16/CT-level2-day2/","keywords":"Coding Test"}</script>
-    <meta name="description" content="Coding Test">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Coding Test - Code Signal Intro2\n\n\nAll Longest Strings12345function allLongestStrings(inputArray) &#123;    &#39;use strict&#39;;    let maxSize &#x3D; Math.max(...inputArray.map(x &#x3D;&gt; x.length));    return inputArray.filter(x &#x3D;&gt; x.length &#x3D;&#x3D;&#x3D; maxSize);&#125;\n\ncommonCharacterCount123456function commonCharacterCount(s1, s2) &#123;    for (var i &#x3D; 0; i &lt; s1.length; i++) &#123;        s2 &#x3D; s2.replace(s1[i], &quot;!&quot;);    &#125;    return s2.replace(&#x2F;[^!]&#x2F;g, &quot;&quot;).length;&#125;\n\nisLucky123456function isLucky(n) &#123;    var count &#x3D; 0;    n &#x3D; String(n).split(&#39;&#39;).map(t &#x3D;&gt; parseInt(t));    n.forEach((el, i) &#x3D;&gt; (i &lt; n.length &#x2F; 2) ? count +&#x3D; el : count -&#x3D; el)    return count &#x3D;&#x3D; 0&#125;\n\nSort by Height12345678910111213function sortByHeight(a) &#123;    var people &#x3D; a.filter(el &#x3D;&gt; el &gt; 0)    people.sort((a, b) &#x3D;&gt; a - b)    for (let i &#x3D; 0; i &lt; a.length; i++) &#123;        if (a[i] !&#x3D;&#x3D; -1) &#123;            a[i] &#x3D; people.shift()        &#125;    &#125;    return a&#125;\n\nreverseInParentheses123456function reverseInParentheses(inputString) &#123;    while (inputString.includes(&#39;(&#39;)) &#123;        inputString &#x3D; inputString.replace(&#x2F;\\(([^()]*)\\)&#x2F;, (_, str) &#x3D;&gt; [...str].reverse().join(&#39;&#39;));    &#125;    return inputString;&#125;","dateCreated":"2020-04-17T18:30:25+09:00","dateModified":"2020-04-17T18:58:41+09:00","datePublished":"2020-04-17T18:30:25+09:00","description":"Coding Test - Code Signal Intro2","headline":"Coding Test - Code Signal Intro2","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/17/CT-codeSignal2/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/17/CT-codeSignal2/","keywords":"Coding Test"}</script>
+    <meta name="description" content="Coding Test - Code Signal Intro2">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Coding Test - Code Signal">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/16/CT-level2-day2/index.html">
+<meta property="og:title" content="Coding Test - Code Signal Intro2">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/17/CT-codeSignal2/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Coding Test">
+<meta property="og:description" content="Coding Test - Code Signal Intro2">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-16T09:30:25.000Z">
-<meta property="article:modified_time" content="2020-04-16T15:13:35.830Z">
+<meta property="article:published_time" content="2020-04-17T09:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-17T09:58:41.890Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Coding Test">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Coding Test - Code Signal
+            Coding Test - Code Signal Intro2
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-16T18:30:25+09:00">
+    <time datetime="2020-04-17T18:30:25+09:00">
 	
-		    Apr 16, 2020
+		    Apr 17, 2020
     	
     </time>
     
@@ -240,26 +240,18 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Coding Test </p>
+            <p>Coding Test - Code Signal Intro2</p>
 <a id="more"></a>
 
-<h3 id="쇠막대기"><a href="#쇠막대기" class="headerlink" title="쇠막대기"></a>쇠막대기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function solution(arrangement) &#123;</span><br><span class="line"></span><br><span class="line">    var answer &#x3D; 0;</span><br><span class="line">    var stack &#x3D; 0;</span><br><span class="line">    for (let i &#x3D; 0; i &lt; arrangement.length; i++) &#123;</span><br><span class="line">        if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39; &amp;&amp; arrangement[i + 1] &#x3D;&#x3D;&#x3D; &#39;)&#39;) &#123;</span><br><span class="line">            answer +&#x3D; stack;</span><br><span class="line">            i++</span><br><span class="line">        &#125; else if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39;) &#123;</span><br><span class="line">            stack++</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            stack--</span><br><span class="line">            answer +&#x3D; 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return answer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="All-Longest-Strings"><a href="#All-Longest-Strings" class="headerlink" title="All Longest Strings"></a>All Longest Strings</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function allLongestStrings(inputArray) &#123;</span><br><span class="line">    &#39;use strict&#39;;</span><br><span class="line">    let maxSize &#x3D; Math.max(...inputArray.map(x &#x3D;&gt; x.length));</span><br><span class="line">    return inputArray.filter(x &#x3D;&gt; x.length &#x3D;&#x3D;&#x3D; maxSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="centuryFromYear"><a href="#centuryFromYear" class="headerlink" title="centuryFromYear"></a>centuryFromYear</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function centuryFromYear(year) &#123;</span><br><span class="line">    return Math.ceil(year &#x2F; 100)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="commonCharacterCount"><a href="#commonCharacterCount" class="headerlink" title="commonCharacterCount"></a>commonCharacterCount</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function commonCharacterCount(s1, s2) &#123;</span><br><span class="line">    for (var i &#x3D; 0; i &lt; s1.length; i++) &#123;</span><br><span class="line">        s2 &#x3D; s2.replace(s1[i], &quot;!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return s2.replace(&#x2F;[^!]&#x2F;g, &quot;&quot;).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="checkPalindrome"><a href="#checkPalindrome" class="headerlink" title="checkPalindrome"></a>checkPalindrome</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function checkPalindrome(inputString) &#123;</span><br><span class="line">    return inputString &#x3D;&#x3D; inputString.split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="isLucky"><a href="#isLucky" class="headerlink" title="isLucky"></a>isLucky</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function isLucky(n) &#123;</span><br><span class="line">    var count &#x3D; 0;</span><br><span class="line">    n &#x3D; String(n).split(&#39;&#39;).map(t &#x3D;&gt; parseInt(t));</span><br><span class="line">    n.forEach((el, i) &#x3D;&gt; (i &lt; n.length &#x2F; 2) ? count +&#x3D; el : count -&#x3D; el)</span><br><span class="line">    return count &#x3D;&#x3D; 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="adjacentElementsProduct"><a href="#adjacentElementsProduct" class="headerlink" title="adjacentElementsProduct"></a>adjacentElementsProduct</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function adjacentElementsProduct(arr) &#123;</span><br><span class="line">    return Math.max(...arr.slice(1).map((x, i) &#x3D;&gt; [x * arr[i]]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Sort-by-Height"><a href="#Sort-by-Height" class="headerlink" title="Sort by Height"></a>Sort by Height</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function sortByHeight(a) &#123;</span><br><span class="line"></span><br><span class="line">    var people &#x3D; a.filter(el &#x3D;&gt; el &gt; 0)</span><br><span class="line">    people.sort((a, b) &#x3D;&gt; a - b)</span><br><span class="line"></span><br><span class="line">    for (let i &#x3D; 0; i &lt; a.length; i++) &#123;</span><br><span class="line">        if (a[i] !&#x3D;&#x3D; -1) &#123;</span><br><span class="line">            a[i] &#x3D; people.shift()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="shapeArea"><a href="#shapeArea" class="headerlink" title="shapeArea"></a>shapeArea</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function shapeArea(n) &#123;</span><br><span class="line">    return n*n + (n-1)*(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Make-array-consecutive-2"><a href="#Make-array-consecutive-2" class="headerlink" title="Make array consecutive 2"></a>Make array consecutive 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function makeArrayConsecutive2(statues) &#123;</span><br><span class="line">    return Math.max(...statues) - Math.min(...statues) + 1 - statues.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="almostIncreasingSequence"><a href="#almostIncreasingSequence" class="headerlink" title="almostIncreasingSequence"></a>almostIncreasingSequence</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function almostIncreasingSequence(seq) &#123;</span><br><span class="line">    var bad &#x3D; 0</span><br><span class="line">    for (var i &#x3D; 1; i &lt; seq.length; i++) if (seq[i] &lt;&#x3D; seq[i - 1]) &#123;</span><br><span class="line">        bad++</span><br><span class="line">        if (bad &gt; 1) return false</span><br><span class="line">        if (seq[i] &lt;&#x3D; seq[i - 2] &amp;&amp; seq[i + 1] &lt;&#x3D; seq[i - 1]) return false</span><br><span class="line">    &#125;</span><br><span class="line">    return true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="matrixElementsSum"><a href="#matrixElementsSum" class="headerlink" title="matrixElementsSum"></a>matrixElementsSum</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function matrixElementsSum(matrix) &#123;</span><br><span class="line">    var total &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    for (j &#x3D; 0; j &lt; matrix[0].length; j++) &#123;</span><br><span class="line">        for (var i &#x3D; 0; i &lt; matrix.length; i++) &#123;</span><br><span class="line">            if (matrix[i][j] &#x3D;&#x3D;&#x3D; 0) break</span><br><span class="line">            else total +&#x3D; matrix[i][j]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<h3 id="reverseInParentheses"><a href="#reverseInParentheses" class="headerlink" title="reverseInParentheses"></a>reverseInParentheses</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function reverseInParentheses(inputString) &#123;</span><br><span class="line">    while (inputString.includes(&#39;(&#39;)) &#123;</span><br><span class="line">        inputString &#x3D; inputString.replace(&#x2F;\(([^()]*)\)&#x2F;, (_, str) &#x3D;&gt; [...str].reverse().join(&#39;&#39;));</span><br><span class="line">    &#125;</span><br><span class="line">    return inputString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             
 
 
@@ -280,14 +272,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/17/CT-codeSignal2/"
-                    data-tooltip="Coding Test - Code Signal Intro2"
-                    aria-label="PREVIOUS: Coding Test - Code Signal Intro2"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -297,9 +286,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/15/CT-greedy/"
-                    data-tooltip="Coding Test - Level2 / Day1"
-                    aria-label="NEXT: Coding Test - Level2 / Day1"
+                    href="/2020/04/16/CT-level2-day2/"
+                    data-tooltip="Coding Test - Code Signal"
+                    aria-label="NEXT: Coding Test - Code Signal"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -324,7 +313,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -337,7 +326,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -350,7 +339,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -395,14 +384,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/17/CT-codeSignal2/"
-                    data-tooltip="Coding Test - Code Signal Intro2"
-                    aria-label="PREVIOUS: Coding Test - Code Signal Intro2"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -412,9 +398,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/15/CT-greedy/"
-                    data-tooltip="Coding Test - Level2 / Day1"
-                    aria-label="NEXT: Coding Test - Level2 / Day1"
+                    href="/2020/04/16/CT-level2-day2/"
+                    data-tooltip="Coding Test - Code Signal"
+                    aria-label="NEXT: Coding Test - Code Signal"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -439,7 +425,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -452,7 +438,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -465,7 +451,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -499,7 +485,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -512,7 +498,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -525,7 +511,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/17/CT-codeSignal2/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
