@@ -6,23 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Coding Test - Code Signal Intro 1 - Developer Javit</title>
+    <title>Coding Test - Code Signal Intro 3 - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Coding Test \n\n\n쇠막대기1234567891011121314151617function solution(arrangement) &#123;    var answer &#x3D; 0;    var stack &#x3D; 0;    for (let i &#x3D; 0; i &lt; arrangement.length; i++) &#123;        if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39; &amp;&amp; arrangement[i + 1] &#x3D;&#x3D;&#x3D; &#39;)&#39;) &#123;            answer +&#x3D; stack;            i++        &#125; else if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39;) &#123;            stack++        &#125; else &#123;            stack--            answer +&#x3D; 1        &#125;    &#125;    return answer&#125;\n\ncenturyFromYear123function centuryFromYear(year) &#123;    return Math.ceil(year &#x2F; 100)&#125;\n\ncheckPalindrome123function checkPalindrome(inputString) &#123;    return inputString &#x3D;&#x3D; inputString.split(&#39;&#39;).reverse().join(&#39;&#39;);&#125;\n\nadjacentElementsProduct123function adjacentElementsProduct(arr) &#123;    return Math.max(...arr.slice(1).map((x, i) &#x3D;&gt; [x * arr[i]]))&#125;\n\nshapeArea123function shapeArea(n) &#123;    return n*n + (n-1)*(n-1);&#125;\n\nMake array consecutive 2123function makeArrayConsecutive2(statues) &#123;    return Math.max(...statues) - Math.min(...statues) + 1 - statues.length&#125;\n\nalmostIncreasingSequence123456789function almostIncreasingSequence(seq) &#123;    var bad &#x3D; 0    for (var i &#x3D; 1; i &lt; seq.length; i++) if (seq[i] &lt;&#x3D; seq[i - 1]) &#123;        bad++        if (bad &gt; 1) return false        if (seq[i] &lt;&#x3D; seq[i - 2] &amp;&amp; seq[i + 1] &lt;&#x3D; seq[i - 1]) return false    &#125;    return true&#125;\n\nmatrixElementsSum1234567891011function matrixElementsSum(matrix) &#123;    var total &#x3D; 0;    for (j &#x3D; 0; j &lt; matrix[0].length; j++) &#123;        for (var i &#x3D; 0; i &lt; matrix.length; i++) &#123;            if (matrix[i][j] &#x3D;&#x3D;&#x3D; 0) break            else total +&#x3D; matrix[i][j]        &#125;    &#125;    return total&#125;\n\n","dateCreated":"2020-04-16T18:30:25+09:00","dateModified":"2020-04-18T22:29:52+09:00","datePublished":"2020-04-16T18:30:25+09:00","description":"Coding Test ","headline":"Coding Test - Code Signal Intro 1","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/16/CT-level2-day2/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/16/CT-level2-day2/","keywords":"Coding Test"}</script>
-    <meta name="description" content="Coding Test">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Coding Test - Code Signal Intro 3\n\n\nAdd Border123456789function addBorder(picture) &#123;    var width &#x3D; picture[0].length + 2    return [        &#39;*&#39;.repeat(width),        ...picture.map(line &#x3D;&gt; &#96;*$&#123;line&#125;*&#96;),        &#39;*&#39;.repeat(width)    ]&#125;\n\nAre Similar12345function areSimilar(a,b)&#123;    const aDiff &#x3D; a.filter((v,i) &#x3D;&gt; v !&#x3D; b[i])    const bDiff &#x3D; b.filter((v,i) &#x3D;&gt; v !&#x3D; a[i])    return aDiff.length &#x3D;&#x3D; 0 || aDiff.length &#x3D;&#x3D; 2 &amp;&amp; aDiff.join(&#39;&#39;) &#x3D;&#x3D; bDiff.reverse().join(&#39;&#39;)&#125;\n\n","dateCreated":"2020-04-18T23:30:25+09:00","dateModified":"2020-04-18T23:59:03+09:00","datePublished":"2020-04-18T23:30:25+09:00","description":"Coding Test - Code Signal Intro 3","headline":"Coding Test - Code Signal Intro 3","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/","keywords":"Coding Test"}</script>
+    <meta name="description" content="Coding Test - Code Signal Intro 3">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Coding Test - Code Signal Intro 1">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/16/CT-level2-day2/index.html">
+<meta property="og:title" content="Coding Test - Code Signal Intro 3">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Coding Test">
+<meta property="og:description" content="Coding Test - Code Signal Intro 3">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-16T09:30:25.000Z">
-<meta property="article:modified_time" content="2020-04-18T13:29:52.682Z">
+<meta property="article:published_time" content="2020-04-18T14:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-18T14:59:03.068Z">
 <meta property="article:author" content="Jay Chung">
 <meta property="article:tag" content="Coding Test">
 <meta name="twitter:card" content="summary">
@@ -215,14 +215,14 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Coding Test - Code Signal Intro 1
+            Coding Test - Code Signal Intro 3
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-16T18:30:25+09:00">
+    <time datetime="2020-04-18T23:30:25+09:00">
 	
-		    Apr 16, 2020
+		    Apr 18, 2020
     	
     </time>
     
@@ -240,24 +240,12 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Coding Test </p>
+            <p>Coding Test - Code Signal Intro 3</p>
 <a id="more"></a>
 
-<h3 id="쇠막대기"><a href="#쇠막대기" class="headerlink" title="쇠막대기"></a>쇠막대기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function solution(arrangement) &#123;</span><br><span class="line"></span><br><span class="line">    var answer &#x3D; 0;</span><br><span class="line">    var stack &#x3D; 0;</span><br><span class="line">    for (let i &#x3D; 0; i &lt; arrangement.length; i++) &#123;</span><br><span class="line">        if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39; &amp;&amp; arrangement[i + 1] &#x3D;&#x3D;&#x3D; &#39;)&#39;) &#123;</span><br><span class="line">            answer +&#x3D; stack;</span><br><span class="line">            i++</span><br><span class="line">        &#125; else if (arrangement[i] &#x3D;&#x3D;&#x3D; &#39;(&#39;) &#123;</span><br><span class="line">            stack++</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            stack--</span><br><span class="line">            answer +&#x3D; 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return answer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Add-Border"><a href="#Add-Border" class="headerlink" title="Add Border"></a>Add Border</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function addBorder(picture) &#123;</span><br><span class="line">    var width &#x3D; picture[0].length + 2</span><br><span class="line"></span><br><span class="line">    return [</span><br><span class="line">        &#39;*&#39;.repeat(width),</span><br><span class="line">        ...picture.map(line &#x3D;&gt; &#96;*$&#123;line&#125;*&#96;),</span><br><span class="line">        &#39;*&#39;.repeat(width)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="centuryFromYear"><a href="#centuryFromYear" class="headerlink" title="centuryFromYear"></a>centuryFromYear</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function centuryFromYear(year) &#123;</span><br><span class="line">    return Math.ceil(year &#x2F; 100)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="checkPalindrome"><a href="#checkPalindrome" class="headerlink" title="checkPalindrome"></a>checkPalindrome</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function checkPalindrome(inputString) &#123;</span><br><span class="line">    return inputString &#x3D;&#x3D; inputString.split(&#39;&#39;).reverse().join(&#39;&#39;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="adjacentElementsProduct"><a href="#adjacentElementsProduct" class="headerlink" title="adjacentElementsProduct"></a>adjacentElementsProduct</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function adjacentElementsProduct(arr) &#123;</span><br><span class="line">    return Math.max(...arr.slice(1).map((x, i) &#x3D;&gt; [x * arr[i]]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="shapeArea"><a href="#shapeArea" class="headerlink" title="shapeArea"></a>shapeArea</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function shapeArea(n) &#123;</span><br><span class="line">    return n*n + (n-1)*(n-1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Make-array-consecutive-2"><a href="#Make-array-consecutive-2" class="headerlink" title="Make array consecutive 2"></a>Make array consecutive 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function makeArrayConsecutive2(statues) &#123;</span><br><span class="line">    return Math.max(...statues) - Math.min(...statues) + 1 - statues.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="almostIncreasingSequence"><a href="#almostIncreasingSequence" class="headerlink" title="almostIncreasingSequence"></a>almostIncreasingSequence</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function almostIncreasingSequence(seq) &#123;</span><br><span class="line">    var bad &#x3D; 0</span><br><span class="line">    for (var i &#x3D; 1; i &lt; seq.length; i++) if (seq[i] &lt;&#x3D; seq[i - 1]) &#123;</span><br><span class="line">        bad++</span><br><span class="line">        if (bad &gt; 1) return false</span><br><span class="line">        if (seq[i] &lt;&#x3D; seq[i - 2] &amp;&amp; seq[i + 1] &lt;&#x3D; seq[i - 1]) return false</span><br><span class="line">    &#125;</span><br><span class="line">    return true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="matrixElementsSum"><a href="#matrixElementsSum" class="headerlink" title="matrixElementsSum"></a>matrixElementsSum</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function matrixElementsSum(matrix) &#123;</span><br><span class="line">    var total &#x3D; 0;</span><br><span class="line"></span><br><span class="line">    for (j &#x3D; 0; j &lt; matrix[0].length; j++) &#123;</span><br><span class="line">        for (var i &#x3D; 0; i &lt; matrix.length; i++) &#123;</span><br><span class="line">            if (matrix[i][j] &#x3D;&#x3D;&#x3D; 0) break</span><br><span class="line">            else total +&#x3D; matrix[i][j]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Are-Similar"><a href="#Are-Similar" class="headerlink" title="Are Similar"></a>Are Similar</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function areSimilar(a,b)&#123;</span><br><span class="line">    const aDiff &#x3D; a.filter((v,i) &#x3D;&gt; v !&#x3D; b[i])</span><br><span class="line">    const bDiff &#x3D; b.filter((v,i) &#x3D;&gt; v !&#x3D; a[i])</span><br><span class="line">    return aDiff.length &#x3D;&#x3D; 0 || aDiff.length &#x3D;&#x3D; 2 &amp;&amp; aDiff.join(&#39;&#39;) &#x3D;&#x3D; bDiff.reverse().join(&#39;&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
             
@@ -280,14 +268,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/17/CT-codeSignal2/"
-                    data-tooltip="Coding Test - Code Signal Intro 2"
-                    aria-label="PREVIOUS: Coding Test - Code Signal Intro 2"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -297,9 +282,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/15/CT-greedy/"
-                    data-tooltip="Coding Test - Level2 / Day1"
-                    aria-label="NEXT: Coding Test - Level2 / Day1"
+                    href="/2020/04/17/CT-codeSignal2/"
+                    data-tooltip="Coding Test - Code Signal Intro 2"
+                    aria-label="NEXT: Coding Test - Code Signal Intro 2"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -324,7 +309,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -337,7 +322,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -350,7 +335,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -395,14 +380,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/17/CT-codeSignal2/"
-                    data-tooltip="Coding Test - Code Signal Intro 2"
-                    aria-label="PREVIOUS: Coding Test - Code Signal Intro 2"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -412,9 +394,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/15/CT-greedy/"
-                    data-tooltip="Coding Test - Level2 / Day1"
-                    aria-label="NEXT: Coding Test - Level2 / Day1"
+                    href="/2020/04/17/CT-codeSignal2/"
+                    data-tooltip="Coding Test - Code Signal Intro 2"
+                    aria-label="NEXT: Coding Test - Code Signal Intro 2"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -439,7 +421,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -452,7 +434,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -465,7 +447,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -499,7 +481,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -512,7 +494,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -525,7 +507,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/16/CT-level2-day2/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
