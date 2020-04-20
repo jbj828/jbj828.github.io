@@ -6,25 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Developer Javit">
-    <title>Coding Test - Code Signal Intro 3 - Developer Javit</title>
+    <title>WebSocket - Developer Javit</title>
     <meta name="author" content="Jay Chung">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"Coding Test - Code Signal Intro 3\n\n\nAdd Border123456789function addBorder(picture) &#123;    var width &#x3D; picture[0].length + 2    return [        &#39;*&#39;.repeat(width),        ...picture.map(line &#x3D;&gt; &#96;*$&#123;line&#125;*&#96;),        &#39;*&#39;.repeat(width)    ]&#125;\n\nAre Similar12345function areSimilar(a,b)&#123;    const aDiff &#x3D; a.filter((v,i) &#x3D;&gt; v !&#x3D; b[i])    const bDiff &#x3D; b.filter((v,i) &#x3D;&gt; v !&#x3D; a[i])    return aDiff.length &#x3D;&#x3D; 0 || aDiff.length &#x3D;&#x3D; 2 &amp;&amp; aDiff.join(&#39;&#39;) &#x3D;&#x3D; bDiff.reverse().join(&#39;&#39;)&#125;\n\n","dateCreated":"2020-04-18T23:30:25+09:00","dateModified":"2020-04-18T23:59:03+09:00","datePublished":"2020-04-18T23:30:25+09:00","description":"Coding Test - Code Signal Intro 3","headline":"Coding Test - Code Signal Intro 3","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/","keywords":"Coding Test"}</script>
-    <meta name="description" content="Coding Test - Code Signal Intro 3">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"articleBody":"WebSocket\n\n\nThe WebSocket Protocol\nWebSockets allow for full-duplex communication.\nWebSocket is a seperate protocol from HTTP\nPersistent connection between client and server.\n\n1npm i socket.io\n\nSocket.io can be used on its own or with Express. Since the chat application will be serving up client-sied assets, both Express and Socket.io will get set up. \n12345678910111213141516171819202122232425const path &#x3D; require(&#39;path&#39;)const http &#x3D; require(&#39;http&#39;)const express &#x3D; require(&#39;express&#39;)const socketio &#x3D; require(&#39;socket.io&#39;)&#x2F;&#x2F; Create the Express applicationconst app &#x3D; express()&#x2F;&#x2F; Create the HTTP server using the Express appconst server &#x3D; http.createServer(app)&#x2F;&#x2F; Connect socket.io to the HTTP serverconst io &#x3D; socketio(server)const port &#x3D; process.env.PORT || 3000const publicDirectoryPath &#x3D; path.join(__dirname, &#39;..&#x2F;public&#39;)app.use(express.static(publicDirectoryPath))&#x2F;&#x2F; Listen for new connections to Socket.ioio.on(&#39;connection&#39;, () &#x3D;&gt; &#123; console.log(&#39;New WebSocket connection&#39;)&#125;)server.listen(port, () &#x3D;&gt; &#123; console.log(&#96;Server is up on port $&#123;port&#125;!&#96;)\n\nThe server above uses io.on which is provided by Socket.io. on allows the server to listen for an event and respond to it. In the example above, the server listens for connection which allows it to run some code when a client connects to the WebSocket server.\nSocket.io on the Client\nSocket.io is also used on the client to connect to the server. Socket.io automatically serves up /socket.io/socket.io.js which contains the client-side code. The script tags below load in the client-side library followed by a custom Javascript file.\n12&lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;&lt;script src&#x3D;&quot;&#x2F;js&#x2F;chat.js&quot;&gt;&lt;&#x2F;script&gt;\n\nYour client-side JavaScript can then connect to the Socket.io server by calling io. io is provided by the client-side Socket.io library. Calling this function will set up the connection, and it’ll cause the server’s connection event handler to run.\n1io()","dateCreated":"2020-04-20T23:30:25+09:00","dateModified":"2020-04-20T23:51:10+09:00","datePublished":"2020-04-20T23:30:25+09:00","description":"WebSocket","headline":"WebSocket","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"},"publisher":{"@type":"Organization","name":"Jay Chung","sameAs":["https://github.com/jbj828"]},"url":"http://jbj828.github.io/2020/04/20/NodeJS-Websocket/","keywords":"NodeJS"}</script>
+    <meta name="description" content="WebSocket">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Coding Test - Code Signal Intro 3">
-<meta property="og:url" content="http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/index.html">
+<meta property="og:title" content="WebSocket">
+<meta property="og:url" content="http://jbj828.github.io/2020/04/20/NodeJS-Websocket/index.html">
 <meta property="og:site_name" content="Developer Javit">
-<meta property="og:description" content="Coding Test - Code Signal Intro 3">
+<meta property="og:description" content="WebSocket">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-18T14:30:25.000Z">
-<meta property="article:modified_time" content="2020-04-18T14:59:03.068Z">
+<meta property="article:published_time" content="2020-04-20T14:30:25.000Z">
+<meta property="article:modified_time" content="2020-04-20T14:51:10.721Z">
 <meta property="article:author" content="Jay Chung">
-<meta property="article:tag" content="Coding Test">
+<meta property="article:tag" content="NodeJS">
 <meta name="twitter:card" content="summary">
     
     
@@ -215,20 +215,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            Coding Test - Code Signal Intro 3
+            WebSocket
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2020-04-18T23:30:25+09:00">
+    <time datetime="2020-04-20T23:30:25+09:00">
 	
-		    Apr 18, 2020
+		    Apr 20, 2020
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Coding-Test/">Coding Test</a>
+    <a class="category-link" href="/categories/NodeJS/">NodeJS</a>
 
 
     
@@ -240,14 +240,26 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <p>Coding Test - Code Signal Intro 3</p>
+            <p>WebSocket</p>
 <a id="more"></a>
 
-<h3 id="Add-Border"><a href="#Add-Border" class="headerlink" title="Add Border"></a>Add Border</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function addBorder(picture) &#123;</span><br><span class="line">    var width &#x3D; picture[0].length + 2</span><br><span class="line"></span><br><span class="line">    return [</span><br><span class="line">        &#39;*&#39;.repeat(width),</span><br><span class="line">        ...picture.map(line &#x3D;&gt; &#96;*$&#123;line&#125;*&#96;),</span><br><span class="line">        &#39;*&#39;.repeat(width)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="The-WebSocket-Protocol"><a href="#The-WebSocket-Protocol" class="headerlink" title="The WebSocket Protocol"></a>The WebSocket Protocol</h3><ul>
+<li>WebSockets allow for full-duplex communication.</li>
+<li>WebSocket is a seperate protocol from HTTP</li>
+<li>Persistent connection between client and server.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i socket.io</span><br></pre></td></tr></table></figure>
 
-<h3 id="Are-Similar"><a href="#Are-Similar" class="headerlink" title="Are Similar"></a>Are Similar</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function areSimilar(a,b)&#123;</span><br><span class="line">    const aDiff &#x3D; a.filter((v,i) &#x3D;&gt; v !&#x3D; b[i])</span><br><span class="line">    const bDiff &#x3D; b.filter((v,i) &#x3D;&gt; v !&#x3D; a[i])</span><br><span class="line">    return aDiff.length &#x3D;&#x3D; 0 || aDiff.length &#x3D;&#x3D; 2 &amp;&amp; aDiff.join(&#39;&#39;) &#x3D;&#x3D; bDiff.reverse().join(&#39;&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Socket.io can be used on its own or with Express. Since the chat application will be serving up client-sied assets, both Express and Socket.io will get set up. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const http &#x3D; require(&#39;http&#39;)</span><br><span class="line">const express &#x3D; require(&#39;express&#39;)</span><br><span class="line">const socketio &#x3D; require(&#39;socket.io&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Create the Express application</span><br><span class="line">const app &#x3D; express()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Create the HTTP server using the Express app</span><br><span class="line">const server &#x3D; http.createServer(app)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Connect socket.io to the HTTP server</span><br><span class="line">const io &#x3D; socketio(server)</span><br><span class="line"></span><br><span class="line">const port &#x3D; process.env.PORT || 3000</span><br><span class="line">const publicDirectoryPath &#x3D; path.join(__dirname, &#39;..&#x2F;public&#39;)</span><br><span class="line">app.use(express.static(publicDirectoryPath))</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Listen for new connections to Socket.io</span><br><span class="line">io.on(&#39;connection&#39;, () &#x3D;&gt; &#123;</span><br><span class="line"> console.log(&#39;New WebSocket connection&#39;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(port, () &#x3D;&gt; &#123;</span><br><span class="line"> console.log(&#96;Server is up on port $&#123;port&#125;!&#96;)</span><br></pre></td></tr></table></figure>
 
+<p>The server above uses <code>io.on</code> which is provided by Socket.io. <code>on</code> allows the server to listen for an event and respond to it. In the example above, the server listens for <code>connection</code> which allows it to run some code when a client connects to the WebSocket server.</p>
+<p><strong>Socket.io on the Client</strong></p>
+<p>Socket.io is also used on the client to connect to the server. Socket.io automatically serves up <code>/socket.io/socket.io.js</code> which contains the client-side code. The script tags below load in the client-side library followed by a custom Javascript file.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;&#x2F;socket.io&#x2F;socket.io.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;&#x2F;js&#x2F;chat.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
 
+<p>Your client-side JavaScript can then connect to the Socket.io server by calling <code>io</code>. <code>io</code> is provided by the client-side Socket.io library. Calling this function will set up the connection, and it’ll cause the server’s <code>connection</code> event handler to run.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">io()</span><br></pre></td></tr></table></figure>
             
 
 
@@ -258,7 +270,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Coding-Test/" rel="tag">Coding Test</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/NodeJS/" rel="tag">NodeJS</a>
 
             </div>
         
@@ -268,14 +280,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/20/NodeJS-Websocket/"
-                    data-tooltip="WebSocket"
-                    aria-label="PREVIOUS: WebSocket"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -285,9 +294,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/17/CT-codeSignal2/"
-                    data-tooltip="Coding Test - Code Signal Intro 2"
-                    aria-label="NEXT: Coding Test - Code Signal Intro 2"
+                    href="/2020/04/18/CT-codeSignalIntro3/"
+                    data-tooltip="Coding Test - Code Signal Intro 3"
+                    aria-label="NEXT: Coding Test - Code Signal Intro 3"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -312,7 +321,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -325,7 +334,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -338,7 +347,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -383,14 +392,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/20/NodeJS-Websocket/"
-                    data-tooltip="WebSocket"
-                    aria-label="PREVIOUS: WebSocket"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
@@ -400,9 +406,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2020/04/17/CT-codeSignal2/"
-                    data-tooltip="Coding Test - Code Signal Intro 2"
-                    aria-label="NEXT: Coding Test - Code Signal Intro 2"
+                    href="/2020/04/18/CT-codeSignalIntro3/"
+                    data-tooltip="Coding Test - Code Signal Intro 3"
+                    aria-label="NEXT: Coding Test - Code Signal Intro 3"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -427,7 +433,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                     title="Share on Facebook"
                     aria-label="Share on Facebook"
                 >
@@ -440,7 +446,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                     title="Share on Twitter"
                     aria-label="Share on Twitter"
                 >
@@ -453,7 +459,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                    target="new" href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                     title="Share on Google+"
                     aria-label="Share on Google+"
                 >
@@ -487,7 +493,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                         aria-label="Share on Facebook"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
@@ -500,7 +506,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                        href="https://twitter.com/intent/tweet?text=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                         aria-label="Share on Twitter"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
@@ -513,7 +519,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/18/CT-codeSignalIntro3/"
+                        href="https://plus.google.com/share?url=http://jbj828.github.io/2020/04/20/NodeJS-Websocket/"
                         aria-label="Share on Google+"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
