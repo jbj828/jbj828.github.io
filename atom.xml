@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jbj828.github.io/"/>
-  <updated>2020-04-21T11:11:43.961Z</updated>
+  <updated>2020-05-13T13:16:30.229Z</updated>
   <id>http://jbj828.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Functional Programming on JS</title>
+    <link href="http://jbj828.github.io/2020/05/13/JS-Functional-Programming/"/>
+    <id>http://jbj828.github.io/2020/05/13/JS-Functional-Programming/</id>
+    <published>2020-05-13T13:46:25.000Z</published>
+    <updated>2020-05-13T13:16:30.229Z</updated>
+    
+    <content type="html"><![CDATA[<p>Functional Programming on JS</p><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Fibonachi with Functional Programming</span><br><span class="line">var fibo &#x3D; (function () &#123;</span><br><span class="line">  var cache &#x3D; &#123; &quot;0&quot;: 0, &quot;1&quot;: 1 &#125;;</span><br><span class="line"></span><br><span class="line">  var func &#x3D; function (n) &#123;</span><br><span class="line">    if (typeof cache[n] &#x3D;&#x3D;&#x3D; &quot;number&quot;) &#123;</span><br><span class="line">      result &#x3D; cache[n];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      result &#x3D; cache[n] &#x3D; func(n - 1) + func(n - 2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">  &#125;;</span><br><span class="line">  return func;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">console.log(fibo(10));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Another way, defining cacher first</span><br><span class="line">&#x2F;&#x2F; and then put factorial or fibonacci</span><br><span class="line">var cacher &#x3D; function (cache, func) &#123;</span><br><span class="line">  var calculate &#x3D; function (n) &#123;</span><br><span class="line">    if (typeof cache[n] &#x3D;&#x3D;&#x3D; &quot;number&quot;) &#123;</span><br><span class="line">      result &#x3D; cache[n];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      result &#x3D; cache[n] &#x3D; func(calculate, n);</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">  &#125;;</span><br><span class="line">  return calculate;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var fact &#x3D; cacher(&#123; &quot;0&quot;: 1 &#125;, function (func, n) &#123;</span><br><span class="line">  return n * func(n - 1);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var fibo &#x3D; cacher(&#123; &quot;0&quot;: 0, &quot;1&quot;: 1 &#125;, function (func, n) &#123;</span><br><span class="line">  return func(n - 1) + func(n - 2);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(fact(10));</span><br><span class="line">console.log(fibo(10));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; call method</span><br><span class="line">function example() &#123;</span><br><span class="line">  console.log(Array.prototype.join.call(arguments));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">example(1, &quot;string&quot;, true); &#x2F;&#x2F; &quot;1,string,true&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Currying</span><br><span class="line">function calculate(a, b, c) &#123;</span><br><span class="line">  return a * b + c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function curry(func) &#123;</span><br><span class="line">  var args &#x3D; Array.prototype.slice.call(arguments, 1);</span><br><span class="line"></span><br><span class="line">  return function () &#123;</span><br><span class="line">    return func.apply(null, args.concat(Array.prototype.slice.call(arguments)));</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var new_func1 &#x3D; curry(calculate, 1);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Functional Programming on JS&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Javascript" scheme="http://jbj828.github.io/categories/Javascript/"/>
+    
+    
+      <category term="Javascript" scheme="http://jbj828.github.io/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Socket.io Events</title>
@@ -450,29 +473,6 @@
     
     
       <category term="NodeJS" scheme="http://jbj828.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Dynamic Programming</title>
-    <link href="http://jbj828.github.io/2020/04/04/Al-dynamic-programming/"/>
-    <id>http://jbj828.github.io/2020/04/04/Al-dynamic-programming/</id>
-    <published>2020-04-04T03:30:25.000Z</published>
-    <updated>2020-04-04T03:32:28.772Z</updated>
-    
-    <content type="html"><![CDATA[<p>dynamic programming</p><a id="more"></a><h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><p>A method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions.</p><p>It only works on problems with <strong>Optimal Substructure</strong> &amp; <strong>Overlapping Subproblems</strong></p><h3 id="Overlapping-Subproblems"><a href="#Overlapping-Subproblems" class="headerlink" title="Overlapping Subproblems"></a>Overlapping Subproblems</h3><p>A problme is said to have <code>overlapping subproblems</code> if it can be broken down into subproblems which are reused several times.</p><p>Ex) Finbonnaci Numbers</p><h3 id="Optimal-Substructure"><a href="#Optimal-Substructure" class="headerlink" title="Optimal Substructure"></a>Optimal Substructure</h3><p>A problem is said to have <code>optimal substructure</code> if an optimal solution can be constructed from optimal solutions of its subproblems.</p><h3 id="Meomoization"><a href="#Meomoization" class="headerlink" title="Meomoization"></a>Meomoization</h3><p>Storing the results of expensive function calls and returning the cached result when the same inputs occur again.</p><h4 id="The-Fibonacci-with-Recursive"><a href="#The-Fibonacci-with-Recursive" class="headerlink" title="The Fibonacci with Recursive"></a>The Fibonacci with Recursive</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fib(num)&#123;</span><br><span class="line">   if(num &lt;&#x3D; 2) return 1;</span><br><span class="line">   return fib(num -1) + fib(num -2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Time Complexity - O(2^n)</p><h4 id="Meomoization-The-Fibonacci-with-Memoized-solution-Top-Down"><a href="#Meomoization-The-Fibonacci-with-Memoized-solution-Top-Down" class="headerlink" title="Meomoization : The Fibonacci with Memoized solution(Top-Down)"></a>Meomoization : The Fibonacci with Memoized solution(Top-Down)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function fib(n, memo&#x3D;[])&#123;</span><br><span class="line">  if(memo[n] !&#x3D;&#x3D; undefined) return memo[n];</span><br><span class="line">  if(n &lt;&#x3D; 2) return 1;</span><br><span class="line">  var res &#x3D; fib(n-1, memo) + fib(n-2, memo);</span><br><span class="line">  memo[n] &#x3D; res;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Time Complexity - O(n)</p><h3 id="Tabulation"><a href="#Tabulation" class="headerlink" title="Tabulation"></a>Tabulation</h3><p>Storing the result of a previous result in a “table”(usually an array).<br>Usually done using iteration.<br>Better space complexity can be achieved using tabulation.</p><h3 id="Tabulation-The-Fibonacci-with-tabulated-solution-Bottom-up-Approach"><a href="#Tabulation-The-Fibonacci-with-tabulated-solution-Bottom-up-Approach" class="headerlink" title="Tabulation : The Fibonacci with tabulated solution(Bottom-up Approach)"></a>Tabulation : The Fibonacci with tabulated solution(Bottom-up Approach)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fib(n)&#123;</span><br><span class="line">  if(n &lt;&#x3D; 2) return 1;</span><br><span class="line">  var fibNums &#x3D; [0, 1, 1];</span><br><span class="line">  for(var i &#x3D; 3; i &lt;&#x3D; n; i++)&#123;</span><br><span class="line">    fibNums[i] &#x3D; fibNums[i-1] + fibNums[i-2];</span><br><span class="line">  &#125;</span><br><span class="line">  return fibNums[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Time Complexity - O(n)<br>Space Complexity is better than Memoized Version.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;dynamic programming&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="http://jbj828.github.io/categories/Algorithm/"/>
-    
-    
-      <category term="algorithm" scheme="http://jbj828.github.io/tags/algorithm/"/>
     
   </entry>
   
